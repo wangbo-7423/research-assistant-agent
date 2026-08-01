@@ -1,6 +1,6 @@
 # nest-serve — AI 科研助手后端服务
 
-> AI_Coder 项目的后端服务：一个基于 **NestJS 11** 的科研知识库问答（RAG）平台。
+> Research-Assistant-Agent 项目的后端服务：一个基于 **NestJS 11** 的科研知识库问答（RAG）平台。
 > 支持文档 / 图片多模态输入、Milvus 向量检索 + BM25 混合检索（RRF 融合）、
 > 四工具意图路由 RAG 架构，以及 `###ABC###` 分隔的流式响应。
 

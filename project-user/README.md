@@ -1,6 +1,6 @@
 # project-user — AI 科研助手前端
 
-> AI_Coder 项目的前端应用：基于 **Vue 3.5 + Vite 8** 的科研知识库问答 SPA。
+> Research-Assistant-Agent 项目的前端应用：基于 **Vue 3.5 + Vite 8** 的科研知识库问答 SPA。
 > 配套后端为 [`nest-serve/`](../nest-serve)（NestJS 11）。
 
 ---
