@@ -1,4 +1,4 @@
-import { ConfidenceAgent } from './confidence-agent';
+import { ConfidenceAgent, ConfidenceConfig, resolveConfidenceConfig, computeConfigHash } from './confidence-agent';
 
 describe('ConfidenceAgent · 规则打分', () => {
   let agent: ConfidenceAgent;
@@ -97,5 +97,50 @@ describe('ConfidenceAgent · 规则打分', () => {
     for (const v of Object.values(ds)) {
       expect(Math.round(v * 100) / 100).toBe(v);
     }
+  });
+
+  it('无参构造与显式默认配置：configHash 相同、判定结果一致（向后兼容）', () => {
+    const a1 = new ConfidenceAgent();
+    const a2 = new ConfidenceAgent({});
+    expect(a1.configHash).toBe(a2.configHash);
+    const results = [
+      { docId: 'd1', docTitle: 'A.pdf', docText: '内容A', score: 0.92 },
+      { docId: 'd2', docTitle: 'B.pdf', docText: '内容B', score: 0.88 },
+    ];
+    expect(a1.check(results, '问题')).toEqual(a2.check(results, '问题'));
+  });
+
+  it('自定义配置改变判定阈值（passThreshold 从 0.8 调低到 0.7）', () => {
+    const relaxed = new ConfidenceAgent({ passThreshold: 0.7 });
+    // 单源 0.9 分：默认 0.8 阈值下为 warn，0.7 阈值下为 pass
+    const r = relaxed.check([{ docId: 'd1', docTitle: 'A.pdf', docText: '内容A', score: 0.9 }], '问题');
+    expect(r.check_result).toBe('pass');
+    const rDefault = agent.check([{ docId: 'd1', docTitle: 'A.pdf', docText: '内容A', score: 0.9 }], '问题');
+    expect(rDefault.check_result).toBe('warn');
+    expect(relaxed.configHash).not.toBe(agent.configHash);
+  });
+
+  it('normalizeResults 收敛输入：score 缺省填 0.6，字段保留', () => {
+    const out = ConfidenceAgent.normalizeResults([
+      { docId: 'd1' } as any,
+      null as any,
+      { docId: 'd2', docTitle: 'B.pdf', docText: 'x', score: 0.7 },
+    ]);
+    expect(out).toHaveLength(3);
+    expect(out[0].score).toBe(0.6);
+    expect(out[0].docId).toBe('d1');
+    expect(out[1].score).toBe(0.6);
+    expect(out[2].score).toBe(0.7);
+  });
+
+  it('resolveConfidenceConfig / computeConfigHash 纯函数可用（供评测 runner 扫参）', () => {
+    const cfg: ConfidenceConfig = { passThreshold: 0.75, weights: { content_relevance: 0.4 } };
+    const resolved = resolveConfidenceConfig(cfg);
+    expect(resolved.passThreshold).toBe(0.75);
+    expect(resolved.weights.content_relevance).toBe(0.4);
+    expect(resolved.weights.source_reliability).toBe(0.25); // 其余保持默认
+    // 不同配置 hash 不同，相同配置 hash 相同
+    expect(computeConfigHash(cfg)).not.toBe(computeConfigHash({}));
+    expect(computeConfigHash(cfg)).toBe(computeConfigHash({ ...cfg }));
   });
 });

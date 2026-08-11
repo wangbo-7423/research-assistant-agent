@@ -784,6 +784,35 @@ describe('ChatService', () => {
       expect(writes.some((w: string) => w.includes('⚠️ 提示：知识库'))).toBe(true);
     });
 
+    it('fail 链路修复：lowConfidence 兜底时 ConfidenceAgent 收到空数组（库外问题正确判 fail）', async () => {
+      redisMock.get.mockResolvedValue(null);
+      intentRouterMock.classifyIntent.mockResolvedValue({ intent: 'fact', confidence: 0.9, reasoning: 'r' });
+      // 模拟库外问题：preciseSearch 兜底返回 Top1 但标记 lowConfidence=true
+      fileServiceMock.preciseSearch.mockResolvedValue({
+        success: true,
+        results: [{ docId: 'd1', docTitle: 'A.pdf', docText: '勉强相关的片段', score: 0.2 }],
+        totalCandidates: 5,
+        aboveThreshold: 0,
+        lowConfidence: true,
+      });
+      const checkSpy = confidenceAgentMock.check;
+      checkSpy.mockReturnValue({
+        check_result: 'fail',
+        overall_confidence: 0,
+        dimension_scores: { source_reliability: 0, content_relevance: 0, citation_completeness: 0, cross_source_consistency: 0 },
+        warnings: ['no_results'],
+        recommended_action: { action: 'reject_or_fallback', detail: '', auto_executable: true },
+      });
+      mockModelStream([{ choices: [{ delta: { content: '回答正文' } }] }]);
+
+      await service.combineConvo(new Types.ObjectId(), 'null', '库外问题', undefined, streamMock, true, undefined);
+
+      // 关键断言：check 收到的是空数组（而非兜底 Top1），fail 分支因此可触发
+      const checkArgs = checkSpy.mock.calls[0][0];
+      expect(Array.isArray(checkArgs)).toBe(true);
+      expect(checkArgs).toHaveLength(0);
+    });
+
     it('clarify 意图：LLM 引入实体池外新实体时服务端硬校验重建反问文本', async () => {
       redisMock.get.mockResolvedValue(null);
       intentRouterMock.classifyIntent.mockResolvedValue({ intent: 'clarify', confidence: 0.9, reasoning: 'r' });

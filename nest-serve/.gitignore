@@ -3,6 +3,11 @@
 /node_modules
 /build
 
+# 评测运行产物（含用户知识库抽取的论文片段 / userId，不入库；仅保留 example 与 README）
+/eval/datasets/retrieval-2026-*.jsonl
+/eval/datasets/.smoke.jsonl
+/eval/reports/
+
 # Logs
 logs
 *.log

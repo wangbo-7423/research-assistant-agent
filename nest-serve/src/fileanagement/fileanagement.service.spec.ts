@@ -43,6 +43,21 @@ describe('FileanagementService - 混合检索', () => {
     );
   });
 
+  it('embedQuery：相同文本命中内存缓存，不再重复调用 API', async () => {
+    embeddingsCreateMock.mockResolvedValue({ data: [{ embedding: [0.5, 0.5], index: 0 }] });
+    await (service as any).embedQuery('缓存测试问题');
+    await (service as any).embedQuery('缓存测试问题');
+    await (service as any).embedQuery('缓存测试问题');
+    expect(embeddingsCreateMock).toHaveBeenCalledTimes(1); // 只调一次，其余命中缓存
+  });
+
+  it('embedQuery：不同文本不共享缓存', async () => {
+    embeddingsCreateMock.mockResolvedValue({ data: [{ embedding: [0.5, 0.5], index: 0 }] });
+    await (service as any).embedQuery('问题A');
+    await (service as any).embedQuery('问题B');
+    expect(embeddingsCreateMock).toHaveBeenCalledTimes(2);
+  });
+
   it('embedDocuments：超过 10 条时分批且保持顺序', async () => {
     const texts = Array.from({ length: 12 }, (_, i) => `文本${i}`);
     embeddingsCreateMock.mockImplementation(async ({ input }: any) => ({
@@ -154,5 +169,76 @@ describe('FileanagementService - 混合检索', () => {
     const res = await service.hybridSearch('任意问题', 'new-user', 5);
     expect(res).toEqual({ success: true, results: [], fromVector: 0, fromKeyword: 0 });
     expect(embeddingsCreateMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('FileanagementService - rerank 响应解析（评测发现回归锁定）', () => {
+  let service: FileanagementService;
+  const globalFetch = global.fetch;
+
+  beforeEach(async () => {
+    jest.clearAllMocks();
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        FileanagementService,
+        { provide: getModelToken(Fileanagement.name), useValue: {} },
+        {
+          provide: ConfigService,
+          useValue: {
+            get: (key: string) =>
+              ({ QWEN_API_KEY: 'test-key', QWEN_EMBEDDING_MODEL: 'text-embedding-v3' } as any)[key],
+          },
+        },
+      ],
+    }).compile();
+    service = module.get(FileanagementService);
+  });
+
+  afterEach(() => {
+    global.fetch = globalFetch;
+  });
+
+  it('qwen3-rerank 的 {object:list, results:[...]} 结构可解析（2026-08 实测返回结构）', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        object: 'list',
+        results: [
+          { index: 1, relevance_score: 0.81 },
+          { index: 0, relevance_score: 0.22 },
+        ],
+        model: 'qwen3-rerank',
+      }),
+    }) as any;
+    const out = await service.rerank('q', ['doc0', 'doc1'], 2);
+    expect(out).not.toBeNull();
+    expect(out).toEqual([
+      { index: 1, score: 0.81 },
+      { index: 0, score: 0.22 },
+    ]);
+  });
+
+  it('兼容旧 gte-rerank-v2 的 output.results 结构', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        output: { results: [{ index: 0, relevance_score: 0.9 }] },
+      }),
+    }) as any;
+    const out = await service.rerank('q', ['doc0'], 1);
+    expect(out).toEqual([{ index: 0, score: 0.9 }]);
+  });
+
+  it('非 200 响应降级返回 null（不抛错）', async () => {
+    global.fetch = jest.fn().mockResolvedValue({ ok: false, status: 429 }) as any;
+    jest.spyOn(console, 'warn').mockImplementation();
+    const out = await service.rerank('q', ['doc0'], 1);
+    expect(out).toBeNull();
+  });
+
+  it('未知响应结构返回 null 降级', async () => {
+    global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ foo: 'bar' }) }) as any;
+    const out = await service.rerank('q', ['doc0'], 1);
+    expect(out).toBeNull();
   });
 });

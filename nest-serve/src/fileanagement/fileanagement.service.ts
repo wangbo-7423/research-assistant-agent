@@ -72,8 +72,15 @@ export class FileanagementService {
     private deepseek: OpenAI | null = null;
     private deepseekModel: string;
 
+    /** 查询向量内存缓存：评测/扫参反复检索同一 query 时复用，避免重复调用 embedding API */
+    private readonly embedCache = new Map<string, number[]>();
+    private readonly embedCacheMax = Number(process.env.RAG_EMBED_CACHE_SIZE) || 500;
+
     // 生成单个文本的向量（用于查询）
     private async embedQuery(text: string): Promise<number[]> {
+        const cacheKey = `${this.embeddingModel}:${this.embeddingDimension}:${text}`;
+        const cached = this.embedCache.get(cacheKey);
+        if (cached) return cached;
         try {
             const response = await this.openai.embeddings.create({
                 model: this.embeddingModel,
@@ -86,7 +93,11 @@ export class FileanagementService {
                 throw new Error('OpenAI API 返回数据为空');
             }
 
-            return response.data[0].embedding;
+            const vector = response.data[0].embedding;
+            // 简单 FIFO 淘汰：超上限时清空（评测场景缓存命中集中在同一批 query，全清可接受）
+            if (this.embedCache.size >= this.embedCacheMax) this.embedCache.clear();
+            this.embedCache.set(cacheKey, vector);
+            return vector;
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`生成查询向量失败: ${error.message}`);
@@ -763,12 +774,14 @@ export class FileanagementService {
                 return null;
             }
             const json = (await resp.json()) as any;
-            // 兼容两种响应结构：qwen3-rerank 的 data[] 与旧 gte-rerank-v2 的 output.results[]
-            const data = Array.isArray(json?.data)
-                ? json.data
-                : Array.isArray(json?.output?.results)
-                  ? json.output.results
-                  : null;
+            // 兼容三种响应结构：qwen3-rerank 的 results[]（object:list）与 data[]、旧 gte-rerank-v2 的 output.results[]
+            const data = Array.isArray(json?.results)
+                ? json.results
+                : Array.isArray(json?.data)
+                  ? json.data
+                  : Array.isArray(json?.output?.results)
+                    ? json.output.results
+                    : null;
             if (!data) return null;
             const out = data
                 .map((d: any) => {

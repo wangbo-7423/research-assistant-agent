@@ -16,6 +16,7 @@ import { SkillLoader } from "./tools/skill-loader"
 import { IntentRouter, IntentRouteResult, createClarifyState, handlePendingConfirmation, isPendingExpired, onFactResult, ClarifyState, FallbackCounter } from "./routers/intent-router"
 import { PerspectiveAgent, DimensionResult } from "./agents/sub-agent"
 import { ConfidenceAgent, ConfidenceCheckResult } from "./agents/confidence-agent"
+import { createRagTrace } from "./rag-tracer"
 import { readFileSync } from 'fs';
 import { assertImageSignature, resolveStoredImagePath } from '../fileanagement/image-storage';
 // 创建请求对话的终止控制器
@@ -28,6 +29,8 @@ export class ChatService implements OnModuleInit {
     private readonly visionModel: string;
     /** 四工具 RAG 架构总开关：true 时 KB 路径走新意图路由，false 时完全保留旧链路 */
     private readonly ragRefactorEnabled: boolean;
+    /** 最近一次 LLM 调用耗时（ms），供 trace 埋点（并发请求各自覆盖，仅作近似记录） */
+    private lastLlmLatencyMs?: number;
     constructor(
         @InjectModel(Fileanagement.name)
         private  fileanagementModel: Model<Fileanagement>,
@@ -589,6 +592,9 @@ export class ChatService implements OnModuleInit {
         const lastUser = messageList[messageList.length - 1];
         const userInput = lastUser?.content || '';
 
+        // trace 埋点（3.1）：JSONL 落盘，失败不阻塞主流程
+        const trace = createRagTrace({ user_id: userId, session_id: String(realSessionId), user_input: userInput.slice(0, 200) });
+
         // 1. pendingConfirmation 前置检查（防 Clarify 死循环）
         const pending = await this.getClarifyState(userId, realSessionId);
         if (pending && pending.mode === 'pending_confirmation') {
@@ -605,13 +611,20 @@ export class ChatService implements OnModuleInit {
                 const effectiveInput = resolved.resolvedQuery ?? userInput;
                 const effectiveList: MessageType[] = [...messageList.slice(0, -1), { role: 'user', content: effectiveInput }];
                 const route = await this.intentRouter.classifyIntent(effectiveInput);
-                return this.dispatch(route, effectiveInput, effectiveList, userId, realSessionId, stream);
+                trace.set({ pending_resolved: true, effective_input: effectiveInput.slice(0, 200) });
+                const result = await this.dispatch(route, effectiveInput, effectiveList, userId, realSessionId, stream, trace);
+                trace.setIf({ llm_latency_ms: this.lastLlmLatencyMs });
+                trace.flush();
+                return result;
             }
         }
 
         // 2. 正常分类
         const route = await this.intentRouter.classifyIntent(userInput);
-        return this.dispatch(route, userInput, messageList, userId, realSessionId, stream);
+        const result = await this.dispatch(route, userInput, messageList, userId, realSessionId, stream, trace);
+        trace.setIf({ llm_latency_ms: this.lastLlmLatencyMs });
+        trace.flush();
+        return result;
     }
 
     private async dispatch(
@@ -621,20 +634,27 @@ export class ChatService implements OnModuleInit {
         userId: string,
         realSessionId: Types.ObjectId | string,
         stream: Response,
+        trace?: ReturnType<typeof createRagTrace>,
     ): Promise<MessageType | undefined> {
         const plan = this.intentRouter.buildExecutionPlan(route, userInput);
+        trace?.set({
+            intent: route.intent,
+            route_confidence: route.confidence,
+            internal_strategy: plan.internalStrategy,
+            hybrid: route.hybrid ?? false,
+        });
         switch (route.intent) {
             case 'clarify':
-                return this.handleClarify(userInput, messageList, userId, realSessionId, stream);
+                return this.handleClarify(userInput, messageList, userId, realSessionId, stream, trace);
             case 'fact':
-                return this.handleFact(userInput, messageList, userId, stream);
+                return this.handleFact(userInput, messageList, userId, stream, trace);
             case 'perspective':
                 if (plan.internalStrategy === 'hybrid') {
-                    return this.executeWithHybridStrategy(userInput, messageList, userId, stream);
+                    return this.executeWithHybridStrategy(userInput, messageList, userId, stream, trace);
                 }
-                return this.handlePerspective(userInput, messageList, userId, stream);
+                return this.handlePerspective(userInput, messageList, userId, stream, undefined, trace);
             default:
-                return this.handleFact(userInput, messageList, userId, stream);
+                return this.handleFact(userInput, messageList, userId, stream, trace);
         }
     }
 
@@ -645,9 +665,11 @@ export class ChatService implements OnModuleInit {
         userId: string,
         sessionId: Types.ObjectId | string,
         stream: Response,
+        trace?: ReturnType<typeof createRagTrace>,
     ): Promise<MessageType | undefined> {
         const context = this.buildContextString(messageList);
         const clarification = await this.generateClarification(userInput, context);
+        trace?.set({ clarify_generated: true, clarification_text: clarification.display_text.slice(0, 200) });
         // 设置 pendingConfirmation 状态（防死循环）
         const state = createClarifyState(sessionId.toString(), clarification.inferred_intents);
         await this.saveClarifyState(userId, sessionId, state);
@@ -710,12 +732,22 @@ export class ChatService implements OnModuleInit {
         messageList: MessageType[],
         userId: string,
         stream: Response,
+        trace?: ReturnType<typeof createRagTrace>,
     ): Promise<MessageType | undefined> {
         this.notifyStream(stream, { type: 'queryKB', statusInfo: 'inProgress', promptInfo: '正在检索知识库', fileList: [] });
         let answerContent = '';
         let kbReadFileData: MessageType['readFileData'] | undefined;
         try {
-            const { hits, hasFactualBasis, kbContent } = await this.retrieveFact(userQuestion, userId);
+            const { hits, hasFactualBasis, kbContent, stats } = await this.retrieveFact(userQuestion, userId);
+            trace?.setIf({
+                retrieval: {
+                    candidates: stats.totalCandidates,
+                    above_threshold: stats.aboveThreshold,
+                    low_confidence: stats.lowConfidence,
+                    top_scores: stats.topScores,
+                },
+                has_factual_basis: hasFactualBasis,
+            });
             const hitFileNames = [...new Set(hits.map((h) => h.docTitle).filter(Boolean))] as string[];
             kbReadFileData = {
                 type: 'queryKB',
@@ -727,6 +759,7 @@ export class ChatService implements OnModuleInit {
 
             // 连续 fallback 熔断（P4）
             const fbAction = await this.applyFactFallbackBreaker(userId, hasFactualBasis);
+            trace?.set({ breaker_action: fbAction, fallback_triggered: fbAction === 'reject' });
 
             let content = kbContent;
             if (!hasFactualBasis) {
@@ -740,7 +773,21 @@ export class ChatService implements OnModuleInit {
             }
 
             // Confidence-Checker 中间件（后处理）
-            const conf = this.confidenceAgent.check(hits, userQuestion);
+            // fail 链路修复（发现 3）：preciseSearch 在 lowConfidence 时兜底取 Top1，
+            // 若把兜底结果传给 check()，fail 分支（空数组）永不触发，库外问题永远判 warn。
+            // 因此 hasFactualBasis=false（无命中或低置信兜底）时显式传空数组 → 正确落到 fail/reject。
+            const confInput = hasFactualBasis ? hits : [];
+            const conf = this.confidenceAgent.check(confInput, userQuestion);
+            trace?.set({
+                confidence_check: {
+                    check_result: conf.check_result,
+                    overall_confidence: conf.overall_confidence,
+                    dimension_scores: conf.dimension_scores,
+                    warnings: conf.warnings,
+                    action: conf.recommended_action.action,
+                },
+                confidence_config_hash: this.confidenceAgent.configHash,
+            });
 
             // Task #7: Fact 检索无命中（且未被熔断拒绝）时，服务端确定性注入 ⚠️ 前缀，
             // 明确告知回答未基于知识库，避免依赖模型自觉遵守占位符规则。
@@ -787,7 +834,13 @@ export class ChatService implements OnModuleInit {
     private async retrieveFact(
         userQuestion: string,
         userId: string,
-    ): Promise<{ hits: Array<{ docId: string; docTitle: string; docText: string; score: number }>; hasFactualBasis: boolean; kbContent: string }> {
+    ): Promise<{
+        hits: Array<{ docId: string; docTitle: string; docText: string; score: number }>;
+        hasFactualBasis: boolean;
+        kbContent: string;
+        /** 检索统计（供 trace 埋点） */
+        stats: { totalCandidates: number; aboveThreshold: number; lowConfidence: boolean; topScores: number[] };
+    }> {
         const cfg = this.skillLoader.getRawConfig<{
             top_k?: number;
             rerank_threshold?: number;
@@ -801,7 +854,17 @@ export class ChatService implements OnModuleInit {
         const hits = searchRes.results || [];
         const hasFactualBasis = hits.length > 0 && !searchRes.lowConfidence;
         const kbContent = hasFactualBasis ? hits.map((h, i) => `【片段${i + 1}·${h.docTitle}】\n${h.docText}`).join('\n\n') : '';
-        return { hits, hasFactualBasis, kbContent };
+        return {
+            hits,
+            hasFactualBasis,
+            kbContent,
+            stats: {
+                totalCandidates: searchRes.totalCandidates,
+                aboveThreshold: searchRes.aboveThreshold,
+                lowConfidence: searchRes.lowConfidence,
+                topScores: hits.map((h) => Math.round(h.score * 100) / 100),
+            },
+        };
     }
 
     // --------- Tool 3: Perspective-Analyzer（松耦合 RAG） ---------
@@ -811,6 +874,7 @@ export class ChatService implements OnModuleInit {
         userId: string,
         stream: Response,
         factContext?: string,
+        trace?: ReturnType<typeof createRagTrace>,
     ): Promise<MessageType | undefined> {
         this.notifyStream(stream, { type: 'queryKB', statusInfo: 'inProgress', promptInfo: '正在多维检索知识库', fileList: [] });
         let answerContent = '';
@@ -834,6 +898,15 @@ export class ChatService implements OnModuleInit {
                     }),
                 ),
             );
+            trace?.setIf({
+                dimensions: results.map((r) => ({
+                    name: r.name,
+                    status: r.status,
+                    sources: r.sources.length,
+                    summarized: r.summarized,
+                    confidence: Math.round(r.confidence * 100) / 100,
+                })),
+            });
             const hitFileNames = [...new Set(results.flatMap((r) => r.sources.map((s) => s.doc_title)))] as string[];
 
             // 流式聚合（streaming_aggregation）：按维度到达顺序（Promise.all 保序）逐个生成分析并流式输出（先到先输出）。
@@ -875,6 +948,16 @@ export class ChatService implements OnModuleInit {
             }
             // Confidence-Checker 判定结果落地：warn / fail 都必须在回答末尾追加标注（按 recommended_action 差异化）
             const conf = this.confidenceAgent.check(allSources, userQuestion);
+            trace?.set({
+                confidence_check: {
+                    check_result: conf.check_result,
+                    overall_confidence: conf.overall_confidence,
+                    dimension_scores: conf.dimension_scores,
+                    warnings: conf.warnings,
+                    action: conf.recommended_action.action,
+                },
+                confidence_config_hash: this.confidenceAgent.configHash,
+            });
             const confTail = this.confidenceTail(conf);
             if (confTail) {
                 answerContent += confTail;
@@ -896,11 +979,22 @@ export class ChatService implements OnModuleInit {
         messageList: MessageType[],
         userId: string,
         stream: Response,
+        trace?: ReturnType<typeof createRagTrace>,
     ): Promise<MessageType | undefined> {
-        const { hits, hasFactualBasis } = await this.retrieveFact(userQuestion, userId);
+        const { hits, hasFactualBasis, stats } = await this.retrieveFact(userQuestion, userId);
+        trace?.setIf({
+            retrieval: {
+                candidates: stats.totalCandidates,
+                above_threshold: stats.aboveThreshold,
+                low_confidence: stats.lowConfidence,
+                top_scores: stats.topScores,
+            },
+            has_factual_basis: hasFactualBasis,
+        });
 
         // 与 Fact 路径共用同一套连续 fallback 熔断（hybrid 不再绕过计数器）
         const fbAction = await this.applyFactFallbackBreaker(userId, hasFactualBasis);
+        trace?.set({ breaker_action: fbAction, fallback_triggered: fbAction === 'reject' });
         if (!hasFactualBasis && fbAction === 'reject') {
             const msg = this.getFallbackRejectionMessage();
             this.notifyStream(stream, { type: 'answer', content: msg });
@@ -915,7 +1009,7 @@ export class ChatService implements OnModuleInit {
             factIntro = `📌 事实确认（来自知识库）：\n${hits.map((h) => `- ${h.docTitle}：${h.docText.slice(0, 120)}...`).join('\n')}\n\n`;
             this.notifyStream(stream, { type: 'answer', content: factIntro });
         }
-        const result = await this.handlePerspective(userQuestion, messageList, userId, stream, factContext || undefined);
+        const result = await this.handlePerspective(userQuestion, messageList, userId, stream, factContext || undefined, trace);
         // 落库内容与用户实际看到的一致：事实确认区 + 多维评价区
         if (result && factIntro) {
             result.content = factIntro + result.content;

@@ -16,6 +16,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "eval:test": "jest --config ./eval/jest.config.js",
+    "eval:retrieval": "npx ts-node --transpile-only eval/runners/run-retrieval-eval.ts",
+    "eval:build-set": "npx ts-node --transpile-only eval/scripts/build-retrieval-set.ts",
+    "eval:ci": "jest --config ./eval/jest.config.js && jest --silent",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
