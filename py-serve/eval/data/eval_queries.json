@@ -1,0 +1,2450 @@
+[
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709500137",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个叫RAG的模型为啥在知识密集型任务上比纯预训练模型更厉害？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709500137",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG是怎么做到给答案提供出处的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型的参数记忆和非参数记忆分别是什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "论文里比较了哪两种RAG的变体？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG在开放域问答上比那些专门做抽取的模型强在哪儿？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "论文里说RAG生成的语言跟纯参数模型比有啥特点？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709503843::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709503843",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "纯参数化模型有啥缺点？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709503843::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709503843",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "混合模型相比纯参数化模型好在哪？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709504997::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709504997",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文的主要贡献是什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709504997::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709504997",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "作者是如何把检索器和生成器结合起来的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709505659::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709505659",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "他们是怎么把检索器和生成模型结合起来的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709505659::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709505659",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "图1里那个z是什么作用？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709506360::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型是怎么把参数记忆和非参数记忆结合起来的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709506360::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在RAG框架里，检索器和生成器分别用了什么模型？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709507102::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709507102",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG是怎么整合潜在文档来生成输出的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709507102::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709507102",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG和记忆网络这些早期方法在训练方式上有什么不同？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709508416::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型在哪些知识密集型任务上取得了SOTA成绩？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709508416::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个模型是不是不用额外训练就能直接用外部知识？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709509610::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709509610",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG在MS-MARCO和Jeopardy问题生成上比BART强在哪里？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709509610::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709509610",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个模型能不能通过换掉外部记忆来更新知识？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709510333::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709510333",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型里检索器和生成器分别起什么作用？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709510333::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709510333",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG的开源代码和demo在哪能找到？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709511701::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709511701",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型里那个把检索到的文档当成隐变量来训练检索器和生成器的方法，具体是怎么做的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709511701::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709511701",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Sequence和RAG-Token在生成文本时用文档的方式有啥区别？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709512961::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709512961",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Sequence模型是怎么把检索到的文档概率和生成概率结合起来的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709512961::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709512961",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Token和RAG-Sequence在生成答案时，选文档的方式有啥不同？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709513331::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709513331",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Sequence 和 RAG-Token 这两个模型有什么不一样的地方？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709513331::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709513331",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 的检索部分采用的是哪种结构？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709514803::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709514803",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个系统里检索器是怎么初始化的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709514803::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709514803",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "生成部分用的是啥模型？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709515241::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709515241",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG里生成部分用的是什么模型？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709515241::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709515241",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "训练RAG模型时，检索器和生成器是一起训练的吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709516856::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709516856",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG训练时为啥不更新文档编码器？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709516856::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709516856",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Token在解码的时候是怎么处理的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709517123::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709517123",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Sequence 为啥不能直接用普通的 beam search 做解码？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709517123::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709517123",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在 RAG-Sequence 里，如果一个候选 y 没出现在某个文档的 beam 里，他们是怎么算它的概率的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709518986::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709518986",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在RAG解码时，为了减少计算量提了一种什么近似方法？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709518986::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709518986",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文讲RAG实验时用了哪个版本的维基百科数据？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709519675::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709519675",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "他们用哪个版本的维基百科数据，文档是怎么切块的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709519675::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709519675",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "检索的时候用FAISS建索引，具体怎么加速查询的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709520022::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 在训练时是直接优化答案的负对数似然吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709520022::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个模型和那种从文档里抽答案的抽取式 QA 有啥不一样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709521812::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709521812",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG在MSMARCO上是怎么做生成式问答的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709521812::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709521812",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "测试RAG的自然语言生成能力用了哪个数据集？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709522364::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709522364",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG在MSMARCO这类开放域问答上表现怎么样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709522364::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709522364",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "它怎么评估生成Jeopardy问题的能力？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709523525::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709523525",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "讲一下这篇文档里Jeopardy问题生成任务是怎么设计的，以及他们是用哪些数据来训练和测试的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709523525::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709523525",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇文章提到从答案实体出发生成Jeopardy问题很困难，能具体说说为什么吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709524912::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709524912",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "他们怎么评估用RAG做问题生成的效果？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709524912::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709524912",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在这个任务里，评估生成问题的事实性和具体性是怎么做的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709525652::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709525652",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "FEVER这个任务具体是干嘛的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709525652::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709525652",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么说FEVER可以用来测RAG模型的分类能力？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709526098::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709526098",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型在FEVER任务上做分类时，是不是不需要用检索到的证据来监督训练？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709526098::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709526098",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在FEVER数据集上，作者比较了哪两种分类设置，分别是什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709527156::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 在开放域问答上表现咋样？跟 T5 那个比较结果如何？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709527156::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "它不用那个 salient span masking 预训练也能效果很好吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709528187::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG和基于DPR的那个问答系统比，效果怎么样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709528187::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么说生成答案比直接抽取答案更有优势？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709529700::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709529700",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 在 NQ 上比 DPR 高多少分？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709529700::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709529700",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 模型在 Jeopardy 上的 BLEU-1 分数是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709530106::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "rag在没找到相关文档时也能给出正确答案吗？nq上表现怎么样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709530106::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在Open MS-MARCO上，rag-sequence比bart好多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709531571::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 在生成事实正确文本方面比 BART 好多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709531571::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Jeopardy 问题生成上哪个模型表现最好？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709532938::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG和BART比，哪个在事实性上更强？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709532938::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么RAG-Token在Jeopardy问题上表现好？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709533916::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709533916",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么生成书名时，模型对文档的依赖会突然下降？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709533916::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709533916",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "BART在没检索文档的情况下，是怎么把' The Sun'补全成完整书名的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709534611::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709534611",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG在FEVER数据集上的表现怎么样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709534611::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709534611",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在开放域问答里，BART结合RAG是怎么补全'The Sun Also Rises'这个答案的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709535912::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709535912",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为啥生成“A Farewell to Arms”的时候主要参考了第一篇文档？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709535912::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709535912",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "“The Sun Also Rises”和“A Farewell to Arms”分别对应哪两篇文档？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709536983::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709536983",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "用RAG做生成任务的时候，是不是比BART更不容易瞎编乱造？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709536983::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709536983",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在MS MARCO那个例子里，RAG模型对中耳的定义比BART好在哪？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709537698::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709537698",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 在 2 分类任务里和那个用 RoBERTa 的模型比，准确率差了多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709537698::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709537698",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在 FEVER 2-way 分类上，RAG 是只拿到 claim 自己找证据，还是给了 gold evidence？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709538618::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG检索出来的文档和FEVER里标注的证据文章重合度有多高？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709538618::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "他们怎么评估RAG生成内容的多样性的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709539218::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Sequence 和 RAG-Token 生成的文本多样性有啥区别？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709539218::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "如果训练时把检索器冻结会怎样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709540418::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么在FEVER数据集上，直接用BM25做检索会比可学习的检索器效果更好？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709540418::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型在测试时更新知识库，相比T5或BART有什么优势？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709541429::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709541429",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在Jeopardy问题生成上，RAG相比BART在事实准确率方面提升了多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709541429::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709541429",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "从Table 5看，RAG-Seq生成的三元组独特性比例比BART高多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709542988::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709542988",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Token和RAG-Sequence这两种模型，在NQ和TQA数据集上的表现差多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709542988::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709542988",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "用不同年份的索引测试时，RAG回答世界领导人问题的准确率有啥变化？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709543905::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709543905",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "如果RAG在测试时用的索引和训练时不一样，比如用2018年的索引去查2016年的领导人，准确率会掉到多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709543905::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709543905",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型在测试的时候多检索一些文档，效果是会一直变好吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709544286::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709544286",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG-Token在NQ上检索多少文档时表现最好？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709544286::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709544286",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "增加检索文档数量对RAG-Sequence和RAG-Token在MS-MARCO上的Bleu-1和Rouge-L有什么影响？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709545870::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709545870",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型在NQ和MS-MARCO上效果咋样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709545870::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709545870",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "之前有哪些NLP任务单独用检索就提升了性能？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709546869::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709546869",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文提到了哪些不用检索就能在NLP任务里表现不错的通用架构？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709546869::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709546869",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "作者说他们的研究想用单一统一模型扩大什么范围？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709547286::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709547286",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文是怎么用一个统一的模型来处理多种任务的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709547286::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709547286",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "作者提到了哪些优化检索模块的方法？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709548443::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709548443",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文里提到的外部记忆和 memory networks 有什么关系？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709548443::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709548443",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为啥他们要用原始文本当记忆，而不是向量表示？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709549878::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709549878",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG在知识密集型对话里是怎么用检索到的文本来生成回复的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709549878::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709549878",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个方法跟那种检索-编辑的套路有啥不一样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709550146::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709550146",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 模型在开放域 QA 上表现怎么样？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709550146::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709550146",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文里说人们更喜欢 RAG 生成的答案，是为什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709551702::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709551702",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文后面打算怎么改进RAG的两个部分？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709551702::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709551702",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG相比以前的方法在事实性和可控性上有什么好处？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709552841::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709552841",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 在实际应用中有哪些好处？能举几个具体例子吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709552841::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709552841",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "使用外部知识源如 Wikipedia 可能带来哪些问题？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709553537::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709553537",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "语言模型可能带来哪些负面用途或风险？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709553537::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709553537",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "如何应对这些模型被用于造假或垃圾信息的问题？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709554727::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709554727",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG那篇论文的参考文献里有没有提到MS MARCO数据集？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709554727::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709554727",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "关于RAG的论文，参考文献中有一个yodaqa系统的引用，能告诉我它发表的年份吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709555026::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709555026",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Berant 他们在 2013 年那篇关于 Freebase 的语义解析论文，是在哪个会议发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709555026::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709555026",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Bi 等人提出的 PALM 模型，它的预训练任务有什么特点？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709556530::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709556530",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "2017年ACL上那篇关于开放域问答的论文的DOI是什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709556530::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709556530",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Choi等人提出的长文档问答方法用的是什么策略？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709557596::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709557596",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇关于多段落阅读理解的论文，arxiv编号是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709557596::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709557596",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "BERT那篇论文是在哪个会议发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709558698::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709558698",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Wizard of Wikipedia这个对话模型的论文是在哪个会议上发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709558698::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709558698",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "SearchQA这篇论文的arxiv编号是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709559374::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709559374",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文是在哪里发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709559374::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709559374",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "ELI5那篇文章的会议和页码是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709560561::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709560561",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Fan 那篇用 KNN 做 composite memory 的论文是在哪里发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709560561::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709560561",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Ghazvininejad 他们在 AAAI 上那篇 knowledge-grounded 对话模型的文章链接是什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709561617::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709561617",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇文献什么时候发表的，是哪个会议或期刊的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709561617::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709561617",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "那篇关于AI什么时候超过人类表现的论文，能告诉我具体信息吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709562959::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709562959",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文是发在哪个会议上的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709562959::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709562959",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "REALM那篇的预训练模型是啥时候挂上arXiv的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709563923::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709563923",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在哪篇NIPS论文里提出了用于结构化预测的retrieve-and-edit框架？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709563923::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709563923",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Hossain等人2020年ACL那篇关于文本生成的论文标题是什么？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709564080::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709564080",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "FAISS那篇GPU近似最近邻搜索的论文是哪一年的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709564080::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709564080",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "TriviaQA数据集最初是在哪个会议上发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709565785::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709565785",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "论文里引用的那个DPR方法是哪篇？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709565785::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709565785",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "NIPS'15那篇用栈增强RNN做算法模式推断的文章，有链接吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709566257::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709566257",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "knn lm 那个论文是在哪个会议上的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709566257::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709566257",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Adam优化器那篇文章发表在哪一年？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709567211::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709567211",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Natural Questions 这个数据集是干嘛的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709567211::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709567211",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "product keys 那篇论文主要提了什么方法？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709568798::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709568798",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "那篇叫large memory layers with product keys的论文是在哪个会议上发的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709568798::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709568798",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Lee他们在2019年ACL上那篇讲latent retrieval做开放域QA的文章，DOI是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709569826::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709569826",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "2019年那篇RAG论文的arXiv编号是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709569826::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709569826",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Li等人2016年那篇关于对话模型多样性目标的论文发在哪个会议？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709570957::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709570957",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Liu他们在2019年ACL上那篇用语音和文本embedding提升机器翻译鲁棒性的文章，arxiv链接是啥？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709570957::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709570957",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Generating Wikipedia by summarizing long sequences那篇ICLR论文的作者有哪些？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709571916::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709571916",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇关于用于知识密集任务的RAG论文发表在哪个会议上？有链接吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709571916::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709571916",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Malkov他们那个用层级可导航小世界图做近似最近邻搜索的文章，发表在哪本期刊？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709572039::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709572039",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Micikevicius他们那篇混合精度训练是发在哪个会议上的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709572039::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709572039",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Moghe等人那篇关于对话系统利用背景知识的文章，是在哪年的EMNLP上发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709573612::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709573612",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Nema和Khapra在2018年EMNLP上那篇关于QG评估的论文，doi是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709573612::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709573612",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "MS MARCO这个阅读理解数据集是在哪个workshop上发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709574331::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709574331",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇关于Cognitive Computation的论文是在哪个会议上发表的，具体时间和地点是啥？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709574331::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709574331",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "那个用BERT做passage re-ranking的工作，Nogueira和Cho那篇，发表在arXiv上的编号是多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709575557::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709575557",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "能给我这篇关于用检索增强生成解决知识密集型NLP任务论文的链接吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709575557::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709575557",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文发表在哪个会议或期刊上？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709576535::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709576535",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文的DOI号是啥？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709576535::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709576535",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG那篇文章是在哪个会议发表的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709577143::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709577143",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Petroni他们那篇讲上下文咋影响模型事实预测的文章是在哪发的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709577143::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709577143",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "GPT-2那篇讲语言模型是无监督多任务学习者的报告，谁能给个链接？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709578263::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709578263",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "T5这篇讲text-to-text transfer learning的文章是啥时候发的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709578263::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709578263",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "BM25和它扩展的那个概率相关性框架，是哪两个人提出的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709579678::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709579678",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文的DOI是啥？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709579678::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709579678",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "引用列表里有没有关于语言模型发布策略的研究？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709580761::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709580761",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "那个FEVER数据集是哪篇论文提出的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709580761::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709580761",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Thorne他们针对句子对分类里模型遗忘问题用了什么办法？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709581349::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709581349",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "那篇讲attention机制的文章是哪年的？给个链接呗"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709581349::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709581349",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Diverse beam search是哪年的AAAI？作者都有谁"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709582082::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709582082",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "GLUE这个自然语言理解基准是在哪个会议上发布的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709582082::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709582082",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "SuperGLUE相比GLUE有什么不同？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709583499::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709583499",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "R3这个模型是干嘛的？用在什么任务上？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709583499::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709583499",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇论文发表在哪个会议？作者有哪些？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709584287::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709584287",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "AAAI 2018 那篇论文的页码和会议地址是啥来着？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709584287::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709584287",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "Wang 他们 2018 年在 open-domain QA 上做证据聚合的工作，发表在哪个会议？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709585977::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709585977",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "能说说那个叫Retrieve and Refine的方法吗？好像是用在对话生成里的。"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709585977::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709585977",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这篇文章发布的EMNLP workshop具体是什么时候在哪里开的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709586264::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709586264",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "HF的transformers库是哪篇论文介绍的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709586264::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709586264",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "那篇解决QG语义漂移的文章发在哪个会议？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709587769::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709587769",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型在开放域问答里做测试时，一般会检索多少篇文档啊？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709587769::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709587769",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "针对RAG-Sequence这种模型，他们通常采用什么解码策略？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709588903::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709588903",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么RAG在回答QA问题时用greedy decoding而不用beam search？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709588903::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709588903",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在Open-MSMarco和Jeopardy问题上，RAG-Token和RAG-Sequence都用了多少个检索到的文档？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709589696::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709589696",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "论文里图4是做啥的？那个A/B句子的顺序是咋定的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709589696::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709589696",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "训练RAG和BART用的啥工具和硬件配置？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709590985::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709590985",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG 那套模型训练时用了什么配置？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709590985::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709590985",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "他们的代码后来放到哪了，有没有开源？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709591365::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709591365",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "在哪能跑一下RAG的实验或者看看demo？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709591365::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709591365",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "开放域问答时多个答案标注是怎么被利用的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709592439::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709592439",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "对于TriviaQA数据集，他们是怎么筛掉那些不适合当训练目标的答案的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709592439::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709592439",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么说CuratedTrec的答案格式让生成式模型不太好用，他们做了什么预处理？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709593750::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709593750",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "如果正则没匹配到答案，他们是怎么生成监督目标的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709593750::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709593750",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "TriviaQA 评估用的是哪个数据划分？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709594124::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709594124",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么在TriviaQA的官方Wiki测试集上表现更好？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709594124::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709594124",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "FEVER分类实验是怎么做的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709595185::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709595185",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "FEVER分类那块，你们是先重新生成claim再拿最后隐藏状态做分类吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709595185::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709595185",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "FEVER还有个提取证据句子的子任务，你们为什么没做？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709596476::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709596476",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG里面加那个空文档机制有用吗？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709596476::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709596476",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "他们试了几种预测null doc logit的方法？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709597617::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709597617",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型总共需要训练多少参数？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709597617::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709597617",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "作者是怎么处理那些检索没啥用的文档的？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709598780::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709598780",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "RAG模型和纯参数模型在开放域问答上的表现差多少？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709598780::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709598780",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "表格里列了哪些数据集用来测试？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709599745::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709599745",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "检索部分会不会学崩，就是不管问啥都返回一样的文章？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709599745::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709599745",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这个非参数记忆索引占多大空间？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709600032::q0",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709600032",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "为什么RAG模型有时候表现跟BART差不多？"
+ },
+ {
+  "queryId": "6aab5f3a8eb3c7c1586b0b07::178961593709600032::q1",
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709600032",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "query": "这些数据集里训练、验证和测试样本各有多少？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287300764::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287300764",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Jay Alammar的博客都讲了啥？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287300764::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287300764",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这个Transformer图解文章有没有对应的书？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287301913::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287301913",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer 相比以前的注意力模型主要快在哪？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287301913::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287301913",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "论文里提到的 Multi-Query Attention 和 RoPE 是什么？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287302939::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287302939",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer 为啥适合并行计算？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287302939::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287302939",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这个模型是谷歌推荐用在 TPU 上的吗？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287303678::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287303678",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这个图解Transformer的文章在Hacker News上有多少讨论？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287303678::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287303678",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这个教程有没有中文翻译版？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287304243::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287304243",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这篇关于Transformer的图解文章有哪些语言的翻译版本？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287304243::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287304243",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "MIT的深度学习讲座里提到的这个Transformer图解是在哪个视频里？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287305587::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287305587",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这篇讲 Transformer 的文章被哪些学校的课程用过？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287305587::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287305587",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "那个 illustrated transformer 教程现在有没有更新版本或者配套视频课？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287306223::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287306223",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer的整体结构包括哪些大块？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287306223::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287306223",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "编码器和解码器分别由什么组成，数量一般是几个？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287307444::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287307444",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "transformer的encoder里面都有啥结构？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287307444::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287307444",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "decoder中间的attention层是干嘛的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287308499::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287308499",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在Transformer模型里，输入的词是怎么变成向量的呀？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287308499::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287308499",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "词向量在编码器和解码器之间是怎么流动的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287309857::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287309857",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "词向量的大小是固定的吗？还是可以调的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287309857::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287309857",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer编码器里，每个位置的词是怎么经过各层的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287310763::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287310763",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么说前馈层可以并行处理不同的路径？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287310763::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287310763",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在编码器里，自注意力层和前馈层对路径间依赖关系有什么不同？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287311015::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287311015",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer里的向量经过self attention后还会过什么结构？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287311015::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287311015",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "self-attention是咋回事，能简单讲讲吗？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287312587::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287312587",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在句子“The animal didn't cross the street because it was too tired”里，“it”指的是啥？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287312587::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287312587",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "自注意力机制是怎么帮助模型理解“it”和“animal”的关系的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287313957::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287313957",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "transformer里是怎么让一个词的理解包含上下文其他词的信息的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287313957::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287313957",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "编码'it'的时候，注意力机制具体干了啥，怎么就把'The Animal'的表示融进去了？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287314768::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287314768",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "self-attention最开始要怎么做？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287314768::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287314768",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "query、key、value这些向量是怎么来的，维度是多大？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287315758::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287315758",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在Transformer里，每个词的query、key和value向量是怎么得到的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287315758::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287315758",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么要把输入句子中的每个词都投影成q、k、v这三个向量？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287316729::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287316729",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "自注意力里那个分数是怎么算的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287316729::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287316729",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么要把分数除以8？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287317200::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287317200",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么要把得分除以64再经过softmax？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287317200::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287317200",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "softmax分数在这里起到什么作用？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287318561::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287318561",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "自注意力计算里，怎么突出要关注的词，忽略掉不相关的词？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287318561::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287318561",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "自注意力层最后输出的那个向量是怎么得到的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287319537::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287319537",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "多头注意力机制是怎么改进自注意力层的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287319537::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287319537",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "怎么用矩阵一次性算出self-attention的输出？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287320609::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287320609",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么说多头注意力能让模型更好地理解“it”指代什么？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287320609::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287320609",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "多头注意力是怎么提供多个表示子空间的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287321993::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287321993",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer里的多头注意力是不是就是好几组QKV参数分别算？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287321993::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287321993",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么说多头能让每个头关注不同子空间？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287322036::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287322036",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "如果多头注意力生成了8个Z矩阵，前馈层要一个矩阵怎么办？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287322036::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287322036",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "怎么把多个注意力头的输出合并成一个？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287323719::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287323719",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在编码it这个词时，不同的attention head分别关注句子里的哪些部分？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287323719::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287323719",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么说it的表示融合了animal和tired的含义？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287324854::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287324854",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "transformer咋处理词序问题的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287324854::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287324854",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "positional encoding是怎么给词嵌入加位置信息的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287325578::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287325578",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么要把位置编码加到词嵌入里面？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287325578::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287325578",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "位置编码向量长什么样？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287326426::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287326426",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为什么位置编码的向量中间看起来是分开的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287326426::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287326426",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在20个词、512维的情况下，位置编码的每一行有多少个值？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287327763::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287327763",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "位置编码的公式在论文哪一节有说明？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287327763::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287327763",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这种位置编码方法有什么好处？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287328639::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287328639",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "编码器里的残差连接和层归一化是怎么安排的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287328639::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287328639",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "能画一下自注意力之后的层归一化过程吗？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287329397::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287329397",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer里堆叠2层编码器和解码器长什么样？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287329397::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287329397",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "解码器里的encoder-decoder attention层是怎么拿到K和V的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287330109::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287330109",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在Transformer解码阶段，每一步的输出是怎么来的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287330109::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287330109",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "解码器在什么时候会停止生成输出？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287331053::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287331053",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer解码器里的自注意力为啥只能看到前面的词？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287331053::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287331053",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "解码器最后怎么把浮点向量变成一个具体的词的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287332829::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287332829",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "linear层后面接的是什么层？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287332829::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287332829",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "模型输出的logits向量每个位置代表什么？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287333544::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287333544",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "那个Transformer的图示里，最下面那个解码器堆叠出来的向量是怎么变成具体单词的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287333544::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287333544",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "训练Transformer的时候，模型输出的东西怎么跟标准答案比对着调整啊？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287334741::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287334741",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "模型训练前是怎么表示输出词表的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287334741::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287334741",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "训练时用的目标函数是啥？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287335751::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287335751",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "怎么判断模型翻译得好不好？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287335751::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287335751",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "训练刚开始时模型的输出为什么不准？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287336002::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287336002",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "怎么衡量两个概率分布差多少？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287336002::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287336002",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "如果输入是个完整句子，模型要输出啥样的东西？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287337358::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287337358",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在训练时，模型输出的概率分布是怎么对应到目标词的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287337358::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287337358",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "文中提到词汇表大小一般是多少？那个结束符是怎么表示的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287338952::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287338952",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "为啥说softmax每个位置都留点概率对训练有好处？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287338952::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287338952",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "模型输出翻译结果是一个词一个词来的，这个是怎么做到的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287339054::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287339054",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "Transformer里那个一次只选概率最高的词的方法叫啥？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287339054::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287339054",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "beam search里beam size是啥意思？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287340820::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287340820",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "transformer那篇论文里提到的beam search的beam size和返回的候选翻译数量这两个参数叫啥？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287340820::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287340820",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "看完图解transformer后，想深入学习的话，推荐读哪些资料？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287341138::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287341138",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "在哪能看到Kaiser讲解Transformer模型的视频？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287341138::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287341138",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "有没有可以自己动手跑的Transformer示例代码？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287342399::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287342399",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "有没有专门讲Transformer训练技巧的论文？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287342399::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287342399",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "那篇关于多模态统一模型的论文叫啥来着？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287343420::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287343420",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这篇讲Transformer的文章是什么时候写的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287343420::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287343420",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "作者在文末提供了哪些联系方式或致谢信息？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287344659::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287344659",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这篇讲Transformer的文章是谁写的，什么时候发布的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287344659::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287344659",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "如果我想引用这篇博客，应该用什么格式？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287345378::q0",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287345378",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "这个Transformer的图解是哪个博客写的？"
+ },
+ {
+  "queryId": "6aab5f448eb3c7c1586b0b08::178961594287345378::q1",
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287345378",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "query": "文章里提到的那个可视化机器学习概念的网址是什么？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160800514::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160800514",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这文章里提到的那个不用循环和卷积的模型，主要是靠什么机制来搞序列转换的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160800514::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160800514",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "谷歌这篇transformer论文，作者单位都是哪里的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160801308::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160801308",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 和传统带 encoder-decoder 的 CNN 相比有啥不同？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160801308::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160801308",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这个模型在 WMT 2014 英德翻译上拿了多少分？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160802016::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160802016",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这个模型训练了多久，用了多少GPU？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160802016::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160802016",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer除了机器翻译还能用在啥任务上？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160803710::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160803710",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Niki在Transformer论文中具体做了哪些工作？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160803710::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160803710",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "谁参与了tensor2tensor框架的开发，他们分别贡献了什么？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160804265::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160804265",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "在Transformer出现之前，处理序列任务像机器翻译，主要用哪类神经网络？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160804265::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160804265",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "传统RNN在算隐藏状态时，是怎么利用上一步的结果和当前输入的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160805005::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160805005",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么说循环模型的按顺序计算方式会拖慢训练速度，尤其在处理长序列的时候？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160805005::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160805005",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "注意力机制在建模依赖关系上有什么优势？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160806520::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160806520",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文提出了什么新模型？它跟之前用RNN的方法有啥不同？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160806520::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160806520",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer训练起来快吗？大概用了多少GPU和多久？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160807358::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160807358",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 是怎么解决长距离依赖问题的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160807358::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160807358",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么 ConvS2S 和 ByteNet 处理远距离位置关系更困难？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160808009::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160808009",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "自注意力在哪些任务上用过？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160808009::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160808009",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer和之前的方法有啥主要区别？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160809601::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160809601",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 的编码器和解码器具体是怎么工作的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160809601::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160809601",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "在生成序列时，模型每一步是如何利用之前输出的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160810716::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160810716",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 编码器和解码器各由几层组成？每层有哪些子层？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160810716::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160810716",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说的残差连接和层归一化具体怎么用在子层上的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160811648::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160811648",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer里每个子层后面那个归一化具体是怎么放的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160811648::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160811648",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "解码器比编码器多出来的那个注意力层是干嘛的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160812982::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160812982",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer解码器里那个mask到底起什么作用？为什么说它能保证预测只依赖前面的输出？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160812982::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160812982",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "attention机制本质上是在做什么？query、key、value这些向量是怎么组合出输出的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160813108::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160813108",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer里的Scaled Dot-Product Attention具体是怎么算的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160813108::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160813108",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么Transformer里要用缩放点积注意力而不是普通的点积？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160814544::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160814544",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "常见的注意力函数有哪两种？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160814544::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160814544",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么点积注意力在大维度下表现不如加性注意力？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160815297::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160815297",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么点积变大后 softmax 会出问题，他们是怎么解决的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160815297::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160815297",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "multi-head attention 里对 Q、K、V 做的线性投影到底有啥用？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160816507::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160816507",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么transformer里点积注意力要除以根号dk？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160816507::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160816507",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "多个注意力头是怎么一起工作的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160817653::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160817653",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 里用了几个注意力头，每个头的维度是多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160817653::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160817653",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说的 encoder-decoder attention 是怎么连接编码器和解码器的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160818058::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160818058",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 的 encoder 里 self-attention 的 key、value、query 是从哪儿来的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160818058::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160818058",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "decoder 的 self-attention 是怎么防止看到未来信息的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160819941::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160819941",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer里那个逐位置的前馈网络具体怎么算的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160819941::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160819941",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "编码器和解码器里除了注意力层还有啥结构？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160820968::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160820968",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "在Transformer里，把token变成向量的embedding层输出是多少维？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160820968::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160820968",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说embedding和softmax之间共享权重，那具体是哪些层共用同一个矩阵？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160821003::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160821003",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer里self-attention的时间和计算量是多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160821003::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160821003",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么要加位置编码？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160822767::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160822767",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 里那个位置编码是用什么函数算的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160822767::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160822767",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为啥作者选了正弦和余弦的组合来做位置编码？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160823477::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160823477",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么作者用正弦函数做位置编码而不是别的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160823477::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160823477",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说自注意力跟RNN和CNN比有什么优势？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160824749::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160824749",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer里用self-attention代替传统序列转换层，主要考虑了哪几个方面的需求？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160824749::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160824749",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文中提到长距离依赖学习困难，影响它的关键因素是啥？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160825556::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160825556",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么self-attention比RNN更容易学习长距离依赖？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160825556::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160825556",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "在处理长序列时，self-attention相比循环层在计算上有什么优势？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160826923::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160826923",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么自注意力比卷积好？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160826923::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160826923",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "文中提到自注意力可以限制在局部邻域来提升长序列性能，这是怎么做到的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160827146::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160827146",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "为什么说可分离卷积比普通卷积更划算，复杂度降到了多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160827146::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160827146",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "自注意力除了性能之外，在解释模型方面有什么额外的好处？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160828088::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160828088",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "模型在训练的时候用了哪些数据，具体是怎么处理的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160828088::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160828088",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "英德和英法翻译任务的训练集规模分别是多大，词表是怎么构建的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160829139::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160829139",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 在 WMT 2014 英法数据集上训练时，句子是怎么分组的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160829139::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160829139",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "训练那个 base 模型用了多久，什么硬件配置？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160830449::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160830449",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer训练时学习率是怎么调的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160830449::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160830449",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "训练Transformer用了哪些正则化手段？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160831160::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160831160",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "transformer在英德和英法翻译上的BLEU值是多少啊？训练成本怎么样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160831160::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160831160",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说的Residual Dropout具体是怎么做的？drop的概率设的多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160832971::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160832971",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer用了多少dropout？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160832971::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160832971",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "big transformer在英德翻译上的BLEU是多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160833775::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160833775",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer那个大模型在英法翻译上拿了多少BLEU分？训练开销咋样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160833775::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160833775",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里的模型平均了几个检查点？束搜索用的啥参数？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160834892::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160834892",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 模型在推理时输出长度有啥限制吗？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160834892::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160834892",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "他们是怎么估算训练模型的计算量的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160835274::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160835274",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这个transformer模型在英德翻译上试了哪些改动？变动后的BLEU分数和困惑度怎么样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160835274::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160835274",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "表格里不同配置下模型的训练步数、参数数量分别是多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160836029::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160836029",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "注意力头数越多越好吗？如果头数太少或太多会怎样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160836029::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160836029",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "当改变头的数量并且保持计算量不变，模型效果会有什么变化？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160837802::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160837802",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说把attention key的维度减小会怎么样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160837802::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160837802",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "用学习到的位置编码代替正弦位置编码，效果差得多吗？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160838030::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160838030",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 在英文句法分析任务上表现咋样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160838030::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160838030",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "他们是怎么用 WSJ 数据训练 parse 模型的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160839343::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160839343",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里做WSJ解析实验时，用的词表多大？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160839343::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160839343",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "他们调超参数是在哪个数据上做的，只试了几个？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160840527::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160840527",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer在只用华尔街日报数据时，那个4层的模型表现咋样？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160840527::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160840527",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "半监督设置下，Transformer比之前那些模型好多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160841492::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160841492",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer和之前那些用RNN或CNN的模型比，训练速度能快多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160841492::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160841492",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里提到的模型在WMT 2014英德和英法翻译上取得了什么成绩？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160842879::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160842879",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Transformer 作者接下来打算把这种模型用到哪些别的任务上？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160842879::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160842879",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里的代码在哪儿能下载到？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160843490::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160843490",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里提到的Layer normalization那篇参考文献是哪个作者写的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160843490::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160843490",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "有没有关于神经机器翻译架构大规模探索的文章？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160844792::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160844792",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Cho他们在2014年那篇用RNN做统计机器翻译的论文发在哪儿了？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160844792::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160844792",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Xception那篇文章主要用了什么卷积技巧？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160845269::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160845269",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这个叫Gehring的人发的卷积序列学习那篇论文是哪一年的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160845269::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160845269",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Hochreiter和Schmidhuber合著的关于LSTM的文章发表在哪个期刊上？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160846474::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160846474",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里引用了Huang和Harper的哪项工作？关于PCFG文法的"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160846474::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160846474",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "那篇探索语言建模极限的文章是哪一年的？作者都有谁？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160847505::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160847505",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Kalchbrenner他们在17年那篇关于神经机器翻译的arXiv文章，标题是啥？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160847505::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160847505",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "有篇关于结构化注意力网络的论文，是Kim他们发的，发表在哪个会议上？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160848234::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160848234",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Luong他们那篇做多任务seq2seq的论文是哪一年的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160848234::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160848234",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Penn Treebank语料库最初是用来做什么的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160849082::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160849082",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文的参考文献里有没有关于可分解注意力模型的工作？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160849082::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160849082",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "List any cited work on improving language models via output embeddings."
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160850597::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160850597",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇Transformer论文最初发表在arXiv上的编号是多少？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160850597::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160850597",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "引用里那篇讲用子词单元处理稀有词的NMT论文，还记得是哪个作者写的吗？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160851124::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160851124",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "End-to-End Memory Networks那篇论文发表在哪个会议上了？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160851124::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160851124",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "Sutskever他们那篇seq2seq的论文具体是在哪年的NIPS上发表的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160852849::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160852849",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里引用了哪些关于神经机器翻译的研究？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160852849::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160852849",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "第12页的注意力可视化部分主要讲了什么？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160853950::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160853950",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里展示注意力可视化的图是在哪一层看出来的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160853950::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160853950",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "那个例子中，哪些词和making有长距离依赖关系？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160854421::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160854421",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "那个注意力可视化图里不同颜色代表啥？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160854421::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160854421",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "那句“making...more difficult”的注意力是怎么在图上展示的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160855167::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160855167",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "论文里说的两个注意力头是干嘛的，好像和指代消解有关？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160855167::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160855167",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "那个输入层第五层的例子，'its'这个词的注意力是怎么分布的？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160856527::q0",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160856527",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "这篇论文里提到，有些注意力头的行为看起来跟句子结构有关，能给个例子说明一下吗？"
+ },
+ {
+  "queryId": "6aab5f4d8eb3c7c1586b0b09::178961595160856527::q1",
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160856527",
+  "docTitle": "Attention Is All You Need.pdf",
+  "query": "作者说法律永远不可能完美，但它的应用应该公正，这是怎么回事？"
+ }
+]

@@ -1,0 +1,1430 @@
+[
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709500137",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Retrieval-Augmented Generation for\nKnowledge-Intensive NLP Tasks\nPatrick Lewis†‡, Ethan Perez⋆,\nAleksandra Piktus†, Fabio Petroni†, Vladimir Karpukhin†, Naman Goyal†, Heinrich Küttler†,\nMike Lewis†, Wen-tau Yih†, Tim Rocktäschel†‡, Sebastian Riedel†‡, Douwe Kiela†\n†Facebook AI Research;‡University College London;⋆New York University;\nplewis@fb.com\nAbstract\nLarge pre-trained language models have been shown to store factual knowledge\nin their parameters, and achieve state-of-the-art results when ﬁne-tuned on down-\nstream NLP tasks. However, their ability to access and precisely manipulate knowl-\nedge is still limited, and hence on knowledge-intensive tasks, their performance\nlags behind task-speciﬁc architectures. Additionally, providing provenance for their",
+  "index": 0
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "lags behind task-speciﬁc architectures. Additionally, providing provenance for their\ndecisions and updating their world knowledge remain open research problems. Pre-\ntrained models with a differentiable access mechanism to explicit non-parametric\nmemory have so far been only investigated for extractive downstream tasks. We\nexplore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation\n(RAG) — models which combine pre-trained parametric and non-parametric mem-\nory for language generation. We introduce RAG models where the parametric\nmemory is a pre-trained seq2seq model and the non-parametric memory is a dense\nvector index of Wikipedia, accessed with a pre-trained neural retriever. We com-\npare two RAG formulations, one which conditions on the same retrieved passages",
+  "index": 1
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "pare two RAG formulations, one which conditions on the same retrieved passages\nacross the whole generated sequence, and another which can use different passages\nper token. We ﬁne-tune and evaluate our models on a wide range of knowledge-\nintensive NLP tasks and set the state of the art on three open domain QA tasks,\noutperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract\narchitectures. For language generation tasks, we ﬁnd that RAG models generate\nmore speciﬁc, diverse and factual language than a state-of-the-art parametric-only\nseq2seq baseline.\n1 Introduction\nPre-trained neural language models have been shown to learn a substantial amount of in-depth knowl-\nedge from data [47]. They can do so without any access to an external memory, as a parameterized",
+  "index": 2
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709503843",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "edge from data [47]. They can do so without any access to an external memory, as a parameterized\nimplicit knowledge base [51, 52]. While this development is exciting, such models do have down-\nsides: They cannot easily expand or revise their memory, can’t straightforwardly provide insight into\ntheir predictions, and may produce “hallucinations” [38]. Hybrid models that combine parametric\nmemory with non-parametric (i.e., retrieval-based) memories [20, 26, 48] can address some of these\nissues because knowledge can be directly revised and expanded, and accessed knowledge can be\ninspected and interpreted. REALM [ 20] and ORQA [ 31], two recently introduced models that\ncombine masked language models [8] with a differentiable retriever, have shown promising results,",
+  "index": 3
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709504997",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "combine masked language models [8] with a differentiable retriever, have shown promising results,\narXiv:2005.11401v4  [cs.CL]  12 Apr 2021\nThe\tDivine\nComedy\t(x) q\nQuery\nEncoder\nq(x)\nMIPS pθ\nGenerator pθ\n(Parametric)\nMargin-\nalize\nThis\t14th\tcentury\twork\nis\tdivided\tinto\t3\nsections:\t\"Inferno\",\n\"Purgatorio\"\t&\n\"Paradiso\"\t\t\t\t\t\t\t\t\t(y)\nEnd-to-End Backprop through q and pθ\nBarack\tObama\twas\nborn\tin\tHawaii.(x)\nFact Veriﬁcation: Fact Query\nsupports\t(y)\nQuestion Generation\nFact Veriﬁcation:\nLabel Generation\nDocument\nIndex\nDefine\t\"middle\tear\"(x)\nQuestion Answering:\nQuestion Query\nThe\tmiddle\tear\tincludes\nthe\ttympanic\tcavity\tand\nthe\tthree\tossicles.\t\t(y)\nQuestion Answering:\nAnswer GenerationRetriever pη\n(Non-Parametric)\nz4\nz3\nz2\nz1\nd(z)\nJeopardy Question\nGeneration:\nAnswer Query",
+  "index": 4
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709505659",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "(Non-Parametric)\nz4\nz3\nz2\nz1\nd(z)\nJeopardy Question\nGeneration:\nAnswer Query\nFigure 1: Overview of our approach. We combine a pre-trained retriever (Query Encoder + Document\nIndex) with a pre-trained seq2seq model (Generator) and ﬁne-tune end-to-end. For query x, we use\nMaximum Inner Product Search (MIPS) to ﬁnd the top-K documentszi. For ﬁnal prediction y, we\ntreatz as a latent variable and marginalize over seq2seq predictions given different documents.\nbut have only explored open-domain extractive question answering. Here, we bring hybrid parametric\nand non-parametric memory to the “workhorse of NLP,” i.e. sequence-to-sequence (seq2seq) models.\nWe endow pre-trained, parametric-memory generation models with a non-parametric memory through",
+  "index": 5
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "We endow pre-trained, parametric-memory generation models with a non-parametric memory through\na general-purpose ﬁne-tuning approach which we refer to as retrieval-augmented generation (RAG).\nWe build RAG models where the parametric memory is a pre-trained seq2seq transformer, and the\nnon-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural\nretriever. We combine these components in a probabilistic model trained end-to-end (Fig. 1). The\nretriever (Dense Passage Retriever [26], henceforth DPR) provides latent documents conditioned on\nthe input, and the seq2seq model (BART [32]) then conditions on these latent documents together with\nthe input to generate the output. We marginalize the latent documents with a top-K approximation,",
+  "index": 6
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709507102",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "the input to generate the output. We marginalize the latent documents with a top-K approximation,\neither on a per-output basis (assuming the same document is responsible for all tokens) or a per-token\nbasis (where different documents are responsible for different tokens). Like T5 [51] or BART, RAG\ncan be ﬁne-tuned on any seq2seq task, whereby both the generator and retriever are jointly learned.\nThere has been extensive previous work proposing architectures to enrich systems with non-parametric\nmemory which are trained from scratch for speciﬁc tasks, e.g. memory networks [ 64, 55], stack-\naugmented networks [25] and memory layers [ 30]. In contrast, we explore a setting where both\nparametric and non-parametric memory components are pre-trained and pre-loaded with extensive",
+  "index": 7
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "parametric and non-parametric memory components are pre-trained and pre-loaded with extensive\nknowledge. Crucially, by using pre-trained access mechanisms, the ability to access knowledge is\npresent without additional training.\nOur results highlight the beneﬁts of combining parametric and non-parametric memory with genera-\ntion for knowledge-intensive tasks—tasks that humans could not reasonably be expected to perform\nwithout access to an external knowledge source. Our RAG models achieve state-of-the-art results\non open Natural Questions [29], WebQuestions [3] and CuratedTrec [2] and strongly outperform\nrecent approaches that use specialised pre-training objectives on TriviaQA [24]. Despite these being",
+  "index": 8
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709509610",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "extractive tasks, we ﬁnd that unconstrained generation outperforms previous extractive approaches.\nFor knowledge-intensive generation, we experiment with MS-MARCO [1] and Jeopardy question\ngeneration, and we ﬁnd that our models generate responses that are more factual, speciﬁc, and\ndiverse than a BART baseline. For FEVER [56] fact veriﬁcation, we achieve results within 4.3% of\nstate-of-the-art pipeline models which use strong retrieval supervision. Finally, we demonstrate that\nthe non-parametric memory can be replaced to update the models’ knowledge as the world changes.1\n2 Methods\nWe explore RAG models, which use the input sequencex to retrieve text documentsz and use them\nas additional context when generating the target sequence y. As shown in Figure 1, our models",
+  "index": 9
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709510333",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "as additional context when generating the target sequence y. As shown in Figure 1, our models\nleverage two components: (i) a retriever pη(z|x) with parametersη that returns (top-K truncated)\ndistributions over text passages given a queryx and (ii) a generatorpθ(yi|x,z,y 1:i−1) parametrized\n1Code to run experiments with RAG has been open-sourced as part of the HuggingFace Transform-\ners Library [66] and can be found at https://github.com/huggingface/transformers/blob/master/\nexamples/rag/. An interactive demo of RAG models can be found at https://huggingface.co/rag/\n2\nbyθ that generates a current token based on a context of the previousi− 1 tokensy1:i−1, the original\ninputx and a retrieved passagez.",
+  "index": 10
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709511701",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "inputx and a retrieved passagez.\nTo train the retriever and generator end-to-end, we treat the retrieved document as a latent variable.\nWe propose two models that marginalize over the latent documents in different ways to produce a\ndistribution over generated text. In one approach, RAG-Sequence, the model uses the same document\nto predict each target token. The second approach, RAG-Token, can predict each target token based\non a different document. In the following, we formally introduce both models and then describe the\npη andpθ components, as well as the training and decoding procedure.\n2.1 Models\nRAG-Sequence Model The RAG-Sequence model uses the same retrieved document to generate\nthe complete sequence. Technically, it treats the retrieved document as a single latent variable that",
+  "index": 11
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709512961",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "is marginalized to get the seq2seq probability p(y|x) via a top-K approximation. Concretely, the\ntop K documents are retrieved using the retriever, and the generator produces the output sequence\nprobability for each document, which are then marginalized,\npRAG-Sequence(y|x) ≈\n∑\nz∈top-k(p(·|x))\npη(z|x)pθ(y|x,z ) =\n∑\nz∈top-k(p(·|x))\npη(z|x)\nN∏\ni\npθ(yi|x,z,y 1:i−1)\nRAG-Token Model In the RAG-Token model we can draw a different latent document for each\ntarget token and marginalize accordingly. This allows the generator to choose content from several\ndocuments when producing an answer. Concretely, the top K documents are retrieved using the\nretriever, and then the generator produces a distribution for the next output token for each document,",
+  "index": 12
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709513331",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "before marginalizing, and repeating the process with the following output token, Formally, we deﬁne:\npRAG-Token(y|x) ≈\nN∏\ni\n∑\nz∈top-k(p(·|x))\npη(z|x)pθ(yi|x,z,y 1:i−1)\nFinally, we note that RAG can be used for sequence classiﬁcation tasks by considering the target class\nas a target sequence of length one, in which case RAG-Sequence and RAG-Token are equivalent.\n2.2 Retriever: DPR\nThe retrieval componentpη(z|x) is based on DPR [26]. DPR follows a bi-encoder architecture:\npη(z|x)∝ exp\n(\nd(z)⊤q(x)\n)\nd(z) = BERTd(z), q(x) = BERTq(x)\nwhere d(z) is a dense representation of a document produced by a BERTBASE document encoder [8],\nand q(x) a query representation produced by a query encoder, also based on BERTBASE. Calculating",
+  "index": 13
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709514803",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "and q(x) a query representation produced by a query encoder, also based on BERTBASE. Calculating\ntop-k(pη(·|x)), the list ofk documentsz with highest prior probabilitypη(z|x), is a Maximum Inner\nProduct Search (MIPS) problem, which can be approximately solved in sub-linear time [23]. We use\na pre-trained bi-encoder from DPR to initialize our retriever and to build the document index. This\nretriever was trained to retrieve documents which contain answers to TriviaQA [24] questions and\nNatural Questions [29]. We refer to the document index as the non-parametric memory.\n2.3 Generator: BART\nThe generator componentpθ(yi|x,z,y 1:i−1) could be modelled using any encoder-decoder. We use\nBART-large [32], a pre-trained seq2seq transformer [58] with 400M parameters. To combine the input",
+  "index": 14
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709515241",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "BART-large [32], a pre-trained seq2seq transformer [58] with 400M parameters. To combine the input\nx with the retrieved contentz when generating from BART, we simply concatenate them. BART was\npre-trained using a denoising objective and a variety of different noising functions. It has obtained\nstate-of-the-art results on a diverse set of generation tasks and outperforms comparably-sized T5\nmodels [32]. We refer to the BART generator parametersθ as the parametric memory henceforth.\n2.4 Training\nWe jointly train the retriever and generator components without any direct supervision on what\ndocument should be retrieved. Given a ﬁne-tuning training corpus of input/output pairs (xj,yj), we\n3\nminimize the negative marginal log-likelihood of each target,∑\nj− logp(yj|xj) using stochastic",
+  "index": 15
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709516856",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "3\nminimize the negative marginal log-likelihood of each target,∑\nj− logp(yj|xj) using stochastic\ngradient descent with Adam [28]. Updating the document encoder BERTd during training is costly as\nit requires the document index to be periodically updated as REALM does during pre-training [20].\nWe do not ﬁnd this step necessary for strong performance, and keep the document encoder (and\nindex) ﬁxed, only ﬁne-tuning the query encoder BERTq and the BART generator.\n2.5 Decoding\nAt test time, RAG-Sequence and RAG-Token require different ways to approximatearg maxyp(y|x).\nRAG-Token The RAG-Token model can be seen as a standard, autoregressive seq2seq genera-\ntor with transition probability: p′\nθ(yi|x,y 1:i−1) = ∑\nz∈top-k(p(·|x))pη(zi|x)pθ(yi|x,zi,y 1:i−1) To\ndecode, we can plugp′",
+  "index": 16
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709517123",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "θ(yi|x,y 1:i−1) = ∑\nz∈top-k(p(·|x))pη(zi|x)pθ(yi|x,zi,y 1:i−1) To\ndecode, we can plugp′\nθ(yi|x,y 1:i−1) into a standard beam decoder.\nRAG-Sequence For RAG-Sequence, the likelihoodp(y|x) does not break into a conventional per-\ntoken likelihood, hence we cannot solve it with a single beam search. Instead, we run beam search for\neach documentz, scoring each hypothesis usingpθ(yi|x,z,y 1:i−1). This yields a set of hypotheses\nY , some of which may not have appeared in the beams of all documents. To estimate the probability\nof an hypothesis y we run an additional forward pass for each document z for which y does not\nappear in the beam, multiply generator probability withpη(z|x) and then sum the probabilities across",
+  "index": 17
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709518986",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "beams for the marginals. We refer to this decoding procedure as “Thorough Decoding.” For longer\noutput sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding,\nwe can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam\nsearch fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has\nbeen generated. We refer to this decoding procedure as “Fast Decoding.”\n3 Experiments\nWe experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use\na single Wikipedia dump for our non-parametric knowledge source. Following Lee et al. [31] and\nKarpukhin et al. [26], we use the December 2018 dump. Each Wikipedia article is split into disjoint",
+  "index": 18
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709519675",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Karpukhin et al. [26], we use the December 2018 dump. Each Wikipedia article is split into disjoint\n100-word chunks, to make a total of 21M documents. We use the document encoder to compute an\nembedding for each document, and build a single MIPS index using FAISS [23] with a Hierarchical\nNavigable Small World approximation for fast retrieval [37]. During training, we retrieve the top\nk documents for each query. We considerk∈{ 5, 10} for training and setk for test time using dev\ndata. We now discuss experimental details for each task.\n3.1 Open-domain Question Answering\nOpen-domain question answering (QA) is an important real-world application and common testbed\nfor knowledge-intensive tasks [20]. We treat questions and answers as input-output text pairs (x,y )",
+  "index": 19
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "and train RAG by directly minimizing the negative log-likelihood of answers. We compare RAG to\nthe popular extractive QA paradigm [5, 7, 31, 26], where answers are extracted spans from retrieved\ndocuments, relying primarily on non-parametric knowledge. We also compare to “Closed-Book\nQA” approaches [52], which, like RAG, generate answers, but which do not exploit retrieval, instead\nrelying purely on parametric knowledge. We consider four popular open-domain QA datasets: Natural\nQuestions (NQ) [29], TriviaQA (TQA) [24]. WebQuestions (WQ) [3] and CuratedTrec (CT) [2]. As\nCT and WQ are small, we follow DPR [26] by initializing CT and WQ models with our NQ RAG\nmodel. We use the same train/dev/test splits as prior work [ 31, 26] and report Exact Match (EM)",
+  "index": 20
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709521812",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "model. We use the same train/dev/test splits as prior work [ 31, 26] and report Exact Match (EM)\nscores. For TQA, to compare with T5 [52], we also evaluate on the TQA Wiki test set.\n3.2 Abstractive Question Answering\nRAG models can go beyond simple extractive QA and answer questions with free-form, abstractive\ntext generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting,\nwe use the MSMARCO NLG task v2.1 [ 43]. The task consists of questions, ten gold passages\nretrieved from a search engine for each question, and a full sentence answer annotated from the\nretrieved passages. We do not use the supplied passages, only the questions and answers, to treat\n4\nMSMARCO as an open-domain abstractive QA task. MSMARCO has some questions that cannot be",
+  "index": 21
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709522364",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "4\nMSMARCO as an open-domain abstractive QA task. MSMARCO has some questions that cannot be\nanswered in a way that matches the reference answer without access to the gold passages, such as\n“What is the weather in V olcano, CA?” so performance will be lower without using gold passages.\nWe also note that some MSMARCO questions cannot be answered using Wikipedia alone. Here,\nRAG can rely on parametric knowledge to generate reasonable responses.\n3.3 Jeopardy Question Generation\nTo evaluate RAG’s generation abilities in a non-QA setting, we study open-domain question gen-\neration. Rather than use questions from standard open-domain QA tasks, which typically consist\nof short, simple questions, we propose the more demanding task of generating Jeopardy questions.",
+  "index": 22
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709523525",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "of short, simple questions, we propose the more demanding task of generating Jeopardy questions.\nJeopardy is an unusual format that consists of trying to guess an entity from a fact about that entity.\nFor example, “The World Cup” is the answer to the question “In 1986 Mexico scored as the ﬁrst\ncountry to host this international sports competition twice.” As Jeopardy questions are precise,\nfactual statements, generating Jeopardy questions conditioned on their answer entities constitutes a\nchallenging knowledge-intensive generation task.\nWe use the splits from SearchQA [ 10], with 100K train, 14K dev, and 27K test examples. As\nthis is a new task, we train a BART model for comparison. Following [67], we evaluate using the",
+  "index": 23
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709524912",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "this is a new task, we train a BART model for comparison. Following [67], we evaluate using the\nSQuAD-tuned Q-BLEU-1 metric [ 42]. Q-BLEU is a variant of BLEU with a higher weight for\nmatching entities and has higher correlation with human judgment for question generation than\nstandard metrics. We also perform two human evaluations, one to assess generation factuality, and\none for speciﬁcity. We deﬁne factuality as whether a statement can be corroborated by trusted external\nsources, and speciﬁcity as high mutual dependence between the input and output [ 33]. We follow\nbest practice and use pairwise comparative evaluation [34]. Evaluators are shown an answer and two\ngenerated questions, one from BART and one from RAG. They are then asked to pick one of four",
+  "index": 24
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709525652",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "generated questions, one from BART and one from RAG. They are then asked to pick one of four\noptions—quuestion A is better, question B is better, both are good, or neither is good.\n3.4 Fact Veriﬁcation\nFEVER [ 56] requires classifying whether a natural language claim is supported or refuted by\nWikipedia, or whether there is not enough information to decide. The task requires retrieving\nevidence from Wikipedia relating to the claim and then reasoning over this evidence to classify\nwhether the claim is true, false, or unveriﬁable from Wikipedia alone. FEVER is a retrieval problem\ncoupled with an challenging entailment reasoning task. It also provides an appropriate testbed for\nexploring the RAG models’ ability to handle classiﬁcation rather than generation. We map FEVER",
+  "index": 25
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709526098",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "exploring the RAG models’ ability to handle classiﬁcation rather than generation. We map FEVER\nclass labels (supports, refutes, or not enough info) to single output tokens and directly train with\nclaim-class pairs. Crucially, unlike most other approaches to FEVER, we do not use supervision on\nretrieved evidence. In many real-world applications, retrieval supervision signals aren’t available, and\nmodels that do not require such supervision will be applicable to a wider range of tasks. We explore\ntwo variants: the standard 3-way classiﬁcation task (supports/refutes/not enough info) and the 2-way\n(supports/refutes) task studied in Thorne and Vlachos [57]. In both cases we report label accuracy.\n4 Results\n4.1 Open-domain Question Answering",
+  "index": 26
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "4 Results\n4.1 Open-domain Question Answering\nTable 1 shows results for RAG along with state-of-the-art models. On all four open-domain QA\ntasks, RAG sets a new state of the art (only on the T5-comparable split for TQA). RAG combines\nthe generation ﬂexibility of the “closed-book” (parametric only) approaches and the performance of\n\"open-book\" retrieval-based approaches. Unlike REALM and T5+SSM, RAG enjoys strong results\nwithout expensive, specialized “salient span masking” pre-training [20]. It is worth noting that RAG’s\nretriever is initialized using DPR’s retriever, which uses retrieval supervision on Natural Questions\nand TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “cross-",
+  "index": 27
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "and TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “cross-\nencoder” to re-rank documents, along with an extractive reader. RAG demonstrates that neither a\nre-ranker nor extractive reader is necessary for state-of-the-art performance.\nThere are several advantages to generating answers even when it is possible to extract them. Docu-\nments with clues about the answer but do not contain the answer verbatim can still contribute towards\na correct answer being generated, which is not possible with standard extractive approaches, leading\n5\nTable 1: Open-Domain QA Test Scores. For TQA,\nleft column uses the standard test set for Open-\nDomain QA, right column uses the TQA-Wiki\ntest set. See Appendix D for further details.\nModel NQ TQA WQ CT\nClosed\nBook",
+  "index": 28
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709529700",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "test set. See Appendix D for further details.\nModel NQ TQA WQ CT\nClosed\nBook\nT5-11B [52] 34.5 - /50.1 37.4 -\nT5-11B+SSM[52] 36.6 - /60.5 44.7 -\nOpen\nBook\nREALM [20] 40.4 - / - 40.7 46.8\nDPR [26] 41.5 57.9/ - 41.1 50.6\nRAG-Token 44.1 55.2/66.1 45.5 50.0\nRAG-Seq. 44.5 56.8/68.0 45.2 52.2\nTable 2: Generation and classiﬁcation Test Scores.\nMS-MARCO SotA is [4], FEVER-3 is [68] and\nFEVER-2 is [ 57] *Uses gold context/evidence.\nBest model without gold access underlined.\nModel Jeopardy MSMARCO FVR3 FVR2\nB-1 QB-1 R-L B-1 Label Acc.\nSotA - - 49.8* 49.9* 76.8 92.2 *\nBART 15.1 19.7 38.2 41.6 64.0 81.1\nRAG-Tok. 17.3 22.2 40.1 41.5 72.5 89.5RAG-Seq. 14.7 21.4 40.8 44.2\nto more effective marginalization over documents. Furthermore, RAG can generate correct answers",
+  "index": 29
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "to more effective marginalization over documents. Furthermore, RAG can generate correct answers\neven when the correct answer is not in any retrieved document, achieving 11.8% accuracy in such\ncases for NQ, where an extractive model would score 0%.\n4.2 Abstractive Question Answering\nAs shown in Table 2, RAG-Sequence outperforms BART on Open MS-MARCO NLG by 2.6 Bleu\npoints and 2.6 Rouge-L points. RAG approaches state-of-the-art model performance, which is\nimpressive given that (i) those models access gold passages with speciﬁc information required to\ngenerate the reference answer , (ii) many questions are unanswerable without the gold passages, and\n(iii) not all questions are answerable from Wikipedia alone. Table 3 shows some generated answers",
+  "index": 30
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "(iii) not all questions are answerable from Wikipedia alone. Table 3 shows some generated answers\nfrom our models. Qualitatively, we ﬁnd that RAG models hallucinate less and generate factually\ncorrect text more often than BART. Later, we also show that RAG generations are more diverse than\nBART generations (see §4.5).\n4.3 Jeopardy Question Generation\nTable 2 shows that RAG-Token performs better than RAG-Sequence on Jeopardy question generation,\nwith both models outperforming BART on Q-BLEU-1. 4 shows human evaluation results, over 452\npairs of generations from BART and RAG-Token. Evaluators indicated that BART was more factual\nthan RAG in only 7.1% of cases, while RAG was more factual in 42.7% of cases, and both RAG and",
+  "index": 31
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "than RAG in only 7.1% of cases, while RAG was more factual in 42.7% of cases, and both RAG and\nBART were factual in a further 17% of cases, clearly demonstrating the effectiveness of RAG on\nthe task over a state-of-the-art generation model. Evaluators also ﬁnd RAG generations to be more\nspeciﬁc by a large margin. Table 3 shows typical generations from each model.\nJeopardy questions often contain two separate pieces of information, and RAG-Token may perform\nbest because it can generate responses that combine content from several documents. Figure 2 shows\nan example. When generating “Sun”, the posterior is high for document 2 which mentions “The\nSun Also Rises”. Similarly, document 1 dominates the posterior when “A Farewell to Arms” is",
+  "index": 32
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709533916",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Sun Also Rises”. Similarly, document 1 dominates the posterior when “A Farewell to Arms” is\ngenerated. Intriguingly, after the ﬁrst token of each book is generated, the document posterior ﬂattens.\nThis observation suggests that the generator can complete the titles without depending on speciﬁc\ndocuments. In other words, the model’s parametric knowledge is sufﬁcient to complete the titles. We\nﬁnd evidence for this hypothesis by feeding the BART-only baseline with the partial decoding \"The\nSun. BART completes the generation \"The Sun Also Rises\" is a novel by this author of \"The Sun\nAlso Rises\" indicating the title \"The Sun Also Rises\" is stored in BART’s parameters. Similarly,\nBART will complete the partial decoding \"The Sun Also Rises\" is a novel by this author of \"A",
+  "index": 33
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709534611",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "BART will complete the partial decoding \"The Sun Also Rises\" is a novel by this author of \"A\nwith \"The Sun Also Rises\" is a novel by this author of \"A Farewell to Arms\". This example shows\nhow parametric and non-parametric memories work together—the non-parametric component helps\nto guide the generation, drawing out speciﬁc knowledge stored in the parametric memory.\n4.4 Fact Veriﬁcation\nTable 2 shows our results on FEVER. For 3-way classiﬁcation, RAG scores are within 4.3% of\nstate-of-the-art models, which are complex pipeline systems with domain-speciﬁc architectures and\nsubstantial engineering, trained using intermediate retrieval supervision, which RAG does not require.\n6\nDocument 1: his works are considered classics of American",
+  "index": 34
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709535912",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "6\nDocument 1: his works are considered classics of American\nliterature ... His wartime experiences formed the basis for his novel\n”A Farewell to Arms” (1929) ...\nDocument 2: ... artists of the 1920s ”Lost Generation” expatriate\ncommunity . His debut novel, ”The Sun Also Rises”, was published\nin 1926.\nBOS\n”\nTheSunAlso\nR ises\n” is a\nnovel\nby this\nauthor\nof ” A\nFarewellto\nArms\n”\nDoc 1\nDoc 2\nDoc 3\nDoc 4\nDoc 5\nFigure 2: RAG-Token document posteriorp(zi|x,yi,y−i) for each generated token for input “Hem-\ningway\" for Jeopardy generation with 5 retrieved documents. The posterior for document 1 is high\nwhen generating “A Farewell to Arms\" and for document 2 when generating “The Sun Also Rises\".\nTable 3: Examples from generation tasks. RAG models generate more speciﬁc and factually accurate",
+  "index": 35
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709536983",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Table 3: Examples from generation tasks. RAG models generate more speciﬁc and factually accurate\nresponses. ‘?’ indicates factually incorrect responses, * indicates partially correct responses.\nTask Input Model Generation\nMS-\nMARCO\ndeﬁne middle\near\nBART ?The middle ear is the part of the ear between the middle ear and the nose.\nRAG-T The middle ear is the portion of the ear internal to the eardrum.\nRAG-S The middle ear includes the tympanic cavity and the three ossicles.\nwhat currency\nneeded in\nscotland\nBART The currency needed in Scotland is Pound sterling.\nRAG-T Pound is the currency needed in Scotland.\nRAG-S The currency needed in Scotland is the pound sterling.\nJeopardy\nQuestion\nGener\n-ation\nWashington\nBART ?This state has the largest number of counties in the U.S.",
+  "index": 36
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709537698",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Question\nGener\n-ation\nWashington\nBART ?This state has the largest number of counties in the U.S.\nRAG-T It’s the only U.S. state named for a U.S. president\nRAG-S It’s the state where you’ll ﬁnd Mount Rainier National Park\nThe Divine\nComedy\nBART *This epic poem by Dante is divided into 3 parts: the Inferno, the Purgatorio & the Purgatorio\nRAG-T Dante’s \"Inferno\" is the ﬁrst part of this epic poem\nRAG-S This 14th century work is divided into 3 sections: \"Inferno\", \"Purgatorio\" & \"Paradiso\"\nFor 2-way classiﬁcation, we compare against Thorne and Vlachos [57], who train RoBERTa [35]\nto classify the claim as true or false given the gold evidence sentence. RAG achieves an accuracy\nwithin 2.7% of this model, despite being supplied with only the claim and retrieving its own evidence.",
+  "index": 37
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "We also analyze whether documents retrieved by RAG correspond to documents annotated as gold\nevidence in FEVER. We calculate the overlap in article titles between the topk documents retrieved\nby RAG and gold evidence annotations. We ﬁnd that the top retrieved document is from a gold article\nin 71% of cases, and a gold article is present in the top 10 retrieved articles in 90% of cases.\n4.5 Additional Results\nGeneration Diversity Section 4.3 shows that RAG models are more factual and speciﬁc than\nBART for Jeopardy question generation. Following recent work on diversity-promoting decoding\n[33, 59, 39], we also investigate generation diversity by calculating the ratio of distinct ngrams to\ntotal ngrams generated by different models. Table 5 shows that RAG-Sequence’s generations are",
+  "index": 38
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "total ngrams generated by different models. Table 5 shows that RAG-Sequence’s generations are\nmore diverse than RAG-Token’s, and both are signiﬁcantly more diverse than BART without needing\nany diversity-promoting decoding.\nRetrieval Ablations A key feature of RAG is learning to retrieve relevant information for the task.\nTo assess the effectiveness of the retrieval mechanism, we run ablations where we freeze the retriever\nduring training. As shown in Table 6, learned retrieval improves results for all tasks.\nWe compare RAG’s dense retriever to a word overlap-based BM25 retriever [53]. Here, we replace\nRAG’s retriever with a ﬁxed BM25 system, and use BM25 retrieval scores as logits when calculating",
+  "index": 39
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "RAG’s retriever with a ﬁxed BM25 system, and use BM25 retrieval scores as logits when calculating\np(z|x). Table 6 shows the results. For FEVER, BM25 performs best, perhaps since FEVER claims are\nheavily entity-centric and thus well-suited for word overlap-based retrieval. Differentiable retrieval\nimproves results on all other tasks, especially for Open-Domain QA, where it is crucial.\nIndex hot-swapping An advantage of non-parametric memory models like RAG is that knowledge\ncan be easily updated at test time. Parametric-only models like T5 or BART need further training to\nupdate their behavior as the world changes. To demonstrate, we build an index using the DrQA [5]\nWikipedia dump from December 2016 and compare outputs from RAG using this index to the newer",
+  "index": 40
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709541429",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Wikipedia dump from December 2016 and compare outputs from RAG using this index to the newer\nindex from our main results (December 2018). We prepare a list of 82 world leaders who had changed\n7\nTable 4: Human assessments for the Jeopardy\nQuestion Generation Task.\nFactuality Speciﬁcity\nBART better 7.1% 16.8%\nRAG better 42.7% 37.4%\nBoth good 11.7% 11.8%\nBoth poor 17.7% 6.9%\nNo majority 20.8% 20.1%\nTable 5: Ratio of distinct to total tri-grams for\ngeneration tasks.\nMSMARCO Jeopardy QGen\nGold 89.6% 90.0%\nBART 70.7% 32.4%\nRAG-Token 77.8% 46.8%\nRAG-Seq. 83.5% 53.8%\nTable 6: Ablations on the dev set. As FEVER is a classiﬁcation task, both RAG models are equivalent.\nModel NQ TQA WQ CT Jeopardy-QGen MSMarco FVR-3 FVR-2\nExact Match B-1 QB-1 R-L B-1 Label Accuracy",
+  "index": 41
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709542988",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Model NQ TQA WQ CT Jeopardy-QGen MSMarco FVR-3 FVR-2\nExact Match B-1 QB-1 R-L B-1 Label Accuracy\nRAG-Token-BM25 29.7 41.5 32.1 33.1 17.5 22.3 55.5 48.4 75.1 91.6RAG-Sequence-BM25 31.8 44.1 36.6 33.8 11.1 19.5 56.5 46.9\nRAG-Token-Frozen 37.8 50.1 37.1 51.1 16.7 21.7 55.9 49.4 72.9 89.4RAG-Sequence-Frozen 41.2 52.1 41.8 52.6 11.8 19.6 56.7 47.3\nRAG-Token 43.5 54.8 46.5 51.9 17.9 22.6 56.2 49.4 74.5 90.6RAG-Sequence 44.0 55.8 44.9 53.4 15.3 21.5 57.2 47.5\nbetween these dates and use a template “Who is {position}?” (e.g. “Who is the President of Peru?”)\nto query our NQ RAG model with each index. RAG answers 70% correctly using the 2016 index for\n2016 world leaders and 68% using the 2018 index for 2018 world leaders. Accuracy with mismatched",
+  "index": 42
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709543905",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "2016 world leaders and 68% using the 2018 index for 2018 world leaders. Accuracy with mismatched\nindices is low (12% with the 2018 index and 2016 leaders, 4% with the 2016 index and 2018 leaders).\nThis shows we can update RAG’s world knowledge by simply replacing its non-parametric memory.\nEffect of Retrieving more documents Models are trained with either 5 or 10 retrieved latent\ndocuments, and we do not observe signiﬁcant differences in performance between them. We have the\nﬂexibility to adjust the number of retrieved documents at test time, which can affect performance and\nruntime. Figure 3 (left) shows that retrieving more documents at test time monotonically improves\nOpen-domain QA results for RAG-Sequence, but performance peaks for RAG-Token at 10 retrieved",
+  "index": 43
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709544286",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Open-domain QA results for RAG-Sequence, but performance peaks for RAG-Token at 10 retrieved\ndocuments. Figure 3 (right) shows that retrieving more documents leads to higher Rouge-L for\nRAG-Token at the expense of Bleu-1, but the effect is less pronounced for RAG-Sequence.\n10 20 30 40 50\nKR e t r i e v e dD o c s\n39\n40\n41\n42\n43\n44NQ Exact Match RAG-Tok\nRAG-Seq\n10 20 30 40 50\nKR e t r i e v e dD o c s\n40\n50\n60\n70\n80NQ Answer Recall @ K\nRAG-Tok\nRAG-Seq\nFixed DPR\nBM25\n10 20 30 40 50\nKR e t r i e v e dD o c s\n48\n50\n52\n54\n56Bleu-1 / Rouge-L score\nRAG-Tok R-L\nRAG-Tok B-1\nRAG-Seq R-L\nRAG-Seq B-1\nFigure 3: Left: NQ performance as more documents are retrieved. Center: Retrieval recall perfor-\nmance in NQ. Right: MS-MARCO Bleu-1 and Rouge-L as more documents are retrieved.\n5 Related Work",
+  "index": 44
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709545870",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "mance in NQ. Right: MS-MARCO Bleu-1 and Rouge-L as more documents are retrieved.\n5 Related Work\nSingle-Task Retrieval Prior work has shown that retrieval improves performance across a variety of\nNLP tasks when considered in isolation. Such tasks include open-domain question answering [5, 29],\nfact checking [ 56], fact completion [ 48], long-form question answering [ 12], Wikipedia article\ngeneration [36], dialogue [ 41, 65, 9, 13], translation [ 17], and language modeling [ 19, 27]. Our\nwork uniﬁes previous successes in incorporating retrieval into individual tasks, showing that a single\nretrieval-based architecture is capable of achieving strong performance across several tasks.\n8\nGeneral-Purpose Architectures for NLP Prior work on general-purpose architectures for NLP",
+  "index": 45
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709546869",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "8\nGeneral-Purpose Architectures for NLP Prior work on general-purpose architectures for NLP\ntasks has shown great success without the use of retrieval. A single, pre-trained language model\nhas been shown to achieve strong performance on various classiﬁcation tasks in the GLUE bench-\nmarks [60, 61] after ﬁne-tuning [49, 8]. GPT-2 [50] later showed that a single, left-to-right, pre-trained\nlanguage model could achieve strong performance across both discriminative and generative tasks.\nFor further improvement, BART [32] and T5 [51, 52] propose a single, pre-trained encoder-decoder\nmodel that leverages bi-directional attention to achieve stronger performance on discriminative\nand generative tasks. Our work aims to expand the space of possible tasks with a single, uniﬁed",
+  "index": 46
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709547286",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "and generative tasks. Our work aims to expand the space of possible tasks with a single, uniﬁed\narchitecture, by learning a retrieval module to augment pre-trained, generative language models.\nLearned Retrieval There is signiﬁcant work on learning to retrieve documents in information\nretrieval, more recently with pre-trained, neural language models [ 44, 26] similar to ours. Some\nwork optimizes the retrieval module to aid in a speciﬁc, downstream task such as question answering,\nusing search [46], reinforcement learning [6, 63, 62], or a latent variable approach [31, 20] as in our\nwork. These successes leverage different retrieval-based architectures and optimization techniques to\nachieve strong performance on a single task, while we show that a single retrieval-based architecture",
+  "index": 47
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709548443",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "can be ﬁne-tuned for strong performance on a variety of tasks.\nMemory-based Architectures Our document index can be seen as a large external memory for\nneural networks to attend to, analogous to memory networks [64, 55]. Concurrent work [14] learns\nto retrieve a trained embedding for each entity in the input, rather than to retrieve raw text as in our\nwork. Other work improves the ability of dialog models to generate factual text by attending over\nfact embeddings [15, 13]. A key feature of our memory is that it is comprised of raw text rather\ndistributed representations, which makes the memory both (i) human-readable, lending a form of\ninterpretability to our model, and (ii) human-writable, enabling us to dynamically update the model’s",
+  "index": 48
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709549878",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "memory by editing the document index. This approach has also been used in knowledge-intensive\ndialog, where generators have been conditioned on retrieved text directly, albeit obtained via TF-IDF\nrather than end-to-end learnt retrieval [9].\nRetrieve-and-Edit approaches Our method shares some similarities with retrieve-and-edit style\napproaches, where a similar training input-output pair is retrieved for a given input, and then edited\nto provide a ﬁnal output. These approaches have proved successful in a number of domains including\nMachine Translation [ 18, 22] and Semantic Parsing [21]. Our approach does have several differences,\nincluding less of emphasis on lightly editing a retrieved item, but on aggregating content from several",
+  "index": 49
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709550146",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "pieces of retrieved content, as well as learning latent retrieval, and retrieving evidence documents\nrather than related training pairs. This said, RAG techniques may work well in these settings, and\ncould represent promising future work.\n6 Discussion\nIn this work, we presented hybrid generation models with access to parametric and non-parametric\nmemory. We showed that our RAG models obtain state of the art results on open-domain QA. We\nfound that people prefer RAG’s generation over purely parametric BART, ﬁnding RAG more factual\nand speciﬁc. We conducted an thorough investigation of the learned retrieval component, validating\nits effectiveness, and we illustrated how the retrieval index can be hot-swapped to update the model",
+  "index": 50
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709551702",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "without requiring any retraining. In future work, it may be fruitful to investigate if the two components\ncan be jointly pre-trained from scratch, either with a denoising objective similar to BART or some\nanother objective. Our work opens up new research directions on how parametric and non-parametric\nmemories interact and how to most effectively combine them, showing promise in being applied to a\nwide variety of NLP tasks.\n9\nBroader Impact\nThis work offers several positive societal beneﬁts over previous work: the fact that it is more\nstrongly grounded in real factual knowledge (in this case Wikipedia) makes it “hallucinate” less\nwith generations that are more factual, and offers more control and interpretability. RAG could be",
+  "index": 51
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709552841",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "with generations that are more factual, and offers more control and interpretability. RAG could be\nemployed in a wide variety of scenarios with direct beneﬁt to society, for example by endowing it\nwith a medical index and asking it open-domain questions on that topic, or by helping people be more\neffective at their jobs.\nWith these advantages also come potential downsides: Wikipedia, or any potential external knowledge\nsource, will probably never be entirely factual and completely devoid of bias. Since RAG can be\nemployed as a language model, similar concerns as for GPT-2 [50] are valid here, although arguably\nto a lesser extent, including that it might be used to generate abuse, faked or misleading content in",
+  "index": 52
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709553537",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "the news or on social media; to impersonate others; or to automate the production of spam/phishing\ncontent [54]. Advanced language models may also lead to the automation of various jobs in the\ncoming decades [16]. In order to mitigate these risks, AI systems could be employed to ﬁght against\nmisleading content and automated spam/phishing.\nAcknowledgments\nThe authors would like to thank the reviewers for their thoughtful and constructive feedback on this\npaper, as well as HuggingFace for their help in open-sourcing code to run RAG models. The authors\nwould also like to thank Kyunghyun Cho and Sewon Min for productive discussions and advice. EP\nthanks supports from the NSF Graduate Research Fellowship. PL is supported by the FAIR PhD\nprogram.\nReferences",
+  "index": 53
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709554727",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "program.\nReferences\n[1] Payal Bajaj, Daniel Campos, Nick Craswell, Li Deng, Jianfeng Gao, Xiaodong Liu, Rangan\nMajumder, Andrew McNamara, Bhaskar Mitra, Tri Nguyen, Mir Rosenberg, Xia Song, Alina\nStoica, Saurabh Tiwary, and Tong Wang. MS MARCO: A Human Generated MAchine\nReading COmprehension Dataset. arXiv:1611.09268 [cs], November 2016. URL http:\n//arxiv.org/abs/1611.09268. arXiv: 1611.09268.\n[2] Petr Baudiš and Jan Šediv`y. Modeling of the question answering task in the yodaqa system. In\nInternational Conference of the Cross-Language Evaluation Forum for European Languages,\npages 222–228. Springer, 2015. URL https://link.springer.com/chapter/10.1007%\n2F978-3-319-24027-5_20 .\n[3] Jonathan Berant, Andrew Chou, Roy Frostig, and Percy Liang. Semantic Parsing on Freebase",
+  "index": 54
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709555026",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "[3] Jonathan Berant, Andrew Chou, Roy Frostig, and Percy Liang. Semantic Parsing on Freebase\nfrom Question-Answer Pairs. In Proceedings of the 2013 Conference on Empirical Methods\nin Natural Language Processing, pages 1533–1544, Seattle, Washington, USA, October 2013.\nAssociation for Computational Linguistics. URL http://www.aclweb.org/anthology/\nD13-1160.\n[4] Bin Bi, Chenliang Li, Chen Wu, Ming Yan, and Wei Wang. Palm: Pre-training an autoencod-\ning&autoregressive language model for context-conditioned generation. ArXiv, abs/2004.07159,\n2020. URL https://arxiv.org/abs/2004.07159.\n[5] Danqi Chen, Adam Fisch, Jason Weston, and Antoine Bordes. Reading Wikipedia to Answer\nOpen-Domain Questions. In Proceedings of the 55th Annual Meeting of the Association for",
+  "index": 55
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709556530",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Open-Domain Questions. In Proceedings of the 55th Annual Meeting of the Association for\nComputational Linguistics (Volume 1: Long Papers), pages 1870–1879, Vancouver, Canada,\nJuly 2017. Association for Computational Linguistics. doi: 10.18653/v1/P17-1171. URL\nhttps://www.aclweb.org/anthology/P17-1171.\n[6] Eunsol Choi, Daniel Hewlett, Jakob Uszkoreit, Illia Polosukhin, Alexandre Lacoste, and\nJonathan Berant. Coarse-to-ﬁne question answering for long documents. In Proceedings of the\n55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),\npages 209–220, Vancouver, Canada, July 2017. Association for Computational Linguistics. doi:\n10.18653/v1/P17-1020. URL https://www.aclweb.org/anthology/P17-1020.\n10",
+  "index": 56
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709557596",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "10.18653/v1/P17-1020. URL https://www.aclweb.org/anthology/P17-1020.\n10\n[7] Christopher Clark and Matt Gardner. Simple and Effective Multi-Paragraph Reading Compre-\nhension. arXiv:1710.10723 [cs], October 2017. URL http://arxiv.org/abs/1710.10723.\narXiv: 1710.10723.\n[8] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. BERT: Pre-training of\nDeep Bidirectional Transformers for Language Understanding. In Proceedings of the 2019 Con-\nference of the North American Chapter of the Association for Computational Linguistics: Human\nLanguage Technologies, Volume 1 (Long and Short Papers), pages 4171–4186, Minneapolis,\nMinnesota, June 2019. Association for Computational Linguistics. doi: 10.18653/v1/N19-1423.\nURL https://www.aclweb.org/anthology/N19-1423.",
+  "index": 57
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709558698",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "URL https://www.aclweb.org/anthology/N19-1423.\n[9] Emily Dinan, Stephen Roller, Kurt Shuster, Angela Fan, Michael Auli, and Jason Weston. Wiz-\nard of wikipedia: Knowledge-powered conversational agents. In International Conference on\nLearning Representations, 2019. URL https://openreview.net/forum?id=r1l73iRqKm.\n[10] Matthew Dunn, Levent Sagun, Mike Higgins, V . Ugur Guney, V olkan Cirik, and Kyunghyun\nCho. SearchQA: A New Q&A Dataset Augmented with Context from a Search Engine.\narXiv:1704.05179 [cs], April 2017. URL http://arxiv.org/abs/1704.05179. arXiv:\n1704.05179.\n[11] Angela Fan, Mike Lewis, and Yann Dauphin. Hierarchical neural story generation. In Proceed-\nings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1:",
+  "index": 58
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709559374",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "ings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1:\nLong Papers), pages 889–898, Melbourne, Australia, July 2018. Association for Computational\nLinguistics. doi: 10.18653/v1/P18-1082. URL https://www.aclweb.org/anthology/\nP18-1082.\n[12] Angela Fan, Yacine Jernite, Ethan Perez, David Grangier, Jason Weston, and Michael Auli. ELI5:\nLong form question answering. In Proceedings of the 57th Annual Meeting of the Association\nfor Computational Linguistics, pages 3558–3567, Florence, Italy, July 2019. Association for\nComputational Linguistics. doi: 10.18653/v1/P19-1346. URL https://www.aclweb.org/\nanthology/P19-1346.\n[13] Angela Fan, Claire Gardent, Chloe Braud, and Antoine Bordes. Augmenting transformers",
+  "index": 59
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709560561",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "[13] Angela Fan, Claire Gardent, Chloe Braud, and Antoine Bordes. Augmenting transformers\nwith KNN-based composite memory, 2020. URL https://openreview.net/forum?id=\nH1gx1CNKPH.\n[14] Thibault Févry, Livio Baldini Soares, Nicholas FitzGerald, Eunsol Choi, and Tom Kwiatkowski.\nEntities as experts: Sparse memory access with entity supervision. ArXiv, abs/2004.07202,\n2020. URL https://arxiv.org/abs/2004.07202.\n[15] Marjan Ghazvininejad, Chris Brockett, Ming-Wei Chang, Bill Dolan, Jianfeng Gao, Wen\ntau Yih, and Michel Galley. A knowledge-grounded neural conversation model. In AAAI\nConference on Artiﬁcial Intelligence, 2018. URL https://www.aaai.org/ocs/index.php/\nAAAI/AAAI18/paper/view/16710.\n[16] Katja Grace, John Salvatier, Allan Dafoe, Baobao Zhang, and Owain Evans. When will AI",
+  "index": 60
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709561617",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "[16] Katja Grace, John Salvatier, Allan Dafoe, Baobao Zhang, and Owain Evans. When will AI\nexceed human performance? evidence from AI experts. CoRR, abs/1705.08807, 2017. URL\nhttp://arxiv.org/abs/1705.08807.\n[17] Jiatao Gu, Yong Wang, Kyunghyun Cho, and Victor O.K. Li. Search engine guided neural\nmachine translation. In AAAI Conference on Artiﬁcial Intelligence , 2018. URL https:\n//www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/view/17282.\n[18] Jiatao Gu, Yong Wang, Kyunghyun Cho, and Victor O.K. Li. Search engine guided neural\nmachine translation. In 32nd AAAI Conference on Artiﬁcial Intelligence, AAAI 2018 , 32nd\nAAAI Conference on Artiﬁcial Intelligence, AAAI 2018, pages 5133–5140. AAAI press, 2018.\n32nd AAAI Conference on Artiﬁcial Intelligence, AAAI 2018 ; Conference date: 02-02-2018",
+  "index": 61
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709562959",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "32nd AAAI Conference on Artiﬁcial Intelligence, AAAI 2018 ; Conference date: 02-02-2018\nThrough 07-02-2018.\n[19] Kelvin Guu, Tatsunori B. Hashimoto, Yonatan Oren, and Percy Liang. Generating sentences by\nediting prototypes. Transactions of the Association for Computational Linguistics, 6:437–450,\n2018. doi: 10.1162/tacl_a_00030. URL https://www.aclweb.org/anthology/Q18-1031.\n11\n[20] Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat, and Ming-Wei Chang. REALM:\nRetrieval-augmented language model pre-training. ArXiv, abs/2002.08909, 2020. URL https:\n//arxiv.org/abs/2002.08909.\n[21] Tatsunori B Hashimoto, Kelvin Guu, Yonatan Oren, and Percy S Liang. A\nretrieve-and-edit framework for predicting structured outputs. In S. Bengio,",
+  "index": 62
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709563923",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "retrieve-and-edit framework for predicting structured outputs. In S. Bengio,\nH. Wallach, H. Larochelle, K. Grauman, N. Cesa-Bianchi, and R. Garnett, ed-\nitors, Advances in Neural Information Processing Systems 31 , pages 10052–\n10062. Curran Associates, Inc., 2018. URL http://papers.nips.cc/paper/\n8209-a-retrieve-and-edit-framework-for-predicting-structured-outputs.\npdf.\n[22] Nabil Hossain, Marjan Ghazvininejad, and Luke Zettlemoyer. Simple and effective retrieve-\nedit-rerank text generation. In Proceedings of the 58th Annual Meeting of the Association for\nComputational Linguistics, pages 2532–2538, Online, July 2020. Association for Computa-\ntional Linguistics. doi: 10.18653/v1/2020.acl-main.228. URL https://www.aclweb.org/\nanthology/2020.acl-main.228.",
+  "index": 63
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709564080",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "anthology/2020.acl-main.228.\n[23] Jeff Johnson, Matthijs Douze, and Hervé Jégou. Billion-scale similarity search with gpus. arXiv\npreprint arXiv:1702.08734, 2017. URL https://arxiv.org/abs/1702.08734.\n[24] Mandar Joshi, Eunsol Choi, Daniel Weld, and Luke Zettlemoyer. TriviaQA: A Large Scale\nDistantly Supervised Challenge Dataset for Reading Comprehension. In Proceedings of the\n55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),\npages 1601–1611, Vancouver, Canada, July 2017. Association for Computational Linguistics.\ndoi: 10.18653/v1/P17-1147. URL https://www.aclweb.org/anthology/P17-1147.\n[25] Armand Joulin and Tomas Mikolov. Inferring algorithmic patterns with stack-\naugmented recurrent nets. In Proceedings of the 28th International Conference on",
+  "index": 64
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709565785",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "augmented recurrent nets. In Proceedings of the 28th International Conference on\nNeural Information Processing Systems - Volume 1 , NIPS’15, page 190–198, Cam-\nbridge, MA, USA, 2015. MIT Press. URL https://papers.nips.cc/paper/\n5857-inferring-algorithmic-patterns-with-stack-augmented-recurrent-nets .\n[26] Vladimir Karpukhin, Barlas Oguz, Sewon Min, Ledell Wu, Sergey Edunov, Danqi Chen, and\nWen-tau Yih. Dense passage retrieval for open-domain question answering. arXiv preprint\narXiv:2004.04906, 2020. URL https://arxiv.org/abs/2004.04906.\n[27] Urvashi Khandelwal, Omer Levy, Dan Jurafsky, Luke Zettlemoyer, and Mike Lewis. Generaliza-\ntion through memorization: Nearest neighbor language models. In International Conference on",
+  "index": 65
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709566257",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "tion through memorization: Nearest neighbor language models. In International Conference on\nLearning Representations, 2020. URL https://openreview.net/forum?id=HklBjCEKvH.\n[28] Diederik P. Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In Yoshua\nBengio and Yann LeCun, editors, 3rd International Conference on Learning Representations,\nICLR 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings, 2015. URL\nhttp://arxiv.org/abs/1412.6980.\n[29] Tom Kwiatkowski, Jennimaria Palomaki, Olivia Redﬁeld, Michael Collins, Ankur Parikh,\nChris Alberti, Danielle Epstein, Illia Polosukhin, Matthew Kelcey, Jacob Devlin, Ken-\nton Lee, Kristina N. Toutanova, Llion Jones, Ming-Wei Chang, Andrew Dai, Jakob",
+  "index": 66
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709567211",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "ton Lee, Kristina N. Toutanova, Llion Jones, Ming-Wei Chang, Andrew Dai, Jakob\nUszkoreit, Quoc Le, and Slav Petrov. Natural Questions: a Benchmark for Ques-\ntion Answering Research. Transactions of the Association of Computational Lin-\nguistics, 2019. URL https://tomkwiat.users.x20web.corp.google.com/papers/\nnatural-questions/main-1455-kwiatkowski.pdf .\n[30] Guillaume Lample, Alexandre Sablayrolles, Marc’ Aurelio Ranzato, Ludovic Denoyer, and\nHerve Jegou. Large memory layers with product keys. In H. Wallach, H. Larochelle,\nA. Beygelzimer, F. d’ Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural In-\nformation Processing Systems 32, pages 8548–8559. Curran Associates, Inc., 2019. URL http:\n//papers.nips.cc/paper/9061-large-memory-layers-with-product-keys.pdf .",
+  "index": 67
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709568798",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "//papers.nips.cc/paper/9061-large-memory-layers-with-product-keys.pdf .\n[31] Kenton Lee, Ming-Wei Chang, and Kristina Toutanova. Latent retrieval for weakly supervised\nopen domain question answering. In Proceedings of the 57th Annual Meeting of the Association\n12\nfor Computational Linguistics, pages 6086–6096, Florence, Italy, July 2019. Association for\nComputational Linguistics. doi: 10.18653/v1/P19-1612. URL https://www.aclweb.org/\nanthology/P19-1612.\n[32] Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed,\nOmer Levy, Veselin Stoyanov, and Luke Zettlemoyer. BART: Denoising sequence-to-sequence\npre-training for natural language generation, translation, and comprehension. arXiv preprint\narXiv:1910.13461, 2019. URL https://arxiv.org/abs/1910.13461.",
+  "index": 68
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709569826",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "arXiv:1910.13461, 2019. URL https://arxiv.org/abs/1910.13461.\n[33] Jiwei Li, Michel Galley, Chris Brockett, Jianfeng Gao, and Bill Dolan. A diversity-promoting\nobjective function for neural conversation models. In Proceedings of the 2016 Conference of the\nNorth American Chapter of the Association for Computational Linguistics: Human Language\nTechnologies, pages 110–119, San Diego, California, June 2016. Association for Computational\nLinguistics. doi: 10.18653/v1/N16-1014. URL https://www.aclweb.org/anthology/\nN16-1014.\n[34] Margaret Li, Jason Weston, and Stephen Roller. Acute-eval: Improved dialogue evaluation\nwith optimized questions and multi-turn comparisons. ArXiv, abs/1909.03087, 2019. URL\nhttps://arxiv.org/abs/1909.03087.",
+  "index": 69
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709570957",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "https://arxiv.org/abs/1909.03087.\n[35] Hairong Liu, Mingbo Ma, Liang Huang, Hao Xiong, and Zhongjun He. Robust neural machine\ntranslation with joint textual and phonetic embedding. In Proceedings of the 57th Annual\nMeeting of the Association for Computational Linguistics, pages 3044–3049, Florence, Italy,\nJuly 2019. Association for Computational Linguistics. doi: 10.18653/v1/P19-1291. URL\nhttps://www.aclweb.org/anthology/P19-1291.\n[36] Peter J. Liu*, Mohammad Saleh*, Etienne Pot, Ben Goodrich, Ryan Sepassi, Lukasz Kaiser,\nand Noam Shazeer. Generating wikipedia by summarizing long sequences. In International\nConference on Learning Representations, 2018. URL https://openreview.net/forum?\nid=Hyg0vbWC-.",
+  "index": 70
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709571916",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Conference on Learning Representations, 2018. URL https://openreview.net/forum?\nid=Hyg0vbWC-.\n[37] Yury A. Malkov and D. A. Yashunin. Efﬁcient and robust approximate nearest neighbor search\nusing hierarchical navigable small world graphs. IEEE Transactions on Pattern Analysis and\nMachine Intelligence, 42:824–836, 2016. URL https://arxiv.org/abs/1603.09320.\n[38] Gary Marcus. The next decade in ai: four steps towards robust artiﬁcial intelligence. arXiv\npreprint arXiv:2002.06177, 2020. URL https://arxiv.org/abs/2002.06177.\n[39] Luca Massarelli, Fabio Petroni, Aleksandra Piktus, Myle Ott, Tim Rocktäschel, Vassilis\nPlachouras, Fabrizio Silvestri, and Sebastian Riedel. How decoding strategies affect the\nveriﬁability of generated text. arXiv preprint arXiv:1911.03587 , 2019. URL https:",
+  "index": 71
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709572039",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "veriﬁability of generated text. arXiv preprint arXiv:1911.03587 , 2019. URL https:\n//arxiv.org/abs/1911.03587.\n[40] Paulius Micikevicius, Sharan Narang, Jonah Alben, Gregory Diamos, Erich Elsen, David Garcia,\nBoris Ginsburg, Michael Houston, Oleksii Kuchaiev, Ganesh Venkatesh, and Hao Wu. Mixed\nprecision training. In ICLR, 2018. URL https://openreview.net/forum?id=r1gs9JgRZ.\n[41] Nikita Moghe, Siddhartha Arora, Suman Banerjee, and Mitesh M. Khapra. Towards exploit-\ning background knowledge for building conversation systems. In Proceedings of the 2018\nConference on Empirical Methods in Natural Language Processing, pages 2322–2332, Brus-\nsels, Belgium, October-November 2018. Association for Computational Linguistics. doi:\n10.18653/v1/D18-1255. URL https://www.aclweb.org/anthology/D18-1255.",
+  "index": 72
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709573612",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "10.18653/v1/D18-1255. URL https://www.aclweb.org/anthology/D18-1255.\n[42] Preksha Nema and Mitesh M. Khapra. Towards a better metric for evaluating question generation\nsystems. In Proceedings of the 2018 Conference on Empirical Methods in Natural Language\nProcessing, pages 3950–3959, Brussels, Belgium, October-November 2018. Association for\nComputational Linguistics. doi: 10.18653/v1/D18-1429. URL https://www.aclweb.org/\nanthology/D18-1429.\n[43] Tri Nguyen, Mir Rosenberg, Xia Song, Jianfeng Gao, Saurabh Tiwary, Rangan Majumder,\nand Li Deng. MS MARCO: A human generated machine reading comprehension dataset. In\nTarek Richard Besold, Antoine Bordes, Artur S. d’Avila Garcez, and Greg Wayne, editors,\nProceedings of the Workshop on Cognitive Computation: Integrating neural and symbolic\n13",
+  "index": 73
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709574331",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Proceedings of the Workshop on Cognitive Computation: Integrating neural and symbolic\n13\napproaches 2016 co-located with the 30th Annual Conference on Neural Information Processing\nSystems (NIPS 2016), Barcelona, Spain, December 9, 2016, volume 1773 of CEUR Workshop\nProceedings. CEUR-WS.org, 2016. URL http://ceur-ws.org/Vol-1773/CoCoNIPS_\n2016_paper9.pdf.\n[44] Rodrigo Nogueira and Kyunghyun Cho. Passage re-ranking with BERT. arXiv preprint\narXiv:1901.04085, 2019. URL https://arxiv.org/abs/1901.04085.\n[45] Myle Ott, Sergey Edunov, Alexei Baevski, Angela Fan, Sam Gross, Nathan Ng, David Grangier,\nand Michael Auli. fairseq: A fast, extensible toolkit for sequence modeling. In Proceedings\nof the 2019 Conference of the North American Chapter of the Association for Computational",
+  "index": 74
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709575557",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "of the 2019 Conference of the North American Chapter of the Association for Computational\nLinguistics (Demonstrations), pages 48–53, Minneapolis, Minnesota, June 2019. Association\nfor Computational Linguistics. doi: 10.18653/v1/N19-4009. URL https://www.aclweb.\norg/anthology/N19-4009.\n[46] Ethan Perez, Siddharth Karamcheti, Rob Fergus, Jason Weston, Douwe Kiela, and Kyunghyun\nCho. Finding generalizable evidence by learning to convince q&a models. In Proceedings\nof the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th\nInternational Joint Conference on Natural Language Processing (EMNLP-IJCNLP) , pages\n2402–2411, Hong Kong, China, November 2019. Association for Computational Linguistics.\ndoi: 10.18653/v1/D19-1244. URL https://www.aclweb.org/anthology/D19-1244.",
+  "index": 75
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709576535",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "doi: 10.18653/v1/D19-1244. URL https://www.aclweb.org/anthology/D19-1244.\n[47] Fabio Petroni, Tim Rocktäschel, Sebastian Riedel, Patrick Lewis, Anton Bakhtin, Yuxiang Wu,\nand Alexander Miller. Language models as knowledge bases? In Proceedings of the 2019\nConference on Empirical Methods in Natural Language Processing and the 9th International\nJoint Conference on Natural Language Processing (EMNLP-IJCNLP), pages 2463–2473, Hong\nKong, China, November 2019. Association for Computational Linguistics. doi: 10.18653/v1/\nD19-1250. URL https://www.aclweb.org/anthology/D19-1250.\n[48] Fabio Petroni, Patrick Lewis, Aleksandra Piktus, Tim Rocktäschel, Yuxiang Wu, Alexander H.\nMiller, and Sebastian Riedel. How context affects language models’ factual predictions. In",
+  "index": 76
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709577143",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Miller, and Sebastian Riedel. How context affects language models’ factual predictions. In\nAutomated Knowledge Base Construction, 2020. URL https://openreview.net/forum?\nid=025X0zPfn.\n[49] Alec Radford, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. Im-\nproving Language Understanding by Generative Pre-Training, 2018. URL\nhttps://s3-us-west-2.amazonaws.com/openai-assets/research-covers/\nlanguage-unsupervised/language_understanding_paper.pdf.\n[50] Alec Radford, Jeff Wu, Rewon Child, David Luan, Dario Amodei, and Ilya\nSutskever. Language models are unsupervised multitask learners, 2019. URL\nhttps://d4mucfpksywv.cloudfront.net/better-language-models/language_\nmodels_are_unsupervised_multitask_learners.pdf.",
+  "index": 77
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709578263",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "models_are_unsupervised_multitask_learners.pdf.\n[51] Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena,\nYanqi Zhou, Wei Li, and Peter J. Liu. Exploring the limits of transfer learning with a uniﬁed\ntext-to-text transformer. arXiv e-prints, 2019. URL https://arxiv.org/abs/1910.10683.\n[52] Adam Roberts, Colin Raffel, and Noam Shazeer. How much knowledge can you pack into\nthe parameters of a language model? arXiv e-prints, 2020. URL https://arxiv.org/abs/\n2002.08910.\n[53] Stephen Robertson and Hugo Zaragoza. The probabilistic relevance framework: Bm25 and\nbeyond. Found. Trends Inf. Retr., 3(4):333–389, April 2009. ISSN 1554-0669. doi: 10.1561/\n1500000019. URL https://doi.org/10.1561/1500000019.",
+  "index": 78
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709579678",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "1500000019. URL https://doi.org/10.1561/1500000019.\n[54] Irene Solaiman, Miles Brundage, Jack Clark, Amanda Askell, Ariel Herbert-V oss, Jeff Wu, Alec\nRadford, and Jian-Bing Wang. Release strategies and the social impacts of language models.\nArXiv, abs/1908.09203, 2019.\n[55] Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory net-\nworks. In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors,Advances\nin Neural Information Processing Systems 28, pages 2440–2448. Curran Associates, Inc., 2015.\nURL http://papers.nips.cc/paper/5846-end-to-end-memory-networks.pdf .\n14\n[56] James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal. FEVER: a",
+  "index": 79
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709580761",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "14\n[56] James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal. FEVER: a\nlarge-scale dataset for fact extraction and VERiﬁcation. In Proceedings of the 2018 Conference\nof the North American Chapter of the Association for Computational Linguistics: Human\nLanguage Technologies, Volume 1 (Long Papers), pages 809–819, New Orleans, Louisiana,\nJune 2018. Association for Computational Linguistics. doi: 10.18653/v1/N18-1074. URL\nhttps://www.aclweb.org/anthology/N18-1074.\n[57] James H. Thorne and Andreas Vlachos. Avoiding catastrophic forgetting in mitigating model\nbiases in sentence-pair classiﬁcation with elastic weight consolidation. ArXiv, abs/2004.14366,\n2020. URL https://arxiv.org/abs/2004.14366.",
+  "index": 80
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709581349",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "2020. URL https://arxiv.org/abs/2004.14366.\n[58] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez,\nŁ ukasz Kaiser, and Illia Polosukhin. Attention is all you need. In I. Guyon, U. V . Luxburg,\nS. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, and R. Garnett, editors,Advances in Neural\nInformation Processing Systems 30, pages 5998–6008. Curran Associates, Inc., 2017. URL\nhttp://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf .\n[59] Ashwin Vijayakumar, Michael Cogswell, Ramprasaath Selvaraju, Qing Sun, Stefan Lee, David\nCrandall, and Dhruv Batra. Diverse beam search for improved description of complex scenes.\nAAAI Conference on Artiﬁcial Intelligence, 2018. URL https://www.aaai.org/ocs/index.\nphp/AAAI/AAAI18/paper/view/17329.",
+  "index": 81
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709582082",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "php/AAAI/AAAI18/paper/view/17329.\n[60] Alex Wang, Amanpreet Singh, Julian Michael, Felix Hill, Omer Levy, and Samuel Bowman.\nGLUE: A multi-task benchmark and analysis platform for natural language understanding.\nIn Proceedings of the 2018 EMNLP Workshop BlackboxNLP: Analyzing and Interpreting\nNeural Networks for NLP, pages 353–355, Brussels, Belgium, November 2018. Association for\nComputational Linguistics. doi: 10.18653/v1/W18-5446. URL https://www.aclweb.org/\nanthology/W18-5446.\n[61] Alex Wang, Yada Pruksachatkun, Nikita Nangia, Amanpreet Singh, Julian Michael, Felix\nHill, Omer Levy, and Samuel Bowman. SuperGLUE: A Stickier Benchmark for General-\nPurpose Language Understanding Systems. In H. Wallach, H. Larochelle, A. Beygelzimer,",
+  "index": 82
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709583499",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Purpose Language Understanding Systems. In H. Wallach, H. Larochelle, A. Beygelzimer,\nF. d\\textquotesingle Alché-Buc, E. Fox, and R. Garnett, editors,Advances in Neural Information\nProcessing Systems 32, pages 3261–3275. Curran Associates, Inc., 2019. URL https://\narxiv.org/abs/1905.00537.\n[62] Shuohang Wang, Mo Yu, Xiaoxiao Guo, Zhiguo Wang, Tim Klinger, Wei Zhang, Shiyu Chang,\nGerry Tesauro, Bowen Zhou, and Jing Jiang. R3: Reinforced ranker-reader for open-domain\nquestion answering. In Sheila A. McIlraith and Kilian Q. Weinberger, editors, Proceedings of\nthe Thirty-Second AAAI Conference on Artiﬁcial Intelligence, (AAAI-18), the 30th innovative\nApplications of Artiﬁcial Intelligence (IAAI-18), and the 8th AAAI Symposium on Educational",
+  "index": 83
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709584287",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Applications of Artiﬁcial Intelligence (IAAI-18), and the 8th AAAI Symposium on Educational\nAdvances in Artiﬁcial Intelligence (EAAI-18), New Orleans, Louisiana, USA, February 2-7,\n2018, pages 5981–5988. AAAI Press, 2018. URL https://www.aaai.org/ocs/index.\nphp/AAAI/AAAI18/paper/view/16712.\n[63] Shuohang Wang, Mo Yu, Jing Jiang, Wei Zhang, Xiaoxiao Guo, Shiyu Chang, Zhiguo Wang,\nTim Klinger, Gerald Tesauro, and Murray Campbell. Evidence aggregation for answer re-\nranking in open-domain question answering. In ICLR, 2018. URL https://openreview.\nnet/forum?id=rJl3yM-Ab.\n[64] Jason Weston, Sumit Chopra, and Antoine Bordes. Memory networks. In Yoshua Bengio\nand Yann LeCun, editors, 3rd International Conference on Learning Representations, ICLR",
+  "index": 84
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709585977",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "and Yann LeCun, editors, 3rd International Conference on Learning Representations, ICLR\n2015, San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings , 2015. URL\nhttp://arxiv.org/abs/1410.3916.\n[65] Jason Weston, Emily Dinan, and Alexander Miller. Retrieve and reﬁne: Improved sequence\ngeneration models for dialogue. In Proceedings of the 2018 EMNLP Workshop SCAI: The 2nd\nInternational Workshop on Search-Oriented Conversational AI, pages 87–92, Brussels, Belgium,\nOctober 2018. Association for Computational Linguistics. doi: 10.18653/v1/W18-5713. URL\nhttps://www.aclweb.org/anthology/W18-5713.\n15\n[66] Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony\nMoi, Pierric Cistac, Tim Rault, Rémi Louf, Morgan Funtowicz, Joe Davison, Sam Shleifer,",
+  "index": 85
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709586264",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Moi, Pierric Cistac, Tim Rault, Rémi Louf, Morgan Funtowicz, Joe Davison, Sam Shleifer,\nPatrick von Platen, Clara Ma, Yacine Jernite, Julien Plu, Canwen Xu, Teven Le Scao, Sylvain\nGugger, Mariama Drame, Quentin Lhoest, and Alexander M. Rush. Huggingface’s transformers:\nState-of-the-art natural language processing. ArXiv, abs/1910.03771, 2019.\n[67] Shiyue Zhang and Mohit Bansal. Addressing semantic drift in question generation for semi-\nsupervised question answering. In Proceedings of the 2019 Conference on Empirical Meth-\nods in Natural Language Processing and the 9th International Joint Conference on Natural\nLanguage Processing (EMNLP-IJCNLP) , pages 2495–2509, Hong Kong, China, Novem-\nber 2019. Association for Computational Linguistics. doi: 10.18653/v1/D19-1253. URL",
+  "index": 86
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709587769",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "ber 2019. Association for Computational Linguistics. doi: 10.18653/v1/D19-1253. URL\nhttps://www.aclweb.org/anthology/D19-1253.\n[68] Wanjun Zhong, Jingjing Xu, Duyu Tang, Zenan Xu, Nan Duan, Ming Zhou, Jiahai Wang, and\nJian Yin. Reasoning over semantic-level graph for fact checking. ArXiv, abs/1909.03745, 2019.\nURL https://arxiv.org/abs/1909.03745.\n16\nAppendices for Retrieval-Augmented Generation for\nKnowledge-Intensive NLP Tasks\nA Implementation Details\nFor Open-domain QA we report test numbers using 15 retrieved documents for RAG-Token models.\nFor RAG-Sequence models, we report test results using 50 retrieved documents, and we use the\nThorough Decoding approach since answers are generally short. We use greedy decoding for QA as",
+  "index": 87
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709588903",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Thorough Decoding approach since answers are generally short. We use greedy decoding for QA as\nwe did not ﬁnd beam search improved results. For Open-MSMarco and Jeopardy question generation,\nwe report test numbers using ten retrieved documents for both RAG-Token and RAG-Sequence,\nand we also train a BART-large model as a baseline. We use a beam size of four, and use the Fast\nDecoding approach for RAG-Sequence models, as Thorough Decoding did not improve performance.\nB Human Evaluation\nFigure 4: Annotation interface for human evaluation of factuality. A pop-out for detailed instructions\nand a worked example appear when clicking \"view tool guide\".\nFigure 4 shows the user interface for human evaluation. To avoid any biases for screen position,",
+  "index": 88
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709589696",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Figure 4 shows the user interface for human evaluation. To avoid any biases for screen position,\nwhich model corresponded to sentence A and sentence B was randomly selected for each example.\nAnnotators were encouraged to research the topic using the internet, and were given detailed instruc-\ntions and worked examples in a full instructions tab. We included some gold sentences in order to\nassess the accuracy of the annotators. Two annotators did not perform well on these examples and\ntheir annotations were removed from the results.\nC Training setup Details\nWe train all RAG models and BART baselines using Fairseq [45].2 We train with mixed precision\nﬂoating point arithmetic [ 40], distributing training across 8, 32GB NVIDIA V100 GPUs, though",
+  "index": 89
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709590985",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "ﬂoating point arithmetic [ 40], distributing training across 8, 32GB NVIDIA V100 GPUs, though\ntraining and inference can be run on one GPU. We ﬁnd that doing Maximum Inner Product Search\nwith FAISS is sufﬁciently fast on CPU, so we store document index vectors on CPU, requiring∼ 100\nGB of CPU memory for all of Wikipedia. After submission, We have ported our code to HuggingFace\nTransformers [66]3, which achieves equivalent performance to the previous version but is a cleaner\nand easier to use implementation. This version is also open-sourced. We also compress the document\nindex using FAISS’s compression tools, reducing the CPU memory requirement to 36GB. Scripts to\nrun experiments with RAG can be found athttps://github.com/huggingface/transformers/",
+  "index": 90
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709591365",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "run experiments with RAG can be found athttps://github.com/huggingface/transformers/\nblob/master/examples/rag/README.md and an interactive demo of a RAG model can be found\nat https://huggingface.co/rag/\n2https://github.com/pytorch/fairseq\n3https://github.com/huggingface/transformers\n17\nD Further Details on Open-Domain QA\nFor open-domain QA, multiple answer annotations are often available for a given question. These\nanswer annotations are exploited by extractive models during training as typically all the answer\nannotations are used to ﬁnd matches within documents when preparing training data. For RAG, we\nalso make use of multiple annotation examples for Natural Questions and WebQuestions by training",
+  "index": 91
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709592439",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "also make use of multiple annotation examples for Natural Questions and WebQuestions by training\nthe model with each (q,a ) pair separately, leading to a small increase in accuracy. For TriviaQA,\nthere are often many valid answers to a given question, some of which are not suitable training targets,\nsuch as emoji or spelling variants. For TriviaQA, we ﬁlter out answer candidates if they do not occur\nin top 1000 documents for the query.\nCuratedTrec preprocessing The answers for CuratedTrec are given in the form of regular expres-\nsions, which has been suggested as a reason why it is unsuitable for answer-generation models [20].\nTo overcome this, we use a pre-processing step where we ﬁrst retrieve the top 1000 documents for",
+  "index": 92
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709593750",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "To overcome this, we use a pre-processing step where we ﬁrst retrieve the top 1000 documents for\neach query, and use the answer that most frequently matches the regex pattern as the supervision\ntarget. If no matches are found, we resort to a simple heuristic: generate all possible permutations for\neach regex, replacing non-deterministic symbols in the regex nested tree structure with a whitespace.\nTriviaQA Evaluation setups The open-domain QA community customarily uses public develop-\nment datasets as test datasets, as test data for QA datasets is often restricted and dedicated to reading\ncompehension purposes. We report our results using the datasets splits used in DPR [26], which are\nconsistent with common practice in Open-domain QA. For TriviaQA, this test dataset is the public",
+  "index": 93
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709594124",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "consistent with common practice in Open-domain QA. For TriviaQA, this test dataset is the public\nTriviaQA Web Development split. Roberts et al.[52] used the TriviaQA ofﬁcial Wikipedia test set\ninstead. Févry et al. [14] follow this convention in order to compare with Roberts et al. [52] (See\nappendix of [14]). We report results on both test sets to enable fair comparison to both approaches.\nWe ﬁnd that our performance is much higher using the ofﬁcial Wiki test set, rather than the more\nconventional open-domain test set, which we attribute to the ofﬁcial Wiki test set questions being\nsimpler to answer from Wikipedia.\nE Further Details on FEVER\nFor FEVER classiﬁcation, we follow the practice from [ 32], and ﬁrst re-generate the claim, and",
+  "index": 94
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709595185",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "For FEVER classiﬁcation, we follow the practice from [ 32], and ﬁrst re-generate the claim, and\nthen classify using the representation of the ﬁnal hidden state, before ﬁnally marginalizing across\ndocuments to obtain the class probabilities. The FEVER task traditionally has two sub-tasks. The\nﬁrst is to classify the claim as either \"Supported\", \"Refuted\" or \"Not Enough Info\", which is the task\nwe explore in the main paper. FEVER’s other sub-task involves extracting sentences from Wikipedia\nas evidence supporting the classiﬁcation prediction. As FEVER uses a different Wikipedia dump to\nus, directly tackling this task is not straightforward. We hope to address this in future work.\nF Null Document Probabilities",
+  "index": 95
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709596476",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "F Null Document Probabilities\nWe experimented with adding \"Null document\" mechanism to RAG, similar to REALM [20] in order\nto model cases where no useful information could be retrieved for a given input. Here, ifk documents\nwere retrieved, we would additionally \"retrieve\" an empty document and predict a logit for the null\ndocument, before marginalizing overk + 1 predictions. We explored modelling this null document\nlogit by learning (i) a document embedding for the null document, (ii) a static learnt bias term, or\n(iii) a neural network to predict the logit. We did not ﬁnd that these improved performance, so in\nthe interests of simplicity, we omit them. For Open MS-MARCO, where useful retrieved documents",
+  "index": 96
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709597617",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "the interests of simplicity, we omit them. For Open MS-MARCO, where useful retrieved documents\ncannot always be retrieved, we observe that the model learns to always retrieve a particular set of\ndocuments for questions that are less likely to beneﬁt from retrieval, suggesting that null document\nmechanisms may not be necessary for RAG.\nG Parameters\nOur RAG models contain the trainable parameters for the BERT-base query and document encoder of\nDPR, with 110M parameters each (although we do not train the document encoder ourselves) and\n406M trainable parameters from BART-large, 406M parameters, making a total of 626M trainable\n18\nTable 7: Number of instances in the datasets used. *A hidden subset of this data is used for evaluation\nTask Train Development Test",
+  "index": 97
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709598780",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "Task Train Development Test\nNatural Questions 79169 8758 3611\nTriviaQA 78786 8838 11314\nWebQuestions 3418 362 2033\nCuratedTrec 635 134 635\nJeopardy Question Generation 97392 13714 26849\nMS-MARCO 153726 12468 101093*\nFEVER-3-way 145450 10000 10000\nFEVER-2-way 96966 6666 6666\nparameters. The best performing \"closed-book\" (parametric only) open-domain QA model is T5-11B\nwith 11 Billion trainable parameters. The T5 model with the closest number of parameters to our\nmodels is T5-large (770M parameters), which achieves a score of 28.9 EM on Natural Questions [52],\nsubstantially below the 44.5 that RAG-Sequence achieves, indicating that hybrid parametric/non-\nparametric models require far fewer trainable parameters for strong open-domain QA performance.",
+  "index": 98
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709599745",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "parametric models require far fewer trainable parameters for strong open-domain QA performance.\nThe non-parametric memory index does not consist of trainable parameters, but does consists of 21M\n728 dimensional vectors, consisting of 15.3B values. These can be easily be stored at 8-bit ﬂoating\npoint precision to manage memory and disk footprints.\nH Retrieval Collapse\nIn preliminary experiments, we observed that for some tasks such as story generation [ 11], the\nretrieval component would “collapse” and learn to retrieve the same documents regardless of the\ninput. In these cases, once retrieval had collapsed, the generator would learn to ignore the documents,\nand the RAG model would perform equivalently to BART. The collapse could be due to a less-explicit",
+  "index": 99
+ },
+ {
+  "chunkKey": "6aab5f3a8eb3c7c1586b0b07::178961593709600032",
+  "docId": "6aab5f3a8eb3c7c1586b0b07",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+  "docText": "and the RAG model would perform equivalently to BART. The collapse could be due to a less-explicit\nrequirement for factual knowledge in some tasks, or the longer target sequences, which could result\nin less informative gradients for the retriever. Perez et al.[46] also found spurious retrieval results\nwhen optimizing a retrieval component in order to improve performance on downstream tasks.\nI Number of instances per dataset\nThe number of training, development and test datapoints in each of our datasets is shown in Table 7.\n19",
+  "index": 100
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287300764",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "(/)Jay Alammar (/)\nVisualizing machine learning one concept at a time.\nRead our book, Hands-On Large Language Models (https://www.LLM-book.com) and follow me on LinkedIn\n(https://www.linkedin.com/in/jalammar/), Bluesky (https://bsky.app/profile/jayalammar.bsky.social), Substack\n(https://newsletter.languagemodels.co/), X (https://x.com/JayAlammar),YouTube\n(https://www.youtube.com/channel/UCmOwsoHty5PrmE-3QhUBfPQ)\nBlog (/) About (/about)\nThe Illustrated Transformer\n(https://www.llm-book.com)\nUpdate: This post has now become a book! Check out LLM-book.com (https://llm-book.com) which\ncontains (Chapter 3) an updated and expanded version of this post speaking about the latest\nTransformer models and how they've evolved in the seven years since the original Transformer (like",
+  "index": 101
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287301913",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "Transformer models and how they've evolved in the seven years since the original Transformer (like\nMulti-Query Attention and RoPE Positional embeddings).\nIn the previous post, we looked at Attention (https://jalammar.github.io/visualizing-neural-machine-translation-\nmechanics-of-seq2seq-models-with-attention/) – a ubiquitous method in modern deep learning models. Attention is a\nconcept that helped improve the performance of neural machine translation applications. In this post, we will look at\nThe Transformer – a model that uses attention to boost the speed with which these models can be trained. The\nTransformer outperforms the Google Neural Machine Translation model in specific tasks. The biggest benefit,",
+  "index": 102
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287302939",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "however, comes from how The Transformer lends itself to parallelization. It is in fact Google Cloud’s recommendation\nto use The Transformer as a reference model to use their Cloud TPU (https://cloud.google.com/tpu/) offering. So let’s\ntry to break the model apart and look at how it functions.\nThe Transformer was proposed in the paper Attention is All You Need (https://arxiv.org/abs/1706.03762). A TensorFlow\nimplementation of it is available as a part of the Tensor2Tensor (https://github.com/tensorflow/tensor2tensor) package.\nHarvard’s NLP group created a guide annotating the paper with PyTorch implementation\n(http://nlp.seas.harvard.edu/2018/04/03/attention.html). In this post, we will attempt to oversimplify things a bit and",
+  "index": 103
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287303678",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "introduce the concepts one by one to hopefully make it easier to understand to people without in-depth knowledge of\nthe subject matter.\nDiscussions: Hacker News (65 points, 4 comments) (https://news.ycombinator.com/item?id=18351674), Reddit r/MachineLearning (29 points, 3 comments)\n(https://www.reddit.com/r/MachineLearning/comments/8uh2yz/p_the_illustrated_transformer_a_visual_look_at/)\nTranslations: Arabic (https://www.mundhor.site/post/post14), Chinese (Simplified) 1 (https://blog.csdn.net/yujianmin1990/article/details/85221271), Chinese\n(Simplified) 2 (https://blog.csdn.net/qq_36667170/article/details/124359818), French 1 (https://a-coles.github.io/2020/11/15/transformer-illustre.html), French",
+  "index": 104
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287304243",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "2 (https://lbourdois.github.io/blog/nlp/Transformer/), Italian (https://medium.com/@val.mannucci/il-transformer-illustrato-it-37a78e3e2348), Japanese\n(https://tips-memo.com/translation-jayalmmar-transformer), Korean (https://nlpinkorean.github.io/illustrated-transformer/), Persian\n(http://dml.qom.ac.ir/2022/05/17/illustrated-transformer/), Russian (https://habr.com/ru/post/486358/), Spanish 1\n(https://www.ibidemgroup.com/edu/transformer-ilustrado-jay-alammar/), Spanish 2 (https://hackernoon.com/el-transformador-ilustrado-una-traduccion-al-\nespanol-0y73wwp), Vietnamese (https://trituenhantao.io/tin-tuc/minh-hoa-transformer/)\nWatch: MIT’s Deep Learning State of the Art (https://youtu.be/53YvP6gdD7U?t=432) lecture referencing this post",
+  "index": 105
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287305587",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "Featured in courses at Stanford (https://web.stanford.edu/class/cs224n/), Harvard (https://scholar.harvard.edu/binxuw/classes/machine-learning-\nscratch/materials/transformers), MIT (https://ocw.mit.edu/courses/6-s897-machine-learning-for-healthcare-spring-\n2019/d39a6eed387ee90b1f72a01949c35c7b_MIT6_S897S19_lec8.pdf), Princeton (https://www.cs.princeton.edu/courses/archive/fall22/cos597G/), CMU\n(https://www.cs.cmu.edu/~leili/course/mldl22w/14-Transformer.pdf) and others\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 1/22\n2025 Update: We’ve built a free short course (https://bit.ly/4aRnn7Z) that brings the contents of this post up-to-date\nwith animations:\nA High-Level Look",
+  "index": 106
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287306223",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "with animations:\nA High-Level Look\nLet’s begin by looking at the model as a single black box. In a machine translation application, it would take a\nsentence in one language, and output its translation in another.\nPopping open that Optimus Prime goodness, we see an encoding component, a decoding component, and\nconnections between them.\nThe encoding component is a stack of encoders (the paper stacks six of them on top of each other – there’s nothing\nmagical about the number six, one can definitely experiment with other arrangements). The decoding component is a\nstack of decoders of the same number.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 2/22",
+  "index": 107
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287307444",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "https://jalammar.github.io/illustrated-transformer/ 2/22\nThe encoders are all identical in structure (yet they do not share weights). Each one is broken down into two sub-\nlayers:\nThe encoder’s inputs first flow through a self-attention layer – a layer that helps the encoder look at other words in the\ninput sentence as it encodes a specific word. We’ll look closer at self-attention later in the post.\nThe outputs of the self-attention layer are fed to a feed-forward neural network. The exact same feed-forward network\nis independently applied to each position.\nThe decoder has both those layers, but between them is an attention layer that helps the decoder focus on relevant\nparts of the input sentence (similar what attention does in seq2seq models (https://jalammar.github.io/visualizing-",
+  "index": 108
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287308499",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)).\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 3/22\nBringing The Tensors Into The Picture\nNow that we’ve seen the major components of the model, let’s start to look at the various vectors/tensors and how\nthey flow between these components to turn the input of a trained model into an output.\nAs is the case in NLP applications in general, we begin by turning each input word into a vector using an embedding\nalgorithm (https://medium.com/deeper-learning/glossary-of-deep-learning-word-embedding-f90c3cec34ca).",
+  "index": 109
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287309857",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "Each word is embedded into a vector of size 512. We'll represent those vectors with these simple boxes.\nThe embedding only happens in the bottom-most encoder. The abstraction that is common to all the encoders is that\nthey receive a list of vectors each of the size 512 – In the bottom encoder that would be the word embeddings, but in\nother encoders, it would be the output of the encoder that’s directly below. The size of this list is hyperparameter we\ncan set – basically it would be the length of the longest sentence in our training dataset.\nAfter embedding the words in our input sequence, each of them flows through each of the two layers of the encoder.\nHere we begin to see one key property of the Transformer, which is that the word in each position flows through its",
+  "index": 110
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287310763",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "own path in the encoder. There are dependencies between these paths in the self-attention layer. The feed-forward\nlayer does not have those dependencies, however, and thus the various paths can be executed in parallel while\nflowing through the feed-forward layer.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 4/22\nNext, we’ll switch up the example to a shorter sentence and we’ll look at what happens in each sub-layer of the\nencoder.\nNow We’re Encoding!\nAs we’ve mentioned already, an encoder receives a list of vectors as input. It processes this list by passing these",
+  "index": 111
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287311015",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "vectors into a ‘self-attention’ layer, then into a feed-forward neural network, then sends out the output upwards to the\nnext encoder.\nThe word at each position passes through a self-attention process. Then, they each pass through a feed-forward neural network -- the\nexact same network with each vector flowing through it separately.\nSelf-Attention at a High Level\nDon’t be fooled by me throwing around the word “self-attention” like it’s a concept everyone should be familiar with. I\nhad personally never came across the concept until reading the Attention is All You Need paper. Let us distill how it\nworks.\nSay the following sentence is an input sentence we want to translate:\n”The animal didn't cross the street because it was too tired”",
+  "index": 112
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287312587",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "”The animal didn't cross the street because it was too tired”\nWhat does “it” in this sentence refer to? Is it referring to the street or to the animal? It’s a simple question to a human,\nbut not as simple to an algorithm.\nWhen the model is processing the word “it”, self-attention allows it to associate “it” with “animal”.\nAs the model processes each word (each position in the input sequence), self attention allows it to look at other\npositions in the input sequence for clues that can help lead to a better encoding for this word.\nIf you’re familiar with RNNs, think of how maintaining a hidden state allows an RNN to incorporate its representation\nof previous words/vectors it has processed with the current one it’s processing. Self-attention is the method the",
+  "index": 113
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287313957",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "Transformer uses to bake the “understanding” of other relevant words into the one we’re currently processing.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 5/22\nAs we are encoding the word \"it\" in encoder #5 (the top encoder in the stack), part of the attention mechanism was focusing on \"The\nAnimal\", and baked a part of its representation into the encoding of \"it\".\nBe sure to check out the Tensor2Tensor notebook\n(https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb)\nwhere you can load a Transformer model, and examine it using this interactive visualization.\nSelf-Attention in Detail",
+  "index": 114
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287314768",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "Self-Attention in Detail\nLet’s first look at how to calculate self-attention using vectors, then proceed to look at how it’s actually implemented –\nusing matrices.\nThe first step in calculating self-attention is to create three vectors from each of the encoder’s input vectors (in this\ncase, the embedding of each word). So for each word, we create a Query vector, a Key vector, and a Value vector.\nThese vectors are created by multiplying the embedding by three matrices that we trained during the training process.\nNotice that these new vectors are smaller in dimension than the embedding vector. Their dimensionality is 64, while\nthe embedding and encoder input/output vectors have dimensionality of 512. They don’t HAVE to be smaller, this is an",
+  "index": 115
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287315758",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "architecture choice to make the computation of multiheaded attention (mostly) constant.\nMultiplying x1 by the WQ weight matrix produces q1, the \"query\" vector associated with that word. We end up creating a \"query\", a \"key\",\nand a \"value\" projection of each word in the input sentence.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 6/22\nWhat are the “query”, “key”, and “value” vectors?\nThey’re abstractions that are useful for calculating and thinking about attention. Once you proceed with reading how\nattention is calculated below, you’ll know pretty much all you need to know about the role each of these vectors plays.",
+  "index": 116
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287316729",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "The second step in calculating self-attention is to calculate a score. Say we’re calculating the self-attention for the\nfirst word in this example, “Thinking”. We need to score each word of the input sentence against this word. The score\ndetermines how much focus to place on other parts of the input sentence as we encode a word at a certain position.\nThe score is calculated by taking the dot product of the query vector with the key vector of the respective word we’re\nscoring. So if we’re processing the self-attention for the word in position #1, the first score would be the dot product of\nq1 and k1. The second score would be the dot product of q1 and k2.\nThe third and fourth steps are to divide the scores by 8 (the square root of the dimension of the key vectors used in",
+  "index": 117
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287317200",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "the paper – 64. This leads to having more stable gradients. There could be other possible values here, but this is the\ndefault), then pass the result through a softmax operation. Softmax normalizes the scores so they’re all positive and\nadd up to 1.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 7/22\nThis softmax score determines how much each word will be expressed at this position. Clearly the word at this\nposition will have the highest softmax score, but sometimes it’s useful to attend to another word that is relevant to the\ncurrent word.\nThe fifth step is to multiply each value vector by the softmax score (in preparation to sum them up). The intuition here",
+  "index": 118
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287318561",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "is to keep intact the values of the word(s) we want to focus on, and drown-out irrelevant words (by multiplying them by\ntiny numbers like 0.001, for example).\nThe sixth step is to sum up the weighted value vectors. This produces the output of the self-attention layer at this\nposition (for the first word).\nThat concludes the self-attention calculation. The resulting vector is one we can send along to the feed-forward neural\nnetwork. In the actual implementation, however, this calculation is done in matrix form for faster processing. So let’s\nlook at that now that we’ve seen the intuition of the calculation on the word level.\nMatrix Calculation of Self-Attention\nThe first step is to calculate the Query, Key, and Value matrices. We do that by packing our embeddings into a matrix",
+  "index": 119
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287319537",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "X, and multiplying it by the weight matrices we’ve trained (WQ, WK, WV).\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 8/22\nEvery row in the X matrix corresponds to a word in the input sentence. We again see the difference in size of the embedding vector (512,\nor 4 boxes in the figure), and the q/k/v vectors (64, or 3 boxes in the figure)\nFinally, since we’re dealing with matrices, we can condense steps two through six in one formula to calculate the\noutputs of the self-attention layer.\nThe self-attention calculation in matrix form\nThe Beast With Many Heads\nThe paper further refined the self-attention layer by adding a mechanism called “multi-headed” attention. This",
+  "index": 120
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287320609",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "improves the performance of the attention layer in two ways:\n1. It expands the model’s ability to focus on different positions. Yes, in the example above, z1 contains a little bit of\nevery other encoding, but it could be dominated by the actual word itself. If we’re translating a sentence like “The\nanimal didn’t cross the street because it was too tired”, it would be useful to know which word “it” refers to.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 9/22\n2. It gives the attention layer multiple “representation subspaces”. As we’ll see next, with multi-headed attention we",
+  "index": 121
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287321993",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "have not only one, but multiple sets of Query/Key/Value weight matrices (the Transformer uses eight attention\nheads, so we end up with eight sets for each encoder/decoder). Each of these sets is randomly initialized. Then,\nafter training, each set is used to project the input embeddings (or vectors from lower encoders/decoders) into a\ndifferent representation subspace.\nWith multi-headed attention, we maintain separate Q/K/V weight matrices for each head resulting in different Q/K/V matrices. As we did\nbefore, we multiply X by the WQ/WK/WV matrices to produce Q/K/V matrices.\nIf we do the same self-attention calculation we outlined above, just eight different times with different weight matrices,\nwe end up with eight different Z matrices",
+  "index": 122
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287322036",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "we end up with eight different Z matrices\nThis leaves us with a bit of a challenge. The feed-forward layer is not expecting eight matrices – it’s expecting a single\nmatrix (a vector for each word). So we need a way to condense these eight down into a single matrix.\nHow do we do that? We concat the matrices then multiply them by an additional weights matrix WO.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 10/22\nThat’s pretty much all there is to multi-headed self-attention. It’s quite a handful of matrices, I realize. Let me try to put\nthem all in one visual so we can look at them in one place",
+  "index": 123
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287323719",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "them all in one visual so we can look at them in one place\nNow that we have touched upon attention heads, let’s revisit our example from before to see where the different\nattention heads are focusing as we encode the word “it” in our example sentence:\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 11/22\nAs we encode the word \"it\", one attention head is focusing most on \"the animal\", while another is focusing on \"tired\" -- in a sense, the\nmodel's representation of the word \"it\" bakes in some of the representation of both \"animal\" and \"tired\".\nIf we add all the attention heads to the picture, however, things can be harder to interpret:",
+  "index": 124
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287324854",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "If we add all the attention heads to the picture, however, things can be harder to interpret:\nRepresenting The Order of The Sequence Using Positional Encoding\nOne thing that’s missing from the model as we have described it so far is a way to account for the order of the words\nin the input sequence.\nTo address this, the transformer adds a vector to each input embedding. These vectors follow a specific pattern that\nthe model learns, which helps it determine the position of each word, or the distance between different words in the\nsequence. The intuition here is that adding these values to the embeddings provides meaningful distances between\nthe embedding vectors once they’re projected into Q/K/V vectors and during dot-product attention.",
+  "index": 125
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287325578",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "the embedding vectors once they’re projected into Q/K/V vectors and during dot-product attention.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 12/22\nTo give the model a sense of the order of the words, we add positional encoding vectors -- the values of which follow a specific pattern.\nIf we assumed the embedding has a dimensionality of 4, the actual positional encodings would look like this:\nA real example of positional encoding with a toy embedding size of 4\nWhat might this pattern look like?\nIn the following figure, each row corresponds to a positional encoding of a vector. So the first row would be the vector",
+  "index": 126
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287326426",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "we’d add to the embedding of the first word in an input sequence. Each row contains 512 values – each with a value\nbetween 1 and -1. We’ve color-coded them so the pattern is visible.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 13/22\nA real example of positional encoding for 20 words (rows) with an embedding size of 512 (columns). You can see that it appears split in\nhalf down the center. That's because the values of the left half are generated by one function (which uses sine), and the right half is\ngenerated by another function (which uses cosine). They're then concatenated to form each of the positional encoding vectors.",
+  "index": 127
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287327763",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "The formula for positional encoding is described in the paper (section 3.5). You can see the code for generating\npositional encodings in get_timing_signal_1d()\n(https://github.com/tensorflow/tensor2tensor/blob/23bd23b9830059fbc349381b70d9429b5c40a139/tensor2tensor/layers/comm\nThis is not the only possible method for positional encoding. It, however, gives the advantage of being able to scale to\nunseen lengths of sequences (e.g. if our trained model is asked to translate a sentence longer than any of those in\nour training set).\nJuly 2020 Update: The positional encoding shown above is from the Tensor2Tensor implementation of the\nTransformer. The method shown in the paper is slightly different in that it doesn’t directly concatenate, but interweaves",
+  "index": 128
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287328639",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "the two signals. The following figure shows what that looks like. Here’s the code to generate it\n(https://github.com/jalammar/jalammar.github.io/blob/master/notebookes/transformer/transformer_positional_encoding_graph.ip\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 14/22\nThe Residuals\nOne detail in the architecture of the encoder that we need to mention before moving on, is that each sub-layer (self-\nattention, ffnn) in each encoder has a residual connection around it, and is followed by a layer-normalization\n(https://arxiv.org/abs/1607.06450) step.\nIf we’re to visualize the vectors and the layer-norm operation associated with self attention, it would look like this:",
+  "index": 129
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287329397",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "This goes for the sub-layers of the decoder as well. If we’re to think of a Transformer of 2 stacked encoders and\ndecoders, it would look something like this:\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 15/22\nThe Decoder Side\nNow that we’ve covered most of the concepts on the encoder side, we basically know how the components of\ndecoders work as well. But let’s take a look at how they work together.\nThe encoder start by processing the input sequence. The output of the top encoder is then transformed into a set of\nattention vectors K and V. These are to be used by each decoder in its “encoder-decoder attention” layer which helps",
+  "index": 130
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287330109",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "the decoder focus on appropriate places in the input sequence:\nAfter finishing the encoding phase, we begin the decoding phase. Each step in the decoding phase outputs an element from the output\nsequence (the English translation sentence in this case).\nThe following steps repeat the process until a special symbol is reached indicating the transformer decoder has\ncompleted its output. The output of each step is fed to the bottom decoder in the next time step, and the decoders\nbubble up their decoding results just like the encoders did. And just like we did with the encoder inputs, we embed and\nadd positional encoding to those decoder inputs to indicate the position of each word.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.",
+  "index": 131
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287331053",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "https://jalammar.github.io/illustrated-transformer/ 16/22\nThe self attention layers in the decoder operate in a slightly different way than the one in the encoder:\nIn the decoder, the self-attention layer is only allowed to attend to earlier positions in the output sequence. This is\ndone by masking future positions (setting them to -inf) before the softmax step in the self-attention calculation.\nThe “Encoder-Decoder Attention” layer works just like multiheaded self-attention, except it creates its Queries matrix\nfrom the layer below it, and takes the Keys and Values matrix from the output of the encoder stack.\nThe Final Linear and Softmax Layer\nThe decoder stack outputs a vector of floats. How do we turn that into a word? That’s the job of the final Linear layer",
+  "index": 132
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287332829",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "which is followed by a Softmax Layer.\nThe Linear layer is a simple fully connected neural network that projects the vector produced by the stack of\ndecoders, into a much, much larger vector called a logits vector.\nLet’s assume that our model knows 10,000 unique English words (our model’s “output vocabulary”) that it’s learned\nfrom its training dataset. This would make the logits vector 10,000 cells wide – each cell corresponding to the score of\na unique word. That is how we interpret the output of the model followed by the Linear layer.\nThe softmax layer then turns those scores into probabilities (all positive, all add up to 1.0). The cell with the highest\nprobability is chosen, and the word associated with it is produced as the output for this time step.",
+  "index": 133
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287333544",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 17/22\nThis figure starts from the bottom with the vector produced as the output of the decoder stack. It is then turned into an output word.\nRecap Of Training\nNow that we’ve covered the entire forward-pass process through a trained Transformer, it would be useful to glance at\nthe intuition of training the model.\nDuring training, an untrained model would go through the exact same forward pass. But since we are training it on a\nlabeled training dataset, we can compare its output with the actual correct output.\nTo visualize this, let’s assume our output vocabulary only contains six words(“a”, “am”, “i”, “thanks”, “student”, and",
+  "index": 134
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287334741",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "“<eos>” (short for ‘end of sentence’)).\nThe output vocabulary of our model is created in the preprocessing phase before we\neven begin training.\nOnce we define our output vocabulary, we can use a vector of the same width to indicate each word in our vocabulary.\nThis also known as one-hot encoding. So for example, we can indicate the word “am” using the following vector:\nExample: one-hot encoding of our output vocabulary\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 18/22\nFollowing this recap, let’s discuss the model’s loss function – the metric we are optimizing during the training phase to\nlead up to a trained and hopefully amazingly accurate model.\nThe Loss Function",
+  "index": 135
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287335751",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "lead up to a trained and hopefully amazingly accurate model.\nThe Loss Function\nSay we are training our model. Say it’s our first step in the training phase, and we’re training it on a simple example –\ntranslating “merci” into “thanks”.\nWhat this means, is that we want the output to be a probability distribution indicating the word “thanks”. But since this\nmodel is not yet trained, that’s unlikely to happen just yet.\nSince the model's parameters (weights) are all initialized randomly, the (untrained)\nmodel produces a probability distribution with arbitrary values for each cell/word. We can\ncompare it with the actual output, then tweak all the model's weights using\nbackpropagation to make the output closer to the desired output.",
+  "index": 136
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287336002",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "backpropagation to make the output closer to the desired output.\nHow do you compare two probability distributions? We simply subtract one from the other. For more details, look at\ncross-entropy (https://colah.github.io/posts/2015-09-Visual-Information/) and Kullback–Leibler divergence\n(https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained).\nBut note that this is an oversimplified example. More realistically, we’ll use a sentence longer than one word. For\nexample – input: “je suis étudiant” and expected output: “i am a student”. What this really means, is that we want our\nmodel to successively output probability distributions where:\nEach probability distribution is represented by a vector of width vocab_size (6 in our toy example, but more",
+  "index": 137
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287337358",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "realistically a number like 30,000 or 50,000)\nThe first probability distribution has the highest probability at the cell associated with the word “i”\nThe second probability distribution has the highest probability at the cell associated with the word “am”\nAnd so on, until the fifth output distribution indicates ‘<end of sentence>’ symbol, which also has a cell\nassociated with it from the 10,000 element vocabulary.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 19/22\nThe targeted probability distributions we'll train our model against in the training example\nfor one sample sentence.",
+  "index": 138
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287338952",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "for one sample sentence.\nAfter training the model for enough time on a large enough dataset, we would hope the produced probability\ndistributions would look like this:\nHopefully upon training, the model would output the right translation we expect. Of\ncourse it's no real indication if this phrase was part of the training dataset (see: cross\nvalidation (https://www.youtube.com/watch?v=TIgfjmp-4BA)). Notice that every position\ngets a little bit of probability even if it's unlikely to be the output of that time step -- that's\na very useful property of softmax which helps the training process.\nNow, because the model produces the outputs one at a time, we can assume that the model is selecting the word with",
+  "index": 139
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287339054",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "the highest probability from that probability distribution and throwing away the rest. That’s one way to do it (called\ngreedy decoding). Another way to do it would be to hold on to, say, the top two words (say, ‘I’ and ‘a’ for example),\nthen in the next step, run the model twice: once assuming the first output position was the word ‘I’, and another time\nassuming the first output position was the word ‘a’, and whichever version produced less error considering both\npositions #1 and #2 is kept. We repeat this for positions #2 and #3…etc. This method is called “beam search”, where\nin our example, beam_size was two (meaning that at all times, two partial hypotheses (unfinished translations) are",
+  "index": 140
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287340820",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "kept in memory), and top_beams is also two (meaning we’ll return two translations). These are both hyperparameters\nthat you can experiment with.\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 20/22\nGo Forth And Transform\nI hope you’ve found this a useful place to start to break the ice with the major concepts of the Transformer. If you want\nto go deeper, I’d suggest these next steps:\nRead the Attention Is All You Need (https://arxiv.org/abs/1706.03762) paper, the Transformer blog post\n(Transformer: A Novel Neural Network Architecture for Language Understanding\n(https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html)), and the Tensor2Tensor",
+  "index": 141
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287341138",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "(https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html)), and the Tensor2Tensor\nannouncement (https://ai.googleblog.com/2017/06/accelerating-deep-learning-research.html).\nWatch Łukasz Kaiser’s talk (https://www.youtube.com/watch?v=rBCqOTEfxvg) walking through the model and its\ndetails\nPlay with the Jupyter Notebook provided as part of the Tensor2Tensor repo\n(https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb)\nExplore the Tensor2Tensor repo (https://github.com/tensorflow/tensor2tensor).\nFollow-up works:\nDepthwise Separable Convolutions for Neural Machine Translation (https://arxiv.org/abs/1706.03059)\nOne Model To Learn Them All (https://arxiv.org/abs/1706.05137)",
+  "index": 142
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287342399",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "One Model To Learn Them All (https://arxiv.org/abs/1706.05137)\nDiscrete Autoencoders for Sequence Models (https://arxiv.org/abs/1801.09797)\nGenerating Wikipedia by Summarizing Long Sequences (https://arxiv.org/abs/1801.10198)\nImage Transformer (https://arxiv.org/abs/1802.05751)\nTraining Tips for the Transformer Model (https://arxiv.org/abs/1804.00247)\nSelf-Attention with Relative Position Representations (https://arxiv.org/abs/1803.02155)\nFast Decoding in Sequence Models using Discrete Latent Variables (https://arxiv.org/abs/1803.03382)\nAdafactor: Adaptive Learning Rates with Sublinear Memory Cost (https://arxiv.org/abs/1804.04235)\nAcknowledgements\nThanks to Illia Polosukhin (https://twitter.com/ilblackdragon), Jakob Uszkoreit (http://jakob.uszkoreit.net/), Llion Jones",
+  "index": 143
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287343420",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "(https://www.linkedin.com/in/llion-jones-9ab3064b), Lukasz Kaiser (https://ai.google/research/people/LukaszKaiser),\nNiki Parmar (https://twitter.com/nikiparmar09), and Noam Shazeer (https://dblp.org/pers/hd/s/Shazeer:Noam) for\nproviding feedback on earlier versions of this post.\nPlease hit me up on Twitter (https://twitter.com/JayAlammar) for any corrections or feedback.\nWritten on June 27, 2018\nLanguage Models & Co.\nLarge language models, their internals, and\napplications.\nBy Jay Alammar · Over 29,000 subscribers\nBy subscribing you agree to Substack's Terms of Use, our\nPrivacy Policy and our Information collection notice\nType your email...\nSubscribe\n (http://creativecommons.org/licenses/by-nc-sa/4.0/)",
+  "index": 144
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287344659",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "Type your email...\nSubscribe\n (http://creativecommons.org/licenses/by-nc-sa/4.0/)\nThis work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License\n(http://creativecommons.org/licenses/by-nc-sa/4.0/).\nAttribution example:\nAlammar, J (2018). The Illustrated Transformer [Blog post]. Retrieved from https://jalammar.github.io/illustrated-transformer/\n(https://jalammar.github.io/illustrated-transformer/)\nNote: If you translate any of the posts, let me know so I can link your translation to the original post. My email is in the about page (/about).\n (https://github.com/jalammar)  (https://www.linkedin.com/in/jalammar) \n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.",
+  "index": 145
+ },
+ {
+  "chunkKey": "6aab5f448eb3c7c1586b0b08::178961594287345378",
+  "docId": "6aab5f448eb3c7c1586b0b08",
+  "docTitle": "The Illustrated Transformer.pdf",
+  "docText": "https://jalammar.github.io/illustrated-transformer/ 21/22\n(https://www.twitter.com/jayalammar)\n2025/12/14 10:18 The Illustrated Transformer – Jay Alammar – Visualizing machine learning one concept at a time.\nhttps://jalammar.github.io/illustrated-transformer/ 22/22",
+  "index": 146
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160800514",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "Provided proper attribution is provided, Google hereby grants permission to\nreproduce the tables and figures in this paper solely for use in journalistic or\nscholarly works.\nAttention Is All You Need\nAshish Vaswani∗\nGoogle Brain\navaswani@google.com\nNoam Shazeer∗\nGoogle Brain\nnoam@google.com\nNiki Parmar∗\nGoogle Research\nnikip@google.com\nJakob Uszkoreit∗\nGoogle Research\nusz@google.com\nLlion Jones∗\nGoogle Research\nllion@google.com\nAidan N. Gomez∗†\nUniversity of Toronto\naidan@cs.toronto.edu\nŁukasz Kaiser∗\nGoogle Brain\nlukaszkaiser@google.com\nIllia Polosukhin∗‡\nillia.polosukhin@gmail.com\nAbstract\nThe dominant sequence transduction models are based on complex recurrent or\nconvolutional neural networks that include an encoder and a decoder. The best",
+  "index": 147
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160801308",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "convolutional neural networks that include an encoder and a decoder. The best\nperforming models also connect the encoder and decoder through an attention\nmechanism. We propose a new simple network architecture, the Transformer,\nbased solely on attention mechanisms, dispensing with recurrence and convolutions\nentirely. Experiments on two machine translation tasks show these models to\nbe superior in quality while being more parallelizable and requiring significantly\nless time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-\nto-German translation task, improving over the existing best results, including\nensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task,\nour model establishes a new single-model state-of-the-art BLEU score of 41.8 after",
+  "index": 148
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160802016",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "our model establishes a new single-model state-of-the-art BLEU score of 41.8 after\ntraining for 3.5 days on eight GPUs, a small fraction of the training costs of the\nbest models from the literature. We show that the Transformer generalizes well to\nother tasks by applying it successfully to English constituency parsing both with\nlarge and limited training data.\n∗Equal contribution. Listing order is random. Jakob proposed replacing RNNs with self-attention and started\nthe effort to evaluate this idea. Ashish, with Illia, designed and implemented the first Transformer models and\nhas been crucially involved in every aspect of this work. Noam proposed scaled dot-product attention, multi-head",
+  "index": 149
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160803710",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "attention and the parameter-free position representation and became the other person involved in nearly every\ndetail. Niki designed, implemented, tuned and evaluated countless model variants in our original codebase and\ntensor2tensor. Llion also experimented with novel model variants, was responsible for our initial codebase, and\nefficient inference and visualizations. Lukasz and Aidan spent countless long days designing various parts of and\nimplementing tensor2tensor, replacing our earlier codebase, greatly improving results and massively accelerating\nour research.\n†Work performed while at Google Brain.\n‡Work performed while at Google Research.\n31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA.\narXiv:1706.03762v7  [cs.CL]  2 Aug 2023\n1 Introduction",
+  "index": 150
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160804265",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "arXiv:1706.03762v7  [cs.CL]  2 Aug 2023\n1 Introduction\nRecurrent neural networks, long short-term memory [13] and gated recurrent [7] neural networks\nin particular, have been firmly established as state of the art approaches in sequence modeling and\ntransduction problems such as language modeling and machine translation [ 35, 2, 5]. Numerous\nefforts have since continued to push the boundaries of recurrent language models and encoder-decoder\narchitectures [38, 24, 15].\nRecurrent models typically factor computation along the symbol positions of the input and output\nsequences. Aligning the positions to steps in computation time, they generate a sequence of hidden\nstatesht, as a function of the previous hidden stateht−1 and the input for positiont. This inherently",
+  "index": 151
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160805005",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "sequential nature precludes parallelization within training examples, which becomes critical at longer\nsequence lengths, as memory constraints limit batching across examples. Recent work has achieved\nsignificant improvements in computational efficiency through factorization tricks [21] and conditional\ncomputation [32], while also improving model performance in case of the latter. The fundamental\nconstraint of sequential computation, however, remains.\nAttention mechanisms have become an integral part of compelling sequence modeling and transduc-\ntion models in various tasks, allowing modeling of dependencies without regard to their distance in\nthe input or output sequences [2, 19]. In all but a few cases [27], however, such attention mechanisms",
+  "index": 152
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160806520",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "are used in conjunction with a recurrent network.\nIn this work we propose the Transformer, a model architecture eschewing recurrence and instead\nrelying entirely on an attention mechanism to draw global dependencies between input and output.\nThe Transformer allows for significantly more parallelization and can reach a new state of the art in\ntranslation quality after being trained for as little as twelve hours on eight P100 GPUs.\n2 Background\nThe goal of reducing sequential computation also forms the foundation of the Extended Neural GPU\n[16], ByteNet [18] and ConvS2S [9], all of which use convolutional neural networks as basic building\nblock, computing hidden representations in parallel for all input and output positions. In these models,",
+  "index": 153
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160807358",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "the number of operations required to relate signals from two arbitrary input or output positions grows\nin the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes\nit more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is\nreduced to a constant number of operations, albeit at the cost of reduced effective resolution due\nto averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as\ndescribed in section 3.2.\nSelf-attention, sometimes called intra-attention is an attention mechanism relating different positions\nof a single sequence in order to compute a representation of the sequence. Self-attention has been",
+  "index": 154
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160808009",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "of a single sequence in order to compute a representation of the sequence. Self-attention has been\nused successfully in a variety of tasks including reading comprehension, abstractive summarization,\ntextual entailment and learning task-independent sentence representations [4, 27, 28, 22].\nEnd-to-end memory networks are based on a recurrent attention mechanism instead of sequence-\naligned recurrence and have been shown to perform well on simple-language question answering and\nlanguage modeling tasks [34].\nTo the best of our knowledge, however, the Transformer is the first transduction model relying\nentirely on self-attention to compute representations of its input and output without using sequence-",
+  "index": 155
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160809601",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate\nself-attention and discuss its advantages over models such as [17, 18] and [9].\n3 Model Architecture\nMost competitive neural sequence transduction models have an encoder-decoder structure [5, 2, 35].\nHere, the encoder maps an input sequence of symbol representations (x1,...,x n) to a sequence\nof continuous representations z = (z1,...,z n). Given z, the decoder then generates an output\nsequence (y1,...,y m) of symbols one element at a time. At each step the model is auto-regressive\n[10], consuming the previously generated symbols as additional input when generating the next.\n2\nFigure 1: The Transformer - model architecture.",
+  "index": 156
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160810716",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "2\nFigure 1: The Transformer - model architecture.\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully\nconnected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,\nrespectively.\n3.1 Encoder and Decoder Stacks\nEncoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two\nsub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-\nwise fully connected feed-forward network. We employ a residual connection [11] around each of\nthe two sub-layers, followed by layer normalization [ 1]. That is, the output of each sub-layer is\nLayerNorm(x + Sublayer(x)), where Sublayer(x) is the function implemented by the sub-layer",
+  "index": 157
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160811648",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "LayerNorm(x + Sublayer(x)), where Sublayer(x) is the function implemented by the sub-layer\nitself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding\nlayers, produce outputs of dimensiondmodel = 512.\nDecoder: The decoder is also composed of a stack ofN = 6 identical layers. In addition to the two\nsub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head\nattention over the output of the encoder stack. Similar to the encoder, we employ residual connections\naround each of the sub-layers, followed by layer normalization. We also modify the self-attention\nsub-layer in the decoder stack to prevent positions from attending to subsequent positions. This",
+  "index": 158
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160812982",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This\nmasking, combined with fact that the output embeddings are offset by one position, ensures that the\npredictions for positioni can depend only on the known outputs at positions less thani.\n3.2 Attention\nAn attention function can be described as mapping a query and a set of key-value pairs to an output,\nwhere the query, keys, values, and output are all vectors. The output is computed as a weighted sum\n3\nScaled Dot-Product Attention\n Multi-Head Attention\nFigure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several\nattention layers running in parallel.\nof the values, where the weight assigned to each value is computed by a compatibility function of the",
+  "index": 159
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160813108",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "query with the corresponding key.\n3.2.1 Scaled Dot-Product Attention\nWe call our particular attention \"Scaled Dot-Product Attention\" (Figure 2). The input consists of\nqueries and keys of dimensiondk, and values of dimensiondv. We compute the dot products of the\nquery with all keys, divide each by√dk, and apply a softmax function to obtain the weights on the\nvalues.\nIn practice, we compute the attention function on a set of queries simultaneously, packed together\ninto a matrixQ. The keys and values are also packed together into matricesK andV . We compute\nthe matrix of outputs as:\nAttention(Q,K,V ) = softmax(QK T\n√dk\n)V (1)\nThe two most commonly used attention functions are additive attention [2], and dot-product (multi-",
+  "index": 160
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160814544",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "The two most commonly used attention functions are additive attention [2], and dot-product (multi-\nplicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor\nof 1√dk\n. Additive attention computes the compatibility function using a feed-forward network with\na single hidden layer. While the two are similar in theoretical complexity, dot-product attention is\nmuch faster and more space-efficient in practice, since it can be implemented using highly optimized\nmatrix multiplication code.\nWhile for small values ofdk the two mechanisms perform similarly, additive attention outperforms\ndot product attention without scaling for larger values ofdk [3]. We suspect that for large values of",
+  "index": 161
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160815297",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "dk, the dot products grow large in magnitude, pushing the softmax function into regions where it has\nextremely small gradients 4. To counteract this effect, we scale the dot products by 1√dk\n.\n3.2.2 Multi-Head Attention\nInstead of performing a single attention function withdmodel-dimensional keys, values and queries,\nwe found it beneficial to linearly project the queries, keys and valuesh times with different, learned\nlinear projections todk,dk anddv dimensions, respectively. On each of these projected versions of\nqueries, keys and values we then perform the attention function in parallel, yieldingdv-dimensional\n4To illustrate why the dot products get large, assume that the components of q and k are independent random",
+  "index": 162
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160816507",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "variables with mean 0 and variance 1. Then their dot product, q · k = Pdk\ni=1 qiki, has mean 0 and variance dk.\n4\noutput values. These are concatenated and once again projected, resulting in the final values, as\ndepicted in Figure 2.\nMulti-head attention allows the model to jointly attend to information from different representation\nsubspaces at different positions. With a single attention head, averaging inhibits this.\nMultiHead(Q,K,V ) = Concat(head 1,..., headh)W O\nwhere headi = Attention(QW Q\ni ,KW K\ni ,VW V\ni )\nWhere the projections are parameter matricesW Q\ni ∈ Rdmodel×dk,W K\ni ∈ Rdmodel×dk,W V\ni ∈ Rdmodel×dv\nandW O∈ Rhdv×dmodel.\nIn this work we employ h = 8 parallel attention layers, or heads. For each of these we use",
+  "index": 163
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160817653",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "In this work we employ h = 8 parallel attention layers, or heads. For each of these we use\ndk =dv =dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost\nis similar to that of single-head attention with full dimensionality.\n3.2.3 Applications of Attention in our Model\nThe Transformer uses multi-head attention in three different ways:\n• In \"encoder-decoder attention\" layers, the queries come from the previous decoder layer,\nand the memory keys and values come from the output of the encoder. This allows every\nposition in the decoder to attend over all positions in the input sequence. This mimics the\ntypical encoder-decoder attention mechanisms in sequence-to-sequence models such as\n[38, 2, 9].",
+  "index": 164
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160818058",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "typical encoder-decoder attention mechanisms in sequence-to-sequence models such as\n[38, 2, 9].\n• The encoder contains self-attention layers. In a self-attention layer all of the keys, values\nand queries come from the same place, in this case, the output of the previous layer in the\nencoder. Each position in the encoder can attend to all positions in the previous layer of the\nencoder.\n• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to\nall positions in the decoder up to and including that position. We need to prevent leftward\ninformation flow in the decoder to preserve the auto-regressive property. We implement this\ninside of scaled dot-product attention by masking out (setting to−∞) all values in the input",
+  "index": 165
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160819941",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "inside of scaled dot-product attention by masking out (setting to−∞) all values in the input\nof the softmax which correspond to illegal connections. See Figure 2.\n3.3 Position-wise Feed-Forward Networks\nIn addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully\nconnected feed-forward network, which is applied to each position separately and identically. This\nconsists of two linear transformations with a ReLU activation in between.\nFFN(x) = max(0,xW 1 +b1)W2 +b2 (2)\nWhile the linear transformations are the same across different positions, they use different parameters\nfrom layer to layer. Another way of describing this is as two convolutions with kernel size 1.",
+  "index": 166
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160820968",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "from layer to layer. Another way of describing this is as two convolutions with kernel size 1.\nThe dimensionality of input and output is dmodel = 512 , and the inner-layer has dimensionality\ndf f = 2048.\n3.4 Embeddings and Softmax\nSimilarly to other sequence transduction models, we use learned embeddings to convert the input\ntokens and output tokens to vectors of dimensiondmodel. We also use the usual learned linear transfor-\nmation and softmax function to convert the decoder output to predicted next-token probabilities. In\nour model, we share the same weight matrix between the two embedding layers and the pre-softmax\nlinear transformation, similar to [30]. In the embedding layers, we multiply those weights by√dmodel.\n5",
+  "index": 167
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160821003",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "5\nTable 1: Maximum path lengths, per-layer complexity and minimum number of sequential operations\nfor different layer types.n is the sequence length,d is the representation dimension,k is the kernel\nsize of convolutions andr the size of the neighborhood in restricted self-attention.\nLayer Type Complexity per Layer Sequential Maximum Path Length\nOperations\nSelf-Attention O(n2·d) O(1) O(1)\nRecurrent O(n·d2) O(n) O(n)\nConvolutional O(k·n·d2) O(1) O(logk(n))\nSelf-Attention (restricted) O(r·n·d) O(1) O(n/r)\n3.5 Positional Encoding\nSince our model contains no recurrence and no convolution, in order for the model to make use of the\norder of the sequence, we must inject some information about the relative or absolute position of the",
+  "index": 168
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160822767",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "tokens in the sequence. To this end, we add \"positional encodings\" to the input embeddings at the\nbottoms of the encoder and decoder stacks. The positional encodings have the same dimensiondmodel\nas the embeddings, so that the two can be summed. There are many choices of positional encodings,\nlearned and fixed [9].\nIn this work, we use sine and cosine functions of different frequencies:\nPE (pos,2i) =sin(pos/100002i/dmodel)\nPE (pos,2i+1) =cos(pos/100002i/dmodel)\nwherepos is the position andi is the dimension. That is, each dimension of the positional encoding\ncorresponds to a sinusoid. The wavelengths form a geometric progression from 2π to 10000· 2π. We\nchose this function because we hypothesized it would allow the model to easily learn to attend by",
+  "index": 169
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160823477",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "chose this function because we hypothesized it would allow the model to easily learn to attend by\nrelative positions, since for any fixed offsetk,PE pos+k can be represented as a linear function of\nPE pos.\nWe also experimented with using learned positional embeddings [9] instead, and found that the two\nversions produced nearly identical results (see Table 3 row (E)). We chose the sinusoidal version\nbecause it may allow the model to extrapolate to sequence lengths longer than the ones encountered\nduring training.\n4 Why Self-Attention\nIn this section we compare various aspects of self-attention layers to the recurrent and convolu-\ntional layers commonly used for mapping one variable-length sequence of symbol representations",
+  "index": 170
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160824749",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "tional layers commonly used for mapping one variable-length sequence of symbol representations\n(x1,...,x n) to another sequence of equal length (z1,...,z n), with xi,z i∈ Rd, such as a hidden\nlayer in a typical sequence transduction encoder or decoder. Motivating our use of self-attention we\nconsider three desiderata.\nOne is the total computational complexity per layer. Another is the amount of computation that can\nbe parallelized, as measured by the minimum number of sequential operations required.\nThe third is the path length between long-range dependencies in the network. Learning long-range\ndependencies is a key challenge in many sequence transduction tasks. One key factor affecting the\nability to learn such dependencies is the length of the paths forward and backward signals have to",
+  "index": 171
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160825556",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "ability to learn such dependencies is the length of the paths forward and backward signals have to\ntraverse in the network. The shorter these paths between any combination of positions in the input\nand output sequences, the easier it is to learn long-range dependencies [12]. Hence we also compare\nthe maximum path length between any two input and output positions in networks composed of the\ndifferent layer types.\nAs noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially\nexecuted operations, whereas a recurrent layer requires O(n) sequential operations. In terms of\ncomputational complexity, self-attention layers are faster than recurrent layers when the sequence\n6",
+  "index": 172
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160826923",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "6\nlength n is smaller than the representation dimensionality d, which is most often the case with\nsentence representations used by state-of-the-art models in machine translations, such as word-piece\n[38] and byte-pair [31] representations. To improve computational performance for tasks involving\nvery long sequences, self-attention could be restricted to considering only a neighborhood of sizer in\nthe input sequence centered around the respective output position. This would increase the maximum\npath length toO(n/r). We plan to investigate this approach further in future work.\nA single convolutional layer with kernel widthk<n does not connect all pairs of input and output\npositions. Doing so requires a stack ofO(n/k) convolutional layers in the case of contiguous kernels,",
+  "index": 173
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160827146",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "orO(logk(n)) in the case of dilated convolutions [ 18], increasing the length of the longest paths\nbetween any two positions in the network. Convolutional layers are generally more expensive than\nrecurrent layers, by a factor of k. Separable convolutions [ 6], however, decrease the complexity\nconsiderably, toO(k·n·d +n·d2). Even with k = n, however, the complexity of a separable\nconvolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer,\nthe approach we take in our model.\nAs side benefit, self-attention could yield more interpretable models. We inspect attention distributions\nfrom our models and present and discuss examples in the appendix. Not only do individual attention",
+  "index": 174
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160828088",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "from our models and present and discuss examples in the appendix. Not only do individual attention\nheads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic\nand semantic structure of the sentences.\n5 Training\nThis section describes the training regime for our models.\n5.1 Training Data and Batching\nWe trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million\nsentence pairs. Sentences were encoded using byte-pair encoding [ 3], which has a shared source-\ntarget vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT\n2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece",
+  "index": 175
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160829139",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece\nvocabulary [38]. Sentence pairs were batched together by approximate sequence length. Each training\nbatch contained a set of sentence pairs containing approximately 25000 source tokens and 25000\ntarget tokens.\n5.2 Hardware and Schedule\nWe trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using\nthe hyperparameters described throughout the paper, each training step took about 0.4 seconds. We\ntrained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the\nbottom line of table 3), step time was 1.0 seconds. The big models were trained for 300,000 steps\n(3.5 days).\n5.3 Optimizer",
+  "index": 176
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160830449",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "(3.5 days).\n5.3 Optimizer\nWe used the Adam optimizer [20] withβ1 = 0.9,β2 = 0.98 andϵ = 10−9. We varied the learning\nrate over the course of training, according to the formula:\nlrate =d−0.5\nmodel· min(step_num−0.5,step _num·warmup_steps−1.5) (3)\nThis corresponds to increasing the learning rate linearly for the firstwarmup_steps training steps,\nand decreasing it thereafter proportionally to the inverse square root of the step number. We used\nwarmup_steps = 4000.\n5.4 Regularization\nWe employ three types of regularization during training:\n7\nTable 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the\nEnglish-to-German and English-to-French newstest2014 tests at a fraction of the training cost.\nModel\nBLEU Training Cost (FLOPs)\nEN-DE EN-FR EN-DE EN-FR",
+  "index": 177
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160831160",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "Model\nBLEU Training Cost (FLOPs)\nEN-DE EN-FR EN-DE EN-FR\nByteNet [18] 23.75\nDeep-Att + PosUnk [39] 39.2 1.0· 1020\nGNMT + RL [38] 24.6 39.92 2.3· 1019 1.4· 1020\nConvS2S [9] 25.16 40.46 9.6· 1018 1.5· 1020\nMoE [32] 26.03 40.56 2.0· 1019 1.2· 1020\nDeep-Att + PosUnk Ensemble [39] 40.4 8.0· 1020\nGNMT + RL Ensemble [38] 26.30 41.16 1.8· 1020 1.1· 1021\nConvS2S Ensemble [9] 26.36 41.29 7.7· 1019 1.2· 1021\nTransformer (base model) 27.3 38.1 3.3 · 1018\nTransformer (big) 28.4 41.8 2.3· 1019\nResidual Dropout We apply dropout [33] to the output of each sub-layer, before it is added to the\nsub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the\npositional encodings in both the encoder and decoder stacks. For the base model, we use a rate of\nPdrop = 0.1.",
+  "index": 178
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160832971",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "Pdrop = 0.1.\nLabel Smoothing During training, we employed label smoothing of value ϵls = 0.1 [36]. This\nhurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.\n6 Results\n6.1 Machine Translation\nOn the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big)\nin Table 2) outperforms the best previously reported models (including ensembles) by more than 2.0\nBLEU, establishing a new state-of-the-art BLEU score of 28.4. The configuration of this model is\nlisted in the bottom line of Table 3. Training took 3.5 days on 8 P100 GPUs. Even our base model\nsurpasses all previously published models and ensembles, at a fraction of the training cost of any of\nthe competitive models.",
+  "index": 179
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160833775",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "the competitive models.\nOn the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of 41.0,\noutperforming all of the previously published single models, at less than 1/4 the training cost of the\nprevious state-of-the-art model. The Transformer (big) model trained for English-to-French used\ndropout ratePdrop = 0.1, instead of 0.3.\nFor the base models, we used a single model obtained by averaging the last 5 checkpoints, which\nwere written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We\nused beam search with a beam size of 4 and length penaltyα = 0.6 [38]. These hyperparameters\nwere chosen after experimentation on the development set. We set the maximum output length during",
+  "index": 180
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160834892",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "were chosen after experimentation on the development set. We set the maximum output length during\ninference to input length + 50, but terminate early when possible [38].\nTable 2 summarizes our results and compares our translation quality and training costs to other model\narchitectures from the literature. We estimate the number of floating point operations used to train a\nmodel by multiplying the training time, the number of GPUs used, and an estimate of the sustained\nsingle-precision floating-point capacity of each GPU 5.\n6.2 Model Variations\nTo evaluate the importance of different components of the Transformer, we varied our base model\nin different ways, measuring the change in performance on English-to-German translation on the",
+  "index": 181
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160835274",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "in different ways, measuring the change in performance on English-to-German translation on the\n5We used values of 2.8, 3.7, 6.0 and 9.5 TFLOPS for K80, K40, M40 and P100, respectively.\n8\nTable 3: Variations on the Transformer architecture. Unlisted values are identical to those of the base\nmodel. All metrics are on the English-to-German translation development set, newstest2013. Listed\nperplexities are per-wordpiece, according to our byte-pair encoding, and should not be compared to\nper-word perplexities.\nN d model dff h d k dv Pdrop ϵls\ntrain PPL BLEU params\nsteps (dev) (dev) ×106\nbase 6 512 2048 8 64 64 0.1 0.1 100K 4.92 25.8 65\n(A)\n1 512 512 5.29 24.9\n4 128 128 5.00 25.5\n16 32 32 4.91 25.8\n32 16 16 5.01 25.4\n(B) 16 5.16 25.1 58\n32 5.01 25.4 60\n(C)\n2 6.11 23.7 36\n4 5.19 25.3 50",
+  "index": 182
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160836029",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "32 16 16 5.01 25.4\n(B) 16 5.16 25.1 58\n32 5.01 25.4 60\n(C)\n2 6.11 23.7 36\n4 5.19 25.3 50\n8 4.88 25.5 80\n256 32 32 5.75 24.5 28\n1024 128 128 4.66 26.0 168\n1024 5.12 25.4 53\n4096 4.75 26.2 90\n(D)\n0.0 5.77 24.6\n0.2 4.95 25.5\n0.0 4.67 25.3\n0.2 5.47 25.7\n(E) positional embedding instead of sinusoids 4.92 25.7\nbig 6 1024 4096 16 0.3 300K 4.33 26.4 213\ndevelopment set, newstest2013. We used beam search as described in the previous section, but no\ncheckpoint averaging. We present these results in Table 3.\nIn Table 3 rows (A), we vary the number of attention heads and the attention key and value dimensions,\nkeeping the amount of computation constant, as described in Section 3.2.2. While single-head\nattention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.",
+  "index": 183
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160837802",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.\nIn Table 3 rows (B), we observe that reducing the attention key size dk hurts model quality. This\nsuggests that determining compatibility is not easy and that a more sophisticated compatibility\nfunction than dot product may be beneficial. We further observe in rows (C) and (D) that, as expected,\nbigger models are better, and dropout is very helpful in avoiding over-fitting. In row (E) we replace our\nsinusoidal positional encoding with learned positional embeddings [9], and observe nearly identical\nresults to the base model.\n6.3 English Constituency Parsing\nTo evaluate if the Transformer can generalize to other tasks we performed experiments on English",
+  "index": 184
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160838030",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "To evaluate if the Transformer can generalize to other tasks we performed experiments on English\nconstituency parsing. This task presents specific challenges: the output is subject to strong structural\nconstraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence\nmodels have not been able to attain state-of-the-art results in small-data regimes [37].\nWe trained a 4-layer transformer withdmodel = 1024 on the Wall Street Journal (WSJ) portion of the\nPenn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting,\nusing the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences\n[37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens",
+  "index": 185
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160839343",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "[37]. We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens\nfor the semi-supervised setting.\nWe performed only a small number of experiments to select the dropout, both attention and residual\n(section 5.4), learning rates and beam size on the Section 22 development set, all other parameters\nremained unchanged from the English-to-German base translation model. During inference, we\n9\nTable 4: The Transformer generalizes well to English constituency parsing (Results are on Section 23\nof WSJ)\nParser Training WSJ 23 F1\nVinyals & Kaiser el al. (2014) [37] WSJ only, discriminative 88.3\nPetrov et al. (2006) [29] WSJ only, discriminative 90.4\nZhu et al. (2013) [40] WSJ only, discriminative 90.4\nDyer et al. (2016) [8] WSJ only, discriminative 91.7",
+  "index": 186
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160840527",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "Dyer et al. (2016) [8] WSJ only, discriminative 91.7\nTransformer (4 layers) WSJ only, discriminative 91.3\nZhu et al. (2013) [40] semi-supervised 91.3\nHuang & Harper (2009) [14] semi-supervised 91.3\nMcClosky et al. (2006) [26] semi-supervised 92.1\nVinyals & Kaiser el al. (2014) [37] semi-supervised 92.1\nTransformer (4 layers) semi-supervised 92.7\nLuong et al. (2015) [23] multi-task 93.0\nDyer et al. (2016) [8] generative 93.3\nincreased the maximum output length to input length + 300. We used a beam size of 21 andα = 0.3\nfor both WSJ only and the semi-supervised setting.\nOur results in Table 4 show that despite the lack of task-specific tuning our model performs sur-\nprisingly well, yielding better results than all previously reported models with the exception of the",
+  "index": 187
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160841492",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "Recurrent Neural Network Grammar [8].\nIn contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley-\nParser [29] even when training only on the WSJ training set of 40K sentences.\n7 Conclusion\nIn this work, we presented the Transformer, the first sequence transduction model based entirely on\nattention, replacing the recurrent layers most commonly used in encoder-decoder architectures with\nmulti-headed self-attention.\nFor translation tasks, the Transformer can be trained significantly faster than architectures based\non recurrent or convolutional layers. On both WMT 2014 English-to-German and WMT 2014\nEnglish-to-French translation tasks, we achieve a new state of the art. In the former task our best\nmodel outperforms even all previously reported ensembles.",
+  "index": 188
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160842879",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "model outperforms even all previously reported ensembles.\nWe are excited about the future of attention-based models and plan to apply them to other tasks. We\nplan to extend the Transformer to problems involving input and output modalities other than text and\nto investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs\nsuch as images, audio and video. Making generation less sequential is another research goals of ours.\nThe code we used to train and evaluate our models is available at https://github.com/\ntensorflow/tensor2tensor.\nAcknowledgements We are grateful to Nal Kalchbrenner and Stephan Gouws for their fruitful\ncomments, corrections and inspiration.\nReferences",
+  "index": 189
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160843490",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "comments, corrections and inspiration.\nReferences\n[1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint\narXiv:1607.06450, 2016.\n[2] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly\nlearning to align and translate. CoRR, abs/1409.0473, 2014.\n[3] Denny Britz, Anna Goldie, Minh-Thang Luong, and Quoc V . Le. Massive exploration of neural\nmachine translation architectures. CoRR, abs/1703.03906, 2017.\n[4] Jianpeng Cheng, Li Dong, and Mirella Lapata. Long short-term memory-networks for machine\nreading. arXiv preprint arXiv:1601.06733, 2016.\n10\n[5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk,",
+  "index": 190
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160844792",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "10\n[5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk,\nand Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical\nmachine translation. CoRR, abs/1406.1078, 2014.\n[6] Francois Chollet. Xception: Deep learning with depthwise separable convolutions. arXiv\npreprint arXiv:1610.02357, 2016.\n[7] Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation\nof gated recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.\n[8] Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural\nnetwork grammars. In Proc. of NAACL, 2016.\n[9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu-",
+  "index": 191
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160845269",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "[9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu-\ntional sequence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.\n[10] Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint\narXiv:1308.0850, 2013.\n[11] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for im-\nage recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern\nRecognition, pages 770–778, 2016.\n[12] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in\nrecurrent nets: the difficulty of learning long-term dependencies, 2001.\n[13] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation,\n9(8):1735–1780, 1997.",
+  "index": 192
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160846474",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "9(8):1735–1780, 1997.\n[14] Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations\nacross languages. In Proceedings of the 2009 Conference on Empirical Methods in Natural\nLanguage Processing, pages 832–841. ACL, August 2009.\n[15] Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring\nthe limits of language modeling. arXiv preprint arXiv:1602.02410, 2016.\n[16] Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In Advances in Neural\nInformation Processing Systems, (NIPS), 2016.\n[17] Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In International Conference\non Learning Representations (ICLR), 2016.\n[18] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Ko-",
+  "index": 193
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160847505",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "[18] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Ko-\nray Kavukcuoglu. Neural machine translation in linear time.arXiv preprint arXiv:1610.10099v2,\n2017.\n[19] Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks.\nIn International Conference on Learning Representations , 2017.\n[20] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.\n[21] Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks. arXiv preprint\narXiv:1703.10722, 2017.\n[22] Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen\nZhou, and Yoshua Bengio. A structured self-attentive sentence embedding. arXiv preprint\narXiv:1703.03130, 2017.",
+  "index": 194
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160848234",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "arXiv:1703.03130, 2017.\n[23] Minh-Thang Luong, Quoc V . Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task\nsequence to sequence learning. arXiv preprint arXiv:1511.06114, 2015.\n[24] Minh-Thang Luong, Hieu Pham, and Christopher D Manning. Effective approaches to attention-\nbased neural machine translation. arXiv preprint arXiv:1508.04025, 2015.\n11\n[25] Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated\ncorpus of english: The penn treebank. Computational linguistics, 19(2):313–330, 1993.\n[26] David McClosky, Eugene Charniak, and Mark Johnson. Effective self-training for parsing. In\nProceedings of the Human Language Technology Conference of the NAACL, Main Conference ,\npages 152–159. ACL, June 2006.",
+  "index": 195
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160849082",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "pages 152–159. ACL, June 2006.\n[27] Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention\nmodel. In Empirical Methods in Natural Language Processing , 2016.\n[28] Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive\nsummarization. arXiv preprint arXiv:1705.04304, 2017.\n[29] Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact,\nand interpretable tree annotation. In Proceedings of the 21st International Conference on\nComputational Linguistics and 44th Annual Meeting of the ACL , pages 433–440. ACL, July\n2006.\n[30] Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv\npreprint arXiv:1608.05859, 2016.",
+  "index": 196
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160850597",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "preprint arXiv:1608.05859, 2016.\n[31] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words\nwith subword units. arXiv preprint arXiv:1508.07909, 2015.\n[32] Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton,\nand Jeff Dean. Outrageously large neural networks: The sparsely-gated mixture-of-experts\nlayer. arXiv preprint arXiv:1701.06538, 2017.\n[33] Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdi-\nnov. Dropout: a simple way to prevent neural networks from overfitting. Journal of Machine\nLearning Research, 15(1):1929–1958, 2014.\n[34] Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory",
+  "index": 197
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160851124",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "[34] Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory\nnetworks. In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors,\nAdvances in Neural Information Processing Systems 28 , pages 2440–2448. Curran Associates,\nInc., 2015.\n[35] Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural\nnetworks. In Advances in Neural Information Processing Systems , pages 3104–3112, 2014.\n[36] Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna.\nRethinking the inception architecture for computer vision. CoRR, abs/1512.00567, 2015.\n[37] Vinyals & Kaiser, Koo, Petrov, Sutskever, and Hinton. Grammar as a foreign language. In\nAdvances in Neural Information Processing Systems , 2015.",
+  "index": 198
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160852849",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "Advances in Neural Information Processing Systems , 2015.\n[38] Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang\nMacherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google’s neural machine\ntranslation system: Bridging the gap between human and machine translation. arXiv preprint\narXiv:1609.08144, 2016.\n[39] Jie Zhou, Ying Cao, Xuguang Wang, Peng Li, and Wei Xu. Deep recurrent models with\nfast-forward connections for neural machine translation. CoRR, abs/1606.04199, 2016.\n[40] Muhua Zhu, Yue Zhang, Wenliang Chen, Min Zhang, and Jingbo Zhu. Fast and accurate\nshift-reduce constituent parsing. In Proceedings of the 51st Annual Meeting of the ACL (V olume\n1: Long Papers), pages 434–443. ACL, August 2013.\n12\nAttention Visualizations\nInput-Input Layer5",
+  "index": 199
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160853950",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "1: Long Papers), pages 434–443. ACL, August 2013.\n12\nAttention Visualizations\nInput-Input Layer5\nIt\nis\nin\nthis\nspirit\nthat\na\nmajority\nof\nAmerican\ngovernments\nhave\npassed\nnew\nlaws\nsince\n2009\nmaking\nthe\nregistration\nor\nvoting\nprocess\nmore\ndifficult\n.\n<EOS>\n<pad>\n<pad>\n<pad>\n<pad>\n<pad>\n<pad>\nIt\nis\nin\nthis\nspirit\nthat\na\nmajority\nof\nAmerican\ngovernments\nhave\npassed\nnew\nlaws\nsince\n2009\nmaking\nthe\nregistration\nor\nvoting\nprocess\nmore\ndifficult\n.\n<EOS>\n<pad>\n<pad>\n<pad>\n<pad>\n<pad>\n<pad>\nFigure 3: An example of the attention mechanism following long-distance dependencies in the\nencoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of\nthe verb ‘making’, completing the phrase ‘making...more difficult’. Attentions here shown only for",
+  "index": 200
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160854421",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "the verb ‘making’, completing the phrase ‘making...more difficult’. Attentions here shown only for\nthe word ‘making’. Different colors represent different heads. Best viewed in color.\n13\nInput-Input Layer5\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nInput-Input Layer5\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>",
+  "index": 201
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160855167",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": ",\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nFigure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top:\nFull attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5\nand 6. Note that the attentions are very sharp for this word.\n14\nInput-Input Layer5\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nInput-Input Layer5\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nThe\nLaw\nwill",
+  "index": 202
+ },
+ {
+  "chunkKey": "6aab5f4d8eb3c7c1586b0b09::178961595160856527",
+  "docId": "6aab5f4d8eb3c7c1586b0b09",
+  "docTitle": "Attention Is All You Need.pdf",
+  "docText": "application\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nThe\nLaw\nwill\nnever\nbe\nperfect\n,\nbut\nits\napplication\nshould\nbe\njust\n-\nthis\nis\nwhat\nwe\nare\nmissing\n,\nin\nmy\nopinion\n.\n<EOS>\n<pad>\nFigure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the\nsentence. We give two such examples above, from two different heads from the encoder self-attention\nat layer 5 of 6. The heads clearly learned to perform different tasks.\n15",
+  "index": 203
+ }
+]

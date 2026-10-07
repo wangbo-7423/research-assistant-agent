@@ -1,3 +1,0 @@
-{"qid": "r001", "query": "注意力机制的定义是什么", "relevant_chunks": ["chunkId_a", "chunkId_b"], "intent": "fact", "has_basis": true}
-{"qid": "r002", "query": "RAG 有哪些优缺点", "relevant_chunks": ["chunkId_c"], "intent": "perspective", "has_basis": true}
-{"qid": "r003", "query": "该知识库完全不存在的主题内容", "relevant_chunks": [], "intent": "fact", "has_basis": false}

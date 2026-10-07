@@ -1,0 +1,12 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+python-multipart>=0.0.9
+python-dotenv>=1.0
+pymongo>=4.13
+redis>=5.0
+openai>=1.60
+pymilvus>=2.5.6
+pypdf>=4.0
+python-docx>=1.1
+PyJWT>=2.8
