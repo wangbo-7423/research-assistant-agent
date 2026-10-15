@@ -2,13 +2,11 @@
 
 对应 NestJS 版 FileanagementController（去掉 wiki 编译相关接口）。
 """
-from typing import Optional
-
 from fastapi import APIRouter, Depends, File, Request, UploadFile
 from pydantic import BaseModel
 
 from ..config import Config
-from ..deps import get_current_user, get_db
+from ..deps import AuthUser, get_current_user, get_db
 from ..response import BizError, wrap_response
 from . import service
 from .image_storage import (
@@ -43,12 +41,12 @@ async def _read_doc_files(files: list[UploadFile]) -> list[tuple[str, str, int, 
 async def upload_knowledge(
     request: Request,
     file: list[UploadFile] = File(..., description="知识库文件，字段名 file，最多3个"),
-    user: dict = Depends(get_current_user),
+    user: AuthUser = Depends(get_current_user),
 ):
     if len(file) > 3:
         raise BizError("最多只能上传3个文件", 400)
     payload = await _read_doc_files(file)
-    user_id = user.get("token")
+    user_id = user.user_id
     result = await service.handle_upload(payload, user_id, "UD", get_db()[FILE_COLLECTION])
     return wrap_response(result, request.url.path)
 
@@ -57,52 +55,52 @@ async def upload_knowledge(
 async def upload_dialog(
     request: Request,
     file: list[UploadFile] = File(..., description="对话框文件，字段名 file，最多3个"),
-    user: dict = Depends(get_current_user),
+    user: AuthUser = Depends(get_current_user),
 ):
     if len(file) > 3:
         raise BizError("最多只能上传3个文件", 400)
     payload = await _read_doc_files(file)
-    user_id = user.get("token")
+    user_id = user.user_id
     result = await service.handle_upload(payload, user_id, "UB", get_db()[FILE_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
 class SearchDto(BaseModel):
     query: str
-    limit: Optional[int] = 10
+    limit: int | None = 10
 
 
 @router.post("/search")
-async def search(body: SearchDto, request: Request, user: dict = Depends(get_current_user)):
-    result = await service.vector_search(body.query, user.get("token"), body.limit or 10)
+async def search(body: SearchDto, request: Request, user: AuthUser = Depends(get_current_user)):
+    result = await service.vector_search(body.query, user.user_id, body.limit or 10)
     return wrap_response(result, request.url.path)
 
 
 @router.get("/kbfilelist")
-async def kbfile_list(request: Request, user: dict = Depends(get_current_user)):
-    result = await service.get_kb_file_list(user.get("token"), get_db()[FILE_COLLECTION])
+async def kbfile_list(request: Request, user: AuthUser = Depends(get_current_user)):
+    result = await service.get_kb_file_list(user.user_id, get_db()[FILE_COLLECTION])
     return wrap_response({"result": result, "message": "success"}, request.url.path)
 
 
 @router.get("/{file_id}")
-async def get_file(file_id: str, request: Request, user: dict = Depends(get_current_user)):
+async def get_file(file_id: str, request: Request, user: AuthUser = Depends(get_current_user)):
     result = await service.get_file_content(file_id, get_db()[FILE_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
 @router.delete("/knowledge/{file_id}")
 async def delete_knowledge_file(
-    file_id: str, request: Request, user: dict = Depends(get_current_user)
+    file_id: str, request: Request, user: AuthUser = Depends(get_current_user)
 ):
-    result = await service.delete_file(file_id, user.get("token"), "UD", get_db()[FILE_COLLECTION])
+    result = await service.delete_file(file_id, user.user_id, "UD", get_db()[FILE_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
 @router.delete("/dialog/{file_id}")
 async def delete_dialog_file(
-    file_id: str, request: Request, user: dict = Depends(get_current_user)
+    file_id: str, request: Request, user: AuthUser = Depends(get_current_user)
 ):
-    result = await service.delete_file(file_id, user.get("token"), "UB", get_db()[FILE_COLLECTION])
+    result = await service.delete_file(file_id, user.user_id, "UB", get_db()[FILE_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
@@ -110,7 +108,7 @@ async def delete_dialog_file(
 async def upload_image(
     request: Request,
     file: UploadFile = File(..., description="图片文件"),
-    user: dict = Depends(get_current_user),
+    user: AuthUser = Depends(get_current_user),
 ):
     if not file.filename:
         raise BizError("请选择要上传的图片", 400)
@@ -157,5 +155,5 @@ class DeleteImageDto(BaseModel):
 
 
 @router.post("/deleteimage")
-async def delete_image(request: Request, body: DeleteImageDto, user: dict = Depends(get_current_user)):
+async def delete_image(request: Request, body: DeleteImageDto, user: AuthUser = Depends(get_current_user)):
     return wrap_response(delete_image_file(body.imagePath), request.url.path)

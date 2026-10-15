@@ -1,413 +1,575 @@
 {
+ "version": "v2-multi-doc",
  "metrics": {
   "A_chunk_vec": {
-   "recall@1": 0.4485294117647059,
-   "recall@3": 0.6544117647058824,
-   "recall@5": 0.7450980392156863,
-   "mrr@5": 0.5729118036103331,
-   "n": 408
+   "recall@1": 0.394,
+   "recall@3": 0.5998,
+   "recall@5": 0.6658,
+   "docRecall@1": 0.8526,
+   "docRecall@3": 0.9412,
+   "docRecall@5": 0.9616,
+   "mrr@5": 0.5111,
+   "n": 3046
   },
   "B_qa": {
-   "recall@1": 0.5098039215686274,
-   "recall@3": 0.7450980392156863,
-   "recall@5": 0.8014705882352942,
-   "mrr@5": 0.6375583566760038,
-   "n": 408
+   "recall@1": 0.4567,
+   "recall@3": 0.6612,
+   "recall@5": 0.7315,
+   "docRecall@1": 0.8752,
+   "docRecall@3": 0.9537,
+   "docRecall@5": 0.975,
+   "mrr@5": 0.5725,
+   "n": 3046
   },
   "C_chunk+qa": {
-   "recall@1": 0.5171568627450981,
-   "recall@3": 0.7328431372549019,
-   "recall@5": 0.8063725490196079,
-   "mrr@5": 0.6452345492678541,
-   "n": 408
+   "recall@1": 0.4576,
+   "recall@3": 0.6848,
+   "recall@5": 0.7758,
+   "docRecall@1": 0.8805,
+   "docRecall@3": 0.9593,
+   "docRecall@5": 0.977,
+   "mrr@5": 0.5935,
+   "n": 3046
   },
   "D_prod_hybrid": {
-   "recall@1": 0.4215686274509804,
-   "recall@3": 0.6348039215686274,
-   "recall@5": 0.7426470588235294,
-   "mrr@5": 0.5601872630365277,
-   "n": 408
+   "recall@1": 0.372,
+   "recall@3": 0.5903,
+   "recall@5": 0.6753,
+   "docRecall@1": 0.8454,
+   "docRecall@3": 0.9389,
+   "docRecall@5": 0.9629,
+   "mrr@5": 0.5011,
+   "n": 3046
   },
   "E_prod+qa": {
-   "recall@1": 0.5147058823529411,
-   "recall@3": 0.7279411764705882,
-   "recall@5": 0.8063725490196079,
-   "mrr@5": 0.6438849649339345,
-   "n": 408
+   "recall@1": 0.457,
+   "recall@3": 0.6891,
+   "recall@5": 0.7712,
+   "docRecall@1": 0.8828,
+   "docRecall@3": 0.9599,
+   "docRecall@5": 0.9767,
+   "mrr@5": 0.5937,
+   "n": 3046
   }
  },
- "numQueries": 408,
- "numChunks": 204,
- "numIndexQuestions": 1145,
+ "perDoc": {
+  "Attention Is All You Need": {
+   "A_chunk_vec": {
+    "recall@5": 0.605,
+    "docRecall@5": 0.912,
+    "n": 114
+   },
+   "B_qa": {
+    "recall@5": 0.798,
+    "docRecall@5": 0.947,
+    "n": 114
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.763,
+    "docRecall@5": 0.956,
+    "n": 114
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.614,
+    "docRecall@5": 0.912,
+    "n": 114
+   },
+   "E_prod+qa": {
+    "recall@5": 0.763,
+    "docRecall@5": 0.956,
+    "n": 114
+   }
+  },
+  "BERT": {
+   "A_chunk_vec": {
+    "recall@5": 0.688,
+    "docRecall@5": 0.935,
+    "n": 186
+   },
+   "B_qa": {
+    "recall@5": 0.79,
+    "docRecall@5": 0.984,
+    "n": 186
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.849,
+    "docRecall@5": 0.973,
+    "n": 186
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.694,
+    "docRecall@5": 0.946,
+    "n": 186
+   },
+   "E_prod+qa": {
+    "recall@5": 0.833,
+    "docRecall@5": 0.978,
+    "n": 186
+   }
+  },
+  "Deep Residual Learning for Image Recognition": {
+   "A_chunk_vec": {
+    "recall@5": 0.694,
+    "docRecall@5": 0.929,
+    "n": 170
+   },
+   "B_qa": {
+    "recall@5": 0.806,
+    "docRecall@5": 0.971,
+    "n": 170
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.829,
+    "docRecall@5": 0.965,
+    "n": 170
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.694,
+    "docRecall@5": 0.935,
+    "n": 170
+   },
+   "E_prod+qa": {
+    "recall@5": 0.818,
+    "docRecall@5": 0.965,
+    "n": 170
+   }
+  },
+  "GPT-3": {
+   "A_chunk_vec": {
+    "recall@5": 0.651,
+    "docRecall@5": 0.968,
+    "n": 656
+   },
+   "B_qa": {
+    "recall@5": 0.726,
+    "docRecall@5": 0.982,
+    "n": 656
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.787,
+    "docRecall@5": 0.973,
+    "n": 656
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.671,
+    "docRecall@5": 0.97,
+    "n": 656
+   },
+   "E_prod+qa": {
+    "recall@5": 0.793,
+    "docRecall@5": 0.976,
+    "n": 656
+   }
+  },
+  "GPT-4": {
+   "A_chunk_vec": {
+    "recall@5": 0.67,
+    "docRecall@5": 0.982,
+    "n": 822
+   },
+   "B_qa": {
+    "recall@5": 0.706,
+    "docRecall@5": 0.989,
+    "n": 822
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.74,
+    "docRecall@5": 0.989,
+    "n": 822
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.67,
+    "docRecall@5": 0.979,
+    "n": 822
+   },
+   "E_prod+qa": {
+    "recall@5": 0.73,
+    "docRecall@5": 0.988,
+    "n": 822
+   }
+  },
+  "Generative Adversarial Nets": {
+   "A_chunk_vec": {
+    "recall@5": 0.72,
+    "docRecall@5": 0.902,
+    "n": 82
+   },
+   "B_qa": {
+    "recall@5": 0.793,
+    "docRecall@5": 0.988,
+    "n": 82
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.854,
+    "docRecall@5": 0.976,
+    "n": 82
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.72,
+    "docRecall@5": 0.902,
+    "n": 82
+   },
+   "E_prod+qa": {
+    "recall@5": 0.841,
+    "docRecall@5": 0.963,
+    "n": 82
+   }
+  },
+  "InstructGPT": {
+   "A_chunk_vec": {
+    "recall@5": 0.663,
+    "docRecall@5": 0.97,
+    "n": 526
+   },
+   "B_qa": {
+    "recall@5": 0.703,
+    "docRecall@5": 0.964,
+    "n": 526
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.768,
+    "docRecall@5": 0.979,
+    "n": 526
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.673,
+    "docRecall@5": 0.973,
+    "n": 526
+   },
+   "E_prod+qa": {
+    "recall@5": 0.77,
+    "docRecall@5": 0.981,
+    "n": 526
+   }
+  },
+  "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks": {
+   "A_chunk_vec": {
+    "recall@5": 0.678,
+    "docRecall@5": 0.946,
+    "n": 202
+   },
+   "B_qa": {
+    "recall@5": 0.728,
+    "docRecall@5": 0.936,
+    "n": 202
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.757,
+    "docRecall@5": 0.965,
+    "n": 202
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.708,
+    "docRecall@5": 0.946,
+    "n": 202
+   },
+   "E_prod+qa": {
+    "recall@5": 0.743,
+    "docRecall@5": 0.955,
+    "n": 202
+   }
+  },
+  "The Illustrated Transformer": {
+   "A_chunk_vec": {
+    "recall@5": 0.783,
+    "docRecall@5": 0.967,
+    "n": 92
+   },
+   "B_qa": {
+    "recall@5": 0.804,
+    "docRecall@5": 0.978,
+    "n": 92
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.848,
+    "docRecall@5": 0.989,
+    "n": 92
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.783,
+    "docRecall@5": 0.967,
+    "n": 92
+   },
+   "E_prod+qa": {
+    "recall@5": 0.837,
+    "docRecall@5": 0.989,
+    "n": 92
+   }
+  },
+  "ViT": {
+   "A_chunk_vec": {
+    "recall@5": 0.602,
+    "docRecall@5": 0.954,
+    "n": 196
+   },
+   "B_qa": {
+    "recall@5": 0.719,
+    "docRecall@5": 0.969,
+    "n": 196
+   },
+   "C_chunk+qa": {
+    "recall@5": 0.755,
+    "docRecall@5": 0.969,
+    "n": 196
+   },
+   "D_prod_hybrid": {
+    "recall@5": 0.617,
+    "docRecall@5": 0.954,
+    "n": 196
+   },
+   "E_prod+qa": {
+    "recall@5": 0.75,
+    "docRecall@5": 0.964,
+    "n": 196
+   }
+  }
+ },
+ "numQueries": 3046,
+ "numChunks": 1523,
+ "numDocs": 10,
+ "numIndexQuestions": 8644,
  "qa_wins_sample": [
   {
-   "query": "这个模型能不能通过换掉外部记忆来更新知识？",
-   "goldRank_chunkVec": 5,
-   "goldRank_qa": 4,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "RAG模型里那个把检索到的文档当成隐变量来训练检索器和生成器的方法，具体是怎么做的？",
-   "goldRank_chunkVec": 2,
-   "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "生成部分用的是啥模型？",
-   "goldRank_chunkVec": 2,
-   "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "RAG-Sequence 为啥不能直接用普通的 beam search 做解码？",
-   "goldRank_chunkVec": 2,
-   "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "这篇论文讲RAG实验时用了哪个版本的维基百科数据？",
-   "goldRank_chunkVec": 2,
-   "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "RAG在MSMARCO上是怎么做生成式问答的？",
-   "goldRank_chunkVec": 2,
-   "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "它怎么评估生成Jeopardy问题的能力？",
+   "query": "BERT在SQuAD v1.1上的F1分数提高了多少？",
    "goldRank_chunkVec": 3,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "RAG 模型在 Jeopardy 上的 BLEU-1 分数是多少？",
+   "query": "为什么说现存的预训练方法限制了表示能力？",
    "goldRank_chunkVec": 2,
    "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "Jeopardy 问题生成上哪个模型表现最好？",
-   "goldRank_chunkVec": 4,
-   "goldRank_qa": 3,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "RAG和BART比，哪个在事实性上更强？",
+   "query": "BERT说预训练表示能减少对复杂任务特定架构的依赖，具体是怎么体现的？",
    "goldRank_chunkVec": 2,
    "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "为什么生成书名时，模型对文档的依赖会突然下降？",
+   "query": "BERT在处理不同下游任务时，模型结构和预训练时相比差别大吗？",
    "goldRank_chunkVec": 2,
    "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "RAG模型在测试时更新知识库，相比T5或BART有什么优势？",
-   "goldRank_chunkVec": 2,
-   "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "query": "用BERT做微调大概要花多少时间和计算资源？",
+   "goldRank_chunkVec": 3,
+   "goldRank_qa": 2,
+   "doc": "BERT"
   },
   {
-   "query": "在Jeopardy问题生成上，RAG相比BART在事实准确率方面提升了多少？",
+   "query": "在BERT中，如何确定答案片段的起始词和结束词的概率？",
    "goldRank_chunkVec": 2,
    "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "为啥他们要用原始文本当记忆，而不是向量表示？",
+   "query": "BERT在SQuAD上训练时用了哪些超参数，比如学习率和epoch数？",
    "goldRank_chunkVec": 2,
    "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "BERT那篇论文是在哪个会议发表的？",
+   "query": "BERT单个模型和集成系统比，哪个在SQuAD上表现更好？",
+   "goldRank_chunkVec": 3,
+   "goldRank_qa": 2,
+   "doc": "BERT"
+  },
+  {
+   "query": "加上TriviaQA微调后，BERT在测试集上能拿多少分？",
    "goldRank_chunkVec": 2,
    "goldRank_qa": 1,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
+  },
+  {
+   "query": "SQuAD 2.0和1.1有什么主要区别？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "BERT在SQuAD 2.0里是咋处理那种没有答案的问题的？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "SWAG测试集上BERT Large比GPT高了多少准确率？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "有没有一个用于衡量统计语言建模进展的十亿词基准？",
+   "goldRank_chunkVec": 3,
+   "goldRank_qa": 2,
+   "doc": "BERT"
+  },
+  {
+   "query": "Clark 他们在 2018 年那篇关于 cross-view training 的文章是在哪发表的？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "Logeswaran和Lee在ICLR上提出学习句子表示的框架是哪一年的工作？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "Jakob Uszkoreit 2016年那篇关于自然语言推理的可分解注意力模型是在哪个会议上发表的？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "Sun 他们在 2018 年提出的 U-net 主要解决了机器阅读里的啥问题？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "MLM 训练起来比从左到右的语言模型慢多少？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "ELMo、GPT和BERT这几个模型在结构上有什么不一样？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
+  },
+  {
+   "query": "掩码策略具体怎么混用来训练MLM的？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 1,
+   "doc": "BERT"
   }
  ],
  "qa_losses_sample": [
   {
-   "query": "论文里说RAG生成的语言跟纯参数模型比有啥特点？",
+   "query": "BERT这个模型名字是咋来的，全称是啥？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "纯参数化模型有啥缺点？",
+   "query": "BERT和GPT在self-attention机制上有什么不一样？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "混合模型相比纯参数化模型好在哪？",
+   "query": "BERT和OpenAI GPT结构差不多，为啥效果更好呢？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 3,
+   "doc": "BERT"
+  },
+  {
+   "query": "去掉NSP任务对哪些数据集的影响比较大？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "在RAG框架里，检索器和生成器分别用了什么模型？",
+   "query": "如果把LTR和RTL两个模型拼起来，和直接用双向模型比有啥区别？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "BERT"
   },
   {
-   "query": "在FEVER数据集上，作者比较了哪两种分类设置，分别是什么？",
+   "query": "模型大小对微调后的任务准确率影响大吗？",
+   "goldRank_chunkVec": 1,
+   "goldRank_qa": 2,
+   "doc": "BERT"
+  },
+  {
+   "query": "这篇叫context2vec的文章是哪几个人写的？用的什么模型？",
+   "goldRank_chunkVec": 1,
+   "goldRank_qa": 2,
+   "doc": "BERT"
+  },
+  {
+   "query": "那个额外的 learnable embedding 是干嘛用的？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 3,
+   "doc": "ViT"
+  },
+  {
+   "query": "为什么patch越小，模型算起来更费劲？",
    "goldRank_chunkVec": 5,
    "goldRank_qa": 6,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "RAG 在开放域问答上表现咋样？跟 T5 那个比较结果如何？",
+   "query": "ViT和BiT在JFT-300M上训练，哪个效果更好，计算量更小？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "RAG 在生成事实正确文本方面比 BART 好多少？",
+   "query": "用不同大小的数据预训练ViT，模型表现有啥变化？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "为啥生成“A Farewell to Arms”的时候主要参考了第一篇文档？",
+   "query": "在不同数据集规模下，ViT和BiT CNN哪个表现更好？",
+   "goldRank_chunkVec": 2,
+   "goldRank_qa": 3,
+   "doc": "ViT"
+  },
+  {
+   "query": "为什么在 ResNet 上用 Adam 而不是 SGD？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "这篇论文里提到的外部记忆和 memory networks 有什么关系？",
-   "goldRank_chunkVec": 4,
-   "goldRank_qa": 5,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
-  },
-  {
-   "query": "使用外部知识源如 Wikipedia 可能带来哪些问题？",
+   "query": "Adam 和 SGD 在哪个数据集上差距最大？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "关于RAG的论文，参考文献中有一个yodaqa系统的引用，能告诉我它发表的年份吗？",
+   "query": "用 Adam 和 SGD 预训练的 ResNet 在 JFT 上微调后，哪个效果更好？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "Berant 他们在 2013 年那篇关于 Freebase 的语义解析论文，是在哪个会议发表的？",
+   "query": "ViT 里位置编码怎么编码二维空间信息？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "这篇关于多段落阅读理解的论文，arxiv编号是多少？",
+   "query": "作者对 ViT 做了哪些改动来结合 Axial Transformer 块？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "Lee他们在2019年ACL上那篇讲latent retrieval做开放域QA的文章，DOI是多少？",
+   "query": "VTAB-1k各个任务的分数在哪能看到？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "ViT"
   },
   {
-   "query": "那个FEVER数据集是哪篇论文提出的？",
+   "query": "InstructGPT比GPT-3好在哪里？",
    "goldRank_chunkVec": 1,
    "goldRank_qa": 2,
-   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+   "doc": "InstructGPT"
+  },
+  {
+   "query": "在TruthfulQA测试上，InstructGPT的表现比GPT-3强多少？",
+   "goldRank_chunkVec": 1,
+   "goldRank_qa": 2,
+   "doc": "InstructGPT"
   }
- ],
- "arm_rankings_sample": {
-  "A_chunk_vec": {
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709550146"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709541429"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709599745",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709541429"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938"
-   ]
-  },
-  "B_qa": {
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709536983",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709509610",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709518986"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709515241",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709587769",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709534611",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709507102",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709515241"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709526098",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709550146",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709521812",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106"
-   ]
-  },
-  "C_chunk+qa": {
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709509610",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709515241"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709507102",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709550146"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709550146",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022"
-   ]
-  },
-  "D_prod_hybrid": {
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709502352",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709509610"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709541429"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709599745",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709538618",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709541429"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938"
-   ]
-  },
-  "E_prod+qa": {
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709509610",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709500137::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709512961"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709501845",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709506360",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709540418",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709507102",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709508416"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709501845::q1": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709532938",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709531571",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709539218",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709502352"
-   ],
-   "6aab5f3a8eb3c7c1586b0b07::178961593709502352::q0": [
-    "6aab5f3a8eb3c7c1586b0b07::178961593709527156",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709530106",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709528187",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709550146",
-    "6aab5f3a8eb3c7c1586b0b07::178961593709520022"
-   ]
-  }
- }
+ ]
 }

@@ -1,10 +1,9 @@
 """递归字符文本切片器，对齐 LangChain RecursiveCharacterTextSplitter
 （chunkSize=800, chunkOverlap=100，默认分隔符 \\n\\n / \\n / 空格 / 空）。
 """
-from typing import List
 
 
-def _split_on_separator(text: str, separator: str) -> List[str]:
+def _split_on_separator(text: str, separator: str) -> list[str]:
     if separator == "":
         return list(text)
     splits = text.split(separator)
@@ -12,9 +11,9 @@ def _split_on_separator(text: str, separator: str) -> List[str]:
     return [s + separator for s in splits[:-1]] + ([splits[-1]] if splits[-1] else [])
 
 
-def _merge_splits(splits: List[str], chunk_size: int, chunk_overlap: int) -> List[str]:
-    docs: List[str] = []
-    current: List[str] = []
+def _merge_splits(splits: list[str], chunk_size: int, chunk_overlap: int) -> list[str]:
+    docs: list[str] = []
+    current: list[str] = []
     total = 0
     for d in splits:
         length = len(d)
@@ -39,14 +38,14 @@ def recursive_character_split(
     chunk_size: int = 800,
     chunk_overlap: int = 100,
     separators: tuple = ("\n\n", "\n", " ", ""),
-) -> List[str]:
+) -> list[str]:
     if not text:
         return []
-    final_chunks: List[str] = []
+    final_chunks: list[str] = []
     separator = separators[0] if separators else ""
     next_separators = separators[1:] if len(separators) > 1 else ()
     splits = _split_on_separator(text, separator)
-    good_splits: List[str] = []
+    good_splits: list[str] = []
     for s in splits:
         if len(s) < chunk_size:
             good_splits.append(s)

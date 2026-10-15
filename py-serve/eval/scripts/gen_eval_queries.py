@@ -11,7 +11,6 @@
 用法: python eval/scripts/gen_eval_queries.py
 """
 import asyncio
-import json
 import sys
 from pathlib import Path
 

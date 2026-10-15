@@ -5,6 +5,7 @@
 """
 import random
 import time
+from typing import Any, cast
 
 from pymilvus import DataType, MilvusClient
 
@@ -47,12 +48,17 @@ def create_collection(client: MilvusClient, name: str) -> None:
 
 
 def _collection_dim(client: MilvusClient, name: str) -> int | None:
-    desc = client.describe_collection(collection_name=name)
+    # pymilvus 3.0.1 的 retry 装饰器让 describe_collection 的推断返回类型变成协程，
+    # 实际运行时返回 dict（MilvusClient.describe_collection），这里显式收窄。
+    desc = cast(dict[str, Any], client.describe_collection(collection_name=name))
     for field in desc.get("fields", []):
         if field.get("name") == "docVector":
             params = field.get("params") or {}
+            dim = params.get("dim")
+            if dim is None:
+                return None
             try:
-                return int(params.get("dim"))
+                return int(dim)
             except (TypeError, ValueError):
                 return None
     return None
@@ -66,8 +72,7 @@ def ensure_collection(client: MilvusClient, name: str) -> None:
     current_dim = _collection_dim(client, name)
     if current_dim is not None and current_dim != Config.QWEN_EMBEDDING_DIMENSIONS:
         print(
-            f"集合 {name} 结构不兼容，删除重建"
-            f"（维度 {current_dim} → {Config.QWEN_EMBEDDING_DIMENSIONS}）"
+            f"集合 {name} 结构不兼容，删除重建（维度 {current_dim} → {Config.QWEN_EMBEDDING_DIMENSIONS}）"
         )
         client.drop_collection(collection_name=name)
         create_collection(client, name)
@@ -112,7 +117,7 @@ def vector_search(query_vector: list[float], user_id: str, limit: int = 10) -> l
     normalized: list[dict] = []
     for hits in results:
         for hit in hits:
-            entity = hit.get("entity", {}) if isinstance(hit, dict) else {}
+            entity = hit.get("entity") or {}
             normalized.append(
                 {
                     "id": hit.get("id"),

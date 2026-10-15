@@ -60,7 +60,7 @@ def assert_image_signature(absolute_path: Path, mimetype: str) -> None:
 
 def resolve_stored_image_path(image_path: str) -> Path:
     """只允许访问 uploads-image 目录的直接子文件，阻止任意路径读写。"""
-    if not image_path or not isinstance(image_path, str):
+    if not image_path:
         raise BizError("图片路径不能为空", 400)
     normalized = image_path.strip().replace("\\", "/")
     if not normalized or "\x00" in normalized:

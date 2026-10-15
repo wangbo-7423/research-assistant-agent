@@ -1,0 +1,61 @@
+{
+ "collection": "_evalcorpus",
+ "docs": [
+  {
+   "docId": "70765ea7c94cbbd2",
+   "title": "Attention Is All You Need",
+   "chunks": 57
+  },
+  {
+   "docId": "221c3eff38f8ab54",
+   "title": "BERT",
+   "chunks": 93
+  },
+  {
+   "docId": "539c212a1a1a355a",
+   "title": "Deep Residual Learning for Image Recognition",
+   "chunks": 85
+  },
+  {
+   "docId": "fae71946ca105ab6",
+   "title": "Generative Adversarial Nets",
+   "chunks": 41
+  },
+  {
+   "docId": "692d30a4cdc2c14d",
+   "title": "GPT-3",
+   "chunks": 328
+  },
+  {
+   "docId": "f75599290ec7d11c",
+   "title": "GPT-4",
+   "chunks": 411
+  },
+  {
+   "docId": "30dc139c6b40f116",
+   "title": "InstructGPT",
+   "chunks": 263
+  },
+  {
+   "docId": "bc016c87c1b2fe24",
+   "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "chunks": 101
+  },
+  {
+   "docId": "407566398e5f5fe5",
+   "title": "The Illustrated Transformer",
+   "chunks": 46
+  },
+  {
+   "docId": "295f51b797d926af",
+   "title": "ViT",
+   "chunks": 98
+  },
+  {
+   "docId": "756b2d33d2afc37a",
+   "title": "近端策略优化",
+   "chunks": 40
+  }
+ ],
+ "totalChunks": 1563
+}

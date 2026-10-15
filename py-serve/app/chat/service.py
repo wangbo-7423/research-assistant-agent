@@ -9,12 +9,14 @@ import asyncio
 import json
 import traceback
 from datetime import datetime
+from typing import cast
 
 from bson import ObjectId
+from openai import AsyncOpenAI
+from openai.types.chat import ChatCompletionMessageParam
 
 from ..config import Config
 from ..deps import redis_client
-from ..fileanagement.embeddings import embedding_client
 from ..fileanagement.image_storage import assert_image_signature, resolve_stored_image_path
 from ..fileanagement.service import hybrid_search, query_files_by_ids
 from .prompts import TOOLS_DATA, build_system_prompt
@@ -23,22 +25,20 @@ CHAT_COLLECTION = "chatdata"
 STREAM_SEPARATOR = "###ABC###"
 HISTORY_TTL = 10800  # redis 会话缓存 3 个小时过期
 
-_LLM_CLIENT = None
+_llm_client_singleton: AsyncOpenAI | None = None
 
 
-def _llm_client():
+def _llm_client() -> AsyncOpenAI:
     """对话/视觉统一走 DeepSeek（deepseek-flash 自带多模态）；embedding 仍走通义。"""
-    global _LLM_CLIENT
-    if _LLM_CLIENT is None:
-        from openai import AsyncOpenAI
-
-        _LLM_CLIENT = AsyncOpenAI(
+    global _llm_client_singleton
+    if _llm_client_singleton is None:
+        _llm_client_singleton = AsyncOpenAI(
             api_key=Config.DEEPSEEK_API_KEY,
             base_url=Config.DEEPSEEK_BASE_URL,
             timeout=60,
             max_retries=2,
         )
-    return _LLM_CLIENT
+    return _llm_client_singleton
 
 
 class StreamWriter:
@@ -118,9 +118,9 @@ async def encode_image(image_path: str, mimetype: str) -> dict:
 async def model_vl_res(message_list: list[dict], image_url_obj: dict):
     """调用多模态大模型，理解图片（deepseek-flash 自带视觉能力）。"""
     last_user_message = message_list[-1]
-    return await _llm_client().chat.completions.create(
-        model=Config.DEEPSEEK_MODEL,
-        messages=[
+    messages = cast(
+        "list[ChatCompletionMessageParam]",
+        [
             {
                 "role": "system",
                 "content": (
@@ -137,6 +137,10 @@ async def model_vl_res(message_list: list[dict], image_url_obj: dict):
                 ],
             },
         ],
+    )
+    return await _llm_client().chat.completions.create(
+        model=Config.DEEPSEEK_MODEL,
+        messages=messages,
         stream=True,
         extra_body={"thinking": {"type": "disabled"}},
     )

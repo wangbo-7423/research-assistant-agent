@@ -7,7 +7,7 @@
 """
 import traceback
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, cast
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
@@ -70,10 +70,13 @@ def register_exception_handlers(app: FastAPI) -> None:
 
     @app.exception_handler(StarletteHTTPException)
     async def http_exception_handler(request: Request, exc: StarletteHTTPException):
-        detail = exc.detail
-        message = detail if isinstance(detail, str) else (detail or "Internal server error")
-        if isinstance(detail, dict) and "message" in detail:
-            message = detail["message"]
+        detail = cast(object, exc.detail)
+        if isinstance(detail, dict):
+            message: object = detail.get("message", detail)
+        elif isinstance(detail, str):
+            message = detail
+        else:
+            message = detail or "Internal server error"
         return JSONResponse(
             status_code=exc.status_code,
             content=error_body(exc.status_code, message, request.url.path),

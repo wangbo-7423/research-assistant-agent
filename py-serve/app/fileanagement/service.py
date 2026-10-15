@@ -33,11 +33,6 @@ def validate_doc_file(filename: str, mimetype: str, size: int) -> None:
         raise BizError("文件大小不能超过 5MB", 400)
 
 
-def _kb_size(size_bytes: int) -> str:
-    # fileSize落库单位是字节，换算成KB展示，保留1位小数
-    return f"{size_bytes / 1024:.1f}KB"
-
-
 async def handle_upload(
     files: list[tuple[str, str, int, bytes]],
     user_id: str,

@@ -11,7 +11,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from .chat.router import router as chat_router
-from .config import Config
 from .fileanagement.image_storage import ensure_image_upload_dir
 from .fileanagement.router import router as fileanagement_router
 from .response import register_exception_handlers

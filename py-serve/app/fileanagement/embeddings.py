@@ -69,8 +69,7 @@ class EmbeddingClient:
             # 阿里 API 可能跳过空文本导致返回数量不足，降级为逐条生成补齐
             if len(batch_vectors) != len(batch):
                 print(
-                    f"批次 {batch_no} 返回数量不符: 期望 {len(batch)}, "
-                    f"实际 {len(batch_vectors)}，降级为逐条生成"
+                    f"批次 {batch_no} 返回数量不符: 期望 {len(batch)}, 实际 {len(batch_vectors)}，降级为逐条生成"
                 )
                 batch_vectors = []
                 for text in batch:

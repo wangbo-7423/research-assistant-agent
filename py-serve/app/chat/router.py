@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from ..deps import get_current_user, get_db
+from ..deps import AuthUser, get_current_user, get_db
 from ..response import BizError, wrap_response
 from . import service
 from .service import CHAT_COLLECTION, StreamWriter
@@ -36,11 +36,11 @@ class SendMessageDto(BaseModel):
 
 
 @router.post("/sendmessage")
-async def send_message(body: SendMessageDto, request: Request, user: dict = Depends(get_current_user)):
+async def send_message(body: SendMessageDto, request: Request, user: AuthUser = Depends(get_current_user)):
     if not body.content or not body.content.strip():
         raise BizError("请输入问题", 400)
 
-    user_id = user.get("token")
+    user_id = user.user_id
     db = get_db()
     files_col = db["fileanagements"]
     chat_col = db[CHAT_COLLECTION]
@@ -75,20 +75,20 @@ async def send_message(body: SendMessageDto, request: Request, user: dict = Depe
 
 
 @router.get("/sessionlist")
-async def session_list(request: Request, user: dict = Depends(get_current_user)):
-    result = await service.get_session_list(user.get("token"), get_db()[CHAT_COLLECTION])
+async def session_list(request: Request, user: AuthUser = Depends(get_current_user)):
+    result = await service.get_session_list(user.user_id, get_db()[CHAT_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
 @router.get("/history")
-async def history(request: Request, sessionId: str, user: dict = Depends(get_current_user)):
+async def history(request: Request, sessionId: str, user: AuthUser = Depends(get_current_user)):
     if not sessionId:
         raise BizError("对话id不能为空", 400)
-    result = await service.get_history(user.get("token"), sessionId, get_db()[CHAT_COLLECTION])
+    result = await service.get_history(user.user_id, sessionId, get_db()[CHAT_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
 @router.delete("/deletesession")
-async def delete_session(request: Request, sessionId: str, user: dict = Depends(get_current_user)):
-    result = await service.delete_session(user.get("token"), sessionId, get_db()[CHAT_COLLECTION])
+async def delete_session(request: Request, sessionId: str, user: AuthUser = Depends(get_current_user)):
+    result = await service.delete_session(user.user_id, sessionId, get_db()[CHAT_COLLECTION])
     return wrap_response(result, request.url.path)

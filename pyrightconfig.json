@@ -1,0 +1,13 @@
+{
+  "typeCheckingMode": "standard",
+  "pythonVersion": "3.13",
+  "include": ["py-serve"],
+  "exclude": ["**/node_modules", "**/__pycache__", "**/.venv", "**/venv"],
+  "reportUnusedImport": "warning",
+  "reportUnusedVariable": "warning",
+  "reportUnusedFunction": "warning",
+  "reportDeprecated": "warning",
+  "reportUnnecessaryIsInstance": "warning",
+  "reportImplicitStringConcatenation": "warning",
+  "reportConstantRedefinition": "warning"
+}

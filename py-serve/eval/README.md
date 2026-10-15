@@ -4,56 +4,86 @@
 「每个 chunk 预先用模型生成的多个问题」（检索时问题对问题匹配，命中问题即召回其源 chunk），
 哪种召回更合适？
 
-## 实验设置
+## v2 实验设置（多文档大语料，当前结论以此为准）
 
 | 项 | 值 |
 |---|---|
-| 语料 | Milvus 真实生产数据：RAG 论文（Lewis et al. 2020）204 个 chunk |
-| QA 索引 | 每个 chunk 用 `deepseek-flash` 生成 5~6 个索引问题，共 **1145** 条，通义 `text-embedding-v3`（1024 维）向量化 |
-| 测试查询 | 每个 chunk 用 **`deepseek-v4-pro`**（与索引生成不同模型）生成 2 条用户口语化问题，共 **408** 条 |
-| 金标 | 每条查询的源 chunk（单一金标），指标为 Recall@k（=HitRate@k）与 MRR@5 |
+| 语料 | **10 篇经典论文**（RAG / Attention / Illustrated Transformer / BERT / GPT-3 / GPT-4 / InstructGPT / ResNet / GAN / ViT），生产解析+切片后共 **1523 chunk**（`docs/` → `eval/scripts/ingest_corpus.py` 入库 `_evalcorpus`） |
+| QA 索引 | 每个 chunk 用 `deepseek-flash` 生成 5~6 个索引问题，共 **8644** 条，通义 `text-embedding-v3`（1024 维）向量化 |
+| 测试查询 | 每个 chunk 用 **`deepseek-v4-pro`**（与索引生成不同模型）生成 2 条用户口语化问题，共 **3046** 条 |
+| 金标 | 每条查询的源 chunk；同时报告**文档级召回 DocRecall@k**（top-k 出现源文档任一 chunk 即命中，抗金标噪声） |
 | 生产参数 | RRF k=60，向量 0.7 / 关键词 0.3，最终 Top5 送入生成 |
 
-### 偏差控制（怎么测才可信）
+### 偏差控制
 
-1. **生成器隔离**：索引问题（flash，术语密集风格）与测试查询（v4-pro，口语化、禁止照抄原文措辞）
-   由不同模型、不同提示词独立生成，避免「自己问自己」的同源泄漏；
-2. **残余偏差**：测试查询仍然是从同一 chunk 生成出来的，分布上更接近「问题对问题」，
-   QA 路的成绩存在被高估的可能，解读结论时要打折；
-3. **生产对齐**：向量臂直接使用 Milvus 中已存的 chunk 向量；关键词臂复用生产
-   `extract_keywords`（DeepSeek 提词），词面匹配按命中数排序近似 Milvus LIKE 语义。
+1. **生成器隔离**：索引问题（flash，术语密集）与测试查询（v4-pro，口语化、禁止照抄原文）
+   由不同模型独立生成，避免「自己问自己」；
+2. **残余偏差**：测试查询仍从同一 chunk 生成，分布偏向「问题对问题」，QA 路成绩解读要打折；
+3. **多文档干扰**：10 篇论文混在一个集合里，同名概念（如 GPT-3/GPT-4 都讲 few-shot、
+   BERT/GPT 都讲预训练）构成真实干扰源，比 v1 单文档严格得多；
+4. **数据完整性**：v1 曾因 Milvus 大 limit 拉取向量列跨 segment 错位导致 chunk 向量臂结果作废
+   （自相似 0.55 而非 1.0）。v2 的 dump 改为分页拉取标量字段 + 双页大小互验 + 向量按文本重算，
+   保证 chunks ↔ vectors 按构造对齐。
 
-## 结果（408 条查询）
+## 结果（3046 条查询，chunk 级金标）
 
-| 检索臂 | Recall@1 | Recall@3 | Recall@5 | MRR@5 |
-|---|---|---|---|---|
-| A chunk_vec（纯向量，query↔chunk） | 44.9% | 65.4% | 74.5% | 0.573 |
-| B qa（query↔索引问题→chunk） | **51.0%** | **74.5%** | 80.1% | 0.638 |
-| C chunk+qa（A+B RRF 融合） | **51.7%** | 73.3% | **80.6%** | **0.645** |
-| D prod_hybrid（向量+关键词，生产现状） | 42.2% | 63.5% | 74.3% | 0.560 |
-| E prod+qa（D+B RRF 融合） | 51.5% | 72.8% | **80.6%** | 0.644 |
+| 检索臂 | Recall@1 | Recall@3 | Recall@5 | DocRecall@5 | MRR@5 | macro-Recall@5 |
+|---|---|---|---|---|---|---|
+| A chunk_vec（纯向量，query↔chunk） | 39.4% | 60.0% | 66.6% | 96.2% | 0.511 | 67.5% |
+| B qa（query↔索引问题→chunk） | 45.7% | 66.1% | 73.2% | 97.5% | 0.573 | 75.7% |
+| **C chunk+qa（A+B RRF 融合）** | **45.8%** | **68.5%** | **77.6%** | **97.7%** | **0.594** | **79.5%** |
+| D prod_hybrid（向量+关键词，生产现状） | 37.2% | 59.0% | 67.5% | 96.3% | 0.501 | 68.4% |
+| E prod+qa（D+B 融合） | 45.7% | 68.9% | 77.1% | 97.7% | 0.594 | 78.8% |
+
+### 按论文分组（Recall@5，验证跨文档稳健性）
+
+| 论文 | n | A | B | C | D |
+|---|---|---|---|---|---|
+| Attention Is All You Need | 114 | .605 | **.798** | .763 | .614 |
+| BERT | 186 | .688 | .790 | **.849** | .694 |
+| ResNet | 170 | .694 | .806 | **.829** | .694 |
+| GPT-3 | 656 | .651 | .726 | **.787** | .671 |
+| GPT-4 | 822 | .670 | .706 | **.740** | .670 |
+| GAN | 82 | .720 | .793 | **.854** | .720 |
+| InstructGPT | 526 | .663 | .703 | **.768** | .673 |
+| RAG | 202 | .678 | .728 | .757 | **.708** |
+| Illustrated Transformer | 92 | .783 | .804 | **.848** | .783 |
+| ViT | 196 | .602 | .719 | **.755** | .617 |
+
+**B 在 10/10 篇上优于 A，C 在 9/10 篇上是该论文最优**（唯一例外 Attention：B 单独最优），
+结论不依赖特定论文。
+
+## v1 → v2 对比（规模影响）
+
+| 臂 | v1（1 篇 204 chunk，408 查询）R@5 | v2（10 篇 1523 chunk，3046 查询）R@5 |
+|---|---|---|
+| A chunk_vec | 74.5% | 66.6% |
+| B qa | 80.1% | 73.2% |
+| C chunk+qa | 80.6% | 77.6% |
+
+语料扩大 7.5 倍后所有臂的绝对值都下降（干扰变多，符合预期），**但排序完全不变**：
+B > A、C > B 的差距稳定在 6~11pt。v1 的方向性结论在更大规模上成立。
 
 ## 结论
 
-1. **QA 问题检索明确优于 chunk 直接检索**：Recall@5 +5.6pt（74.5%→80.1%）、Recall@3 +9.1pt、
-   MRR +0.065。典型赢法是口语化/模糊指代的查询（"生成部分用的是啥模型？"），问题对问题
-   匹配抹平了「用户问法」与「论文书面语」之间的语义鸿沟。
-2. **融合略优于单用 QA**：Recall@5 80.6%、MRR@5 0.645 均为全场最高。QA 输的场景是
-   概念对比类问题（"纯参数化模型有啥缺点？"），chunk 向量反而排第 1——两条路互补，
-   融合能兜住彼此的盲区。
-3. **现有混合检索里关键词路贡献为负**：D 比 A 还低 0.2~2.7pt。DeepSeek 提词质量不差，
-   但口语化查询提出来的词与论文用语不一致，LIKE 词面匹配基本失效。
-4. **落地建议**：检索链路改为「chunk 向量 + QA 问题向量」双路 RRF 融合，替换或弱化
-   关键词路。预生成问题索引的成本：每 chunk 1 次 LLM 调用 + 5~6 次 embedding，
-   上传时离线完成即可。
+1. **QA 问题检索稳定优于 chunk 直接检索**（Recall@5 +6.6pt，Recall@1 +6.3pt），
+   优势来源是把「用户问法 ↔ 论文书面语」的鸿沟转移到离线阶段由模型弥合；
+2. **双路融合（chunk 向量 + QA 问题向量，RRF 0.5/0.5）是最终推荐**：
+   全场最高 Recall@5 77.6% / MRR 0.594，且文档级召回 97.7% 基本饱和；
+3. **关键词路价值有限**：D 比 A 只高 0.9pt（DeepSeek 提词 + LIKE 匹配在口语查询下基本失效），
+   落地时应把它的算力份额让给 QA 问题路；
+4. **落地建议**：上传时离线为每个 chunk 生成 5~6 个索引问题（1 次 LLM + 5~6 次 embedding/chunk），
+   在线检索改为「query→chunk 向量」+「query→问题向量→映射 chunk」双路 RRF。
 
 ## 复现
 
 ```bash
-python eval/scripts/dump_chunks.py        # 拉取语料
+python eval/scripts/ingest_corpus.py      # docs/ 论文 → 生产链路入库 _evalcorpus
+python eval/scripts/dump_chunks.py        # 拉取语料（分页+互验，向量重算保证对齐）
 python eval/scripts/gen_qa_index.py       # 生成 QA 索引（支持断点续跑）
-python eval/scripts/gen_eval_queries.py   # 生成测试查询
-python eval/scripts/run_recall_eval.py    # 跑五臂对比
+python eval/scripts/gen_eval_queries.py   # 生成测试查询（另一模型，防同源偏差）
+python eval/scripts/run_recall_eval.py    # 跑五臂对比 + 按论文细分
 ```
 
-明细数据在 `data/recall_eval_results.json`（含 QA 赢/输样本清单）。
+明细：`data/recall_eval_results.json`（含 QA 赢/输样本、按论文细分）；v1 小语料数据存档于
+`data/v1_small_204chunks/`。
