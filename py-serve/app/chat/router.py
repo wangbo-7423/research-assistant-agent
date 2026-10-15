@@ -69,8 +69,12 @@ async def send_message(body: SendMessageDto, request: Request, user: AuthUser = 
     asyncio.create_task(run())
     return StreamingResponse(
         write.stream(),
-        media_type="text/plain; charset=utf-8",
-        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
     )
 
 

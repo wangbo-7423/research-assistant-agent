@@ -22,7 +22,6 @@ from ..fileanagement.service import hybrid_search, query_files_by_ids
 from .prompts import TOOLS_DATA, build_system_prompt
 
 CHAT_COLLECTION = "chatdata"
-STREAM_SEPARATOR = "###ABC###"
 HISTORY_TTL = 10800  # redis 会话缓存 3 个小时过期
 
 _llm_client_singleton: AsyncOpenAI | None = None
@@ -42,7 +41,7 @@ def _llm_client() -> AsyncOpenAI:
 
 
 class StreamWriter:
-    """以 asyncio.Queue 模拟 Express 的 res.write / res.end 流式响应。"""
+    """以 asyncio.Queue 模拟 Express 的 res.write / res.end 流式响应，按 SSE 帧格式输出。"""
 
     def __init__(self):
         self.queue: asyncio.Queue = asyncio.Queue()
@@ -51,7 +50,10 @@ class StreamWriter:
     async def notify(self, stream_data: dict) -> None:
         if self._closed:
             return
-        await self.queue.put(json.dumps(stream_data, ensure_ascii=False) + STREAM_SEPARATOR)
+        # SSE 帧：data: <json>\n\n
+        # json.dumps 会把内容中的换行转义成字面 \n，因此单帧必然是单行，天然满足 SSE 规范，
+        # 不需要像普通文本那样处理多行 data 的合并。
+        await self.queue.put(f"data: {json.dumps(stream_data, ensure_ascii=False)}\n\n")
 
     async def end(self) -> None:
         if not self._closed:

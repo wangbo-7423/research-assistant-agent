@@ -61,7 +61,7 @@ project-user/
     ├── store/
     │   └── index.ts            # Pinia projectStore：userInfo / sessionId / messageList / 弹窗状态
     ├── api/
-    │   ├── request.ts          # Axios 实例（JWT 注入、401 处理）+ fetch 流式解析（###ABC###）
+    │   ├── request.ts          # Axios 实例（JWT 注入、401 处理）+ fetchEventSource 流式（SSE）
     │   └── getItemChat.ts      # 组合式函数 userFileUploader（上传/校验/删除）
     ├── types/
     │   └── index.d.ts          # 全局类型定义（API 响应 / 消息 / 会话等）
@@ -125,14 +125,24 @@ App.vue
 - 响应拦截器处理 401（清除登录态）与网络错误
 - 封装了登录注册、会话管理、文件上传删除、知识库等全部后端接口
 
-### 流式对话（fetch + ###ABC###）
+### 流式对话（fetchEventSource + SSE）
 
-`SendMessageApi` 使用原生 `fetch`（ReadableStream）POST 到 `/chat/sendmessage`，
-响应体以 **`###ABC###`** 作为 JSON 块分隔符，逐块解析并写入 Pinia 响应式对象实时渲染：
+`SendMessageApi` 使用 `@microsoft/fetch-event-source` POST 到 `/chat/sendmessage`。
+响应为标准 SSE（`Content-Type: text/event-stream`），帧格式 `data: <json>`、空行分隔，
+由库负责切分，`onmessage` 直接拿到 `ev.data` 并写入 Pinia 响应式对象实时渲染：
 
 ```ts
-const parts = buffer.split('###ABC###')
+onmessage(ev) {
+  handleChunk(JSON.parse(ev.data) as AiMessageType)
+}
 ```
+
+之所以用该库而非浏览器原生 `EventSource`：本接口需要 `POST` + `Authorization` 请求头 +
+JSON 请求体，而 `EventSource` 只能发无自定义头、无 body 的 `GET`。
+
+> 该库的 `onerror` 必须主动抛出以禁用默认自动重连——重连会重新 POST 一遍完整问题，
+> 导致 LLM 重复计费与重复回答。
+> 协议选型详见 [design/05](../design/05-流式协议SSE改造.md)。
 
 支持的事件类型：
 

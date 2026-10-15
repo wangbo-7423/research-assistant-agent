@@ -1,6 +1,7 @@
 // 后端地址通过环境变量配置（见项目根 .env 的 VITE_API_BASE_URL）。
 // 默认仍是本地 3000 端口，保持原有行为不变；部署/换端口时改 .env 即可。
 const requestUrl = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:3000"
+import { fetchEventSource } from '@microsoft/fetch-event-source'
 import axios from "axios";
 import type{ UserLoginType, UserRegisterType, ApiResponse, UserInfoResType, UploadResponse, UploadImageResponse, kbFileListType, SendMessageType, AiMessageType, MessageListType, SessionListItemType } from "@/types/index"
 import { projectStore } from "@/store/index"
@@ -89,28 +90,6 @@ export const SendMessageApi = async(params:SendMessageType, aiMessageObj: Messag
   if (uploadImageList) {
     body.uploadImageList = uploadImageList
   }
-  const response = await fetch(`${requestUrl}/chat/sendmessage`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + (project.userInfo?.token || '')
-    },
-    body: JSON.stringify(body)
-  })
-  if(!response.ok) {
-    const errorText = await response.text()
-    console.log('发送失败', errorText)
-    ElMessage('发送失败,你可以尝试重试')
-    aiMessageObj.loadingCircle = false
-    throw new Error('发送失败' + errorText)
-  }
-  const reader = response.body?.getReader()
-  if (!reader) {
-    ElMessage('发送失败,你可以尝试重试')
-    aiMessageObj.loadingCircle = false
-    throw new Error('发送失败')
-  }
-
   // 处理单个 JSON 块
   const handleChunk = (aiMessage: AiMessageType) => {
     // 新会话id
@@ -139,39 +118,52 @@ export const SendMessageApi = async(params:SendMessageType, aiMessageObj: Messag
     }
   }
 
-  // TCP 分片可能把一个 JSON 块切开，需要先累积缓冲区再按分隔符切分
-  const decoder = new TextDecoder()
-  let buffer = ''
-  while(true){
-    const {done, value} = await reader.read()
-    if (done) {
-      break
-    }
-    buffer += decoder.decode(value, {stream: true})
-    const parts = buffer.split('###ABC###')
-    // 最后一段可能不完整，留到下次拼接
-    buffer = parts.pop() || ''
-    for (const part of parts) {
-      if(part.trim() === '') {
-        continue
-      }
-      try {
-        handleChunk(JSON.parse(part) as AiMessageType)
-      } catch (e) {
-        console.log('流式数据解析失败', part, e)
-      }
-    }
+  // SSE 流式对话。
+  // 这里不用 EventSource 而用 fetch：本接口需要 POST + Authorization 请求头 + JSON 请求体，
+  // 这三样 EventSource 一律不支持（它只能发无自定义头、无 body 的 GET）。
+  // @microsoft/fetch-event-source 正是用 fetch 实现的 SSE 客户端，保留了上述能力，
+  // 并负责半包、多行 data、注释行等协议细节，因此无需再手工累积缓冲区切分。
+  try {
+    await fetchEventSource(`${requestUrl}/chat/sendmessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + (project.userInfo?.token || '')
+      },
+      body: JSON.stringify(body),
+
+      // 页面切到后台时保持连接（库默认会主动断开），否则用户切走标签页回答就中断了
+      openWhenHidden: true,
+
+      // 响应头就绪：非 2xx 时后端返回的是普通 JSON 错误体而非 SSE 流，必须在此拦截
+      async onopen(response) {
+        if (!response.ok) {
+          const errorText = await response.text()
+          console.log('发送失败', errorText)
+          ElMessage('发送失败,你可以尝试重试')
+          throw new Error('发送失败' + errorText)
+        }
+      },
+
+      // 每收到一帧消息，data 字段已由库按 SSE 规范切分好
+      onmessage(ev) {
+        if (!ev.data) return
+        try {
+          handleChunk(JSON.parse(ev.data) as AiMessageType)
+        } catch (e) {
+          console.log('流式数据解析失败', ev.data, e)
+        }
+      },
+
+      // 出错或断流：必须抛出以禁用库的默认自动重连。
+      // 重连会重新 POST 一遍完整问题，导致 LLM 重复计费、重复创建回答。
+      onerror(err) {
+        throw err
+      },
+    })
+  } finally {
+    aiMessageObj.loadingCircle = false
   }
-  // 冲刷解码器并处理缓冲区里剩余的最后一块
-  buffer += decoder.decode()
-  if(buffer.trim() !== ''){
-    try {
-      handleChunk(JSON.parse(buffer) as AiMessageType)
-    } catch (e) {
-      console.log('流式数据解析失败', buffer, e)
-    }
-  }
-  aiMessageObj.loadingCircle = false
 }
 
 // 注册接口

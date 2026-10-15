@@ -104,7 +104,7 @@ export type SendMessageType = {
     isKnowledgeBased?:boolean;
 }
 
-// 后端流式推送的数据（###ABC### 分隔的 JSON 块）
+// 后端流式推送的数据（SSE 协议的 data: 帧，负载为 JSON）
 export type AiMessageType = {
     type?: 'readDocument' | 'queryKB' | 'answer' | 'sessionId' | 'error';
     statusInfo?: 'inProgress' | 'completed';

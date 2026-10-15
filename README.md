@@ -34,7 +34,7 @@ Research-Assistant-Agent 是一个**科研知识库问答（RAG）平台**，核
 ├─ Milvus（向量检索）                  ├─ Vue Router 5（Hash 模式）
 ├─ DeepSeek deepseek-flash（对话/视觉/关键词）├─ Element Plus（UI 组件库）
 ├─ 通义 text-embedding-v3（向量化）     ├─ markdown-it + KaTeX（Markdown / 公式）
-└─ OpenAI SDK 兼容调用                 └─ Axios + fetch 流式（###ABC### 协议）
+└─ OpenAI SDK 兼容调用                 └─ Axios + fetchEventSource 流式（SSE）
 ```
 
 ## 系统架构
@@ -44,7 +44,7 @@ Research-Assistant-Agent 是一个**科研知识库问答（RAG）平台**，核
 │                project-user（前端）           │
 │    Vue3 SPA · 会话列表 / 消息流 / 知识库 / 登录 │
 └──────────────────┬──────────────────────────┘
-                   │  HTTP REST + 流式（###ABC### 分隔）
+                   │  HTTP REST + 流式（SSE）
                    ▼
 ┌─────────────────────────────────────────────┐
 │                py-serve（后端）               │

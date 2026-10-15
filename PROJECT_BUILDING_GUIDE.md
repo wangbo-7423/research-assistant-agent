@@ -287,36 +287,51 @@ GET  /open-image/<file>        → 静态访问
 3. 另外提供 sessionlist（会话列表）、history（会话历史）、deletesession（删会话+清缓存）。
 ```
 
-### 7.2 流式协议（`###ABC###` 分隔）
+### 7.2 流式协议（SSE）
 
-前端要"打字机"效果，后端就需要流式。设计了一个极简协议：
-**每个 JSON 块用 `###ABC###` 结尾分隔**（`notifyStream`）：
+前端要"打字机"效果，后端就需要流式。当前采用**标准 SSE**
+（早期版本用过私有分隔符 `###ABC###`，已废弃，改造说明见
+[design/05](design/05-流式协议SSE改造.md)）：
 
-```json
-{"type":"sessionId","sessionId":"..."}###ABC###
-{"type":"readDocument","content":"正在解析文档..."}###ABC###
-{"type":"queryKB","content":"正在检索知识库..."}###ABC###
-{"type":"answer","content":"增量文本"}###ABC###
-{"type":"error","content":"..."}###ABC###
+响应头 `Content-Type: text/event-stream`，帧格式为 `data: <json>`，以空行 `\n\n` 分隔：
+
+```
+data: {"type":"sessionId","sessionId":"..."}
+
+data: {"type":"readDocument","statusInfo":"inProgress","promptInfo":"正在阅读文档","fileList":[]}
+
+data: {"type":"queryKB","statusInfo":"inProgress","promptInfo":"正在检索知识库","fileList":[]}
+
+data: {"type":"answer","content":"增量文本"}
+
+data: {"type":"error","content":"..."}
+
 ```
 
 事件类型：`sessionId`（新会话首帧）、`readDocument`/`queryKB`（进度通知）、`answer`（增量回复）、`error`。
 约束（踩坑总结）：`readDocument`/`queryKB` 是**单槽位覆盖式**——文件列表只能最后发一次，不能交错。
+
+> 历史协议（已废弃）：早期用 `###ABC###` 作为 JSON 块分隔符，前端需手工累积 buffer 切分，
+> 且无任何标准客户端可复用。现已改为标准 SSE。
 
 ### 7.3 上下文组装（roleDefinition.ts）
 
 system prompt 分三层：**核心层（角色设定）→ 规则层（回答规范）→ 工具层（函数定义）**。
 知识库问答时把召回片段 + 上传文档全文注入 system prompt，实现"基于资料回答"。
 
-### 7.4 前端流式消费（fetch + ReadableStream）
+### 7.4 前端流式消费（fetchEventSource）
 
 ```text
-SendMessageApi 用原生 fetch 的 response.body.getReader() 读流：
-1. TextDecoder 边读边解码，累积到 buffer；
-2. 按 '###ABC###' split，最后一段可能不完整留到下次拼（TCP 分片会把一个 JSON 块切开）；
-3. 每个块 JSON.parse 后分发：sessionId 存 store、readDocument/queryKB 更新引用卡片、
+SendMessageApi 用 @microsoft/fetch-event-source POST 到 /chat/sendmessage：
+1. 该库基于 fetch 实现，因此仍支持 POST + Authorization 请求头 + JSON 请求体
+   （浏览器原生 EventSource 这三样都不支持，这是没直接用它的原因）；
+2. onmessage 收到的 ev.data 已由库按 SSE 规范切好，直接 JSON.parse 分发：
+   sessionId 存 store、readDocument/queryKB 更新引用卡片、
    answer 追加到响应式消息对象（必须在 messageList 里 push 过的对象上改，才能触发视图更新）；
-4. 全部读完把 loading 置 false。
+3. onopen 检查 response.ok：非 2xx 时后端返回的是普通 JSON 错误体而非 SSE 流；
+4. onerror 主动抛出以禁用库的默认自动重连——重连会重新 POST 完整问题，
+   导致 LLM 重复计费与重复回答；
+5. openWhenHidden: true，避免页面切到后台时连接被库主动断开。
 ```
 
 ---
@@ -335,7 +350,7 @@ SendMessageApi 用原生 fetch 的 response.body.getReader() 读流：
   ↓
 第三步：对话 ✅
   ChatInput.vue → POST /chat/sendmessage（fetch 流式）→ 打字机输出
-  （此时验证 ###ABC### 协议、Redis 上下文、持久化）
+  （此时验证 SSE 协议、Redis 上下文、持久化）
   ↓
 第四步：会话管理 ✅
   ChatHistory.vue → sessionlist / history / deletesession

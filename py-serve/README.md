@@ -35,7 +35,7 @@ py-serve/
     │   ├── milvus_store.py #   Milvus 集合操作（每用户一个集合）
     │   ├── keywords.py     #   关键词提取（DeepSeek → 规则降级）
     │   └── service.py      #   上传/删除/列表/向量/关键词/混合检索（RRF）
-    └── chat/               # 对话（流式 ###ABC### 协议）
+    └── chat/               # 对话（流式 SSE 协议）
         ├── prompts.py      #   系统提示词 + 意图识别工具（clarify_intent）
         └── service.py      #   朴素 RAG：意图改写 → 混合检索 → 知识库规则回答
 ```
@@ -48,8 +48,9 @@ py-serve/
 3. 第二轮调用：注入「知识库问答规则」层，基于【片段N·文件名】格式的检索结果流式回答；
 4. 无命中时发送占位符 `&没有检索到相关文档&`，由提示词规则控制兜底话术。
 
-流式协议：JSON 块以 `###ABC###` 分隔，类型有
-`sessionId` / `readDocument` / `queryKB` / `answer` / `error`。
+流式协议：标准 SSE（`Content-Type: text/event-stream`，帧格式 `data: <json>`、空行分隔），
+消息类型有 `sessionId` / `readDocument` / `queryKB` / `answer` / `error`。
+协议选型与改造说明见 [design/05](../design/05-流式协议SSE改造.md)。
 
 ## 启动
 
