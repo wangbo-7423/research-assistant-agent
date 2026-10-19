@@ -1,7 +1,7 @@
 <template>
   <!-- 登录界面 -->
   <el-dialog
-    v-model="project.showLoginPopup"
+    v-model="ui.showLoginPopup"
     width="400px"
     append-to-body :close-on-click-modal="false"
     :close-on-press-escape="false"
@@ -29,8 +29,9 @@
 import { ref } from 'vue'
 import { validators } from '@/utils/validators'
 import { UserRegisterApi, UserLoginApi } from "@/api/request"
-import { projectStore } from "@/store/index"
-const project = projectStore()
+import { useUserStore, useUiStore } from "@/store/index"
+const user = useUserStore()
+const ui = useUiStore()
 const phoneNumber = ref('')
 const passWord = ref('')
 const activeName = ref('Login')
@@ -45,8 +46,8 @@ const userLogin = async() => {
       phoneNumber: phoneNumber.value,
       password: passWord.value,
     })
-    project.userLogin(res.data)
-    project.showLoginPopup = false
+    user.userLogin(res.data)
+    ui.closeLoginPopup()
     ElMessage.success('登录成功')
   } catch {
     // 校验或请求错误已分别由 validators / 拦截器弹窗提示

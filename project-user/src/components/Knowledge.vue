@@ -1,6 +1,6 @@
 <template>
   <el-drawer
-    v-model="project.knowledgePopup"
+    v-model="ui.knowledgePopup"
     title="个人知识库管理"
     append-to-body
     size="600"
@@ -39,14 +39,14 @@
 
 <script setup lang="ts">
 import { CloseBold } from '@element-plus/icons-vue'
-import { projectStore } from "@/store/index"
+import { useUiStore } from "@/store/index"
 import { UploadkbApi, DeletekbFileApi, GetkbFileListApi } from "@/api/request"
 import { userFileUploader } from "@/api/getItemChat"
 import docxIcon from "@/assets/docx.png"
 import pdfIcon from "@/assets/pdf.png"
 import { ElLoading } from 'element-plus'
 import { watch } from 'vue'
-const project = projectStore()
+const ui = useUiStore()
 const uploadFileType = "application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 const { uploadFileItem, fileInputRef, triggerFileInput, handleFileUpload } = userFileUploader({ page: "knowledge", uploadApi: UploadkbApi })
 // 删除知识库文件
@@ -66,7 +66,7 @@ const deleteFilekb = async (id: string, index: number) => {
 }
 // 请求知识库文件：每次打开抽屉都重新拉取，保证列表是最新的
 watch(
-  () => project.knowledgePopup,
+  () => ui.knowledgePopup,
   async (newVal) => {
     if(newVal){
       try {

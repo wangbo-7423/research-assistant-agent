@@ -1,11 +1,8 @@
 // 文件上传（对话框、知识库）
 import { ref } from "vue"
 import type { UploadResponse, UploadFileItem } from "@/types/index"
-import { projectStore } from "@/store/index"
+import { useUserStore } from "@/store/index"
 import { ElLoading } from "element-plus";
-
-// 惰性获取 store：模块加载早于 pinia 安装，顶层调用会报错
-const getStore = () => projectStore()
 
 interface UserFileUploaderOptions {
   page: "knowledge" | "chatinput";
@@ -29,7 +26,7 @@ export function userFileUploader(options: UserFileUploaderOptions) {
         const files = input.files
         if (!files || files.length === 0) return
         // 如果没有登录，禁止上传
-        if (!getStore().userInfo) {
+        if (!useUserStore().isLogin) {
             ElMessage('请先登录')
             input.value = ''
             return

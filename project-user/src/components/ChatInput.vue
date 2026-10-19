@@ -115,10 +115,12 @@ import { userFileUploader } from "@/api/getItemChat"
 import docxIcon from "@/assets/docx.png"
 import pdfIcon from "@/assets/pdf.png"
 import { ElLoading, ElMessage } from 'element-plus'
-import { projectStore } from '@/store/index'
+import { useUserStore, useChatStore, useUiStore } from '@/store/index'
 import type { UploadImageItem, UploadImageRefType } from '@/types/index'
 
-const project = projectStore()
+const user = useUserStore()
+const chat = useChatStore()
+const ui = useUiStore()
 
 const isActive = ref<boolean>(false)
 const userMessage = ref<string>('')
@@ -146,8 +148,8 @@ const toggleActive = (): void => {
 }
 
 const triggerImageInput = (): void => {
-  if (!project.userInfo) {
-    project.showLoginPopup = true
+  if (!user.isLogin) {
+    ui.openLoginPopup()
     return
   }
   if (uploadImageItem.value) {
@@ -229,8 +231,8 @@ const sendMessage = async () => {
   }
 
   // 未登录先引导登录
-  if (!project.userInfo) {
-    project.showLoginPopup = true
+  if (!user.isLogin) {
+    ui.openLoginPopup()
     return
   }
   if (sending.value) return
@@ -258,7 +260,7 @@ const sendMessage = async () => {
     isActive.value = false // 图片识别与知识库检索互斥
   }
 
-  project.messageList.push({
+  chat.messageList.push({
       role: 'user',
       content,
       ...(fileRefs.length > 0 && { uploadFileList: fileRefs }),
@@ -272,7 +274,7 @@ const sendMessage = async () => {
     }
   )
   // 从数组里取响应式对象，流式更新才能触发视图刷新
-  const aiMessageObj = project.messageList[project.messageList.length - 1]
+  const aiMessageObj = chat.messageList[chat.messageList.length - 1]
 
   // 清空输入框、文件列表和图片预览
   userMessage.value = ''
@@ -282,7 +284,7 @@ const sendMessage = async () => {
   try {
     await SendMessageApi({
       content,
-      sessionId: project.sessionId,
+      sessionId: chat.sessionIdForApi,
       uploadFileList: fileRefs.length > 0 ? fileRefs : undefined,
       uploadImageList: imageRef,
       isKnowledgeBased: imageRef ? false : isActive.value,

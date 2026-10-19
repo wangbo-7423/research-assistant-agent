@@ -2,12 +2,12 @@
   <!-- 消息界面 -->
   <div class="chat-window">
     <!-- 空会话欢迎语 -->
-    <div class="chat-welcome" v-if="project.messageList.length === 0">
+    <div class="chat-welcome" v-if="chat.messageList.length === 0">
       <img src="../assets/Interface.png" alt="" class="display-image">
       <span class="greeting-title">你好，我是AI科研助手，很高兴见到你</span>
       <span class="greeting-span">我可以解答科研问题、解读你上传的论文资料，也可以基于你的个人知识库检索回答</span>
     </div>
-    <div class="chat-message" v-for="(item, index) in project.messageList" :key="index">
+    <div class="chat-message" v-for="(item, index) in chat.messageList" :key="index">
       <!-- 用户消息 -->
       <template v-if="item.role == 'user'">
         <a
@@ -66,11 +66,11 @@ import { Loading } from '@element-plus/icons-vue'
 import MarkdownIt from 'markdown-it'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
-import { projectStore } from "@/store/index"
+import { useChatStore } from "@/store/index"
 import docxIcon from "@/assets/docx.png"
 import pdfIcon from "@/assets/pdf.png"
 
-const project = projectStore()
+const chat = useChatStore()
 
 // Markdown 渲染器：禁用原生 HTML（防注入）、自动识别链接、单换行也生效（聊天文本习惯）
 const md = new MarkdownIt({
@@ -128,7 +128,7 @@ const formatSize = (size: string | number): string => {
 
 // 新消息或流式内容更新时滚动到底部
 watch(
-  () => [project.messageList.length, project.messageList[project.messageList.length - 1]?.content],
+  () => [chat.messageList.length, chat.messageList[chat.messageList.length - 1]?.content],
   async () => {
     await nextTick()
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })

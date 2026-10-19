@@ -9,7 +9,7 @@
       class="dialog-list"
       v-for="item in sessionList"
       :key="item.sessionId"
-      :class="{ 'is-active': item.sessionId === project.sessionId }"
+      :class="{ 'is-active': item.sessionId === chat.sessionId }"
       @click="openSession(item.sessionId)"
     >
       <div class="dialog-list-row">
@@ -31,13 +31,13 @@
       <div class="dialog-list-date">{{ item.createDate }}</div>
     </div>
     <div class="user-info">
-      <div class="avatar-name" v-if="project.userInfo">
+      <div class="avatar-name" v-if="user.userInfo">
         <img src="../assets/logo.jpg" alt="用户头像" class="user-avatar" />
-        <span>{{ project.userInfo.phonenumber }}</span>
+        <span>{{ user.userInfo.phonenumber }}</span>
       </div>
-      <el-button type="primary" v-else size="default" @click="project.showLoginPopup=true">登录</el-button>
-      <div class="user-actions" v-if="project.userInfo">
-        <el-button type="primary" size="default" @click="project.knowledgePopup = true">知识库管理</el-button>
+      <el-button type="primary" v-else size="default" @click="ui.openLoginPopup()">登录</el-button>
+      <div class="user-actions" v-if="user.userInfo">
+        <el-button type="primary" size="default" @click="ui.openKnowledgePopup()">知识库管理</el-button>
         <el-button size="default" @click="logout">退出登录</el-button>
       </div>
     </div>
@@ -49,16 +49,18 @@
 import { ref, watch, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { MoreFilled, Delete } from '@element-plus/icons-vue'
-import { projectStore } from "@/store/index"
+import { useUserStore, useChatStore, useUiStore } from "@/store/index"
 import { GetSessionListApi, GetHistoryApi, DeleteSessionApi } from "@/api/request"
 import type { SessionListItemType } from "@/types/index"
 
-const project = projectStore()
+const user = useUserStore()
+const chat = useChatStore()
+const ui = useUiStore()
 const sessionList = ref<SessionListItemType[]>([])
 
 // 拉取会话列表
 const loadSessionList = async () => {
-  if (!project.userInfo) {
+  if (!user.isLogin) {
     sessionList.value = []
     return
   }
@@ -72,15 +74,15 @@ const loadSessionList = async () => {
 
 // 新建会话
 const newSession = () => {
-  project.resetSession()
+  chat.resetSession()
 }
 
 // 打开历史会话
 const openSession = async (sessionId: string) => {
-  if (sessionId === project.sessionId) return
+  if (sessionId === chat.sessionId) return
   try {
     const res = await GetHistoryApi(sessionId)
-    project.loadSession(sessionId, res.data?.chatList || [])
+    chat.loadSession(sessionId, res.data?.chatList || [])
   } catch {
     // 错误提示已在拦截器中处理
   }
@@ -106,7 +108,7 @@ const deleteSession = async (item: SessionListItemType) => {
     await DeleteSessionApi({ sessionId: item.sessionId })
     sessionList.value = sessionList.value.filter(s => s.sessionId !== item.sessionId)
     // 删除的是当前正在查看的会话时，重置为空白新会话
-    if (item.sessionId === project.sessionId) project.resetSession()
+    if (item.sessionId === chat.sessionId) chat.resetSession()
     ElMessage.success('对话已删除')
   } catch {
     // 错误提示已在拦截器中处理
@@ -115,13 +117,13 @@ const deleteSession = async (item: SessionListItemType) => {
 
 // 退出登录
 const logout = () => {
-  project.userLogout()
+  user.userLogout()
 }
 
 // 登录状态变化时刷新会话列表；当前会话产生新消息（标题/条数变化）后也刷新
-watch(() => project.userInfo, loadSessionList)
-watch(() => project.messageList.length, () => {
-  if (project.userInfo) loadSessionList()
+watch(() => user.userInfo, loadSessionList)
+watch(() => chat.messageList.length, () => {
+  if (user.isLogin) loadSessionList()
 })
 onMounted(loadSessionList)
 </script>

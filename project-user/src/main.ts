@@ -9,5 +9,5 @@ app.use(router)
 app.use(pinia)
 app.mount('#app')
 // 初始化获取用户数据
-import { projectStore } from "@/store/index.ts"
-projectStore().initUserFromStorage()
+import { useUserStore } from "@/store/index.ts"
+useUserStore().initFromStorage()

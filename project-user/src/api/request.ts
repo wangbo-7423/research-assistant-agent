@@ -4,12 +4,11 @@ const requestUrl = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:3000"
 import { fetchEventSource } from '@microsoft/fetch-event-source'
 import axios from "axios";
 import type{ UserLoginType, UserRegisterType, ApiResponse, UserInfoResType, UploadResponse, UploadImageResponse, kbFileListType, SendMessageType, AiMessageType, MessageListType, SessionListItemType } from "@/types/index"
-import { projectStore } from "@/store/index"
+import { useUserStore, useChatStore, useUiStore } from "@/store/index"
 
-// 注意：不要在模块顶层调用 projectStore()，
+// 注意：不要在模块顶层调用 useXxxStore()，
 // 本模块会在 main.ts 完成 app.use(pinia) 之前被加载，顶层调用会报 "active pinia" 错误。
-// 统一在函数/拦截器执行时惰性获取。
-const getStore = () => projectStore()
+// 统一在函数 / 拦截器真正执行时再取（此时 pinia 已安装）。
 
 // 创建一个实例
 const axiosInstance= axios.create({
@@ -22,8 +21,7 @@ const axiosInstance= axios.create({
 // 拦截器：请求之前
 axiosInstance.interceptors.request.use(
   (config) => {
-    const project = getStore()
-    config.headers.Authorization = "Bearer " + (project.userInfo?.token || "");
+    config.headers.Authorization = "Bearer " + useUserStore().token
 
     // FormData 上传时删除默认 Content-Type，让浏览器自动设置 multipart/form-data + boundary
     if (config.data instanceof FormData) {
@@ -61,7 +59,7 @@ axiosInstance.interceptors.response.use(
           break;
         case 401:
           // token 缺失或失效：弹出登录框
-          getStore().showLoginPopup = true
+          useUiStore().openLoginPopup()
           break;
         default:
           ElMessage(tip || '服务器异常')
@@ -74,10 +72,11 @@ axiosInstance.interceptors.response.use(
 )
 
 // 用户请求和模型对话，模型流式输出
-// aiMessageObj 必须是 project.messageList 中的响应式对象（push 之后从数组里取），
+// aiMessageObj 必须是 chatStore.messageList 中的响应式对象（push 之后从数组里取），
 // 这样增量修改 content/readFileData 才能触发视图更新
 export const SendMessageApi = async(params:SendMessageType, aiMessageObj: MessageListType) => {
-  const project = getStore()
+  const userStore = useUserStore()
+  const chatStore = useChatStore()
   const { content, sessionId, uploadFileList, uploadImageList, isKnowledgeBased } = params
   const body:Record<string, any> = {
     content,
@@ -94,7 +93,7 @@ export const SendMessageApi = async(params:SendMessageType, aiMessageObj: Messag
   const handleChunk = (aiMessage: AiMessageType) => {
     // 新会话id
     if(aiMessage.type === 'sessionId' && aiMessage.sessionId){
-      project.getSessionId(aiMessage.sessionId)
+      chatStore.setSessionId(aiMessage.sessionId)
       return
     }
     // 阅读文档 / 检索知识库的状态通知
@@ -128,7 +127,7 @@ export const SendMessageApi = async(params:SendMessageType, aiMessageObj: Messag
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + (project.userInfo?.token || '')
+        'Authorization': 'Bearer ' + userStore.token
       },
       body: JSON.stringify(body),
 
