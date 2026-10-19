@@ -22,22 +22,35 @@ py-serve/
 ├── run.py                  # 启动入口
 ├── uploads-image/          # 对话图片上传目录（/open-image 静态服务）
 ├── eval/                   # 召回评测体系（详见 eval/README.md）
-└── app/
+└── app/                    # 按业务垂直切分，包内再分 router / schemas / service
     ├── main.py             # FastAPI 入口（CORS、静态目录、异常处理）
-    ├── config.py           # 环境配置
-    ├── deps.py             # JWT 认证 + Mongo/Redis 连接
-    ├── response.py         # 统一响应包装
+    ├── core/               # 公共基础设施（跨业务复用）
+    │   ├── config.py       #   环境配置
+    │   ├── deps.py         #   JWT 认证 + Mongo/Redis 连接
+    │   └── response.py     #   统一响应包装
     ├── userinfo/           # 注册 / 登录（HMAC-SHA256 密码 + JWT）
-    ├── fileanagement/      # 文件上传解析、切片向量化、混合检索、图片
+    │   ├── router.py
+    │   ├── schemas.py      #   请求体校验（手机号 / 密码规则）
+    │   └── service.py      #   用户表读写 + 密码校验 + 签发 JWT
+    ├── file_management/    # 文件上传解析、切片向量化、混合检索、图片
+    │   ├── router.py       #   接口层
+    │   ├── schemas.py      #   请求体定义
+    │   ├── service.py      #   上传/删除/列表/向量/关键词/混合检索（RRF）
     │   ├── splitter.py     #   递归字符切片（800/100，对齐 LangChain）
     │   ├── parsers.py      #   PDF / DOCX 文本抽取
     │   ├── embeddings.py   #   通义 embedding（批量 10 条 + 查询缓存）
     │   ├── milvus_store.py #   Milvus 集合操作（每用户一个集合）
     │   ├── keywords.py     #   关键词提取（DeepSeek → 规则降级）
-    │   └── service.py      #   上传/删除/列表/向量/关键词/混合检索（RRF）
+    │   └── image_storage.py#   图片落盘 / 魔数校验 / 路径防护
     └── chat/               # 对话（流式 SSE 协议）
-        ├── prompts.py      #   系统提示词 + 意图识别工具（clarify_intent）
-        └── service.py      #   朴素 RAG：意图改写 → 混合检索 → 知识库规则回答
+        ├── router.py       #   接口层：流式问答 + 会话管理
+        ├── schemas.py      #   请求体定义
+        ├── service.py      #   编排：组合消息 → 意图改写 → 检索回答 → 落库
+        ├── llm.py          #   模型调用（文本对话 / 多模态图片理解）
+        ├── retrieval.py    #   知识库检索问答（queryKb）
+        ├── session.py      #   会话创建 / 历史缓存 / 落库
+        ├── stream.py       #   SSE 流式写端
+        └── prompts.py      #   系统提示词 + 意图识别工具（clarify_intent）
 ```
 
 ## RAG 主链路

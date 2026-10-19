@@ -15,9 +15,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from common import embed_texts, save_json  # noqa: E402
 
-from app.fileanagement import milvus_store  # noqa: E402
-from app.fileanagement.parsers import parse_file  # noqa: E402
-from app.fileanagement.splitter import recursive_character_split  # noqa: E402
+from app.file_management import milvus_store  # noqa: E402
+from app.file_management.parsers import parse_file  # noqa: E402
+from app.file_management.splitter import recursive_character_split  # noqa: E402
 
 EVAL_COLLECTION = "_evalcorpus"
 EVAL_USER_ID = "evalcorpus"  # collection_name_for 会拼成 "_evalcorpus"

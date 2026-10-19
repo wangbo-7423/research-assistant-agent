@@ -5,7 +5,7 @@ import re
 import time
 from pathlib import Path
 
-from ..response import BizError
+from ..core.response import BizError
 
 IMAGE_UPLOAD_DIR = "uploads-image"
 IMAGE_PUBLIC_ROUTE = "/open-image"

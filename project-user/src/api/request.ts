@@ -176,31 +176,31 @@ export const UserLoginApi = (params:UserLoginType):Promise<ApiResponse<UserInfoR
 }
 // 对话框上传文件
 export const UploadDialogApi = (params:FormData):Promise<UploadResponse> => {
-  return axiosInstance.post('/fileanagement/dialog', params, { timeout: 120000 })
+  return axiosInstance.post('/file_management/dialog', params, { timeout: 120000 })
 }
 // 对话框删除指定文件
 export const DeleteFileApi = (params:{id:string}):Promise<ApiResponse<[]>> => {
-  return axiosInstance.delete(`/fileanagement/dialog/${params.id}`)
+  return axiosInstance.delete(`/file_management/dialog/${params.id}`)
 }
 // 上传待识别图片
 export const UploadImageApi = (params:FormData):Promise<UploadImageResponse> => {
-  return axiosInstance.post('/fileanagement/uploadimage', params, { timeout: 120000 })
+  return axiosInstance.post('/file_management/uploadimage', params, { timeout: 120000 })
 }
 // 删除待识别图片
 export const DeleteImageApi = (params:{imagePath:string}):Promise<ApiResponse<{success:boolean}>> => {
-  return axiosInstance.post('/fileanagement/deleteimage', params)
+  return axiosInstance.post('/file_management/deleteimage', params)
 }
 // 知识库文件上传
 export const UploadkbApi = (params:FormData):Promise<UploadResponse> => {
-  return axiosInstance.post('/fileanagement/knowledge', params, { timeout: 120000 })
+  return axiosInstance.post('/file_management/knowledge', params, { timeout: 120000 })
 }
 // 知识库删除指定文件
 export const DeletekbFileApi = (params:{id:string}):Promise<ApiResponse<[]>> => {
-  return axiosInstance.delete(`/fileanagement/knowledge/${params.id}`)
+  return axiosInstance.delete(`/file_management/knowledge/${params.id}`)
 }
 // 获取知识库文件列表
 export const GetkbFileListApi = ():Promise<ApiResponse<{result: kbFileListType, message: string}>> => {
-  return axiosInstance.get('/fileanagement/kbfilelist')
+  return axiosInstance.get('/file_management/kbfilelist')
 }
 // 获取会话列表
 export const GetSessionListApi = ():Promise<ApiResponse<SessionListItemType[]>> => {

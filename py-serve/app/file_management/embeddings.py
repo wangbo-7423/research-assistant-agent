@@ -4,8 +4,8 @@ from collections import OrderedDict
 
 from openai import AsyncOpenAI
 
-from ..config import Config
-from ..response import BizError
+from ..core.config import Config
+from ..core.response import BizError
 
 
 class EmbeddingClient:

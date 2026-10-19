@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, Request
 
-from ..deps import get_db, get_current_user
-from ..response import wrap_response
-from .dto import LoginUserDto, RegisterDto
+from ..core.deps import get_current_user, get_db
+from ..core.response import wrap_response
+from .schemas import LoginUserDto, RegisterDto
 from .service import USER_COLLECTION, login_user, register_user
 
 router = APIRouter(prefix="/userinfo")
@@ -10,7 +10,7 @@ router = APIRouter(prefix="/userinfo")
 
 @router.post("/registeruser")
 async def register(body: RegisterDto, request: Request):
-    from ..response import BizError
+    from ..core.response import BizError
 
     if body.password != body.confirmPassWord:
         raise BizError("Password does not match", 400)

@@ -4,35 +4,16 @@ import traceback
 
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
 
-from ..deps import AuthUser, get_current_user, get_db
-from ..response import BizError, wrap_response
+from ..core.deps import AuthUser, get_current_user, get_db
+from ..core.response import BizError, wrap_response
+from ..file_management.service import FILE_COLLECTION
 from . import service
-from .service import CHAT_COLLECTION, StreamWriter
+from .schemas import SendMessageDto
+from .session import CHAT_COLLECTION, delete_session, get_history, get_session_list
+from .stream import StreamWriter
 
 router = APIRouter(prefix="/chat")
-
-
-class UploadFileRefDto(BaseModel):
-    fileName: str
-    fileSize: str
-    fileType: str
-    docId: str
-
-
-class UploadImageDto(BaseModel):
-    imagePath: str
-    mimetype: str
-    imageUrl: str
-
-
-class SendMessageDto(BaseModel):
-    content: str
-    sessionId: str
-    uploadFileList: list[UploadFileRefDto] | None = None
-    isKnowledgeBased: bool | None = None
-    uploadImageList: UploadImageDto | None = None
 
 
 @router.post("/sendmessage")
@@ -42,7 +23,7 @@ async def send_message(body: SendMessageDto, request: Request, user: AuthUser = 
 
     user_id = user.user_id
     db = get_db()
-    files_col = db["fileanagements"]
+    files_col = db[FILE_COLLECTION]
     chat_col = db[CHAT_COLLECTION]
     write = StreamWriter()
 
@@ -80,7 +61,7 @@ async def send_message(body: SendMessageDto, request: Request, user: AuthUser = 
 
 @router.get("/sessionlist")
 async def session_list(request: Request, user: AuthUser = Depends(get_current_user)):
-    result = await service.get_session_list(user.user_id, get_db()[CHAT_COLLECTION])
+    result = await get_session_list(user.user_id, get_db()[CHAT_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
@@ -88,11 +69,11 @@ async def session_list(request: Request, user: AuthUser = Depends(get_current_us
 async def history(request: Request, sessionId: str, user: AuthUser = Depends(get_current_user)):
     if not sessionId:
         raise BizError("对话id不能为空", 400)
-    result = await service.get_history(user.user_id, sessionId, get_db()[CHAT_COLLECTION])
+    result = await get_history(user.user_id, sessionId, get_db()[CHAT_COLLECTION])
     return wrap_response(result, request.url.path)
 
 
 @router.delete("/deletesession")
-async def delete_session(request: Request, sessionId: str, user: AuthUser = Depends(get_current_user)):
-    result = await service.delete_session(user.user_id, sessionId, get_db()[CHAT_COLLECTION])
+async def delete_session_route(request: Request, sessionId: str, user: AuthUser = Depends(get_current_user)):
+    result = await delete_session(user.user_id, sessionId, get_db()[CHAT_COLLECTION])
     return wrap_response(result, request.url.path)

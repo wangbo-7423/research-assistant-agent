@@ -3,11 +3,10 @@
 对应 NestJS 版 FileanagementController（去掉 wiki 编译相关接口）。
 """
 from fastapi import APIRouter, Depends, File, Request, UploadFile
-from pydantic import BaseModel
 
-from ..config import Config
-from ..deps import AuthUser, get_current_user, get_db
-from ..response import BizError, wrap_response
+from ..core.config import Config
+from ..core.deps import AuthUser, get_current_user, get_db
+from ..core.response import BizError, wrap_response
 from . import service
 from .image_storage import (
     ALLOWED_IMAGE_TYPES,
@@ -18,9 +17,10 @@ from .image_storage import (
     delete_image_file,
     ensure_image_upload_dir,
 )
+from .schemas import DeleteImageDto, SearchDto
 from .service import FILE_COLLECTION, validate_doc_file
 
-router = APIRouter(prefix="/fileanagement")
+router = APIRouter(prefix="/file_management")
 
 MAX_IMAGE_SIZE = 10 * 1024 * 1024  # 10MB
 
@@ -63,11 +63,6 @@ async def upload_dialog(
     user_id = user.user_id
     result = await service.handle_upload(payload, user_id, "UB", get_db()[FILE_COLLECTION])
     return wrap_response(result, request.url.path)
-
-
-class SearchDto(BaseModel):
-    query: str
-    limit: int | None = 10
 
 
 @router.post("/search")
@@ -148,10 +143,6 @@ async def upload_image(
         },
         request.url.path,
     )
-
-
-class DeleteImageDto(BaseModel):
-    imagePath: str
 
 
 @router.post("/deleteimage")

@@ -9,8 +9,8 @@ from typing import Any, cast
 
 from pymilvus import DataType, MilvusClient
 
-from ..config import Config
-from ..response import BizError
+from ..core.config import Config
+from ..core.response import BizError
 
 milvus_client: MilvusClient | None = None
 

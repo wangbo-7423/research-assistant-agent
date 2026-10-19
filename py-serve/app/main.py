@@ -11,9 +11,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from .chat.router import router as chat_router
-from .fileanagement.image_storage import ensure_image_upload_dir
-from .fileanagement.router import router as fileanagement_router
-from .response import register_exception_handlers
+from .core.response import register_exception_handlers
+from .file_management.image_storage import ensure_image_upload_dir
+from .file_management.router import router as file_management_router
 from .userinfo.router import router as userinfo_router
 
 app = FastAPI(title="research-assistant-agent py-serve")
@@ -28,7 +28,7 @@ app.add_middleware(
 register_exception_handlers(app)
 
 app.include_router(userinfo_router)
-app.include_router(fileanagement_router)
+app.include_router(file_management_router)
 app.include_router(chat_router)
 
 # 静态图片目录：/open-image/* -> uploads-image/*

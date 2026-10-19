@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from common import DATA_DIR, load_json, rrf_fuse, save_json  # noqa: E402
 
-from app.fileanagement.keywords import extract_keywords  # noqa: E402
+from app.file_management.keywords import extract_keywords  # noqa: E402
 
 TOP_K = 10
 KW_CONCURRENCY = 12

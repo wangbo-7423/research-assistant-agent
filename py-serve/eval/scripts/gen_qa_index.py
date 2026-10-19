@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from common import DATA_DIR, ds_chat, embed_texts, load_json, parse_json_object, save_json  # noqa: E402
 
-from app.config import Config  # noqa: E402
+from app.core.config import Config  # noqa: E402
 
 SYSTEM_PROMPT = """你在为科研知识库构建「问题检索索引」。给定一个文档片段，生成 4~6 个该片段能直接回答的问题，作为检索索引。
 要求：

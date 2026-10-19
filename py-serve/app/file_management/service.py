@@ -8,14 +8,16 @@ from datetime import datetime
 from bson import ObjectId
 from pymongo.asynchronous.collection import AsyncCollection
 
-from ..config import Config
-from ..response import BizError
+from ..core.config import Config
+from ..core.response import BizError
 from . import milvus_store
 from .embeddings import embedding_client
 from .keywords import extract_keywords
 from .parsers import parse_file
 from .splitter import recursive_character_split
 
+# MongoDB 集合名沿用历史拼写：已有上传记录都在这个集合里，
+# 改名需要同步做数据迁移，否则存量知识库文件会「消失」。
 FILE_COLLECTION = "fileanagements"
 
 ALLOWED_DOC_TYPES = {

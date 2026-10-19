@@ -6,7 +6,7 @@ import re
 
 from openai import AsyncOpenAI
 
-from ..config import Config
+from ..core.config import Config
 
 _STOP_WORDS = {
     "的", "了", "是", "在", "我", "有", "和", "就", "不", "人", "都", "一", "一个",

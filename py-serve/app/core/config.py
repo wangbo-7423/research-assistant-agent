@@ -4,8 +4,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# .env 位于 py-serve 根目录（app/ 的上一级）
-load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+# .env 位于 py-serve 根目录（本文件在 app/core/，需上溯三级）
+load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")
 
 
 def _get(key: str, default: str = "") -> str:

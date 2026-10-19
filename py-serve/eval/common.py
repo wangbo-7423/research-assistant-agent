@@ -10,7 +10,7 @@ from openai import AsyncOpenAI
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app.config import Config  # noqa: E402
+from app.core.config import Config  # noqa: E402
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 

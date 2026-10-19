@@ -199,7 +199,7 @@ data: {"type": "queryKB", "statusInfo": "completed", "promptInfo": "知识库未
 data: {"type": "answer", "content": "混合检索（Hybrid Retrieval）通常指..."}
 ```
 
-C 用例使用全新 userId（无 Milvus 集合），检索按 `fileanagement/service.py:281` 安全返回空，未触发 embedding 调用，同时验证了知识库规则第 1 条的兜底话术（"我没有在你的知识库中检索到相关资料，但我可以告诉你："）正常生效。
+C 用例使用全新 userId（无 Milvus 集合），检索按 `file_management/service.py` 的 `hybrid_search` 安全返回空，未触发 embedding 调用，同时验证了知识库规则第 1 条的兜底话术（"我没有在你的知识库中检索到相关资料，但我可以告诉你："）正常生效。
 
 ### 2. 客户端层（用前端真实库请求）
 

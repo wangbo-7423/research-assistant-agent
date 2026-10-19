@@ -48,7 +48,7 @@ Research-Assistant-Agent 是一个**科研知识库问答（RAG）平台**，核
                    ▼
 ┌─────────────────────────────────────────────┐
 │                py-serve（后端）               │
-│  Userinfo 认证 → Fileanagement 文件/检索      │
+│  Userinfo 认证 → FileManagement 文件/检索     │
 │  → Chat 对话（意图改写 + 混合检索 + 流式输出）   │
 │  ├─ MongoDB   用户 / 会话 / 文件元数据         │
 │  ├─ Redis     近 3 轮对话缓存                 │

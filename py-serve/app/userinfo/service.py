@@ -7,7 +7,7 @@ import jwt
 from bson import ObjectId
 from pymongo.asynchronous.collection import AsyncCollection
 
-from ..config import Config
+from ..core.config import Config
 
 USER_COLLECTION = "userinfos"
 
