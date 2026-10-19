@@ -4,6 +4,13 @@
   "python.analysis.extraPaths": [
     "${workspaceFolder}/py-serve"
   ],
+  // 第三方库（pymilvus 等）自带类型标注问题，不应计入本项目诊断
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "python.analysis.exclude": [
+    "**/.venv/**",
+    "**/node_modules/**",
+    "**/__pycache__/**"
+  ],
   "files.exclude": {
     "**/__pycache__": true,
     "**/*.pyc": true

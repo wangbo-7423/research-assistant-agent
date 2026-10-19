@@ -3,6 +3,12 @@
   "pythonVersion": "3.13",
   "include": ["py-serve"],
   "exclude": ["**/node_modules", "**/__pycache__", "**/.venv", "**/venv"],
+  "ignore": [
+    "**/.venv/**",
+    "**/venv/**",
+    "**/site-packages/**",
+    "**/node_modules/**"
+  ],
   "reportUnusedImport": "warning",
   "reportUnusedVariable": "warning",
   "reportUnusedFunction": "warning",
