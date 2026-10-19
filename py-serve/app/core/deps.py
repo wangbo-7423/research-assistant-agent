@@ -3,8 +3,7 @@ from typing import Any
 
 import jwt
 import redis.asyncio as aioredis
-from bson import ObjectId
-from fastapi import Depends, Request
+from fastapi import Request
 from pymongo import AsyncMongoClient
 
 from .config import Config
@@ -25,10 +24,6 @@ class AuthUser(dict):
     @property
     def user_id(self) -> str:
         return str(self.get("token", ""))
-
-    @property
-    def object_id(self) -> ObjectId:
-        return ObjectId(self.get("token"))
 
 
 def _extract_token(request: Request) -> str:
@@ -56,15 +51,3 @@ def _unauthorized(message: str):
     from fastapi import HTTPException
 
     return HTTPException(status_code=401, detail=message)
-
-
-async def verify_token(token: str) -> bool:
-    """供 WebSocket 等场景使用：校验 token 是否有效。"""
-    try:
-        jwt.decode(token, Config.JWT_SECRET, algorithms=["HS256"])
-        return True
-    except Exception:
-        return False
-
-
-DependsAuth = Depends(get_current_user)

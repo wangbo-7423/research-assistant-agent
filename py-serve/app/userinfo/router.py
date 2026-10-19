@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Request
 
-from ..core.deps import get_current_user, get_db
+from ..core.deps import AuthUser, get_current_user, get_db
 from ..core.response import wrap_response
 from .schemas import LoginUserDto, RegisterDto
 from .service import USER_COLLECTION, login_user, register_user
@@ -27,6 +27,6 @@ async def login(body: LoginUserDto, request: Request):
 
 
 @router.get("/me")
-async def me(user: dict = Depends(get_current_user)):
+async def me(request: Request, user: AuthUser = Depends(get_current_user)):
     """轻量自检接口：验证 token 有效性（前端未使用，调试用）。"""
-    return {"userId": user.get("token")}
+    return wrap_response({"userId": user.user_id}, request.url.path)
