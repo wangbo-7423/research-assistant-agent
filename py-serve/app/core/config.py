@@ -13,10 +13,19 @@ def _get(key: str, default: str = "") -> str:
     return value if value not in (None, "") else default
 
 
+# 这两个值曾经作为源码里的默认值公开在仓库里，用它们签名等同于没有密钥：
+#   - JWT_SECRET 换成随机串只会让已签发的 token 失效（用户重新登录即可），所以直接拒绝启动；
+#   - PASSWORD_KEY 换成随机串会让库存的密码散列全部失效（老用户无法登录），
+#     影响面取决于已注册账号数量，因此这里只告警不阻断，由使用者择机轮换。
+_PUBLIC_JWT_DEFAULT = "12345hsgabvd"
+_PUBLIC_PASSWORD_DEFAULT = "absdefg"
+
+
 class Config:
     MONGODB_URI: str = _get("MONGODB_URI", "mongodb://127.0.0.1:27017/nest_serve_db")
-    PASSWORD_KEY: str = _get("PASSWORD_KEY", "absdefg")
-    JWT_SECRET: str = _get("JWT_SECRET", "12345hsgabvd")
+    # 不再提供默认值：缺失即启动失败，避免"用公开字符串签名"这种静默降级
+    PASSWORD_KEY: str = _get("PASSWORD_KEY")
+    JWT_SECRET: str = _get("JWT_SECRET")
     JWT_EXPIRE_DAYS: int = 10
 
     MILVUS_ADDRESS: str = _get("MILVUS_ADDRESS", "127.0.0.1:19530")
@@ -50,3 +59,18 @@ if not Config.QWEN_API_KEY:
     raise RuntimeError("QWEN_API_KEY 未在环境变量中配置（embedding 向量化必需）")
 if not Config.DEEPSEEK_API_KEY:
     raise RuntimeError("DEEPSEEK_API_KEY 未在环境变量中配置（对话/视觉/关键词提取必需）")
+
+if not Config.JWT_SECRET:
+    raise RuntimeError("JWT_SECRET 未在环境变量中配置（缺失将无法验签，任何 token 都会失效）")
+if Config.JWT_SECRET == _PUBLIC_JWT_DEFAULT:
+    raise RuntimeError(
+        "JWT_SECRET 仍是源码历史默认值，等同于公开密钥，任何人都能伪造 token；"
+        + "请换成一个随机串（例如 python -c \"import secrets;print(secrets.token_urlsafe(48))\"）"
+    )
+if not Config.PASSWORD_KEY:
+    raise RuntimeError("PASSWORD_KEY 未在环境变量中配置（密码散列与登录校验依赖它）")
+if Config.PASSWORD_KEY == _PUBLIC_PASSWORD_DEFAULT:
+    print(
+        "警告：PASSWORD_KEY 仍是源码历史默认值，库存密码散列可被离线破解。"
+        + "轮换请自行安排——换新值会让所有已有账号无法登录（散列无法用它重新计算）。"
+    )
