@@ -14,6 +14,7 @@ from ..core.response import BizError
 from . import milvus_store
 from .embeddings import embedding_client
 from .keywords import extract_keywords
+from .models import FileChunkSource, FileContent, FileDocument, FileListItem, FileRef, FileType, UploadType
 from .parsers import parse_file
 from .splitter import recursive_character_split
 
@@ -41,7 +42,7 @@ def validate_doc_file(filename: str, mimetype: str, size: int) -> None:
 async def handle_upload(
     files: list[tuple[str, str, int, bytes]],
     user_id: str,
-    upload_type: str,
+    upload_type: UploadType,
     files_col: AsyncCollection,
 ) -> dict:
     """files: [(filename, mimetype, size, content)]；upload_type: UD=知识库 / UB=对话框。"""
@@ -63,30 +64,29 @@ async def handle_upload(
 async def process_file(
     file: tuple[str, str, int, bytes],
     user_id: str,
-    upload_type: str,
+    upload_type: UploadType,
     files_col: AsyncCollection,
 ) -> dict:
     filename, mimetype, size, content = file
-    file_type = "pdf" if mimetype == "application/pdf" else "docx"
+    file_type: FileType = "pdf" if mimetype == "application/pdf" else "docx"
 
     # 1. 解析文件内容（CPU 密集，放线程池）
     merged_text = await asyncio.to_thread(parse_file, content, file_type)
 
     # 2. 保存文件到 MongoDB（只存文本，不存原始 Buffer）
-    doc = {
-        "userId": user_id,
-        "fileName": filename,
-        "filePath": "",
-        "fileType": file_type,
-        "fileSize": size,
-        "fileText": merged_text,
-        "uploadType": upload_type,
-        "wikiStatus": "none",
-        "wikiChunkCount": 0,
-        "createdAt": datetime.now(),
-        "updatedAt": datetime.now(),
-    }
-    result = await files_col.insert_one(doc)
+    #    构造 FileDocument 即按文档结构校验，字段类型不对在入库前就会抛错
+    now = datetime.now()
+    doc = FileDocument(
+        userId=user_id,
+        fileName=filename,
+        fileType=file_type,
+        fileSize=size,
+        fileText=merged_text,
+        uploadType=upload_type,
+        createdAt=now,
+        updatedAt=now,
+    )
+    result = await files_col.insert_one(doc.to_mongo())
     doc_id = str(result.inserted_id)
 
     # 3. 知识库上传时生成向量并存储到 Milvus
@@ -104,12 +104,12 @@ async def process_file(
 
 async def query_files_by_ids(
     user_id: str, doc_ids: list[ObjectId], files_col: AsyncCollection
-) -> list[dict]:
+) -> list[FileChunkSource]:
     cursor = files_col.find(
         {"userId": user_id, "_id": {"$in": doc_ids}},
         {"fileText": 1, "fileName": 1, "fileSize": 1, "fileType": 1},
     )
-    return [doc async for doc in cursor]
+    return [FileChunkSource.from_mongo(doc) async for doc in cursor]
 
 
 async def get_kb_file_list(user_id: str, files_col: AsyncCollection) -> list[dict]:
@@ -119,13 +119,14 @@ async def get_kb_file_list(user_id: str, files_col: AsyncCollection) -> list[dic
     )
     result = []
     async for doc in cursor:
+        item = FileListItem.from_mongo(doc)
         result.append(
             {
-                "id": str(doc["_id"]),
-                "fileName": doc.get("fileName"),
-                "fileSize": doc.get("fileSize"),
-                "fileType": doc.get("fileType"),
-                "wikiStatus": doc.get("wikiStatus", "none"),
+                "id": str(item.id or doc["_id"]),
+                "fileName": item.fileName,
+                "fileSize": item.fileSize,
+                "fileType": item.fileType,
+                "wikiStatus": item.wikiStatus,
             }
         )
     return result
@@ -139,13 +140,14 @@ async def get_file_content(file_id: str, files_col: AsyncCollection) -> dict:
     doc = await files_col.find_one({"_id": oid})
     if not doc:
         raise BizError("文件不存在", 400)
+    data = FileContent.from_mongo(doc)
     return {
-        "id": str(doc["_id"]),
-        "fileName": doc.get("fileName"),
-        "fileText": doc.get("fileText"),
-        "fileType": doc.get("fileType"),
-        "fileSize": doc.get("fileSize"),
-        "uploadType": doc.get("uploadType"),
+        "id": str(data.id or doc["_id"]),
+        "fileName": data.fileName,
+        "fileText": data.fileText,
+        "fileType": data.fileType,
+        "fileSize": data.fileSize,
+        "uploadType": data.uploadType,
     }
 
 
@@ -159,13 +161,14 @@ async def delete_file(
     doc = await files_col.find_one({"_id": oid})
     if not doc:
         raise BizError("文件不存在或已被删除", 400)
-    if doc.get("userId") != user_id:
+    ref = FileRef.from_mongo(doc)
+    if ref.userId != user_id:
         raise BizError("无权删除该文件", 400)
-    if expected_type and doc.get("uploadType") != expected_type:
+    if expected_type and ref.uploadType != expected_type:
         raise BizError("文件类型与删除接口不匹配", 400)
 
     # 知识库文件先删 Milvus 向量，成功后再删 MongoDB，避免向量残留
-    if doc.get("uploadType") == "UD":
+    if ref.uploadType == "UD":
         try:
             await asyncio.to_thread(milvus_store.delete_by_doc_id, file_id, user_id)
         except Exception as e:
@@ -183,7 +186,8 @@ async def assert_file_ownership(file_id: str, user_id: str, files_col: AsyncColl
     doc = await files_col.find_one({"_id": oid}, {"userId": 1, "uploadType": 1})
     if not doc:
         raise BizError("文件不存在或已被删除", 400)
-    if doc.get("userId") != user_id:
+    ref = FileRef.from_mongo(doc)
+    if ref.userId != user_id:
         raise BizError("无权操作该文件", 400)
     return doc
 

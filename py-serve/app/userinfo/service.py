@@ -8,6 +8,7 @@ from bson import ObjectId
 from pymongo.asynchronous.collection import AsyncCollection
 
 from ..core.config import Config
+from .models import UserDocument
 
 USER_COLLECTION = "userinfos"
 
@@ -31,7 +32,8 @@ async def register_user(users: AsyncCollection, phone: str, password: str) -> di
     query = await users.find({"phonenumber": phone}).to_list(1)
     if query:
         return {"message": "该账号已存在", "data": [], "code": 422}
-    result = await users.insert_one({"phonenumber": phone, "password": hash_password(password)})
+    user = UserDocument(phonenumber=phone, password=hash_password(password))
+    result = await users.insert_one(user.to_mongo())
     token = create_token(result.inserted_id)
     return {"message": "SUCCESS", "data": {"token": token, "phonenumber": phone}}
 
@@ -39,6 +41,7 @@ async def register_user(users: AsyncCollection, phone: str, password: str) -> di
 async def login_user(users: AsyncCollection, phone: str, password: str) -> dict:
     doc = await users.find_one({"phonenumber": phone, "password": hash_password(password)})
     if doc:
-        token = create_token(doc["_id"])
+        user = UserDocument.from_mongo(doc)
+        token = create_token(user.id or doc["_id"])
         return {"message": "SUCCESS", "data": {"token": token, "phonenumber": phone}}
     return {"message": "账号或密码错误", "data": [], "code": 422}

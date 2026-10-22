@@ -61,14 +61,14 @@ async def combine_convo(
             return
         upload_file_list_data = [
             {
-                "fileName": d.get("fileName"),
-                "fileSize": _kb_size(d.get("fileSize")),
-                "fileType": d.get("fileType"),
-                "docId": str(d["_id"]),
+                "fileName": d.fileName,
+                "fileSize": _kb_size(d.fileSize),
+                "fileType": d.fileType,
+                "docId": str(d.id) if d.id else "",
             }
             for d in docs
         ]
-        document_content = "\n\n---\n\n".join(d.get("fileText") or "" for d in docs)
+        document_content = "\n\n---\n\n".join(d.fileText for d in docs)
         messages["content"] = f"用户上传的文档内容如下:\n{document_content}\n请基于文档内容回复用户问题:{content}"
         messages["displayContent"] = content
         messages["uploadFileList"] = upload_file_list_data

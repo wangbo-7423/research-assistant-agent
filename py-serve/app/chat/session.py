@@ -3,11 +3,11 @@
 MongoDB 是持久化来源，Redis 只做 3 小时热缓存（会话历史是读多写少的场景）。
 """
 import json
-from datetime import datetime
 
 from bson import ObjectId
 
 from ..core.deps import redis_client
+from .models import ChatSessionDocument, message_payloads
 
 CHAT_COLLECTION = "chatdata"
 HISTORY_TTL = 10800  # redis 会话缓存 3 个小时过期
@@ -18,16 +18,9 @@ def _redis_key(user_id: str, session_id) -> str:
 
 
 async def create_session(user_id: str, first_message: dict, chat_col) -> ObjectId:
-    """新建会话：首条用户消息随会话一起落库。"""
-    now = datetime.now()
-    created = await chat_col.insert_one(
-        {
-            "userId": ObjectId(user_id),
-            "createDate": now.strftime("%Y-%m-%d"),
-            "createTime": int(now.timestamp() * 1000),
-            "chatList": [first_message],
-        }
-    )
+    """新建会话：首条用户消息随会话一起落库（结构见 chat/models.py）。"""
+    session = ChatSessionDocument.new(user_id, first_message)
+    created = await chat_col.insert_one(session.to_mongo())
     return created.inserted_id
 
 
@@ -66,7 +59,7 @@ async def persist_convo(
         if new_messages:
             await chat_col.update_one(
                 {"_id": ObjectId(str(session_id)), "userId": ObjectId(user_id)},
-                {"$push": {"chatList": {"$each": new_messages}}},
+                {"$push": {"chatList": {"$each": message_payloads(new_messages)}}},
             )
         await redis_client.set(
             _redis_key(user_id, session_id), json.dumps(full_convo_list, ensure_ascii=False), ex=HISTORY_TTL
@@ -84,18 +77,15 @@ async def get_session_list(user_id: str, chat_col) -> list[dict]:
     )
     result = []
     async for item in cursor:
-        chat_list = item.get("chatList") or []
-        first_user_message = next((m for m in chat_list if m.get("role") == "user"), None)
-        raw_title = (
-            (first_user_message or {}).get("displayContent")
-            or (first_user_message or {}).get("content")
-            or "新对话"
-        )
+        session = ChatSessionDocument.from_mongo(item)
+        chat_list = session.chatList
+        first_user = next((m for m in chat_list if m.role == "user"), None)
+        raw_title = "新对话" if first_user is None else (first_user.displayContent or first_user.content or "新对话")
         result.append(
             {
-                "sessionId": str(item["_id"]),
-                "createDate": item.get("createDate"),
-                "createTime": item.get("createTime"),
+                "sessionId": str(session.id or item["_id"]),
+                "createDate": session.createDate,
+                "createTime": session.createTime,
                 "title": raw_title[:30] + "..." if len(raw_title) > 30 else raw_title,
                 "messageCount": len(chat_list),
             }
