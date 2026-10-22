@@ -7,6 +7,7 @@ from fastapi.responses import StreamingResponse
 
 from ..core.deps import AuthUser, get_current_user, get_db
 from ..core.response import BizError, wrap_response
+from ..file_management.sections import SECTION_COLLECTION
 from ..file_management.service import FILE_COLLECTION
 from . import service
 from .schemas import SendMessageDto
@@ -25,6 +26,7 @@ async def send_message(body: SendMessageDto, request: Request, user: AuthUser = 
     db = get_db()
     files_col = db[FILE_COLLECTION]
     chat_col = db[CHAT_COLLECTION]
+    sections_col = db[SECTION_COLLECTION]
     write = StreamWriter()
 
     async def run():
@@ -39,6 +41,7 @@ async def send_message(body: SendMessageDto, request: Request, user: AuthUser = 
                 body.isKnowledgeBased,
                 files_col,
                 chat_col,
+                sections_col,
             )
         except Exception:
             traceback.print_exc()

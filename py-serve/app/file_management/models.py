@@ -12,7 +12,6 @@ from ..core.models import MongoDocument
 
 FileType = Literal["pdf", "docx"]
 UploadType = Literal["UD", "UB"]  # UD=知识库 / UB=对话框
-WikiStatus = Literal["none", "pending", "processing", "completed", "failed"]
 
 
 class FileDocument(MongoDocument):
@@ -24,9 +23,9 @@ class FileDocument(MongoDocument):
     fileType: FileType
     fileSize: int = Field(ge=0, description="字节数")
     fileText: str = ""  # PDF/DOCX 解析并合并后的全文
+    # PDF 每页起始字符偏移（DOCX 为空）：重建索引时据此还原页码，不依赖原始文件
+    pageStarts: list[int] = Field(default_factory=list)
     uploadType: UploadType
-    wikiStatus: WikiStatus = "none"
-    wikiChunkCount: int = Field(default=0, ge=0)
     createdAt: datetime = Field(default_factory=datetime.now)
     updatedAt: datetime = Field(default_factory=datetime.now)
 
@@ -37,7 +36,6 @@ class FileListItem(MongoDocument):
     fileName: str
     fileSize: int | None = None
     fileType: str | None = None
-    wikiStatus: str = "none"
 
 
 class FileContent(MongoDocument):

@@ -36,6 +36,7 @@ async def combine_convo(
     is_knowledge_based: bool | None,
     files_col,
     chat_col,
+    sections_col,
 ) -> None:
     # 组合对话字段：用户发送给模型的对话字段类型
     messages: dict = {"role": "user", "content": content}
@@ -108,6 +109,7 @@ async def combine_convo(
         upload_file_list,
         read_file_list,
         upload_image_list,
+        sections_col,
     )
     await persist_convo(
         user_id,
@@ -129,6 +131,7 @@ async def model_result(
     upload_file_list: list[dict] | None,
     read_file_list: dict | None,
     upload_image_list: dict | None,
+    sections_col,
 ) -> dict | None:
     """模型输出结果（返回助手完整回复，用于持久化；失败返回 None）。"""
     try:
@@ -171,10 +174,14 @@ async def model_result(
                         clarified = candidate
                 if clarified:
                     print(f"工具生成了新问题-----{clarified}")
-                    return await query_kb(write, clarified, message_list, user_id, read_file_list)
+                    return await query_kb(
+                        write, clarified, message_list, user_id, read_file_list, sections_col
+                    )
                 print("工具没有生成新问题")
                 last_item = message_list[-1]
-                return await query_kb(write, last_item["content"], message_list, user_id, read_file_list)
+                return await query_kb(
+                    write, last_item["content"], message_list, user_id, read_file_list, sections_col
+                )
             # 普通回复：流式推给前端，同时累积完整内容
             if delta.content:
                 answer_content += delta.content

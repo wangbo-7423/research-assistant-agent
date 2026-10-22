@@ -21,6 +21,7 @@ class ChatMessage(MongoDocument):
     uploadFileList: list[dict[str, Any]] | None = None
     uploadImageList: dict[str, Any] | None = None
     readFileData: dict[str, Any] | None = None  # 助手消息上的「已阅读文档」卡片数据
+    citations: list[dict[str, Any]] | None = None  # 知识库回答的出处列表，与正文 [N] 对应
 
 
 class ChatSessionDocument(MongoDocument):

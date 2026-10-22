@@ -1,7 +1,7 @@
 """启动脚本：python run.py（默认端口 3000，与 NestJS 版一致）。"""
 import uvicorn
 
-from app.config import Config
+from app.core.config import Config
 
 if __name__ == "__main__":
     uvicorn.run(

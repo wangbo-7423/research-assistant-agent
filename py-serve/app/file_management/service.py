@@ -1,6 +1,6 @@
 """文件管理服务：上传解析、切片向量化入库、检索（向量/关键词/混合 RRF）、删除。
 
-对应 NestJS 版 FileanagementService（不含 wiki 编译，朴素 RAG 链路）。
+对应 NestJS 版 FileanagementService（朴素 RAG 链路）。
 """
 import asyncio
 import logging
@@ -15,8 +15,9 @@ from . import milvus_store
 from .embeddings import embedding_client
 from .keywords import extract_keywords
 from .models import FileChunkSource, FileContent, FileDocument, FileListItem, FileRef, FileType, UploadType
-from .parsers import parse_file
-from .splitter import recursive_character_split
+from .parsers import parse_file_with_pages
+from .sections import delete_sections, replace_sections
+from .structure import split_document_with_sections
 
 logger = logging.getLogger(__name__)
 
@@ -44,12 +45,13 @@ async def handle_upload(
     user_id: str,
     upload_type: UploadType,
     files_col: AsyncCollection,
+    sections_col: AsyncCollection,
 ) -> dict:
     """files: [(filename, mimetype, size, content)]；upload_type: UD=知识库 / UB=对话框。"""
     if not files:
         raise BizError("请至少上传一个文件", 400)
     results = await asyncio.gather(
-        *(process_file(f, user_id, upload_type, files_col) for f in files)
+        *(process_file(f, user_id, upload_type, files_col, sections_col) for f in files)
     )
     return {
         "success": True,
@@ -66,12 +68,13 @@ async def process_file(
     user_id: str,
     upload_type: UploadType,
     files_col: AsyncCollection,
+    sections_col: AsyncCollection,
 ) -> dict:
     filename, mimetype, size, content = file
     file_type: FileType = "pdf" if mimetype == "application/pdf" else "docx"
 
-    # 1. 解析文件内容（CPU 密集，放线程池）
-    merged_text = await asyncio.to_thread(parse_file, content, file_type)
+    # 1. 解析文件内容（CPU 密集，放线程池）；PDF 同时拿到每页起始偏移供溯源用
+    merged_text, page_starts = await asyncio.to_thread(parse_file_with_pages, content, file_type)
 
     # 2. 保存文件到 MongoDB（只存文本，不存原始 Buffer）
     #    构造 FileDocument 即按文档结构校验，字段类型不对在入库前就会抛错
@@ -82,6 +85,7 @@ async def process_file(
         fileType=file_type,
         fileSize=size,
         fileText=merged_text,
+        pageStarts=page_starts,
         uploadType=upload_type,
         createdAt=now,
         updatedAt=now,
@@ -89,15 +93,20 @@ async def process_file(
     result = await files_col.insert_one(doc.to_mongo())
     doc_id = str(result.inserted_id)
 
-    # 3. 知识库上传时生成向量并存储到 Milvus
+    # 3. 知识库上传时生成向量并存储到 Milvus，同时把父章节落 Mongo
     if upload_type == "UD" and merged_text.strip():
-        chunks = recursive_character_split(merged_text, chunk_size=800, chunk_overlap=100)
-        if chunks:
-            texts = [c if c.strip() else " " for c in chunks]
+        spans, doc_sections = split_document_with_sections(
+            merged_text, page_starts, chunk_size=800, chunk_overlap=100
+        )
+        if spans:
+            texts = [s.text if s.text.strip() else " " for s in spans]
             vectors = await embedding_client.embed_documents(texts)
+            metas = [s.to_meta(doc_id) for s in spans]
             await asyncio.to_thread(
-                milvus_store.insert_chunks, doc_id, filename, chunks, vectors, user_id
+                milvus_store.insert_chunks, doc_id, filename, [s.text for s in spans], vectors, user_id, metas
             )
+        # 父章节只在生成阶段用：与子块分开存，避免 Milvus 的 VARCHAR 上限
+        await replace_sections(sections_col, user_id, doc_id, filename, doc_sections)
 
     return {"id": doc_id, "fileName": filename, "fileSize": size, "fileType": file_type}
 
@@ -115,7 +124,7 @@ async def query_files_by_ids(
 async def get_kb_file_list(user_id: str, files_col: AsyncCollection) -> list[dict]:
     cursor = files_col.find(
         {"userId": user_id, "uploadType": "UD"},
-        {"fileName": 1, "fileSize": 1, "fileType": 1, "wikiStatus": 1},
+        {"fileName": 1, "fileSize": 1, "fileType": 1},
     )
     result = []
     async for doc in cursor:
@@ -126,7 +135,6 @@ async def get_kb_file_list(user_id: str, files_col: AsyncCollection) -> list[dic
                 "fileName": item.fileName,
                 "fileSize": item.fileSize,
                 "fileType": item.fileType,
-                "wikiStatus": item.wikiStatus,
             }
         )
     return result
@@ -152,7 +160,11 @@ async def get_file_content(file_id: str, files_col: AsyncCollection) -> dict:
 
 
 async def delete_file(
-    file_id: str, user_id: str, expected_type: str | None, files_col: AsyncCollection
+    file_id: str,
+    user_id: str,
+    expected_type: str | None,
+    files_col: AsyncCollection,
+    sections_col: AsyncCollection,
 ) -> dict:
     try:
         oid = ObjectId(file_id)
@@ -173,6 +185,7 @@ async def delete_file(
             await asyncio.to_thread(milvus_store.delete_by_doc_id, file_id, user_id)
         except Exception as e:
             raise BizError(f"删除向量失败: {e}，请重试", 400)
+        await delete_sections(sections_col, user_id, file_id)
 
     await files_col.delete_one({"_id": oid})
     return {"success": True, "message": "文件已删除"}
@@ -242,6 +255,25 @@ async def keyword_search(query: str, user_id: str, limit: int = 10) -> dict:
     return {"success": True, "results": scored[:limit]}
 
 
+_PROVENANCE_KEYS = (
+    "parentId", "chunkKey", "chunkIndex", "section", "page", "para", "charStart", "charEnd",
+)
+
+
+def _fused_entry(item: dict) -> dict:
+    """融合条目：保留两路检索的溯源字段，供回答阶段生成 citation。"""
+    return {
+        "docId": item.get("docId"),
+        "docTitle": item.get("docTitle"),
+        "docText": item.get("docText"),
+        **{key: item.get(key) for key in _PROVENANCE_KEYS},
+        "score": item.get("score", 0),
+        "rrfScore": 0,
+        "hitVector": False,
+        "hitKeyword": False,
+    }
+
+
 def _rrf_fuse(vector_results: list[dict], keyword_results: list[dict], limit: int) -> list[dict]:
     """混合检索：向量 + 关键词，用倒数排名融合（RRF）。"""
     rrf_k = Config.RRF_K
@@ -255,36 +287,14 @@ def _rrf_fuse(vector_results: list[dict], keyword_results: list[dict], limit: in
     for rank, item in enumerate(vector_results):
         if not item.get("docText"):
             continue
-        entry = fused.setdefault(
-            key_of(item),
-            {
-                "docId": item.get("docId"),
-                "docTitle": item.get("docTitle"),
-                "docText": item.get("docText"),
-                "score": item.get("score", 0),
-                "rrfScore": 0,
-                "hitVector": False,
-                "hitKeyword": False,
-            },
-        )
+        entry = fused.setdefault(key_of(item), _fused_entry(item))
         entry["rrfScore"] += vector_weight / (rrf_k + rank + 1)
         entry["hitVector"] = True
 
     for rank, item in enumerate(keyword_results):
         if not item.get("docText"):
             continue
-        entry = fused.setdefault(
-            key_of(item),
-            {
-                "docId": item.get("docId"),
-                "docTitle": item.get("docTitle"),
-                "docText": item.get("docText"),
-                "score": item.get("score", 0),
-                "rrfScore": 0,
-                "hitVector": False,
-                "hitKeyword": False,
-            },
-        )
+        entry = fused.setdefault(key_of(item), _fused_entry(item))
         entry["rrfScore"] += keyword_weight / (rrf_k + rank + 1)
         entry["hitKeyword"] = True
 

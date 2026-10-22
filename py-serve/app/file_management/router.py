@@ -1,6 +1,6 @@
 """文件管理路由：知识库/对话框上传、检索、列表、删除、图片上传。
 
-对应 NestJS 版 FileanagementController（去掉 wiki 编译相关接口）。
+对应 NestJS 版 FileanagementController。
 """
 from fastapi import APIRouter, Depends, File, Request, UploadFile
 
@@ -18,6 +18,7 @@ from .image_storage import (
     ensure_image_upload_dir,
 )
 from .schemas import DeleteImageDto, SearchDto
+from .sections import SECTION_COLLECTION
 from .service import FILE_COLLECTION, validate_doc_file
 
 router = APIRouter(prefix="/file_management")
@@ -47,7 +48,10 @@ async def upload_knowledge(
         raise BizError("最多只能上传3个文件", 400)
     payload = await _read_doc_files(file)
     user_id = user.user_id
-    result = await service.handle_upload(payload, user_id, "UD", get_db()[FILE_COLLECTION])
+    db = get_db()
+    result = await service.handle_upload(
+        payload, user_id, "UD", db[FILE_COLLECTION], db[SECTION_COLLECTION]
+    )
     return wrap_response(result, request.url.path)
 
 
@@ -61,7 +65,10 @@ async def upload_dialog(
         raise BizError("最多只能上传3个文件", 400)
     payload = await _read_doc_files(file)
     user_id = user.user_id
-    result = await service.handle_upload(payload, user_id, "UB", get_db()[FILE_COLLECTION])
+    db = get_db()
+    result = await service.handle_upload(
+        payload, user_id, "UB", db[FILE_COLLECTION], db[SECTION_COLLECTION]
+    )
     return wrap_response(result, request.url.path)
 
 
@@ -87,7 +94,10 @@ async def get_file(file_id: str, request: Request, user: AuthUser = Depends(get_
 async def delete_knowledge_file(
     file_id: str, request: Request, user: AuthUser = Depends(get_current_user)
 ):
-    result = await service.delete_file(file_id, user.user_id, "UD", get_db()[FILE_COLLECTION])
+    db = get_db()
+    result = await service.delete_file(
+        file_id, user.user_id, "UD", db[FILE_COLLECTION], db[SECTION_COLLECTION]
+    )
     return wrap_response(result, request.url.path)
 
 
@@ -95,7 +105,10 @@ async def delete_knowledge_file(
 async def delete_dialog_file(
     file_id: str, request: Request, user: AuthUser = Depends(get_current_user)
 ):
-    result = await service.delete_file(file_id, user.user_id, "UB", get_db()[FILE_COLLECTION])
+    db = get_db()
+    result = await service.delete_file(
+        file_id, user.user_id, "UB", db[FILE_COLLECTION], db[SECTION_COLLECTION]
+    )
     return wrap_response(result, request.url.path)
 
 

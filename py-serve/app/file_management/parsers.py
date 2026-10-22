@@ -38,17 +38,26 @@ def _rows_to_markdown(rows: list[list]) -> str:
     return "\n".join(lines)
 
 
-def parse_pdf(data: bytes) -> str:
+def parse_pdf_with_pages(data: bytes) -> tuple[str, list[int]]:
+    """抽取全文，同时返回每页起始字符偏移（用于把 chunk 映射回页码）。"""
     reader = PdfReader(io.BytesIO(data))
     parts: list[str] = []
+    page_starts: list[int] = []
+    offset = 0
     for page in reader.pages:
         try:
             text = page.extract_text() or ""
         except Exception:
             text = ""
-        parts.append(text)
-    # 与 NestJS 版 mergeTexts 行为一致：每页文本后补换行
-    return "".join(p + "\n" for p in parts)
+        page_starts.append(offset)
+        part = text + "\n"  # 与 NestJS 版 mergeTexts 行为一致：每页文本后补换行
+        parts.append(part)
+        offset += len(part)
+    return "".join(parts), page_starts
+
+
+def parse_pdf(data: bytes) -> str:
+    return parse_pdf_with_pages(data)[0]
 
 
 def parse_docx(data: bytes) -> str:
@@ -77,7 +86,12 @@ def parse_docx(data: bytes) -> str:
     return "\n\n".join(blocks)
 
 
-def parse_file(data: bytes, file_type: str) -> str:
+def parse_file_with_pages(data: bytes, file_type: str) -> tuple[str, list[int]]:
+    """返回 (全文, 每页起始偏移)；DOCX 无稳定页码，偏移列表为空。"""
     if file_type == "pdf":
-        return parse_pdf(data)
-    return parse_docx(data)
+        return parse_pdf_with_pages(data)
+    return parse_docx(data), []
+
+
+def parse_file(data: bytes, file_type: str) -> str:
+    return parse_file_with_pages(data, file_type)[0]

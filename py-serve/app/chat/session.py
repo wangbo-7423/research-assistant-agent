@@ -70,17 +70,30 @@ async def persist_convo(
         print(e)
 
 
+def _field(message, name: str):
+    """读消息字段：严格校验成功是 ChatMessage，历史脏数据回退时可能是 dict。"""
+    if isinstance(message, dict):
+        return message.get(name)
+    return getattr(message, name, None)
+
+
 async def get_session_list(user_id: str, chat_col) -> list[dict]:
-    cursor = (
-        chat_col.find({"userId": ObjectId(user_id)}, {"createDate": 1, "createTime": 1, "chatList": 1})
-        .sort("createTime", -1)
-    )
+    cursor = chat_col.find(
+        {"userId": ObjectId(user_id)},
+        # userId 必须投影出来：ChatSessionDocument 里它是必填字段，
+        # 漏掉会让校验失败并回退成原始 dict，后续 m.role 直接 AttributeError
+        {"userId": 1, "createDate": 1, "createTime": 1, "chatList": 1},
+    ).sort("createTime", -1)
     result = []
     async for item in cursor:
         session = ChatSessionDocument.from_mongo(item)
         chat_list = session.chatList
-        first_user = next((m for m in chat_list if m.role == "user"), None)
-        raw_title = "新对话" if first_user is None else (first_user.displayContent or first_user.content or "新对话")
+        first_user = next((m for m in chat_list if _field(m, "role") == "user"), None)
+        raw_title = (
+            "新对话"
+            if first_user is None
+            else (_field(first_user, "displayContent") or _field(first_user, "content") or "新对话")
+        )
         result.append(
             {
                 "sessionId": str(session.id or item["_id"]),
