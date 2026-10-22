@@ -70,7 +70,8 @@ project-user/
     ├── components/
     │   ├── AppShell.vue        # 布局骨架（左栏 + 中央 + 底部）
     │   ├── ChatHistory.vue     # 左侧会话列表（切换 / 删除 / 新建 / 登录 / 知识库入口）
-    │   ├── ChatWindow.vue      # 中央消息区（气泡 / Markdown+KaTeX / 文档引用折叠 / 自动滚底）
+    │   ├── ChatWindow.vue      # 中央消息区（气泡 / Markdown+KaTeX / 文档引用折叠 / 引用角标 / 自动滚底）
+    │   ├── CitationList.vue    # 知识库回答出处列表（章节 / 页码 / 段序 / 片段摘录）
     │   ├── ChatWelcome.vue     # 欢迎页（无消息时展示）
     │   ├── ChatInput.vue       # 底部输入区（文本 / 图片 / DOCX / PDF 上传、知识库模式切换）
     │   ├── Knowledge.vue       # 知识库管理抽屉（文件网格 / 上传 / 删除）
@@ -85,6 +86,7 @@ App.vue
 └── AppShell.vue（flex 布局：左 230px 侧栏 + 中央自适应 + 底部输入）
     ├── ChatHistory.vue   —— 会话管理
     ├── ChatWindow.vue    —— 消息渲染（含 ChatWelcome 欢迎态）
+    │   └── CitationList.vue —— 知识库出处卡片
     ├── ChatInput.vue     —— 消息发送 / 多模态上传
     ├── Knowledge.vue     —— ElDrawer 知识库抽屉
     └── UserLogin.vue     —— ElDialog 登录注册弹窗
@@ -94,7 +96,8 @@ App.vue
 |------|------|---------|
 | AppShell | 布局骨架，组装子组件 | flex 三区布局 |
 | ChatHistory | 会话管理 | 列表拉取 / 切换 / 删除 / 新建；登录与知识库入口 |
-| ChatWindow | 消息渲染 | 用户 / 助手气泡、Markdown + KaTeX、引用折叠、自动滚底 |
+| ChatWindow | 消息渲染 | 用户 / 助手气泡、Markdown + KaTeX、引用折叠、`[N]` 角标、自动滚底 |
+| CitationList | 知识库出处 | 文档 / 章节 / 页码 / 段序 / 片段摘录，支持展开完整片段，点击角标定位高亮 |
 | ChatWelcome | 空态欢迎 | 无消息时的引导页 |
 | ChatInput | 消息发送 | 文本 / 图片 / DOCX / PDF 上传、知识库模式开关、快捷键 |
 | Knowledge | 知识库管理 | ElDrawer 抽屉、文件网格、上传 / 删除 |

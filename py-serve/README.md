@@ -20,6 +20,7 @@ py-serve/
 ├── requirements.txt
 ├── .env                    # DeepSeek key + Qwen key + 基础设施地址
 ├── run.py                  # 启动入口
+├── scripts/                # 运维脚本（reindex_kb.py 重建索引）
 ├── uploads-image/          # 对话图片上传目录（/open-image 静态服务）
 ├── eval/                   # 召回评测体系（详见 eval/README.md）
 └── app/                    # 按业务垂直切分，包内再分 router / schemas / service
@@ -37,7 +38,9 @@ py-serve/
     │   ├── schemas.py      #   请求体定义
     │   ├── service.py      #   上传/删除/列表/向量/关键词/混合检索（RRF）
     │   ├── splitter.py     #   递归字符切片（800/100，对齐 LangChain）
-    │   ├── parsers.py      #   PDF / DOCX 文本抽取
+    │   ├── structure.py    #   论文结构识别 + 父子切分（章节 / 页码 / 段序 / 字符区间）
+    │   ├── sections.py     #   父文档（章节）落库与按 parentId 批量回表
+    │   ├── parsers.py      #   PDF / DOCX 文本抽取（PDF 同时返回每页起始偏移）
     │   ├── embeddings.py   #   通义 embedding（批量 10 条 + 查询缓存）
     │   ├── milvus_store.py #   Milvus 集合操作（每用户一个集合）
     │   ├── keywords.py     #   关键词提取（DeepSeek → 规则降级）
@@ -58,12 +61,35 @@ py-serve/
 1. `POST /chat/sendmessage`（`isKnowledgeBased=true`）：
    第一轮调用 DeepSeek，强制触发「意图识别」工具（`clarify_intent`）→ 续问改写为完整检索问题；
 2. 混合检索：问题向量化 → Milvus 向量检索（COSINE）+ 关键词 LIKE 检索 → RRF 融合（0.7/0.3，k=60），Top5；
-3. 第二轮调用：注入「知识库问答规则」层，基于【片段N·文件名】格式的检索结果流式回答；
-4. 无命中时发送占位符 `&没有检索到相关文档&`，由提示词规则控制兜底话术。
+   Top5 子块按 `parentId` 聚合去重，回表 MongoDB `file_sections` 取父章节，
+   以「子块 ± 600 字、单片段上限 2400 字」的有界窗口注入（子块负责召回，父章节负责上下文完整）；
+3. 第二轮调用：注入「知识库问答规则」层，基于【片段N·文件名·章节·第X页】格式的检索结果流式回答，
+   规则要求模型在依赖片段的结论后标注 `[N]`；
+4. 溯源：检索结果同时生成 `citations`（文档、章节、页码、段序、片段摘录），随 `queryKB` 事件下发并写入消息；
+   前端把正文里的 `[N]` 渲染成可点击角标，点击定位到「参考来源」卡片；
+5. 无命中时发送占位符 `&没有检索到相关文档&`，由提示词规则控制兜底话术。
+
+切片侧（`file_management/structure.py`）按论文一级章节断开，并记录每个 chunk 的
+章节路径、起始页、章节内段序和全文字符区间；章节本身作为父文档存入 `file_sections`，
+子块通过 `parentId` 关联，因此回答里的 `[N]` 既能回指原文位置，也能在生成时补全上下文。
 
 流式协议：标准 SSE（`Content-Type: text/event-stream`，帧格式 `data: <json>`、空行分隔），
 消息类型有 `sessionId` / `readDocument` / `queryKB` / `answer` / `error`。
 协议选型与改造说明见 [design/05](../design/05-流式协议SSE改造.md)。
+
+## 索引版本升级
+
+Milvus 不支持给已有集合加列，v3（新增 parentId）上线时集合名改为 `_<userId>_v3`（旧集合保留不删）。
+升级后存量知识库需要重建一次索引（会同时重建父章节 `file_sections`）：
+
+```bash
+python scripts/reindex_kb.py                 # 全部用户
+python scripts/reindex_kb.py --user-id xxx   # 单个用户
+python scripts/reindex_kb.py --prune-legacy  # 重建成功后删除该用户的旧版本集合
+```
+
+脚本从 MongoDB 的 `fileText` / `pageStarts` 重建，与新上传文件使用同一套切片逻辑；
+`--prune-legacy` 只删除 `_<userId>` / `_<userId>_v1...` 这类旧集合，评测集合 `_evalcorpus` 不受影响。
 
 ## 启动
 
