@@ -52,8 +52,15 @@
           <el-icon class="is-loading"><Loading /></el-icon>
           <span>正在思考中...</span>
         </div>
-        <!-- 模型回复内容：Markdown 渲染 -->
-        <div class="ai-content markdown-body" v-if="item.content" v-html="renderMarkdown(item.content)"></div>
+        <!-- 模型回复内容：Markdown 渲染，正文 [N] 可点击定位到下方出处 -->
+        <div
+          class="ai-content markdown-body"
+          v-if="item.content"
+          v-html="renderMarkdown(item.content, item.citations?.length || 0)"
+          @click="handleCiteClick"
+        ></div>
+        <!-- 知识库回答的出处列表 -->
+        <CitationList v-if="item.citations && item.citations.length > 0" :citations="item.citations" />
       </div>
     </div>
   </div>
@@ -69,6 +76,7 @@ import 'katex/dist/katex.min.css'
 import { useChatStore } from "@/store/index"
 import docxIcon from "@/assets/docx.png"
 import pdfIcon from "@/assets/pdf.png"
+import CitationList from "@/components/CitationList.vue"
 
 const chat = useChatStore()
 
@@ -79,13 +87,31 @@ const md = new MarkdownIt({
   breaks: true,
 })
 
+// 引用角标：把正文中的 [1] 渲染成可点击的上标（只在 html:false 下注入 html_inline，
+// 不影响代码块/链接；编号超出本次 citations 范围时按普通文本保留）
+md.inline.ruler.after('link', 'citation_ref', (state: any, silent: boolean) => {
+  const pos = state.pos
+  if (state.src.charCodeAt(pos) !== 0x5b /* [ */) return false
+  const matched = /^\[(\d{1,2})\]/.exec(state.src.slice(pos, pos + 4))
+  if (!matched) return false
+  const index = Number(matched[1])
+  const limit = Number(state.env?.citationCount || 0)
+  if (index < 1 || index > limit) return false
+  if (!silent) {
+    const token = state.push('html_inline', '', 0)
+    token.content = `<sup class="cite-ref" data-cite="${index}">[${index}]</sup>`
+  }
+  state.pos += matched[0].length
+  return true
+})
+
 // LaTeX 公式提取：$$...$$（块级，可跨行）、\[...\]、\(...\)、$...$（行内，不跨行）
 // 先抽成占位符再走 markdown，防止公式里的 * _ | 等字符被 markdown 误解析，
 // 也避免流式输出时 $$ 块被 breaks 拆成多个文本节点导致 KaTeX 无法识别
 const MATH_RE = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|\$([^$\n]+?)\$/g
 const PLACEHOLDER_RE = /@@KATEX(\d+)@@/g
 
-const renderMarkdown = (text: string): string => {
+const renderMarkdown = (text: string, citationCount = 0): string => {
   // 1. 抽取数学公式，替换为占位符
   const mathSegments: { display: boolean; tex: string }[] = []
   const preprocessed = text.replace(MATH_RE, (_m, blockDollar, blockBracket, inlineParen, inlineDollar) => {
@@ -98,8 +124,8 @@ const renderMarkdown = (text: string): string => {
     // 块级公式前后补空行，让 markdown 把它当成独立段落
     return display ? `\n\n${token}\n\n` : token
   })
-  // 2. markdown 渲染
-  let html = md.render(preprocessed)
+  // 2. markdown 渲染（citationCount 控制哪些 [N] 可以渲染成角标）
+  let html = md.render(preprocessed, { citationCount })
   // 3. 占位符替换为 KaTeX 渲染结果（渲染失败时回退为原文，不阻断回复展示）
   html = html.replace(PLACEHOLDER_RE, (_m, i) => {
     const seg = mathSegments[Number(i)]
@@ -115,6 +141,21 @@ const renderMarkdown = (text: string): string => {
     }
   })
   return html
+}
+
+// 点击正文里的 [N]：滚动到同一条消息下的出处卡片并高亮
+const handleCiteClick = (event: MouseEvent): void => {
+  const target = event.target as HTMLElement | null
+  const cite = target?.closest('.cite-ref') as HTMLElement | null
+  if (!cite) return
+  const messageEl = cite.closest('.ai-message')
+  const card = messageEl?.querySelector<HTMLElement>(
+    `.citation-item[data-cite-card="${cite.dataset.cite}"]`
+  )
+  if (!card) return
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  card.classList.add('is-flash')
+  window.setTimeout(() => card.classList.remove('is-flash'), 1200)
 }
 
 // 文件大小展示：兼容字节数与 "12KB" 这类已格式化的字符串
@@ -309,6 +350,18 @@ watch(
   color: #666;
 }
 .ai-content :deep(a) { color: #2b82b8; }
+/* 正文引用角标 [N] */
+.ai-content :deep(.cite-ref) {
+  color: #0866a0;
+  cursor: pointer;
+  font-size: 0.72em;
+  vertical-align: super;
+  line-height: 0;
+  padding: 0 1px;
+}
+.ai-content :deep(.cite-ref:hover) {
+  text-decoration: underline;
+}
 .ai-content :deep(table) {
   border-collapse: collapse;
   margin: 10px 0;

@@ -93,8 +93,8 @@
           resize="none"
           @keydown="handleKeyDown"
         />
-        <el-button @click="sendMessage" :disabled="sending || imageUploading">
-          <img src="../assets/send.png" alt="" class="send-icon">
+        <el-button class="send-button" @click="sendMessage" :disabled="sending || imageUploading">
+          <el-icon :size="18"><Promotion /></el-icon>
         </el-button>
       </div>
     </div>
@@ -103,7 +103,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CloseBold } from '@element-plus/icons-vue'
+import { CloseBold, Promotion } from '@element-plus/icons-vue'
 import {
   UploadDialogApi,
   DeleteFileApi,
@@ -509,18 +509,28 @@ const deleteFile = async (id:string, index: number) => {
   font-size: 16px;
 }
 
-.send-icon {
-  width: 40px;
-  height: auto;
-  cursor: pointer;
+.chat-input-content :deep(.send-button) {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  margin-left: 10px;
+  background-color: #615ced;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-.chat-input-content :deep(.el-button) {
-  width: 40px;
-  height: 32px;
-  background: none;
-  border: none;
-  margin-left: 10px;
+.chat-input-content :deep(.send-button:hover:not(.is-disabled)) {
+  background-color: #4f49d6;
+  transform: translateY(-1px);
+}
+
+.chat-input-content :deep(.send-button.is-disabled) {
+  background-color: #c9c7f2;
 }
 
 .check-report-button {

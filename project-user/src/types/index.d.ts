@@ -66,6 +66,24 @@ export type kbFileListType = {
     fileType: string,
 }[];
 
+// 知识库回答的出处，index 与正文里的 [N] 一一对应
+export type CitationType = {
+    index: number;
+    docId: string;
+    docTitle: string;
+    section: string;   // 章节路径，如 "3 方法 > 3.2 模型结构"
+    page: number;      // 起始页码，0 表示未知（DOCX / 存量文档）
+    para: number;      // 章节内段序，0 表示未知
+    parentId: string;  // 所属父章节 id
+    chunkKey: string;
+    charStart: number; // 片段在全文中的起始字符偏移
+    charEnd: number;
+    snippet: string;   // 卡片预览（前 160 字）
+    text: string;      // 模型实际看到的完整片段，可展开核对
+    score: number;
+    matchedBy: Array<'vector' | 'keyword'>;
+}
+
 // 用户和模型的对话结构
 export interface MessageListType {
     role: 'user' | 'assistant' | 'system';
@@ -83,6 +101,7 @@ export interface MessageListType {
         promptInfo:string; // 服务器返回的提示
         fileList:string[]; // 服务器返回的文件列表
     }
+    citations?: CitationType[]; // 知识库回答的出处列表
     displayContent?:string; // 用户原始问题
     loadingCircle?:boolean; // 发送时等待模型回复的loading
 }
@@ -110,6 +129,7 @@ export type AiMessageType = {
     statusInfo?: 'inProgress' | 'completed';
     promptInfo?: string;
     fileList?: string[];
+    citations?: CitationType[];
     content?: string;
     sessionId?: string;
 }

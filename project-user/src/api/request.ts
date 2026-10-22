@@ -104,6 +104,10 @@ export const SendMessageApi = async(params:SendMessageType, aiMessageObj: Messag
         promptInfo: aiMessage.promptInfo || '',
         fileList: aiMessage.fileList || [],
       }
+      // 出处列表随检索完成事件一起下发，正文里的 [N] 依赖它渲染
+      if (aiMessage.citations) {
+        aiMessageObj.citations = aiMessage.citations
+      }
       return
     }
     // 模型增量回复
