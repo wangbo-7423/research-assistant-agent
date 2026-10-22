@@ -185,36 +185,43 @@ def split_document_with_sections(
     chunk_size: int = 800,
     chunk_overlap: int = 100,
 ) -> tuple[list[ChunkSpan], list[DocSection]]:
-    """一次切分同时产出子块与父文档（章节），两者通过 parent_suffix 对应。"""
+    """一次切分同时产出子块与父文档（一级章节），两者通过 parent_suffix 对应。"""
     sections = resolve_sections(text)
     if not sections:
         return [], []
 
+    groups, group_of_section = _group_by_chapter(sections)
     doc_sections = [
         DocSection(
             parent_suffix=f"s{index}",
-            title=section.title,
-            level=section.level,
-            path=section.path,
-            start=section.start,
-            end=section.end,
-            page_start=_page_at(page_starts, section.start),
-            page_end=_page_at(page_starts, max(section.end - 1, section.start)),
-            text=text[section.start:section.end],
+            title=group.title,
+            level=group.level,
+            path=group.path,
+            start=group.start,
+            end=group.end,
+            page_start=_page_at(page_starts, group.start),
+            page_end=_page_at(page_starts, max(group.end - 1, group.start)),
+            text=text[group.start:group.end],
         )
-        for index, section in enumerate(sections)
+        for index, group in enumerate(groups)
     ]
-    return _split_with_sections(text, sections, page_starts, chunk_size, chunk_overlap), doc_sections
+    return (
+        _split_with_sections(
+            text, sections, groups, group_of_section, page_starts, chunk_size, chunk_overlap
+        ),
+        doc_sections,
+    )
 
 
 def _split_with_sections(
     text: str,
     sections: list[Section],
+    groups: list[Section],
+    group_of_section: list[int],
     page_starts: list[int] | None,
     chunk_size: int,
     chunk_overlap: int,
 ) -> list[ChunkSpan]:
-    groups = _group_by_chapter(sections)
     paragraphs = _paragraph_spans(text)
     para_starts = [p[0] for p in paragraphs]
     section_starts = [s.start for s in sections]
@@ -267,7 +274,7 @@ def _split_with_sections(
                     page=_page_at(page_starts, start),
                     para=para,
                     chunk_index=len(chunks),
-                    parent_suffix=f"s{section_index}",
+                    parent_suffix=f"s{group_of_section[section_index]}",
                 )
             )
     return chunks
@@ -344,20 +351,28 @@ def _sections_trustworthy(text: str, sections: list[Section]) -> bool:
     return len(text) / len(sections) >= _MIN_SECTION_CHARS
 
 
-def _group_by_chapter(sections: list[Section]) -> list[Section]:
-    """把二三级标题并进所属一级章节：只在章与章之间断开，避免切出大量碎片。"""
+def _group_by_chapter(sections: list[Section]) -> tuple[list[Section], list[int]]:
+    """把二三级标题并进所属一级章节：只在章与章之间断开，避免切出大量碎片。
+
+    返回 (groups, group_of_section)：后者记录每个原始 section 归属哪个一级章节，
+    子块的 parentId 指向一级章节，避免把「只有 10 个字的空小节」当父文档。
+    """
     groups: list[Section] = []
+    group_of_section: list[int] = []
     for section in sections:
         if not groups:
             groups.append(section)
+            group_of_section.append(0)
             continue
         last = groups[-1]
         same_repeated_heading = section.level == last.level and section.title == last.title
         if section.level > 1 or same_repeated_heading:
             groups[-1] = replace(last, end=section.end)
+            group_of_section.append(len(groups) - 1)
         else:
             groups.append(section)
-    return groups
+            group_of_section.append(len(groups) - 1)
+    return groups, group_of_section
 
 
 def _is_heading_only(text: str, title: str) -> bool:

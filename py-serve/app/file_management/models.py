@@ -26,6 +26,11 @@ class FileDocument(MongoDocument):
     # PDF 每页起始字符偏移（DOCX 为空）：重建索引时据此还原页码，不依赖原始文件
     pageStarts: list[int] = Field(default_factory=list)
     uploadType: UploadType
+    # QA 问题索引的构建状态：pending/building/ready/failed；对话框文件不建索引，保持 None
+    qaStatus: str | None = None
+    qaBuiltAt: datetime | None = None
+    qaQuestions: int | None = None
+    qaError: str | None = None
     createdAt: datetime = Field(default_factory=datetime.now)
     updatedAt: datetime = Field(default_factory=datetime.now)
 

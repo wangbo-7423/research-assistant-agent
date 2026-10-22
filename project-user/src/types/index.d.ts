@@ -81,7 +81,7 @@ export type CitationType = {
     snippet: string;   // 卡片预览（前 160 字）
     text: string;      // 模型实际看到的完整片段，可展开核对
     score: number;
-    matchedBy: Array<'vector' | 'keyword'>;
+    matchedBy: Array<'vector' | 'keyword' | 'qa'>;
 }
 
 // 用户和模型的对话结构

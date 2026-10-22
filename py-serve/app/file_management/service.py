@@ -11,7 +11,7 @@ from pymongo.asynchronous.collection import AsyncCollection
 
 from ..core.config import Config
 from ..core.response import BizError
-from . import milvus_store
+from . import milvus_store, qa_index
 from .embeddings import embedding_client
 from .keywords import extract_keywords
 from .models import FileChunkSource, FileContent, FileDocument, FileListItem, FileRef, FileType, UploadType
@@ -31,6 +31,9 @@ ALLOWED_DOC_TYPES = {
 }
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 MAX_FILES = 3
+
+# 持有后台 QA 构建任务的强引用，避免任务被垃圾回收提前取消
+_qa_tasks: set[asyncio.Task] = set()
 
 
 def validate_doc_file(filename: str, mimetype: str, size: int) -> None:
@@ -87,6 +90,7 @@ async def process_file(
         fileText=merged_text,
         pageStarts=page_starts,
         uploadType=upload_type,
+        qaStatus="pending" if upload_type == "UD" and merged_text.strip() else None,
         createdAt=now,
         updatedAt=now,
     )
@@ -108,7 +112,50 @@ async def process_file(
         # 父章节只在生成阶段用：与子块分开存，避免 Milvus 的 VARCHAR 上限
         await replace_sections(sections_col, user_id, doc_id, filename, doc_sections)
 
+        # QA 问题索引耗时较长（每 chunk 一次 LLM），放到后台，不阻塞上传响应
+        if spans:
+            task = asyncio.create_task(
+                _build_qa_index(doc_id, filename, spans, user_id, files_col)
+            )
+            _qa_tasks.add(task)
+            task.add_done_callback(_qa_tasks.discard)
+
     return {"id": doc_id, "fileName": filename, "fileSize": size, "fileType": file_type}
+
+
+async def _build_qa_index(doc_id: str, doc_title: str, spans: list, user_id: str, files_col) -> None:
+    """后台构建 QA 索引并回写状态；构建期间检索自动走纯 chunk 路。"""
+    try:
+        await files_col.update_one(
+            {"_id": ObjectId(doc_id)}, {"$set": {"qaStatus": "building", "updatedAt": datetime.now()}}
+        )
+        count = await qa_index.build_index(doc_id, doc_title, spans, user_id)
+        # 构建期间文件可能已被删除，避免留下孤儿问题向量
+        exists = await files_col.find_one({"_id": ObjectId(doc_id)}, {"_id": 1})
+        if not exists:
+            await asyncio.to_thread(qa_index.delete_by_doc_id, doc_id, user_id)
+            return
+        await files_col.update_one(
+            {"_id": ObjectId(doc_id)},
+            {
+                "$set": {
+                    "qaStatus": "ready",
+                    "qaBuiltAt": datetime.now(),
+                    "qaQuestions": count,
+                    "updatedAt": datetime.now(),
+                }
+            },
+        )
+        logger.info("QA 索引完成: %s → %s questions", doc_title, count)
+    except Exception as exc:
+        logger.warning("QA 索引构建失败（%s）: %s", doc_title, exc)
+        try:
+            await files_col.update_one(
+                {"_id": ObjectId(doc_id)},
+                {"$set": {"qaStatus": "failed", "qaError": str(exc)[:500], "updatedAt": datetime.now()}},
+            )
+        except Exception:
+            pass
 
 
 async def query_files_by_ids(
@@ -185,6 +232,11 @@ async def delete_file(
             await asyncio.to_thread(milvus_store.delete_by_doc_id, file_id, user_id)
         except Exception as e:
             raise BizError(f"删除向量失败: {e}，请重试", 400)
+        # QA 索引删失败不阻断：检索侧取不到 chunk 正文会自动跳过
+        try:
+            await asyncio.to_thread(qa_index.delete_by_doc_id, file_id, user_id)
+        except Exception as e:
+            logger.warning("删除 QA 索引失败（%s）: %s", file_id, e)
         await delete_sections(sections_col, user_id, file_id)
 
     await files_col.delete_one({"_id": oid})
@@ -271,32 +323,38 @@ def _fused_entry(item: dict) -> dict:
         "rrfScore": 0,
         "hitVector": False,
         "hitKeyword": False,
+        "hitQA": False,
     }
 
 
-def _rrf_fuse(vector_results: list[dict], keyword_results: list[dict], limit: int) -> list[dict]:
-    """混合检索：向量 + 关键词，用倒数排名融合（RRF）。"""
+def _rrf_fuse(
+    chunk_results: list[dict],
+    second_results: list[dict],
+    limit: int,
+    second_weight: float,
+    second_flag: str,
+    chunk_weight: float = Config.VECTOR_WEIGHT,
+) -> list[dict]:
+    """倒数排名融合（RRF）：chunk 向量 + 第二路（QA 问题或关键词）。"""
     rrf_k = Config.RRF_K
-    vector_weight = Config.VECTOR_WEIGHT
-    keyword_weight = Config.KEYWORD_WEIGHT
     fused: dict[str, dict] = {}
 
     def key_of(item: dict) -> str:
-        return f"{item.get('docId')}::{(item.get('docText') or '')[:50]}"
+        return item.get("chunkKey") or f"{item.get('docId')}::{(item.get('docText') or '')[:50]}"
 
-    for rank, item in enumerate(vector_results):
+    for rank, item in enumerate(chunk_results):
         if not item.get("docText"):
             continue
         entry = fused.setdefault(key_of(item), _fused_entry(item))
-        entry["rrfScore"] += vector_weight / (rrf_k + rank + 1)
+        entry["rrfScore"] += chunk_weight / (rrf_k + rank + 1)
         entry["hitVector"] = True
 
-    for rank, item in enumerate(keyword_results):
+    for rank, item in enumerate(second_results):
         if not item.get("docText"):
             continue
         entry = fused.setdefault(key_of(item), _fused_entry(item))
-        entry["rrfScore"] += keyword_weight / (rrf_k + rank + 1)
-        entry["hitKeyword"] = True
+        entry["rrfScore"] += second_weight / (rrf_k + rank + 1)
+        entry[second_flag] = True
 
     return sorted(fused.values(), key=lambda x: x["rrfScore"], reverse=True)[:limit]
 
@@ -307,13 +365,50 @@ async def hybrid_search(query: str, user_id: str, limit: int = 5) -> dict:
     has_collection = await asyncio.to_thread(client.has_collection, collection_name=name)
     if not has_collection:
         # 集合不存在不代表出错：用户还没有上传知识库文件
-        return {"success": True, "results": [], "fromVector": 0, "fromKeyword": 0}
+        return {"success": True, "results": [], "fromVector": 0, "fromKeyword": 0, "fromQA": 0}
 
     candidate_limit = max(limit * 2, 10)
+    query_vector = await embedding_client.embed_query(query)
 
-    # 两路检索并行，关键词检索失败不阻断主流程（降级为纯向量检索）
-    vector_task = vector_search(query, user_id, candidate_limit)
+    # chunk 向量路与 QA 问题路并行；QA 索引不存在/为空时自动降级为「向量 + 关键词」
+    vector_task = asyncio.to_thread(
+        milvus_store.vector_search, query_vector, user_id, candidate_limit
+    )
 
+    async def _safe_qa() -> list[dict]:
+        try:
+            return await asyncio.to_thread(
+                qa_index.search_questions, query_vector, user_id, candidate_limit
+            )
+        except Exception as e:
+            logger.warning("QA 问题检索失败，降级为关键词路: %s", e)
+            return []
+
+    vector_results, qa_hits = await asyncio.gather(vector_task, _safe_qa())
+
+    qa_results: list[dict] = []
+    if qa_hits:
+        fetched = await asyncio.to_thread(
+            milvus_store.get_chunks_by_keys, [hit["chunkKey"] for hit in qa_hits], user_id
+        )
+        for hit in qa_hits:
+            chunk = fetched.get(hit["chunkKey"])
+            if chunk:
+                qa_results.append({**chunk, "score": hit["score"]})
+
+    if qa_results:
+        fused = _rrf_fuse(
+            vector_results, qa_results, limit, Config.QA_WEIGHT, "hitQA", Config.CHUNK_WEIGHT
+        )
+        return {
+            "success": True,
+            "results": fused,
+            "fromVector": len(vector_results),
+            "fromKeyword": 0,
+            "fromQA": len(qa_results),
+        }
+
+    # 没有 QA 索引（存量用户/新上传仍在构建）→ 保持原有混合检索行为
     async def _safe_keyword():
         try:
             return await keyword_search(query, user_id, candidate_limit)
@@ -321,11 +416,19 @@ async def hybrid_search(query: str, user_id: str, limit: int = 5) -> dict:
             logger.warning("关键词检索失败，降级为纯向量检索: %s", e)
             return {"success": True, "results": []}
 
-    vector_res, keyword_res = await asyncio.gather(vector_task, _safe_keyword())
-    fused = _rrf_fuse(vector_res["results"], keyword_res["results"], limit)
+    keyword_res = await _safe_keyword()
+    fused = _rrf_fuse(
+        vector_results,
+        keyword_res["results"],
+        limit,
+        Config.KEYWORD_WEIGHT,
+        "hitKeyword",
+        Config.VECTOR_WEIGHT,
+    )
     return {
         "success": True,
         "results": fused,
-        "fromVector": len(vector_res["results"]),
+        "fromVector": len(vector_results),
         "fromKeyword": len(keyword_res["results"]),
+        "fromQA": 0,
     }

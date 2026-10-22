@@ -18,6 +18,7 @@ import asyncio
 import logging
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import cast
 
@@ -26,7 +27,7 @@ from pymongo import AsyncMongoClient
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.core.config import Config  # noqa: E402
-from app.file_management import milvus_store  # noqa: E402
+from app.file_management import milvus_store, qa_index  # noqa: E402
 from app.file_management.embeddings import embedding_client  # noqa: E402
 from app.file_management.sections import SECTION_COLLECTION, replace_sections  # noqa: E402
 from app.file_management.service import FILE_COLLECTION  # noqa: E402
@@ -38,7 +39,7 @@ def log(message: str) -> None:
     print(message, flush=True)
 
 
-async def reindex_document(sections_col, doc: dict, user_id: str) -> int:
+async def reindex_document(sections_col, doc: dict, user_id: str, skip_qa: bool) -> tuple[int, int]:
     doc_id = str(doc["_id"])
     title = doc.get("fileName") or doc_id
     text = doc.get("fileText") or ""
@@ -47,12 +48,14 @@ async def reindex_document(sections_col, doc: dict, user_id: str) -> int:
     spans, doc_sections = split_document_with_sections(
         text, page_starts, chunk_size=800, chunk_overlap=100
     )
-    # 先清旧向量与旧父章节，保证脚本可重复执行
+    # 先清旧向量/QA/父章节，保证脚本可重复执行
     await asyncio.to_thread(milvus_store.delete_by_doc_id, doc_id, user_id)
+    if not skip_qa:
+        await asyncio.to_thread(qa_index.delete_by_doc_id, doc_id, user_id)
     await replace_sections(sections_col, user_id, doc_id, title, doc_sections)
     if not spans:
         log(f"  跳过（无有效文本）: {title}")
-        return 0
+        return 0, 0
 
     texts = [span.text if span.text.strip() else " " for span in spans]
     vectors = await embedding_client.embed_documents(texts)
@@ -61,8 +64,12 @@ async def reindex_document(sections_col, doc: dict, user_id: str) -> int:
     await asyncio.to_thread(
         milvus_store.insert_chunks, doc_id, title, [s.text for s in spans], vectors, user_id, metas
     )
-    log(f"  重建完成: {title} → {len(spans)} chunks / {len(doc_sections)} sections")
-    return len(spans)
+    qa_count = 0
+    if not skip_qa:
+        log(f"  构建 QA 索引: {title}（{len(spans)} chunks）...")
+        qa_count = await qa_index.build_index(doc_id, title, spans, user_id)
+    log(f"  重建完成: {title} → {len(spans)} chunks / {len(doc_sections)} sections / {qa_count} questions")
+    return len(spans), qa_count
 
 
 def legacy_collections(user_id: str) -> list[str]:
@@ -73,7 +80,7 @@ def legacy_collections(user_id: str) -> list[str]:
     return sorted(name for name in names if name != current and pattern.match(name))
 
 
-async def main(user_id: str | None, prune_legacy: bool = False) -> None:
+async def main(user_id: str | None, prune_legacy: bool = False, skip_qa: bool = False) -> None:
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     # 单独建客户端并缩短选主超时：基础设施没起时快速报错，而不是静默等 30 秒
     client = AsyncMongoClient(Config.MONGODB_URI, serverSelectionTimeoutMS=8000)
@@ -100,7 +107,7 @@ async def main(user_id: str | None, prune_legacy: bool = False) -> None:
             user_ids = await files_col.distinct("userId", {"uploadType": "UD"})
         log(f"待处理用户: {len(user_ids)} 个")
 
-        total_docs = total_chunks = 0
+        total_docs = total_chunks = total_questions = 0
         for current_user in user_ids:
             cursor = files_col.find({"userId": current_user, "uploadType": "UD"})
             docs = [doc async for doc in cursor]
@@ -109,8 +116,24 @@ async def main(user_id: str | None, prune_legacy: bool = False) -> None:
             log(f"用户 {current_user}: {len(docs)} 个知识库文件")
             user_chunks = 0
             for doc in docs:
-                user_chunks += await reindex_document(sections_col, doc, str(current_user))
+                chunks_n, qa_n = await reindex_document(
+                    sections_col, doc, str(current_user), skip_qa
+                )
+                user_chunks += chunks_n
+                total_questions += qa_n
                 total_docs += 1
+                if not skip_qa:
+                    await files_col.update_one(
+                        {"_id": doc["_id"]},
+                        {
+                            "$set": {
+                                "qaStatus": "ready",
+                                "qaBuiltAt": datetime.now(),
+                                "qaQuestions": qa_n,
+                                "updatedAt": datetime.now(),
+                            }
+                        },
+                    )
             total_chunks += user_chunks
 
             # 只有本用户全部重建成功（有切片）才清理旧集合，避免把还没重建的数据删掉
@@ -119,7 +142,10 @@ async def main(user_id: str | None, prune_legacy: bool = False) -> None:
                     milvus_store.get_milvus().drop_collection(collection_name=name)
                     log(f"  已清理旧集合: {name}")
 
-        log(f"完成：{total_docs} 个文件，{total_chunks} 个切片，集合版本 {milvus_store.SCHEMA_VERSION}")
+        log(
+            f"完成：{total_docs} 个文件，{total_chunks} 个切片，"
+            f"{total_questions} 个 QA 问题，集合版本 {milvus_store.SCHEMA_VERSION}"
+        )
     finally:
         await client.close()
 
@@ -132,5 +158,6 @@ if __name__ == "__main__":
         action="store_true",
         help="重建成功后删除该用户的旧版本集合（_uid、_uid_v1/_v2…）",
     )
+    parser.add_argument("--skip-qa", action="store_true", help="不重建 QA 问题索引（只重建 chunk 向量）")
     args = parser.parse_args()
-    asyncio.run(main(args.user_id, args.prune_legacy))
+    asyncio.run(main(args.user_id, args.prune_legacy, args.skip_qa))

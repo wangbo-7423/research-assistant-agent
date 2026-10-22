@@ -197,6 +197,34 @@ def vector_search(query_vector: list[float], user_id: str, limit: int = 10) -> l
     return normalized
 
 
+def get_chunks_by_keys(keys: list[str], user_id: str) -> dict[str, dict]:
+    """按 chunkKey 批量回表（QA 路命中问题后取回 chunk 正文与溯源字段）。"""
+    valid = [key for key in dict.fromkeys(keys) if key and '"' not in key]
+    if not valid:
+        return {}
+    client = get_milvus()
+    name = collection_name_for(user_id)
+    if not client.has_collection(collection_name=name):
+        return {}
+    filter_expr = "chunkKey in [" + ",".join(f'"{key}"' for key in valid) + "]"
+    rows = client.query(
+        collection_name=name,
+        filter=filter_expr,
+        output_fields=_OUTPUT_FIELDS,
+    )
+    return {
+        row.get("chunkKey"): {
+            "docId": row.get("docId"),
+            "docTitle": row.get("docTitle"),
+            "docText": row.get("docText"),
+            **_provenance(row),
+            "score": 0,
+        }
+        for row in rows
+        if row.get("chunkKey")
+    }
+
+
 def keyword_query(filter_expr: str, user_id: str, limit: int = 10) -> list[dict]:
     client = get_milvus()
     name = collection_name_for(user_id)

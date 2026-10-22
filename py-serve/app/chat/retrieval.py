@@ -79,7 +79,8 @@ def _build_fragments(hits: list[dict], parents: dict[str, dict]) -> list[dict]:
                 start = max(p_start, char_start - _PARENT_WINDOW_CHARS)
                 end = min(p_end, start + _FRAGMENT_MAX_CHARS)
             window = p_text[start - p_start:end - p_start]
-            if window.strip():
+            # 父章节区间异常（例如误判出的极短小节）时，宁可退回子块原文
+            if window.strip() and len(window) >= (char_end - char_start):
                 text, char_start, char_end = window, start, end
 
         fragments.append(
@@ -130,7 +131,11 @@ def _build_citations(fragments: list[dict]) -> list[dict]:
                 "score": round(max(float(h.get("rrfScore") or 0) for h in hits) if hits else 0, 6),
                 "matchedBy": [
                     name
-                    for name, flag in (("vector", "hitVector"), ("keyword", "hitKeyword"))
+                    for name, flag in (
+                        ("vector", "hitVector"),
+                        ("keyword", "hitKeyword"),
+                        ("qa", "hitQA"),
+                    )
                     if any(h.get(flag) for h in hits)
                 ],
             }

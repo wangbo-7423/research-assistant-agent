@@ -53,6 +53,9 @@ class Config:
     RRF_K: int = 60
     VECTOR_WEIGHT: float = 0.7
     KEYWORD_WEIGHT: float = 0.3
+    # 有 QA 索引时：chunk 向量 + QA 问题路双路 RRF（离线实验 0.5/0.5 最优）
+    CHUNK_WEIGHT: float = 0.5
+    QA_WEIGHT: float = 0.5
 
 
 if not Config.QWEN_API_KEY:
