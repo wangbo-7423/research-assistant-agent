@@ -4,6 +4,7 @@
 - /open-image 静态目录（对应 express.static(uploads-image)）
 - 统一响应包装 + 全局异常过滤器
 """
+import logging
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -15,6 +16,12 @@ from .core.response import register_exception_handlers
 from .file_management.image_storage import ensure_image_upload_dir
 from .file_management.router import router as file_management_router
 from .userinfo.router import router as userinfo_router
+
+# uvicorn 只配置自身 logger，业务模块的 logger 需要 root 兜底，否则 info 级日志会被丢弃
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+)
 
 app = FastAPI(title="research-assistant-agent py-serve")
 

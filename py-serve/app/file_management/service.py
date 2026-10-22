@@ -3,6 +3,7 @@
 对应 NestJS 版 FileanagementService（不含 wiki 编译，朴素 RAG 链路）。
 """
 import asyncio
+import logging
 from datetime import datetime
 
 from bson import ObjectId
@@ -15,6 +16,8 @@ from .embeddings import embedding_client
 from .keywords import extract_keywords
 from .parsers import parse_file
 from .splitter import recursive_character_split
+
+logger = logging.getLogger(__name__)
 
 # MongoDB 集合名沿用历史拼写：已有上传记录都在这个集合里，
 # 改名需要同步做数据迁移，否则存量知识库文件会「消失」。
@@ -215,16 +218,24 @@ async def keyword_search(query: str, user_id: str, limit: int = 10) -> dict:
     escaped = [k.replace('"', "") for k in keywords]
     filter_expr = " or ".join(f'docText like "%{k}%"' for k in escaped)
     try:
-        rows = await asyncio.to_thread(milvus_store.keyword_query, filter_expr, user_id, limit)
+        # 多取候选：Milvus query 无相关性排序，只按内部顺序返回，需在本地重排后再截断
+        rows = await asyncio.to_thread(
+            milvus_store.keyword_query, filter_expr, user_id, limit * 3
+        )
     except Exception as e:
         raise BizError(f"关键词检索失败: {e}", 400)
-    return {
-        "success": True,
-        "results": [
-            {**row, "score": 1 / (rank + 1)}  # 关键词检索无相似度分数，用名次构造递减分数
-            for rank, row in enumerate(rows)
-        ],
-    }
+
+    # 按「命中几个关键词」重建分数。Milvus query 不支持 order by，
+    # 返回顺序与相关性无关，直接 1/(rank+1) 会把无关 chunk 排到前面。
+    probes = [k.lower() for k in escaped]
+    scored: list[dict] = []
+    for row in rows:
+        text_lower = (row.get("docText") or "").lower()
+        hit = sum(1 for probe in probes if probe in text_lower)
+        if hit:
+            scored.append({**row, "score": hit})
+    scored.sort(key=lambda item: item["score"], reverse=True)
+    return {"success": True, "results": scored[:limit]}
 
 
 def _rrf_fuse(vector_results: list[dict], keyword_results: list[dict], limit: int) -> list[dict]:
@@ -293,7 +304,7 @@ async def hybrid_search(query: str, user_id: str, limit: int = 5) -> dict:
         try:
             return await keyword_search(query, user_id, candidate_limit)
         except Exception as e:
-            print(f"关键词检索失败，降级为纯向量检索: {e}")
+            logger.warning("关键词检索失败，降级为纯向量检索: %s", e)
             return {"success": True, "results": []}
 
     vector_res, keyword_res = await asyncio.gather(vector_task, _safe_keyword())

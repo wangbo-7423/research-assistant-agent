@@ -2,11 +2,35 @@
 LLM 不可用或失败时降级为本地规则提取，保证检索链路不中断。
 """
 import json
+import logging
 import re
+import threading
+from collections import OrderedDict
 
 from openai import AsyncOpenAI
 
 from ..core.config import Config
+
+logger = logging.getLogger(__name__)
+
+# 同一 query 会被重复提取：评测时同一批问题反复跑不同配置，线上则有用户重试/刷新。
+# key 带模型名，换模型后旧结果自然失效。
+_keyword_cache: OrderedDict[str, list[str]] = OrderedDict()
+_KEYWORD_CACHE_MAX = 500
+_keyword_cache_lock = threading.Lock()
+
+
+def _cache_get(key: str) -> list[str] | None:
+    with _keyword_cache_lock:
+        return _keyword_cache.get(key)
+
+
+def _cache_put(key: str, keywords: list[str]) -> None:
+    with _keyword_cache_lock:
+        if len(_keyword_cache) >= _KEYWORD_CACHE_MAX:
+            _keyword_cache.clear()  # 与 embedding 缓存同策略：评测查询集中，全清即可
+        _keyword_cache[key] = keywords
+
 
 _STOP_WORDS = {
     "的", "了", "是", "在", "我", "有", "和", "就", "不", "人", "都", "一", "一个",
@@ -97,12 +121,22 @@ def extract_keywords_by_rule(query: str) -> list[str]:
 
 
 async def extract_keywords(query: str) -> list[str]:
+    normalized = query.strip()
+    if not normalized:
+        return []
+    cache_key = f"{Config.DEEPSEEK_MODEL}:{normalized}"
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        return cached
+
     client = _get_client()
     if client is not None:
         try:
-            keywords = await extract_keywords_by_llm(query)
+            keywords = await extract_keywords_by_llm(normalized)
             if keywords:
+                _cache_put(cache_key, keywords)
                 return keywords
         except Exception as e:
-            print(f"DeepSeek 关键词提取失败，降级为规则提取: {e}")
-    return extract_keywords_by_rule(query)
+            # 降级结果不入缓存：LLM 恢复后应自动回到语义提取路径
+            logger.warning("DeepSeek 关键词提取失败，降级为规则提取: %s", e)
+    return extract_keywords_by_rule(normalized)
