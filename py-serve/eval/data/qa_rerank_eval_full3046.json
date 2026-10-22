@@ -1,0 +1,110 @@
+{
+ "meta": {
+  "chunks": 1563,
+  "questions": 8644,
+  "docs": 11,
+  "queries": 3046,
+  "candidate_k": 20,
+  "reranker": null,
+  "qaChunks": 1523,
+  "sample": 0,
+  "tag": "_full3046"
+ },
+ "metrics": {
+  "A_chunk_vec": {
+   "recall@1": 0.393,
+   "recall@3": 0.5982,
+   "recall@5": 0.6648,
+   "docRecall@1": 0.8516,
+   "docRecall@3": 0.9399,
+   "docRecall@5": 0.9606,
+   "mrr@5": 0.5146,
+   "n": 3046
+  },
+  "B1_qa_max": {
+   "recall@1": 0.456,
+   "recall@3": 0.6602,
+   "recall@5": 0.7301,
+   "docRecall@1": 0.8752,
+   "docRecall@3": 0.9537,
+   "docRecall@5": 0.975,
+   "mrr@5": 0.5621,
+   "n": 3046
+  },
+  "B2_qa_mean": {
+   "recall@1": 0.284,
+   "recall@3": 0.4504,
+   "recall@5": 0.5315,
+   "docRecall@1": 0.8047,
+   "docRecall@3": 0.8986,
+   "docRecall@5": 0.932,
+   "mrr@5": 0.3758,
+   "n": 3046
+  },
+  "B3_qa_rrf": {
+   "recall@1": 0.4567,
+   "recall@3": 0.6615,
+   "recall@5": 0.7315,
+   "docRecall@1": 0.8752,
+   "docRecall@3": 0.9537,
+   "docRecall@5": 0.975,
+   "mrr@5": 0.5631,
+   "n": 3046
+  },
+  "C1_chunk+qa_max": {
+   "recall@1": 0.4609,
+   "recall@3": 0.6963,
+   "recall@5": 0.7869,
+   "docRecall@1": 0.8844,
+   "docRecall@3": 0.9619,
+   "docRecall@5": 0.9796,
+   "mrr@5": 0.598,
+   "n": 3046
+  },
+  "C2_chunk+qa_rrf": {
+   "recall@1": 0.4613,
+   "recall@3": 0.697,
+   "recall@5": 0.7876,
+   "docRecall@1": 0.8844,
+   "docRecall@3": 0.9619,
+   "docRecall@5": 0.9796,
+   "mrr@5": 0.5984,
+   "n": 3046
+  },
+  "D_prod_hybrid": {
+   "recall@1": 0.3615,
+   "recall@3": 0.5686,
+   "recall@5": 0.6507,
+   "docRecall@1": 0.825,
+   "docRecall@3": 0.9265,
+   "docRecall@5": 0.9586,
+   "mrr@5": 0.4923,
+   "n": 3046
+  },
+  "E1_prod+qa_max": {
+   "recall@1": 0.4586,
+   "recall@3": 0.693,
+   "recall@5": 0.7846,
+   "docRecall@1": 0.8825,
+   "docRecall@3": 0.9613,
+   "docRecall@5": 0.9803,
+   "mrr@5": 0.5961,
+   "n": 3046
+  },
+  "E2_prod+qa_rrf": {
+   "recall@1": 0.459,
+   "recall@3": 0.6937,
+   "recall@5": 0.7853,
+   "docRecall@1": 0.8825,
+   "docRecall@3": 0.9613,
+   "docRecall@5": 0.9803,
+   "mrr@5": 0.5965,
+   "n": 3046
+  }
+ },
+ "candidateRecall": {
+  "A_chunk_vec": 0.8161523309258043,
+  "D_prod_hybrid": 0.8427445830597505,
+  "E1_prod+qa_max": 0.912672357189757
+ }
+}

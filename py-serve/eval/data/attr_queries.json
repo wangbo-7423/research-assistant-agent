@@ -1,0 +1,1366 @@
+[
+ {
+  "queryId": "70765ea7c94cbbd2#41::text0",
+  "source": "text",
+  "query": "在WSJ数据集上，只用有监督数据训练时，4层Transformer的句法分析F1分数是多少？",
+  "chunkKey": "70765ea7c94cbbd2#41",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#41::text1",
+  "source": "text",
+  "query": "半监督设置下，Transformer用了多大的beam size和α值？",
+  "chunkKey": "70765ea7c94cbbd2#41",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#7::text0",
+  "source": "text",
+  "query": "之前那些用CNN做基础模块的模型，比如ByteNet和ConvS2S，它们在处理长距离依赖时为啥比较费劲？",
+  "chunkKey": "70765ea7c94cbbd2#7",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#7::text1",
+  "source": "text",
+  "query": "Transformer在关联两个位置时操作次数是怎么变的，跟之前方法比有啥优势？",
+  "chunkKey": "70765ea7c94cbbd2#7",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#1::text0",
+  "source": "text",
+  "query": "Transformer这个模型跟以前的翻译模型比，最大的不同在哪？",
+  "chunkKey": "70765ea7c94cbbd2#1",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#1::text1",
+  "source": "text",
+  "query": "它在英德翻译任务上具体表现怎么样，比之前的最好成绩强多少？",
+  "chunkKey": "70765ea7c94cbbd2#1",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#17::text0",
+  "source": "text",
+  "query": "Transformer里多头注意力具体是怎么算的？每个头的输出怎么合并？",
+  "chunkKey": "70765ea7c94cbbd2#17",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#17::text1",
+  "source": "text",
+  "query": "模型里多头注意力主要用在哪些地方？能分别说说吗？",
+  "chunkKey": "70765ea7c94cbbd2#17",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#15::text0",
+  "source": "text",
+  "query": "为什么点积注意力在维度大的时候效果不如加性注意力啊？",
+  "chunkKey": "70765ea7c94cbbd2#15",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#15::text1",
+  "source": "text",
+  "query": "多头注意力具体是怎么做的，为什么要分成多个头？",
+  "chunkKey": "70765ea7c94cbbd2#15",
+  "docTitle": "Attention Is All You Need"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#15::text0",
+  "source": "text",
+  "query": "除了无监督预训练，还有哪些用监督数据做迁移学习的工作？",
+  "chunkKey": "221c3eff38f8ab54#15",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#15::text1",
+  "source": "text",
+  "query": "计算机视觉里，从大预训练模型迁移学习有哪些经验？",
+  "chunkKey": "221c3eff38f8ab54#15",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#9::text0",
+  "source": "text",
+  "query": "BERT之前大家一般怎么预训练语言表示啊？有哪些常见的做法？",
+  "chunkKey": "221c3eff38f8ab54#9",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#9::text1",
+  "source": "text",
+  "query": "词向量预训练除了神经网络方法，还有别的方法吗？",
+  "chunkKey": "221c3eff38f8ab54#9",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#49::text0",
+  "source": "text",
+  "query": "MRPC这个数据集为啥效果能提升这么多啊？它训练样本才三千多吧",
+  "chunkKey": "221c3eff38f8ab54#49",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#49::text1",
+  "source": "text",
+  "query": "BERT base和large的参数量具体是多少？跟之前那些Transformer比大很多吗",
+  "chunkKey": "221c3eff38f8ab54#49",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#7::text0",
+  "source": "text",
+  "query": "BERT跟之前那些预训练模型比如GPT和ELMo到底有啥本质区别啊？",
+  "chunkKey": "221c3eff38f8ab54#7",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#7::text1",
+  "source": "text",
+  "query": "除了masked语言模型，BERT预训练的时候还用了什么别的任务？",
+  "chunkKey": "221c3eff38f8ab54#7",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#45::text0",
+  "source": "text",
+  "query": "BERT预训练的时候，那个下一句预测任务到底有没有用啊？去掉它效果会差多少？",
+  "chunkKey": "221c3eff38f8ab54#45",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#45::text1",
+  "source": "text",
+  "query": "如果不用双向结构，只用从左到右的语言模型来预训练，跟BERT比效果会掉多少？",
+  "chunkKey": "221c3eff38f8ab54#45",
+  "docTitle": "BERT"
+ },
+ {
+  "queryId": "539c212a1a1a355a#49::text0",
+  "source": "text",
+  "query": "ResNet-110 和普通 56 层网络哪个参数更少啊？",
+  "chunkKey": "539c212a1a1a355a#49",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#49::text1",
+  "source": "text",
+  "query": "图6里那个110层残差网络在CIFAR-10上训练误差和测试误差咋样？",
+  "chunkKey": "539c212a1a1a355a#49",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#36::text0",
+  "source": "text",
+  "query": "ResNet-152 在 ImageNet 验证集上的 top-1 和 top-5 错误率是多少啊？我看 Table 3 和 Table 4 都有数据，但好像测试条件不一样？",
+  "chunkKey": "539c212a1a1a355a#36",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#36::text1",
+  "source": "text",
+  "query": "Table 3 里 ResNet-34 B 和 ResNet-34 C 的 top-5 错误率怎么一样？它们到底有什么区别？",
+  "chunkKey": "539c212a1a1a355a#36",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#6::text0",
+  "source": "text",
+  "query": "为什么加深网络反而会让训练误差变大？按说深层网络至少不会比浅层差吧？",
+  "chunkKey": "539c212a1a1a355a#6",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#6::text1",
+  "source": "text",
+  "query": "残差学习那个building block具体是怎么设计的？能简单说说它的结构吗？",
+  "chunkKey": "539c212a1a1a355a#6",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#39::text0",
+  "source": "text",
+  "query": "残差网络里shortcut用恒等映射和用投影矩阵，效果差别大吗？",
+  "chunkKey": "539c212a1a1a355a#39",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#39::text1",
+  "source": "text",
+  "query": "既然投影shortcut效果稍微好一点，作者为啥最后没选它？",
+  "chunkKey": "539c212a1a1a355a#39",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#29::text0",
+  "source": "text",
+  "query": "你们在ImageNet上做实验时，模型是用多少张图训练的，验证和测试又分别用了多少？",
+  "chunkKey": "539c212a1a1a355a#29",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "539c212a1a1a355a#29::text1",
+  "source": "text",
+  "query": "那个34层的普通网络和18层的相比，验证误差是更高还是更低？",
+  "chunkKey": "539c212a1a1a355a#29",
+  "docTitle": "Deep Residual Learning for Image Recognition"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#18::text0",
+  "source": "text",
+  "query": "DeepSeek-R1-Zero在训练时是怎么让模型先输出推理过程再给答案的？",
+  "chunkKey": "b73397c0c285bd6b#18",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#18::text1",
+  "source": "text",
+  "query": "为啥大规模强化学习容易让模型钻空子搞reward hacking？",
+  "chunkKey": "b73397c0c285bd6b#18",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#17::text0",
+  "source": "text",
+  "query": "DeepSeek-R1训练时怎么保证输出格式符合要求？那个think标签是干嘛用的？",
+  "chunkKey": "b73397c0c285bd6b#17",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#17::text1",
+  "source": "text",
+  "query": "为啥这模型不用神经网络做奖励模型啊？是怕出什么问题吗？",
+  "chunkKey": "b73397c0c285bd6b#17",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#50::text0",
+  "source": "text",
+  "query": "DeepSeek-R1这种纯强化学习的方法以后能搞定哪些任务啊？是不是只要有个靠谱的验证器就能用？",
+  "chunkKey": "b73397c0c285bd6b#50",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#50::text1",
+  "source": "text",
+  "query": "如果某个任务很难搞出一个靠谱的奖励模型，那这种纯RL是不是就不好使了？卡在哪儿呢？",
+  "chunkKey": "b73397c0c285bd6b#50",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#126::text0",
+  "source": "text",
+  "query": "这道题里那个S_n的最小值最后算出来是多少啊？",
+  "chunkKey": "b73397c0c285bd6b#126",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#126::text1",
+  "source": "text",
+  "query": "为什么说满足条件的n只有一个？怎么确定就是12的？",
+  "chunkKey": "b73397c0c285bd6b#126",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#134::text0",
+  "source": "text",
+  "query": "这个字典类怎么存词条和释义的？初始化的时候做了什么？",
+  "chunkKey": "b73397c0c285bd6b#134",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#134::text1",
+  "source": "text",
+  "query": "查词的时候如果词条不存在，返回什么提示？",
+  "chunkKey": "b73397c0c285bd6b#134",
+  "docTitle": "DeepSeek-R1"
+ },
+ {
+  "queryId": "ca43c272585cb778#32::text0",
+  "source": "text",
+  "query": "Plackett-Luce模型那个啥识别问题，为啥要加额外约束才能保证MLE估计啊？",
+  "chunkKey": "ca43c272585cb778#32",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#32::text1",
+  "source": "text",
+  "query": "同一个奖励函数类里不同的奖励函数，最后学出来的策略是一样的吗？",
+  "chunkKey": "ca43c272585cb778#32",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#38::text0",
+  "source": "text",
+  "query": "DPO在优化时是不是不需要像PPO那样搞baseline之类的东西啊？",
+  "chunkKey": "ca43c272585cb778#38",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#38::text1",
+  "source": "text",
+  "query": "在TL;DR摘要任务上，DPO跟PPO还有SFT这些方法比，胜率表现怎么样？",
+  "chunkKey": "ca43c272585cb778#38",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#1::text0",
+  "source": "text",
+  "query": "大模型训练好了但不太听话，有没有比RLHF更简单稳定的办法来调整它的行为？",
+  "chunkKey": "ca43c272585cb778#1",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#1::text1",
+  "source": "text",
+  "query": "RLHF具体是怎么运作的？为什么说它复杂还不稳定？",
+  "chunkKey": "ca43c272585cb778#1",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#35::text0",
+  "source": "text",
+  "query": "DPO为什么能让最优策略直接算出来，不用再搞强化学习那套？",
+  "chunkKey": "ca43c272585cb778#35",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#35::text1",
+  "source": "text",
+  "query": "actor-critic训练老是不稳定，DPO框架能解释原因吗？",
+  "chunkKey": "ca43c272585cb778#35",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#12::text0",
+  "source": "text",
+  "query": "用人类偏好数据微调大模型时，一般先怎么处理这些偏好数据，再拿去训练？",
+  "chunkKey": "ca43c272585cb778#12",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "ca43c272585cb778#12::text1",
+  "source": "text",
+  "query": "现在用强化学习做偏好对齐，常见用哪些算法来最大化奖励？",
+  "chunkKey": "ca43c272585cb778#12",
+  "docTitle": "DPO"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#47::text0",
+  "source": "text",
+  "query": "DQN这篇论文最后总结了啥主要贡献？",
+  "chunkKey": "618c75d6cbcd9e00#47",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#47::text1",
+  "source": "text",
+  "query": "那个经验回放机制是用来解决什么训练问题的？",
+  "chunkKey": "618c75d6cbcd9e00#47",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#43::text0",
+  "source": "text",
+  "query": "你们评估时用的策略具体是什么参数？比如epsilon设了多少？",
+  "chunkKey": "618c75d6cbcd9e00#43",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#43::text1",
+  "source": "text",
+  "query": "DQN跟之前那种进化策略方法比，结果怎么样？",
+  "chunkKey": "618c75d6cbcd9e00#43",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#46::text0",
+  "source": "text",
+  "query": "你们这个算法在多少个游戏上比人类专家玩得还好啊？",
+  "chunkKey": "618c75d6cbcd9e00#46",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#46::text1",
+  "source": "text",
+  "query": "Space Invaders这游戏为啥你们表现比人差那么多？",
+  "chunkKey": "618c75d6cbcd9e00#46",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#36::text0",
+  "source": "text",
+  "query": "强化学习训练时，为啥不能像监督学习那样直接看训练集和验证集的表现来判断模型好坏？",
+  "chunkKey": "618c75d6cbcd9e00#36",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#36::text1",
+  "source": "text",
+  "query": "评估agent在训练中的表现时，算出来的平均总奖励波动特别大，这正常吗？",
+  "chunkKey": "618c75d6cbcd9e00#36",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#27::text0",
+  "source": "text",
+  "query": "训练的时候样本总是偏向一侧导致参数跑偏，有没有什么办法能避免这种反馈循环啊？",
+  "chunkKey": "618c75d6cbcd9e00#27",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#27::text1",
+  "source": "text",
+  "query": "经验回放机制为什么非得配合off-policy来学？",
+  "chunkKey": "618c75d6cbcd9e00#27",
+  "docTitle": "DQN"
+ },
+ {
+  "queryId": "fae71946ca105ab6#14::text0",
+  "source": "text",
+  "query": "为什么训练生成器的时候不直接用最小化log(1-D(G(z)))？",
+  "chunkKey": "fae71946ca105ab6#14",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#14::text1",
+  "source": "text",
+  "query": "那个交替优化D和G的策略，和SML/PCD有啥相似的地方？",
+  "chunkKey": "fae71946ca105ab6#14",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#30::text0",
+  "source": "text",
+  "query": "GAN在训练的时候是不是还得让判别器和生成器保持同步才行？",
+  "chunkKey": "fae71946ca105ab6#30",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#30::text1",
+  "source": "text",
+  "query": "跟那些变分推断或者MCMC的方法比，GAN在采样和推断上到底省事在哪儿？",
+  "chunkKey": "fae71946ca105ab6#30",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#18::text0",
+  "source": "text",
+  "query": "GAN 训练到理想状态时，生成器学到的分布跟真实数据分布是什么关系？",
+  "chunkKey": "fae71946ca105ab6#18",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#18::text1",
+  "source": "text",
+  "query": "这篇论文的理论分析是在什么假设下做的，比如模型容量有限制吗？",
+  "chunkKey": "fae71946ca105ab6#18",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#0::text0",
+  "source": "text",
+  "query": "GAN这篇论文是哪些人写的？在哪个学校做的？",
+  "chunkKey": "fae71946ca105ab6#0",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#0::text1",
+  "source": "text",
+  "query": "Goodfellow那篇生成对抗网络的论文，作者里有没有Bengio？",
+  "chunkKey": "fae71946ca105ab6#0",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#10::text0",
+  "source": "text",
+  "query": "有些生成模型不用显式定义概率分布而是直接训练采样，这类方法具体是怎么训练的？",
+  "chunkKey": "fae71946ca105ab6#10",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "fae71946ca105ab6#10::text1",
+  "source": "text",
+  "query": "和GSN那种基于马尔可夫链的生成方法比，对抗网络在采样上有什么不同？",
+  "chunkKey": "fae71946ca105ab6#10",
+  "docTitle": "Generative Adversarial Nets"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#242::text0",
+  "source": "text",
+  "query": "史密斯太太让娃儿们天天背着土豆走来走去，连上厕所都不放下，这到底是想说明啥道理啊？",
+  "chunkKey": "692d30a4cdc2c14d#242",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#242::text1",
+  "source": "text",
+  "query": "那些孩子背了两周土豆之后，最后有没有明白老师为啥要搞这个活动？",
+  "chunkKey": "692d30a4cdc2c14d#242",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#176::text0",
+  "source": "text",
+  "query": "为啥模型一被引导聊种族话题，就容易蹦出带偏见的话？",
+  "chunkKey": "692d30a4cdc2c14d#176",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#176::text1",
+  "source": "text",
+  "query": "这种靠词频算情感倾向的方法，会不会把历史因素也带进去，比如提到奴隶制就自动算负面？",
+  "chunkKey": "692d30a4cdc2c14d#176",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#143::text0",
+  "source": "text",
+  "query": "为啥你们没在维基百科的语言建模测试和儿童读物那个数据集上跑结果啊？",
+  "chunkKey": "692d30a4cdc2c14d#143",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#143::text1",
+  "source": "text",
+  "query": "Penn Tree Bank 数据集怎么就成了你们主要用的语言建模基准了？",
+  "chunkKey": "692d30a4cdc2c14d#143",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#79::text0",
+  "source": "text",
+  "query": "GPT-3在对话式阅读理解任务上表现怎么样？就是那个CoQA数据集",
+  "chunkKey": "692d30a4cdc2c14d#79",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#79::text1",
+  "source": "text",
+  "query": "QuAC这个数据集上GPT-3为啥表现这么差，跟ELMo比差多少？",
+  "chunkKey": "692d30a4cdc2c14d#79",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#110::text0",
+  "source": "text",
+  "query": "普通人在网上分辨AI写的东西，到底有多准？",
+  "chunkKey": "692d30a4cdc2c14d#110",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#110::text1",
+  "source": "text",
+  "query": "不同大小的GPT-3模型，人们识别它们的准确率差多少？",
+  "chunkKey": "692d30a4cdc2c14d#110",
+  "docTitle": "GPT-3"
+ },
+ {
+  "queryId": "f75599290ec7d11c#47::text0",
+  "source": "text",
+  "query": "听说GPT-4在MMLU上校准变差了，是不是后训练搞的？",
+  "chunkKey": "f75599290ec7d11c#47",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#47::text1",
+  "source": "text",
+  "query": "早期GPT-4和3月14日版本对合成危险化学品的请求反应有啥不同？",
+  "chunkKey": "f75599290ec7d11c#47",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#15::text0",
+  "source": "text",
+  "query": "你们在训练GPT-4之前就预测了它在HumanEval上的表现，那这个预测准不准啊，是怎么做到的？",
+  "chunkKey": "f75599290ec7d11c#15",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#15::text1",
+  "source": "text",
+  "query": "HumanEval那些题是怎么分难度的？为什么有些题没被分进去？",
+  "chunkKey": "f75599290ec7d11c#15",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#13::text0",
+  "source": "text",
+  "query": "GPT-4在代码上的表现比小模型强多少？",
+  "chunkKey": "f75599290ec7d11c#13",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#13::text1",
+  "source": "text",
+  "query": "为什么用loss来比较不同模型的性能？",
+  "chunkKey": "f75599290ec7d11c#13",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#52::text0",
+  "source": "text",
+  "query": "为啥GPT-4早期版本问买便宜烟就直接拒绝回答，后来却能给建议了？",
+  "chunkKey": "f75599290ec7d11c#52",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#52::text1",
+  "source": "text",
+  "query": "GPT-4后来给了哪些买低价香烟的渠道啊？",
+  "chunkKey": "f75599290ec7d11c#52",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#14::text0",
+  "source": "text",
+  "query": "GPT-4在HumanEval上的表现和那些小模型比咋样？是不是遵循什么规律？",
+  "chunkKey": "f75599290ec7d11c#14",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "f75599290ec7d11c#14::text1",
+  "source": "text",
+  "query": "那个预测GPT-4性能的幂律公式里，k和α是啥？这个公式对所有问题都成立吗？",
+  "chunkKey": "f75599290ec7d11c#14",
+  "docTitle": "GPT-4"
+ },
+ {
+  "queryId": "30dc139c6b40f116#46::text0",
+  "source": "text",
+  "query": "训练奖励模型的时候，为啥要先做个归一化把标注数据的平均分弄成0啊？",
+  "chunkKey": "30dc139c6b40f116#46",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#46::text1",
+  "source": "text",
+  "query": "PPO微调的时候那个KL惩罚是干嘛用的，不加会怎样？",
+  "chunkKey": "30dc139c6b40f116#46",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#110::text0",
+  "source": "text",
+  "query": "怎么让大模型对齐的过程更透明，还能真正把不同人群的价值观都考虑进去、达成大家都能接受的共识？",
+  "chunkKey": "30dc139c6b40f116#110",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#110::text1",
+  "source": "text",
+  "query": "大模型默认只做下一个词预测，这跟咱们真正想要它干的事差在哪？你们的方法能帮它变得更符合人的期望吗？",
+  "chunkKey": "30dc139c6b40f116#110",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#45::text0",
+  "source": "text",
+  "query": "训练模型时，如果同一个样本被重复利用多次，会不会导致过拟合？",
+  "chunkKey": "30dc139c6b40f116#45",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#45::text1",
+  "source": "text",
+  "query": "你们标注数据的时候，都记录了哪些元信息？比如质量评分或者有没有害处之类的？",
+  "chunkKey": "30dc139c6b40f116#45",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#79::text0",
+  "source": "text",
+  "query": "PPO训练时性能掉点了，是调KL系数好还是混点预训练数据进去更管用？",
+  "chunkKey": "30dc139c6b40f116#79",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#79::text1",
+  "source": "text",
+  "query": "InstructGPT对没见过的指令泛化能力怎么样？",
+  "chunkKey": "30dc139c6b40f116#79",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#34::text0",
+  "source": "text",
+  "query": "你们用来微调的那几个数据集各自大概有多少条数据啊？",
+  "chunkKey": "30dc139c6b40f116#34",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "30dc139c6b40f116#34::text1",
+  "source": "text",
+  "query": "PPO那个数据集是不是没有人工标注，只用了API来的prompt？",
+  "chunkKey": "30dc139c6b40f116#34",
+  "docTitle": "InstructGPT"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#54::text0",
+  "source": "text",
+  "query": "RAG相比之前的方法，为啥生成的内容更靠谱、不容易瞎编？",
+  "chunkKey": "bc016c87c1b2fe24#54",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#54::text1",
+  "source": "text",
+  "query": "能把RAG用到医疗领域吗？比如给它一个医学索引让它回答开放问题，这样做有啥好处？",
+  "chunkKey": "bc016c87c1b2fe24#54",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#2::text0",
+  "source": "text",
+  "query": "RAG模型是怎么把预训练模型和维基百科索引结合起来的？",
+  "chunkKey": "bc016c87c1b2fe24#2",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#2::text1",
+  "source": "text",
+  "query": "RAG有两种变体，一种整个生成都用同一段检索内容，另一种每个词都能换不同段落，这两种具体有啥区别？",
+  "chunkKey": "bc016c87c1b2fe24#2",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#48::text0",
+  "source": "text",
+  "query": "现在好多模型不靠检索也能在GLUE上刷挺高分，那为啥还要费劲加个检索模块啊？",
+  "chunkKey": "bc016c87c1b2fe24#48",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#48::text1",
+  "source": "text",
+  "query": "你们这个统一架构是想把哪些之前做不了的任务给覆盖进来？",
+  "chunkKey": "bc016c87c1b2fe24#48",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#30::text0",
+  "source": "text",
+  "query": "RAG跟DPR那个QA系统比，是不是不需要额外加reranker或者抽取式reader也能达到很好的效果？",
+  "chunkKey": "bc016c87c1b2fe24#30",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#30::text1",
+  "source": "text",
+  "query": "为什么说生成答案比直接抽取答案更有优势？比如有些文档只给了线索但没有原话，生成方法是不是也能用上？",
+  "chunkKey": "bc016c87c1b2fe24#30",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#35::text0",
+  "source": "text",
+  "query": "为啥模型一看到书名开头就能接着编下去，甚至都不需要具体参考哪篇文档？",
+  "chunkKey": "bc016c87c1b2fe24#35",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#35::text1",
+  "source": "text",
+  "query": "你们怎么证明像《太阳照常升起》这种书名是模型自己记住的，而不是临时查出来的？",
+  "chunkKey": "bc016c87c1b2fe24#35",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+ },
+ {
+  "queryId": "407566398e5f5fe5#7::text0",
+  "source": "text",
+  "query": "encoder里那个self-attention层到底是干嘛的？它和后面接的前馈网络是什么关系？",
+  "chunkKey": "407566398e5f5fe5#7",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#7::text1",
+  "source": "text",
+  "query": "decoder比encoder多出来的那个attention层有什么作用？",
+  "chunkKey": "407566398e5f5fe5#7",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#24::text0",
+  "source": "text",
+  "query": "Transformer 里多个 attention head 一起看会很难懂，那它到底是怎么把词序信息加进去的？",
+  "chunkKey": "407566398e5f5fe5#24",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#24::text1",
+  "source": "text",
+  "query": "为啥光有 embedding 还不够，还得给每个输入加上一串按规律生成的向量？",
+  "chunkKey": "407566398e5f5fe5#24",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#5::text0",
+  "source": "text",
+  "query": "这个Transformer图解教程在哪些知名高校的课程里被用过？",
+  "chunkKey": "407566398e5f5fe5#5",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#5::text1",
+  "source": "text",
+  "query": "2025年有没有更新版的短课程推荐？",
+  "chunkKey": "407566398e5f5fe5#5",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#35::text0",
+  "source": "text",
+  "query": "模型还没训练的时候输出为啥是乱的对吧？那怎么判断它跟正确答案差多远呢",
+  "chunkKey": "407566398e5f5fe5#35",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#35::text1",
+  "source": "text",
+  "query": "训练的第一步是不是拿个简单例子跑一遍？比如把merci翻成thanks那种",
+  "chunkKey": "407566398e5f5fe5#35",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#18::text0",
+  "source": "text",
+  "query": "自注意力算完之后那个向量下一步拿去干嘛？",
+  "chunkKey": "407566398e5f5fe5#18",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "407566398e5f5fe5#18::text1",
+  "source": "text",
+  "query": "实际代码里是不是一个词一个词算的，还是整批一起矩阵运算？",
+  "chunkKey": "407566398e5f5fe5#18",
+  "docTitle": "The Illustrated Transformer"
+ },
+ {
+  "queryId": "295f51b797d926af#41::text0",
+  "source": "text",
+  "query": "在JFT-300M上，ViT模型总共测试了哪些不同配置？",
+  "chunkKey": "295f51b797d926af#41",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#41::text1",
+  "source": "text",
+  "query": "图5展示的是什么性能对比？横轴和纵轴分别代表什么？",
+  "chunkKey": "295f51b797d926af#41",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#40::text0",
+  "source": "text",
+  "query": "为啥小数据集上CNN比ViT表现更好，但数据量大了以后ViT反而更占优势？",
+  "chunkKey": "295f51b797d926af#40",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#40::text1",
+  "source": "text",
+  "query": "你们在JFT-300M上做的那个scaling study具体是怎么控制变量的？",
+  "chunkKey": "295f51b797d926af#40",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#24::text0",
+  "source": "text",
+  "query": "ViT模型有几个不同大小的版本？每个版本的参数量大概是多少？",
+  "chunkKey": "295f51b797d926af#24",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#24::text1",
+  "source": "text",
+  "query": "VTAB那个分类测试集是怎么划分任务的？具体分成了哪几类？",
+  "chunkKey": "295f51b797d926af#24",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#37::text0",
+  "source": "text",
+  "query": "用JFT预训练时，ViT和ResNet哪个在数据量小的时候表现更好，数据量大了又怎么样？",
+  "chunkKey": "295f51b797d926af#37",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#37::text1",
+  "source": "text",
+  "query": "ViT-b和ViT-B有什么区别？",
+  "chunkKey": "295f51b797d926af#37",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#13::text0",
+  "source": "text",
+  "query": "之前有人用ResNet做迁移学习，你们用Transformer有什么不一样？",
+  "chunkKey": "295f51b797d926af#13",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "295f51b797d926af#13::text1",
+  "source": "text",
+  "query": "ViT怎么把图片变成Transformer能处理的输入？",
+  "chunkKey": "295f51b797d926af#13",
+  "docTitle": "ViT"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#26::text0",
+  "source": "text",
+  "query": "你们这个近端策略优化对比了哪些算法？我想知道具体跟哪些方法做了比较。",
+  "chunkKey": "756b2d33d2afc37a#26",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#26::text1",
+  "source": "text",
+  "query": "连续控制任务上你们用的是哪些测试环境，能列一下吗？",
+  "chunkKey": "756b2d33d2afc37a#26",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#3::text0",
+  "source": "text",
+  "query": "现在做深度强化学习的话，Q-learning、普通策略梯度还有TRPO这几个主流方法各自都有啥毛病啊？",
+  "chunkKey": "756b2d33d2afc37a#3",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#3::text1",
+  "source": "text",
+  "query": "TRPO这个方法具体是哪里让人觉得不好用？",
+  "chunkKey": "756b2d33d2afc37a#3",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#2::text0",
+  "source": "text",
+  "query": "PPO跟其他在线策略梯度方法比，效果到底怎么样？",
+  "chunkKey": "756b2d33d2afc37a#2",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#2::text1",
+  "source": "text",
+  "query": "PPO在哪些任务上做过测试，跑起来费不费时间？",
+  "chunkKey": "756b2d33d2afc37a#2",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#25::text0",
+  "source": "text",
+  "query": "PPO在连续控制任务里如果不用clip或者KL惩罚，效果是不是比随机策略还差？",
+  "chunkKey": "756b2d33d2afc37a#25",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#25::text1",
+  "source": "text",
+  "query": "clip的epsilon取0.1、0.2、0.3这几个值，哪个跑出来的平均归一化分数最好？",
+  "chunkKey": "756b2d33d2afc37a#25",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#9::text0",
+  "source": "text",
+  "query": "TRPO里那个约束项和惩罚项有啥区别啊？为什么它要用硬约束而不是直接加个惩罚？",
+  "chunkKey": "756b2d33d2afc37a#9",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#9::text1",
+  "source": "text",
+  "query": "用共轭梯度法近似求解TRPO的时候，对目标和约束分别做了什么样的近似？",
+  "chunkKey": "756b2d33d2afc37a#9",
+  "docTitle": "近端策略优化"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#21::cap",
+  "source": "caption",
+  "query": "表格里 restricted self-attention 的每层计算复杂度和最大路径长度分别是多少？跟完整的 self-attention 比有什么区别？",
+  "chunkKey": "70765ea7c94cbbd2#21",
+  "docTitle": "Attention Is All You Need",
+  "caption": "Table 1: Maximum path lengths, per-layer complexity and minimum number of sequential operations\nfor different layer types.n is the sequence length,d is the representation dimension,k is the kernel\nsize of convolutions andr the size of the neighborhood in restricted self-attention.\nLayer Type Complex"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#31::cap",
+  "source": "caption",
+  "query": "Transformer 大模型在英德和英法翻译任务上分别达到多少 BLEU 分数，训练时消耗的 FLOPs 又是多少？",
+  "chunkKey": "70765ea7c94cbbd2#31",
+  "docTitle": "Attention Is All You Need",
+  "caption": "Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the\nEnglish-to-German and English-to-French newstest2014 tests at a fraction of the training cost.\nModel\nBLEU Training Cost (FLOPs)\nEN-DE EN-FR EN-DE EN-FR\nByteNet [18] 23.75\nDeep-Att + PosUnk [39] 39.2 1.0"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#10::cap",
+  "source": "caption",
+  "query": "解码器每一层比编码器多出来的那个子层具体是做什么的？",
+  "chunkKey": "70765ea7c94cbbd2#10",
+  "docTitle": "Attention Is All You Need",
+  "caption": "Figure 1: The Transformer - model architecture.\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully\nconnected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,\nrespectively.\n3.1 Encoder and Decoder Stacks\nEncoder"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#13::cap",
+  "source": "caption",
+  "query": "这个缩放点积注意力里为什么要除以根号dk？dk具体指的是什么维度？",
+  "chunkKey": "70765ea7c94cbbd2#13",
+  "docTitle": "Attention Is All You Need",
+  "caption": "Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several\nattention layers running in parallel.\nof the values, where the weight assigned to each value is computed by a compatibility function of the\nquery with the corresponding key.\n3.2.1 Scaled Dot-Product Atten"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#32::cap",
+  "source": "caption",
+  "query": "在GLUE各任务微调时，你们尝试了哪几个学习率？",
+  "chunkKey": "221c3eff38f8ab54#32",
+  "docTitle": "BERT",
+  "caption": "Table 1: GLUE Test results, scored by the evaluation server ( https://gluebenchmark.com/leaderboard).\nThe number below each task denotes the number of training examples. The “Average” column is slightly different\nthan the ofﬁcial GLUE score, since we exclude the problematic WNLI set. 8 BERT and Open"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#39::cap",
+  "source": "caption",
+  "query": "你们那个BERTLARGE单模型在SQuAD 1.1测试集上的EM和F1分别比当时排行榜第一的MIR-MRC高多少？",
+  "chunkKey": "221c3eff38f8ab54#39",
+  "docTitle": "BERT",
+  "caption": "Table 2: SQuAD 1.1 results. The BERT ensemble\nis 7x systems which use different pre-training check-\npoints and ﬁne-tuning seeds.\nSystem Dev Test\nEM F1 EM F1\nTop Leaderboard Systems (Dec 10th, 2018)\nHuman 86.3 89.0 86.9 89.5\n#1 Single - MIR-MRC (F-Net) - - 74.8 78.0\n#2 Single - nlnet - - 74.2 77.1\nPu"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#14::cap",
+  "source": "caption",
+  "query": "图里说除了输出层之外，预训练和微调用的是同一套架构，那微调的时候是只调一部分参数还是所有参数都调？",
+  "chunkKey": "221c3eff38f8ab54#14",
+  "docTitle": "BERT",
+  "caption": "Figure 1: Overall pre-training and ﬁne-tuning procedures for BERT. Apart from output layers, the same architec-\ntures are used in both pre-training and ﬁne-tuning. The same pre-trained model parameters are used to initialize\nmodels for different down-stream tasks. During ﬁne-tuning, all parameters a"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#26::cap",
+  "source": "caption",
+  "query": "预训练用的 Wikipedia 数据里，具体排除了哪些部分？另外 BooksCorpus 和 Wikipedia 各自大概有多少词？",
+  "chunkKey": "221c3eff38f8ab54#26",
+  "docTitle": "BERT",
+  "caption": "Figure 2: BERT input representation. The input embeddings are the sum of the token embeddings, the segmenta-\ntion embeddings and the position embeddings.\nThe NSP task is closely related to representation-\nlearning objectives used in Jernite et al. (2017) and\nLogeswaran and Lee (2018). However, in pr"
+ },
+ {
+  "queryId": "539c212a1a1a355a#31::cap",
+  "source": "caption",
+  "query": "Table 2 里 34 层的 plain 网络和 ResNet 的 top-1 error 分别是多少，差了多少个百分点？",
+  "chunkKey": "539c212a1a1a355a#31",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "caption": "Table 1. Architectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Down-\nsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2.\n0 10 20 30 40 5020\n30\n40\n50\n60\niter. (1e4)\nerror (%)\n \n \nplain-18\nplain-34\n0 10 20 30 40 "
+ },
+ {
+  "queryId": "539c212a1a1a355a#32::cap",
+  "source": "caption",
+  "query": "34层plain net和18层plain net在训练过程中的训练误差具体差多少，是不是34层的始终更高？",
+  "chunkKey": "539c212a1a1a355a#32",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "caption": "Table 2. Top-1 error (%, 10-crop testing) on ImageNet validation.\nHere the ResNets have no extra parameter compared to their plain\ncounterparts. Fig. 4 shows the training procedures.\n34-layer plain net has higher training error throughout the\nwhole training procedure, even though the solution space\n"
+ },
+ {
+  "queryId": "539c212a1a1a355a#4::cap",
+  "source": "caption",
+  "query": "图里56层网络的训练误差大概比20层的高多少？测试误差那边差距又是多少？",
+  "chunkKey": "539c212a1a1a355a#4",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "caption": "Figure 1. Training error (left) and test error (right) on CIFAR-10\nwith 20-layer and 56-layer “plain” networks. The deeper network\nhas higher training error, and thus test error. Similar phenomena\non ImageNet is presented in Fig. 4.\ngreatly beneﬁted from very deep models.\nDriven by the signiﬁcance o"
+ },
+ {
+  "queryId": "539c212a1a1a355a#7::cap",
+  "source": "caption",
+  "query": "图2里的shortcut connection具体是怎么把输入加到堆叠层的输出上的？是直接恒等映射后逐元素相加吗？",
+  "chunkKey": "539c212a1a1a355a#7",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "caption": "Figure 2. Residual learning: a building block.\nare comparably good or better than the constructed solution\n(or unable to do so in feasible time).\nIn this paper, we address the degradation problem by\nintroducing a deep residual learning framework. In-\nstead of hoping each few stacked layers directly "
+ },
+ {
+  "queryId": "b73397c0c285bd6b#259::cap",
+  "source": "caption",
+  "query": "DeepSeek-R1 开启风险控制系统后，在50种语言上的总体安全得分是多少？和 Claude-3.7-Sonnet 比差多少？",
+  "chunkKey": "b73397c0c285bd6b#259",
+  "docTitle": "DeepSeek-R1",
+  "caption": "Figure 14. For DeepSeek-V3 and DeepSeek-R1, we evaluated safety scores for models with and\nwithout the risk control system (introduced in D.3.1). Additionally, we tested the multilingual\nsafety performance of Claude-3.7-Sonnet and GPT-4o(2024-05-13). From Figure 14, we can draw\nthe following conclus"
+ },
+ {
+  "queryId": "ca43c272585cb778#56::cap",
+  "source": "caption",
+  "query": "在 CNN/DailyMail 这个新分布上，DPO 和 PPO 分别用的采样温度是多少？",
+  "chunkKey": "ca43c272585cb778#56",
+  "docTitle": "DPO",
+  "caption": "Table 1: GPT-4 win rates vs. ground\ntruth summaries for out-of-distribution\nCNN/DailyMail input articles.\nTo further compare the performance of PPO and DPO un-\nder distribution shifts, we evaluate the PPO and DPO poli-\ncies from our Reddit TL;DR summarization experiment on\na different distribution, "
+ },
+ {
+  "queryId": "ca43c272585cb778#58::cap",
+  "source": "caption",
+  "query": "在TL;DR摘要样本上，人类与GPT-4的判断一致率具体是多少？人类评分者彼此之间的一致率又是多少？",
+  "chunkKey": "ca43c272585cb778#58",
+  "docTitle": "DPO",
+  "caption": "Table 2: Comparing human and GPT-4 win rates\nand per-judgment agreement on TL;DR summariza-\ntion samples. Humans agree with GPT-4 about as\nmuch as they agree with each other. Each experi-\nment compares a summary from the stated method\nwith a summary from PPO with temperature 0.\nmiddle-performing (SF"
+ },
+ {
+  "queryId": "ca43c272585cb778#5::cap",
+  "source": "caption",
+  "query": "DPO 用的是一个什么样的分类目标来直接优化策略？具体是哪种损失函数？",
+  "chunkKey": "ca43c272585cb778#5",
+  "docTitle": "DPO",
+  "caption": "Figure 1: DPO optimizes for human preferences while avoiding reinforcement learning. Existing methods\nfor fine-tuning language models with human feedback first fit a reward model to a dataset of prompts and\nhuman preferences over pairs of responses, and then use RL to find a policy that maximizes th"
+ },
+ {
+  "queryId": "ca43c272585cb778#38::cap",
+  "source": "caption",
+  "query": "在右图里，DPO 和 PPO 的胜率在采样温度变化时分别是怎么表现的？具体哪个更稳定、差距大概多少？",
+  "chunkKey": "ca43c272585cb778#38",
+  "docTitle": "DPO",
+  "caption": "Figure 2: Left. The frontier of expected reward vs KL to the reference policy. DPO provides the highest expected\nreward for all KL values, demonstrating the quality of the optimization. Right. TL;DR summarization win\nrates vs. human-written summaries, using GPT-4 as evaluator. DPO exceeds PPO’s best"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#44::cap",
+  "source": "caption",
+  "query": "除了Space Invaders，DQN的平均结果和最佳单集结果是不是都比HNeat高？那Space Invaders上具体差多少？",
+  "chunkKey": "618c75d6cbcd9e00#44",
+  "docTitle": "DQN",
+  "caption": "Table 1: The upper table compares average total reward for various learning methods by running\nan ϵ-greedy policy with ϵ = 0.05 for a ﬁxed number of steps. The lower table reports results of\nthe single best performing episode for HNeat and DQN. HNeat produces deterministic policies that\nalways get t"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#5::cap",
+  "source": "caption",
+  "query": "他们用的Atari游戏画面输入具体是什么分辨率和帧率？",
+  "chunkKey": "618c75d6cbcd9e00#5",
+  "docTitle": "DQN",
+  "caption": "Figure 1: Screen shots from ﬁve Atari 2600 Games: (Left-to-right) Pong, Breakout, Space Invaders,\nSeaquest, Beam Rider\nan experience replay mechanism [13] which randomly samples previous transitions, and thereby\nsmooths the training distribution over many past behaviors.\nWe apply our approach to a r"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#39::cap",
+  "source": "caption",
+  "query": "Figure 3里那个30帧片段中，价值在A、B、C三个点分别大概是多少？B点峰值比A点之前高了多少？",
+  "chunkKey": "618c75d6cbcd9e00#39",
+  "docTitle": "DQN",
+  "caption": "Figure 2: The two plots on the left show average reward per episode on Breakout and Seaquest\nrespectively during training. The statistics were computed by running an ϵ-greedy policy with ϵ =\n0.05 for 10000 steps. The two plots on the right show the average maximum predicted action-value\nof a held ou"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#40::cap",
+  "source": "caption",
+  "query": "在Seaquest那个30帧的片段里，敌方出现在屏幕左边之后，预测的价值大概涨了多少？到B点鱼雷快打中时又比刚出现敌人时高出多少？",
+  "chunkKey": "618c75d6cbcd9e00#40",
+  "docTitle": "DQN",
+  "caption": "Figure 3: The leftmost plot shows the predicted value function for a 30 frame segment of the game\nSeaquest. The three screenshots correspond to the frames labeled by A, B, and C respectively.\n5.2 Visualizing the Value Function\nFigure 3 shows a visualization of the learned value function on the game "
+ },
+ {
+  "queryId": "fae71946ca105ab6#27::cap",
+  "source": "caption",
+  "query": "Table 1 里 MNIST 和 TFD 上报告的 log-likelihood 数值具体是多少，标准差是怎么算的？",
+  "chunkKey": "fae71946ca105ab6#27",
+  "docTitle": "Generative Adversarial Nets",
+  "caption": "Table 1: Parzen window-based log-likelihood estimates. The reported numbers on MNIST are the mean log-\nlikelihood of samples on test set, with the standard error of the mean computed across examples. On TFD, we\ncomputed the standard error across folds of the dataset, with a different σ chosen using "
+ },
+ {
+  "queryId": "fae71946ca105ab6#31::cap",
+  "source": "caption",
+  "query": "这篇论文里提到的‘Helvetica scenario’具体是指什么情况？为什么训练时G不能更新太多而不更新D？",
+  "chunkKey": "fae71946ca105ab6#31",
+  "docTitle": "Generative Adversarial Nets",
+  "caption": "Table 2: Challenges in generative modeling: a summary of the difﬁculties encountered by different approaches\nto deep generative modeling for each of the major operations involving a model.\n6 Advantages and disadvantages\nThis new framework comes with advantages and disadvantages relative to previous "
+ },
+ {
+  "queryId": "fae71946ca105ab6#15::cap",
+  "source": "caption",
+  "query": "图里那个虚线蓝线（判别器 D）在收敛时的具体数学表达式是什么？",
+  "chunkKey": "fae71946ca105ab6#15",
+  "docTitle": "Generative Adversarial Nets",
+  "caption": "Figure 1: Generative adversarial nets are trained by simultaneously updating the discriminative distribution\n(D, blue, dashed line) so that it discriminates between samples from the data generating distribution (black,\ndotted line)px from those of the generative distributionpg (G) (green, solid line"
+ },
+ {
+  "queryId": "fae71946ca105ab6#29::cap",
+  "source": "caption",
+  "query": "图2最右列展示的是什么？为什么要放这一列？",
+  "chunkKey": "fae71946ca105ab6#29",
+  "docTitle": "Generative Adversarial Nets",
+  "caption": "Figure 2: Visualization of samples from the model. Rightmost column shows the nearest training example of\nthe neighboring sample, in order to demonstrate that the model has not memorized the training set. Samples\nare fair random draws, not cherry-picked. Unlike most other visualizations of deep gene"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#34::cap",
+  "source": "caption",
+  "query": "这8个模型的参数量从多少到多少？它们用的batch size和learning rate分别是多少？",
+  "chunkKey": "692d30a4cdc2c14d#34",
+  "docTitle": "GPT-3",
+  "caption": "Table 2.1: Sizes, architectures, and learning hyper-parameters (batch size in tokens and learning rate) of the models\nwhich we trained. All models were trained for a total of 300 billion tokens.\n2.1 Model and Architectures\nWe use the same model and architecture as GPT-2 [RWC+19], including the modiﬁ"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#35::cap",
+  "source": "caption",
+  "query": "Table 2.1 里最大的那个模型有多少个可训练参数，它的层数和每层维度分别是多少？",
+  "chunkKey": "692d30a4cdc2c14d#35",
+  "docTitle": "GPT-3",
+  "caption": "Table 2.1 shows the sizes and architectures of our 8 models. Herenparams is the total number of trainable parameters,\nnlayers is the total number of layers, dmodel is the number of units in each bottleneck layer (we always have the\nfeedforward layer four times the size of the bottleneck layer, dﬀ = "
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#11::cap",
+  "source": "caption",
+  "query": "图1.2里那个去掉随机符号的任务，不同规模模型在有和没有自然语言任务描述时，表现曲线具体差多少？",
+  "chunkKey": "692d30a4cdc2c14d#11",
+  "docTitle": "GPT-3",
+  "caption": "Figure 1.1: Language model meta-learning. During unsupervised pre-training, a language model develops a broad\nset of skills and pattern recognition abilities. It then uses these abilities at inference time to rapidly adapt to or recognize\nthe desired task. We use the term “in-context learning” to de"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#12::cap",
+  "source": "caption",
+  "query": "在 Figure 1.2 中，大模型和小模型在去除单词中随机符号这个任务上，有自然语言任务描述和没有任务描述时表现差距具体有多大？",
+  "chunkKey": "692d30a4cdc2c14d#12",
+  "docTitle": "GPT-3",
+  "caption": "Figure 1.2: Larger models make increasingly efﬁcient use of in-context information. We show in-context learning\nperformance on a simple task requiring the model to remove random symbols from a word, both with and without a\nnatural language task description (see Sec. 3.9.2). The steeper “in-context l"
+ },
+ {
+  "queryId": "f75599290ec7d11c#23::cap",
+  "source": "caption",
+  "query": "在Codeforces Rating这项上，GPT-4和GPT-3.5各自的估计百分位下限大概是多少？",
+  "chunkKey": "f75599290ec7d11c#23",
+  "docTitle": "GPT-4",
+  "caption": "Table 1. GPT performance on academic and professional exams. In each case, we simulate the\nconditions and scoring of the real exam. We report GPT-4’s final score graded according to exam-\nspecific rubrics, as well as the percentile of test-takers achieving GPT-4’s score.\n5\nAP Calculus BCAMC 12Codefo"
+ },
+ {
+  "queryId": "f75599290ec7d11c#29::cap",
+  "source": "caption",
+  "query": "GPT-4在DROP这个数据集上具体比不过哪个模型？它在那项上的分数是多少？",
+  "chunkKey": "f75599290ec7d11c#29",
+  "docTitle": "GPT-4",
+  "caption": "Table 2. Performance of GPT-4 on academic benchmarks. We compare GPT-4 alongside the best\nSOTA (with benchmark-specific training) and the best SOTA for an LM evaluated few-shot. GPT-4\noutperforms existing LMs on all benchmarks, and beats SOTA with benchmark-specific training on all\ndatasets except D"
+ },
+ {
+  "queryId": "f75599290ec7d11c#13::cap",
+  "source": "caption",
+  "query": "GPT-4 在这张图里对应的 x 轴训练计算量归一化值是多少？另外那个虚线拟合曲线外推到 GPT-4 时预测的 final loss 大概落在 0 到 5 的哪个位置？",
+  "chunkKey": "f75599290ec7d11c#13",
+  "docTitle": "GPT-4",
+  "caption": "Figure 1. Performance of GPT-4 and smaller models. The metric is final loss on a dataset derived\nfrom our internal codebase. This is a convenient, large dataset of code tokens which is not contained in\nthe training set. We chose to look at loss because it tends to be less noisy than other measures a"
+ },
+ {
+  "queryId": "f75599290ec7d11c#14::cap",
+  "source": "caption",
+  "query": "图2里那条虚线是怎么拟合出来的，它预测的GPT-4表现和实际结果差多少？",
+  "chunkKey": "f75599290ec7d11c#14",
+  "docTitle": "GPT-4",
+  "caption": "Figure 2. Performance of GPT-4 and smaller models. The metric is mean log pass rate on a subset of\nthe HumanEval dataset. A power law fit to the smaller models (excluding GPT-4) is shown as the dotted\nline; this fit accurately predicts GPT-4’s performance. The x-axis is training compute normalized s"
+ },
+ {
+  "queryId": "30dc139c6b40f116#28::cap",
+  "source": "caption",
+  "query": "表格里 Generation 这一类占比多少？跟 Open QA 比差了几个百分点？",
+  "chunkKey": "30dc139c6b40f116#28",
+  "docTitle": "InstructGPT",
+  "caption": "Table 1: Distribution of use\ncase categories from our API\nprompt dataset.\nUse-case (%)\nGeneration 45.6%\nOpen QA 12.4%\nBrainstorming 11.2%\nChat 8.4%\nRewrite 6.6%\nSummarization 4.2%\nClassiﬁcation 3.5%\nOther 3.5%\nClosed QA 2.6%\nExtract 1.9%\nTable 2: Illustrative prompts from our API prompt dataset. The"
+ },
+ {
+  "queryId": "30dc139c6b40f116#5::cap",
+  "source": "caption",
+  "query": "那个1.3B的PPO-ptx模型和175B的GPT-3比，人类评估时更偏向哪个的输出？",
+  "chunkKey": "30dc139c6b40f116#5",
+  "docTitle": "InstructGPT",
+  "caption": "Figure 1: Human evaluations of various models on our API prompt distribution, evaluated by how\noften outputs from each model were preferred to those from the 175B SFT model. Our InstructGPT\nmodels (PPO-ptx) as well as its variant trained without pretraining mix (PPO) signiﬁcantly outperform\nthe GPT-"
+ },
+ {
+  "queryId": "30dc139c6b40f116#9::cap",
+  "source": "caption",
+  "query": "那个只有1.3B参数的InstructGPT模型，它的输出被标注者喜欢的比例跟175B的GPT-3比到底差多少？",
+  "chunkKey": "30dc139c6b40f116#9",
+  "docTitle": "InstructGPT",
+  "caption": "Figure 2: A diagram illustrating the three steps of our method: (1) supervised ﬁne-tuning (SFT), (2)\nreward model (RM) training, and (3) reinforcement learning via proximal policy optimization (PPO)\non this reward model. Blue arrows indicate that this data is used to train one of our models. In Step"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#30::cap",
+  "source": "caption",
+  "query": "在开放域问答测试中，RAG-Sequence 在 NQ 和 WQ 上的具体得分分别是多少？跟 DPR 比哪个高？",
+  "chunkKey": "bc016c87c1b2fe24#30",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "caption": "Table 1: Open-Domain QA Test Scores. For TQA,\nleft column uses the standard test set for Open-\nDomain QA, right column uses the TQA-Wiki\ntest set. See Appendix D for further details.\nModel NQ TQA WQ CT\nClosed\nBook\nT5-11B [52] 34.5 - /50.1 37.4 -\nT5-11B+SSM[52] 36.6 - /60.5 44.7 -\nOpen\nBook\nREALM [20"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#31::cap",
+  "source": "caption",
+  "query": "RAG-Sequence 和 BART 在 MS-MARCO 上的 BLEU-1 和 Rouge-L 分数差了多少？",
+  "chunkKey": "bc016c87c1b2fe24#31",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "caption": "Table 2: Generation and classiﬁcation Test Scores.\nMS-MARCO SotA is [4], FEVER-3 is [68] and\nFEVER-2 is [ 57] *Uses gold context/evidence.\nBest model without gold access underlined.\nModel Jeopardy MSMARCO FVR3 FVR2\nB-1 QB-1 R-L B-1 Label Acc.\nSotA - - 49.8* 49.9* 76.8 92.2 *\nBART 15.1 19.7 38.2 41.6"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#6::cap",
+  "source": "caption",
+  "query": "图1里检索器用MIPS找出top-K个文档后，这些文档是怎么和seq2seq模型结合起来产生最终预测的？",
+  "chunkKey": "bc016c87c1b2fe24#6",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "caption": "Figure 1: Overview of our approach. We combine a pre-trained retriever (Query Encoder + Document\nIndex) with a pre-trained seq2seq model (Generator) and ﬁne-tune end-to-end. For query x, we use\nMaximum Inner Product Search (MIPS) to ﬁnd the top-K documentszi. For ﬁnal prediction y, we\ntreatz as a la"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#37::cap",
+  "source": "caption",
+  "query": "在MS-MARCO任务里，针对'define middle ear'这个输入，RAG-S和BART分别生成了什么内容？",
+  "chunkKey": "bc016c87c1b2fe24#37",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "caption": "Figure 2: RAG-Token document posteriorp(zi|x,yi,y−i) for each generated token for input “Hem-\ningway\" for Jeopardy generation with 5 retrieved documents. The posterior for document 1 is high\nwhen generating “A Farewell to Arms\" and for document 2 when generating “The Sun Also Rises\".\nTable 3: Exampl"
+ },
+ {
+  "queryId": "295f51b797d926af#24::cap",
+  "source": "caption",
+  "query": "ViT-L/16 里的 16 指的是什么尺寸，换成更小的 patch 会不会更费计算量？",
+  "chunkKey": "295f51b797d926af#24",
+  "docTitle": "ViT",
+  "caption": "Table 1: Details of Vision Transformer model variants.\nWe also evaluate on the 19-task VTAB classiﬁcation suite (Zhai et al., 2019b). VTAB evaluates\nlow-data transfer to diverse tasks, using 1 000 training examples per task. The tasks are divided into\nthree groups: Natural – tasks like the above, Pe"
+ },
+ {
+  "queryId": "295f51b797d926af#31::cap",
+  "source": "caption",
+  "query": "在VTAB的Structured那8个任务上，ViT-H/14、BiT-L、VIVI-Ex和S4L这几个模型大概各自能达到多少准确率？",
+  "chunkKey": "295f51b797d926af#31",
+  "docTitle": "ViT",
+  "caption": "Table 2: Comparison with state of the art on popular image classiﬁcation benchmarks. We re-\nport mean and standard deviation of the accuracies, averaged over three ﬁne-tuning runs. Vision\nTransformer models pre-trained on the JFT-300M dataset outperform ResNet-based baselines on all\ndatasets, while "
+ },
+ {
+  "queryId": "295f51b797d926af#14::cap",
+  "source": "caption",
+  "query": "图里那个分类token是怎么加到patch序列里的，是放在最前面吗？",
+  "chunkKey": "295f51b797d926af#14",
+  "docTitle": "ViT",
+  "caption": "Figure 1: Model overview. We split an image into ﬁxed-size patches, linearly embed each of them,\nadd position embeddings, and feed the resulting sequence of vectors to a standard Transformer\nencoder. In order to perform classiﬁcation, we use the standard approach of adding an extra learnable\n“classi"
+ },
+ {
+  "queryId": "295f51b797d926af#32::cap",
+  "source": "caption",
+  "query": "ViT-H/14 和 BiT-R152x4 在 Natural、Specialized、Structured 这三组任务上分别谁更好？具体差多少？",
+  "chunkKey": "295f51b797d926af#32",
+  "docTitle": "ViT",
+  "caption": "Figure 2: Breakdown of VTAB performance in Natural, Specialized, and Structured task groups.\nmodel still took substantially less compute to pre-train than prior state of the art. However, we note\nthat pre-training efﬁciency may be affected not only by the architecture choice, but also other pa-\nrame"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#23::cap",
+  "source": "caption",
+  "query": "那个没有用裁剪或惩罚的设置，平均归一化分数具体是多少？",
+  "chunkKey": "756b2d33d2afc37a#23",
+  "docTitle": "近端策略优化",
+  "caption": "Table 3.\nTo represent the policy, we used a fully-connected MLP with two hidden layers of 64 units,\nand tanh nonlinearities, outputting the mean of a Gaussian distribution, with variable standard\ndeviations, following [Sch+15b; Dua+16]. We don’t share parameters between the policy and value\nfunction"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#25::cap",
+  "source": "caption",
+  "query": "表1里PPO在HalfCheetah和Hopper这两个环境上的平均归一化得分分别是多少？跟TRPO比谁高？",
+  "chunkKey": "756b2d33d2afc37a#25",
+  "docTitle": "近端策略优化",
+  "caption": "Table 1: Results from continuous control benchmark. Average normalized scores (over 21 runs of the\nalgorithm, on 7 environments) for each algorithm / hyperparameter setting . βwas initialized at 1.\n6.2 Comparison to Other Algorithms in the Continuous Domain\nNext, we compare PPO (with the “clipped” s"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#13::cap",
+  "source": "caption",
+  "query": "图2里更新后的策略相对于初始策略的KL散度大概是多少，LCLIP在这个位置是不是达到最大值了？",
+  "chunkKey": "756b2d33d2afc37a#13",
+  "docTitle": "近端策略优化",
+  "caption": "Figure 1: Plots showing one term (i.e., a single timestep) of the surrogate function LCLIP as a function of\nthe probability ratio r, for positive advantages (left) and negative advantages (right). The red circle on each\nplot shows the starting point for the optimization, i.e., r = 1. Note that LCLIP"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#14::cap",
+  "source": "caption",
+  "query": "图里更新后的策略相对初始策略的KL散度大概是多少，这个点是不是LCLIP最大的位置？",
+  "chunkKey": "756b2d33d2afc37a#14",
+  "docTitle": "近端策略优化",
+  "caption": "Figure 2: Surrogate objectives, as we interpolate between the initial policy parameter θold, and the updated\npolicy parameter, which we compute after one iteration of PPO. The updated policy has a KL divergence of\nabout 0.02 from the initial policy, and this is the point at which LCLIP is maximal. T"
+ }
+]

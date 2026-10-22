@@ -79,6 +79,73 @@ B > A、C > B 的差距稳定在 6~11pt。v1 的方向性结论在更大规模�
 4. **落地建议**：上传时离线为每个 chunk 生成 5~6 个索引问题（1 次 LLM + 5~6 次 embedding/chunk），
    在线检索改为「query→chunk 向量」+「query→问题向量→映射 chunk」双路 RRF。
 
+## 失败归因：排序问题 vs 覆盖问题
+
+召回率只能说明「金标有没有进 top-k」，不能区分「没排上来」和「库里根本没有」。
+`attribute_failures.py` 用当前生产切分重建语料，并生成两类查询：
+
+- **正文查询**：从随机 chunk 生成用户问题，金标=源 chunk；
+- **图表查询**：从 `Table/Figure` 标题生成必须依赖图表内容的问题，金标=图注所在 chunk；
+
+再用生产同款「向量 + 关键词 RRF（0.7/0.3）」检索 top5，对失败样本让 LLM 判断
+「答案是否在检索片段/金标片段里」，输出排序失败与覆盖缺口（表格/图片/公式/正文）的分布。
+
+```bash
+python eval/scripts/attribute_failures.py            # 首次会解析 docs 并向量化
+python eval/scripts/attribute_failures.py --rebuild  # 重新解析论文、重新生成查询
+```
+
+首次试验（14 篇论文 / 2181 chunk / 188 条查询）：
+
+| 指标 | 正文查询（140） | 图表查询（48） |
+|---|---|---|
+| Recall@5 | 72.9% | 58.3% |
+| 可答率（top5 中含答案，success+recovered） | 85.0% | 70.8% |
+
+失败 35 条：排序失败 19（54%）、覆盖缺口 16（46%，其中 figure 12、table 4）。
+结论：**两者接近**。表格数值常被 pypdf 抽成纯文本，48 条图表查询里 34 条可由检索到的
+文本片段回答（含图注所在 chunk 本身），表格结构化的收益主要在准确率与可读性；
+真正的硬缺口是图（曲线/示意图，12 条），需要版面分析或视觉模型。报告见
+`reports/failure_attribution.md`，原始样本见 `data/failure_attribution.json`。
+
+注意：查询由模型从 chunk/图注生成，不是真实用户分布；归因由 LLM 判断、未经人工复核，
+适合做方向性判断，不适合当精确指标。
+
+## QA 问题索引 × 聚合方式（补充实验）
+
+`run_qa_rerank_eval.py` 在 1563 chunk / 8644 个索引问题 / 3046 条查询上，
+把「问题对问题」策略拆成 9 组对照（候选深度 20，reranker 未启用）：
+
+| 实验臂 | Recall@1 | Recall@5 | MRR@5 | ΔRecall@5 vs A |
+|---|---|---|---|---|
+| A chunk 向量 | 39.3% | 66.5% | 0.515 | — |
+| B1 QA max | 45.6% | 73.0% | 0.562 | +6.5pt |
+| B2 QA mean | 28.4% | 53.1% | 0.376 | -13.3pt |
+| B3 QA RRF | 45.7% | 73.2% | 0.563 | +6.7pt |
+| C1 chunk+QA (max) | 46.1% | 78.7% | 0.598 | +12.2pt |
+| **C2 chunk+QA (RRF)** | **46.1%** | **78.8%** | **0.598** | **+12.3pt** |
+| D 生产 hybrid | 36.1% | 65.1% | 0.492 | -1.4pt |
+| E1 D+QA (max) | 45.9% | 78.5% | 0.596 | +12.0pt |
+| E2 D+QA (RRF) | 45.9% | 78.5% | 0.597 | +12.1pt |
+
+结论：
+
+1. **「每个 chunk 生成多个问题」有效**：单路 +6.7pt，和 chunk 向量融合 +12.3pt；
+2. **聚合方式很关键**：max 与 RRF 基本等价，mean 会把唯一匹配的问题稀释掉（-19.9pt vs max）；
+3. **关键词路没有增量**：D 比 A 还低 1.4pt，D+QA 与 A+QA 持平，说明 QA 路已经覆盖其收益；
+4. **rerank 的天花板**：A / D / E1 的 top20 候选召回分别为 81.6% / 84.3% / 91.3%，
+   接 reranker 后理论上还有提升空间；本地模型实验暂缓，后续可试 DashScope 的 rerank API。
+
+```bash
+python eval/scripts/run_qa_rerank_eval.py --sample 0 --skip-rerank --skip-keyword  # A/B/C 全量
+python eval/scripts/run_qa_rerank_eval.py --sample 0 --skip-rerank                # 九组全量（关键词路要调 LLM）
+```
+
+明细：`data/qa_rerank_eval_full3046.json`；报告：`reports/qa_rerank_eval_full3046.md`。
+
+> 与旧五臂结果的差异：本次候选深度为 20（旧实验为 10），D 的数值会略低；
+> 语料是改造前 1563 chunk（1523 个有 QA 索引），不代表当前 v3 切分下的绝对值。
+
 ## 复现
 
 ```bash
@@ -87,6 +154,7 @@ python eval/scripts/dump_chunks.py        # 拉取语料（分页+互验，向�
 python eval/scripts/gen_qa_index.py       # 生成 QA 索引（支持断点续跑）
 python eval/scripts/gen_eval_queries.py   # 生成测试查询（另一模型，防同源偏差）
 python eval/scripts/run_recall_eval.py    # 跑五臂对比 + 按论文细分
+python eval/scripts/run_qa_rerank_eval.py # QA 索引 × 聚合 × reranker 对照
 ```
 
 明细：`data/recall_eval_results.json`（含 QA 赢/输样本、按论文细分）；v1 小语料数据存档于
