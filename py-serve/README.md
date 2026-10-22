@@ -42,7 +42,8 @@ py-serve/
     │   ├── sections.py     #   父文档（章节）落库与按 parentId 批量回表
     │   ├── parsers.py      #   PDF / DOCX 文本抽取（PDF 同时返回每页起始偏移）
     │   ├── embeddings.py   #   通义 embedding（批量 10 条 + 查询缓存）
-    │   ├── milvus_store.py #   Milvus 集合操作（每用户一个集合）
+    │   ├── milvus_store.py #   Milvus chunk 集合操作（每用户一个）
+    │   ├── qa_index.py     #   QA 问题索引（生成问题 + 向量 + 问题检索）
     │   ├── keywords.py     #   关键词提取（DeepSeek → 规则降级）
     │   └── image_storage.py#   图片落盘 / 魔数校验 / 路径防护
     └── chat/               # 对话（流式 SSE 协议）
@@ -60,8 +61,11 @@ py-serve/
 
 1. `POST /chat/sendmessage`（`isKnowledgeBased=true`）：
    第一轮调用 DeepSeek，强制触发「意图识别」工具（`clarify_intent`）→ 续问改写为完整检索问题；
-2. 混合检索：问题向量化 → Milvus 向量检索（COSINE）+ 关键词 LIKE 检索 → RRF 融合（0.7/0.3，k=60），Top5；
-   Top5 子块按 `parentId` 聚合去重，回表 MongoDB `file_sections` 取父章节，
+2. 混合检索：query 只向量化一次，并行走两路 →
+   chunk 向量（Milvus COSINE）+ QA 问题索引（问题对问题，命中后映射回 chunk），
+   RRF 融合（0.5/0.5，k=60）取 Top5；QA 索引不存在/为空时降级为
+   「chunk 向量 + 关键词 LIKE」（0.7/0.3）；离线实验 Recall@5 66.5% → 78.8%。
+   随后 Top5 子块按 `parentId` 聚合去重，回表 MongoDB `file_sections` 取一级章节，
    以「子块 ± 600 字、单片段上限 2400 字」的有界窗口注入（子块负责召回，父章节负责上下文完整）；
 3. 第二轮调用：注入「知识库问答规则」层，基于【片段N·文件名·章节·第X页】格式的检索结果流式回答，
    规则要求模型在依赖片段的结论后标注 `[N]`；
@@ -83,13 +87,17 @@ Milvus 不支持给已有集合加列，v3（新增 parentId）上线时集合�
 升级后存量知识库需要重建一次索引（会同时重建父章节 `file_sections`）：
 
 ```bash
-python scripts/reindex_kb.py                 # 全部用户
+python scripts/reindex_kb.py                 # chunk + 父章节 + QA 问题索引
+python scripts/reindex_kb.py --skip-qa       # 只重建 chunk/父章节（切分未变时）
 python scripts/reindex_kb.py --user-id xxx   # 单个用户
 python scripts/reindex_kb.py --prune-legacy  # 重建成功后删除该用户的旧版本集合
 ```
 
 脚本从 MongoDB 的 `fileText` / `pageStarts` 重建，与新上传文件使用同一套切片逻辑；
 `--prune-legacy` 只删除 `_<userId>` / `_<userId>_v1...` 这类旧集合，评测集合 `_evalcorpus` 不受影响。
+
+注意：**chunk 边界一变（切分参数/解析器/章节识别），必须重建 QA 索引**，
+否则 `docId#chunkIndex` 会指向错误的片段；`--skip-qa` 只适用于切分未变的场景。
 
 ## 启动
 
