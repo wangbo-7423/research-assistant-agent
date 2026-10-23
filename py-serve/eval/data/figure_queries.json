@@ -1,0 +1,2162 @@
+[
+ {
+  "queryId": "70765ea7c94cbbd2#f1::caption",
+  "elementId": "70765ea7c94cbbd2#f1",
+  "source": "caption",
+  "query": "Transformer 的模型架构是什么样的？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f2::ref",
+  "elementId": "70765ea7c94cbbd2#f2",
+  "source": "ref",
+  "query": "能帮我解释一下缩放点积注意力是怎么把输出算成加权和的吗？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f3::ref",
+  "elementId": "70765ea7c94cbbd2#f3",
+  "source": "ref",
+  "query": "在编码器自注意力里，长距离依赖是怎么体现的？能举个例子吗？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f2::caption",
+  "elementId": "70765ea7c94cbbd2#f2",
+  "source": "caption",
+  "query": "能解释一下缩放点积注意力和多头注意力分别是怎么工作的吗？多头注意力是不是由几个并行的注意力层组成的？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f1::ref",
+  "elementId": "70765ea7c94cbbd2#f1",
+  "source": "ref",
+  "query": "Transformer 的整体架构是怎么样的？编码器和解码器分别用了哪些层？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f3::caption",
+  "elementId": "70765ea7c94cbbd2#f3",
+  "source": "caption",
+  "query": "在Transformer编码器的第5层自注意力中，注意力机制是如何捕捉长距离依赖的？比如动词'making'是怎么关注到远处的词来完成'making...more difficult'这个短语的？不同颜色的注意力头分别关注了什么？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f4::ref",
+  "elementId": "70765ea7c94cbbd2#f4",
+  "source": "ref",
+  "query": "论文里提到第5层有两个注意力头似乎负责指代消解，能具体说说吗？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f1::ref",
+  "elementId": "221c3eff38f8ab54#f1",
+  "source": "ref",
+  "query": "BERT的预训练和微调整体流程是怎么样的？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f1::caption",
+  "elementId": "221c3eff38f8ab54#f1",
+  "source": "caption",
+  "query": "BERT的预训练和微调整体流程是怎样的？预训练和微调用的架构一样吗？不同下游任务是不是都用同一个预训练模型参数来初始化？微调的时候所有参数都更新吗？还有[CLS]和[SEP]这两个特殊符号分别起什么作用？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f4::caption",
+  "elementId": "70765ea7c94cbbd2#f4",
+  "source": "caption",
+  "query": "在Transformer模型的第5层（共6层）里，有两个注意力头似乎负责指代消解。能具体说说头5的完整注意力分布，以及头5和头6单独对单词‘its’的注意力情况吗？是不是对‘its’的注意力特别集中？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f5::caption",
+  "elementId": "70765ea7c94cbbd2#f5",
+  "source": "caption",
+  "query": "在《Attention Is All You Need》这篇论文里，有没有提到注意力头会学到跟句子结构相关的行为？能不能举几个编码器自注意力层中不同头做不同任务的例子？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f5::ref",
+  "elementId": "70765ea7c94cbbd2#f5",
+  "source": "ref",
+  "query": "论文里提到很多注意力头的行为好像跟句子结构有关，这具体是在哪个图里展示的？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f2::caption",
+  "elementId": "221c3eff38f8ab54#f2",
+  "source": "caption",
+  "query": "BERT的输入表示是怎么构成的？输入嵌入是怎么加起来的？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f2::ref",
+  "elementId": "221c3eff38f8ab54#f2",
+  "source": "ref",
+  "query": "BERT的输入表示是怎么构成的？能解释一下token、segment和position这些embedding是怎么加在一起的吗？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f3::caption",
+  "elementId": "221c3eff38f8ab54#f3",
+  "source": "caption",
+  "query": "BERT、OpenAI GPT 和 ELMo 在预训练模型架构上有什么不同？它们各自是怎么处理上下文的？另外，它们属于微调方法还是基于特征的方法？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f5::ref",
+  "elementId": "221c3eff38f8ab54#f5",
+  "source": "ref",
+  "query": "BERT预训练步数增加时，掩码语言模型和从左到右模型的MNLI验证准确率分别怎么变化？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f4::caption",
+  "elementId": "221c3eff38f8ab54#f4",
+  "source": "caption",
+  "query": "BERT在不同任务上微调是什么样子的？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f5::caption",
+  "elementId": "221c3eff38f8ab54#f5",
+  "source": "caption",
+  "query": "这个消融实验展示了在预训练 k 步后微调得到的 MNLI 准确率，横轴是 k 值，我想知道不同训练步数对最终准确率的影响是怎样的？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f1::ref",
+  "elementId": "539c212a1a1a355a#f1",
+  "source": "ref",
+  "query": "为什么说这个重新表述是由退化问题中那个反直觉现象所驱动的？能结合展示退化问题的那个图讲一下吗？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f1::caption",
+  "elementId": "539c212a1a1a355a#f1",
+  "source": "caption",
+  "query": "在CIFAR-10上训练20层和56层的普通网络时，训练误差和测试误差分别有什么表现？是不是层数越深误差反而越高？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f2::ref",
+  "elementId": "539c212a1a1a355a#f2",
+  "source": "ref",
+  "query": "在这篇论文里，shortcut connections 具体是怎么做的？它们是不是直接做恒等映射，然后把结果加到堆叠层的输出上？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f2::caption",
+  "elementId": "539c212a1a1a355a#f2",
+  "source": "caption",
+  "query": "什么是残差学习中的building block？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f4::ref",
+  "elementId": "221c3eff38f8ab54#f4",
+  "source": "ref",
+  "query": "BERT 在不同任务上微调的时候，具体是怎么做的？能给我看看示意图吗？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f3::ref",
+  "elementId": "539c212a1a1a355a#f3",
+  "source": "ref",
+  "query": "在普通网络的基础上加个捷径连接，让它变成残差版本，这个结构长什么样？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f3::caption",
+  "elementId": "539c212a1a1a355a#f3",
+  "source": "caption",
+  "query": "能给我讲讲ImageNet上那几种网络架构的例子吗？比如VGG-19模型、34层的普通网络和34层的残差网络，它们各自的计算量大概是多少？还有虚线表示的捷径是做什么用的？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f4::caption",
+  "elementId": "539c212a1a1a355a#f4",
+  "source": "caption",
+  "query": "在ImageNet上训练时，18层和34层的普通网络与残差网络，它们的训练误差和验证误差曲线有什么不同？尤其是残差网络相比普通网络有没有额外参数？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f4::ref",
+  "elementId": "539c212a1a1a355a#f4",
+  "source": "ref",
+  "query": "论文里说18层的普通网络和残差网络准确率差不多，但18层ResNet收敛更快，能具体说说这个对比吗？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f5::ref",
+  "elementId": "539c212a1a1a355a#f5",
+  "source": "ref",
+  "query": "如果把残差网络里的恒等捷径换成投影捷径，计算量和模型大小会变成原来的两倍吗？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f5::caption",
+  "elementId": "539c212a1a1a355a#f5",
+  "source": "caption",
+  "query": "能给我解释一下ResNet-34和ResNet-50/101/152用的残差块有什么不同吗？就是那两种结构，左边是普通残差块，右边是瓶颈残差块，分别用在哪些网络上？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f6::ref",
+  "elementId": "539c212a1a1a355a#f6",
+  "source": "ref",
+  "query": "那个110层的网络收敛得怎么样？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f6::caption",
+  "elementId": "539c212a1a1a355a#f6",
+  "source": "caption",
+  "query": "在CIFAR-10上训练时，普通网络和ResNet的训练误差与测试误差有什么区别？特别是普通110层网络误差超过60%没显示出来是怎么回事？还有带110层和1202层的ResNet表现怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f1::ref",
+  "elementId": "b73397c0c285bd6b#f1",
+  "source": "ref",
+  "query": "DeepSeek-R1-Zero 在训练过程中的 AIME 准确率是怎么变化的？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f7::ref",
+  "elementId": "539c212a1a1a355a#f7",
+  "source": "ref",
+  "query": "论文里通过实验发现学到的残差函数响应一般都很小，这是不是说明恒等映射提供了合理的预条件？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f7::caption",
+  "elementId": "539c212a1a1a355a#f7",
+  "source": "caption",
+  "query": "在CIFAR-10上，每个3×3层经过BN后、非线性激活前的输出响应的标准差是怎么样的？我想看看按原始顺序排列和按降序排列分别是什么情况。"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f2::ref",
+  "elementId": "b73397c0c285bd6b#f2",
+  "source": "ref",
+  "query": "DeepSeek-R1 的多阶段训练流程具体是怎么一步步进行的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f1::caption",
+  "elementId": "b73397c0c285bd6b#f1",
+  "source": "caption",
+  "query": "DeepSeek-R1-Zero在训练过程中的AIME准确率是怎么变化的？它的平均回答长度在强化学习过程中有什么变化趋势？是不是自然学会了用更多思考时间来解决推理任务？另外，AIME的基准分数是怎么来的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f4::caption",
+  "elementId": "b73397c0c285bd6b#f4",
+  "source": "caption",
+  "query": "PPO和GRPO在MATH任务上的表现怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f3::ref",
+  "elementId": "b73397c0c285bd6b#f3",
+  "source": "ref",
+  "query": "能不能解释一下 PPO 和 GRPO 在训练过程中是怎么运作的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f3::caption",
+  "elementId": "b73397c0c285bd6b#f3",
+  "source": "caption",
+  "query": "PPO和GRPO有什么区别？GRPO是怎么通过组分数来估计优势的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f2::caption",
+  "elementId": "b73397c0c285bd6b#f2",
+  "source": "caption",
+  "query": "DeepSeek-R1 的多阶段流程是怎样的？DeepSeek-V3Base 和 DeepSeek-V3 的背景资料在哪里可以找到？中间检查点 DeepSeek-R1 Dev1、Dev2 和 Dev3 分别代表什么？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f4::ref",
+  "elementId": "b73397c0c285bd6b#f4",
+  "source": "ref",
+  "query": "强化学习的目标是优化什么？PPO和GRPO在MATH任务上的表现怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f5::ref",
+  "elementId": "b73397c0c285bd6b#f5",
+  "source": "ref",
+  "query": "能给我讲讲你们这个强化学习框架的整体流程吗？各个模块像Actor、Critic、Reward Model是怎么配合的，显存和内存又是怎么管理的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f7::ref",
+  "elementId": "b73397c0c285bd6b#f7",
+  "source": "ref",
+  "query": "语言一致性奖励在强化学习实验里效果怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f5::caption",
+  "elementId": "b73397c0c285bd6b#f5",
+  "source": "caption",
+  "query": "能给我讲讲你们这个强化学习框架的整体情况吗？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f6::ref",
+  "elementId": "b73397c0c285bd6b#f6",
+  "source": "ref",
+  "query": "为什么训练时奖励在增加，但 CodeForces 上的表现反而在下降？这算是奖励黑客吗？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f7::caption",
+  "elementId": "b73397c0c285bd6b#f7",
+  "source": "caption",
+  "query": "强化学习过程中语言一致性奖励的实验结果是什么样的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f6::caption",
+  "elementId": "b73397c0c285bd6b#f6",
+  "source": "caption",
+  "query": "为什么训练时奖励在上升，但CodeForces上的表现却在下降？这算是奖励攻击吗？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f8::ref",
+  "elementId": "b73397c0c285bd6b#f8",
+  "source": "ref",
+  "query": "DeepSeek-R1-Zero 在 MATH 数据集中不同难度等级的问题上表现怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f8::caption",
+  "elementId": "b73397c0c285bd6b#f8",
+  "source": "caption",
+  "query": "DeepSeek-R1-Zero 在 MATH 数据集上，面对不同难度的问题时表现怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f9::ref",
+  "elementId": "b73397c0c285bd6b#f9",
+  "source": "ref",
+  "query": "训练过程中推理行为是怎么变化的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f9::caption",
+  "elementId": "b73397c0c285bd6b#f9",
+  "source": "caption",
+  "query": "训练过程中推理行为是怎么演变的？特别是像“wait”这类反思性词的出现频率和具体模式有什么变化？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f10::ref",
+  "elementId": "b73397c0c285bd6b#f10",
+  "source": "ref",
+  "query": "除了数学竞赛，DeepSeek-R1-Zero 在编程竞赛和研究生级别的生物、物理、化学题目上表现怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f10::caption",
+  "elementId": "b73397c0c285bd6b#f10",
+  "source": "caption",
+  "query": "DeepSeek-R1和DeepSeek-R1-Zero在不同数据集上的基准测试表现跟人类得分相比怎么样？特别是AIME、Codeforces和GPQA这几个数据集，人类得分分别代表什么水平的人？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f12::ref",
+  "elementId": "b73397c0c285bd6b#f12",
+  "source": "ref",
+  "query": "DeepSeek-R1 在不同评估维度上的排名怎么样？它在数学、编程这些方面是不是表现很强？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f12::caption",
+  "elementId": "b73397c0c285bd6b#f12",
+  "source": "caption",
+  "query": "DeepSeek-R1在2025年1月24日各个方面的排名情况是怎样的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f13::caption",
+  "elementId": "b73397c0c285bd6b#f13",
+  "source": "caption",
+  "query": "能给我讲讲你们内部安全基准测试是怎么分类的吗？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f11::caption",
+  "elementId": "b73397c0c285bd6b#f11",
+  "source": "caption",
+  "query": "DeepSeek-R1在ChatBotArena上的风格控制排名怎么样？2025年1月24日截的图，就是模型发布一周后，这个排名会随着投票数增加实时更新吗？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f11::ref",
+  "elementId": "b73397c0c285bd6b#f11",
+  "source": "ref",
+  "query": "DeepSeek-R1在ChatbotArena上截至2025年1月24日的整体排名怎么样？听说在风格控制设置下它和OpenAI-o1、Gemini-Exp-1206并列第一，是这样吗？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f14::ref",
+  "elementId": "b73397c0c285bd6b#f14",
+  "source": "ref",
+  "query": "从那张关于风险控制系统的图里能得出什么结论？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f15::ref",
+  "elementId": "b73397c0c285bd6b#f15",
+  "source": "ref",
+  "query": "DeepSeek-V3 和 DeepSeek-R1 在各个 MMLU 类别上的表现对比怎么样？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f16::caption",
+  "elementId": "b73397c0c285bd6b#f16",
+  "source": "caption",
+  "query": "DeepSeek-V3 和 DeepSeek-R1 在 MMLU-Pro 各个类别上的表现对比是怎样的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f14::caption",
+  "elementId": "b73397c0c285bd6b#f14",
+  "source": "caption",
+  "query": "DeepSeek-V3和DeepSeek-R1的多语言安全性能怎么样？V3-check和R1-check分别代表什么？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f15::caption",
+  "elementId": "b73397c0c285bd6b#f15",
+  "source": "caption",
+  "query": "DeepSeek-V3 和 DeepSeek-R1 在 MMLU 各个类别上的表现对比是怎样的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f16::ref",
+  "elementId": "b73397c0c285bd6b#f16",
+  "source": "ref",
+  "query": "在 MMLU-Pro 上，各个领域的性能都有提升吗？数学和物理这些 STEM 类别是不是提升特别明显？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f17::ref",
+  "elementId": "b73397c0c285bd6b#f17",
+  "source": "ref",
+  "query": "在2024年各类竞赛的定量推理题中，不同类别题目的表现具体是怎么拆分的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f17::caption",
+  "elementId": "b73397c0c285bd6b#f17",
+  "source": "caption",
+  "query": "能帮我分析一下2024年各种竞赛里不同类别的定量推理题目的表现吗？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f1::ref",
+  "elementId": "ca43c272585cb778#f1",
+  "source": "ref",
+  "query": "DPO 是怎么在避免强化学习的同时优化人类偏好的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f18::ref",
+  "elementId": "b73397c0c285bd6b#f18",
+  "source": "ref",
+  "query": "随着问题难度（用 Pass@1 衡量）增加，测试时计算量（用生成到正确答案所需的思考 token 数量衡量）是怎么变化的？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f18::caption",
+  "elementId": "b73397c0c285bd6b#f18",
+  "source": "caption",
+  "query": "随着问题难度（用Pass@1衡量）增加，测试时计算量（用生成到正确答案所需的思考token数量衡量）是如何扩展的？这个图用SciPy的UnivariateSpline做了平滑处理，平滑因子是5。"
+ },
+ {
+  "queryId": "ca43c272585cb778#f2::ref",
+  "elementId": "ca43c272585cb778#f2",
+  "source": "ref",
+  "query": "在TL;DR摘要任务里，DPO、PPO、Preferred-FT、SFT和GPT-J Best of 128这几个方法的胜率对比结果怎么样？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f1::caption",
+  "elementId": "ca43c272585cb778#f1",
+  "source": "caption",
+  "query": "DPO 是怎么做到既按照人类偏好优化模型又不用强化学习的？它和传统先训练奖励模型再用强化学习的方法有什么不同？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f3::ref",
+  "elementId": "ca43c272585cb778#f3",
+  "source": "ref",
+  "query": "在直接偏好优化（DPO）里，奖励过度优化是怎么表现出来的？另外，你展示的那个性能稍微下降的情况，算不算是奖励过度优化的一个例子？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f2::caption",
+  "elementId": "ca43c272585cb778#f2",
+  "source": "caption",
+  "query": "DPO和PPO在期望奖励与KL散度权衡以及摘要胜率上表现如何？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f3::caption",
+  "elementId": "ca43c272585cb778#f3",
+  "source": "caption",
+  "query": "用GPT-4评估Anthropic-HH单步对话的胜率时，DPO是不是唯一在测试集上比chosen摘要更好的方法？另外，训练过程中不同采样温度下的胜率怎么样，DPO相对数据集标签的提升稳定吗？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f4::ref",
+  "elementId": "ca43c272585cb778#f4",
+  "source": "ref",
+  "query": "你们还跟哪些基线做了比较？比如 128 个 Preferred-FT 完成里最好的那个，还有 Pythia-2 的 2-shot 提示版本？另外 Best-of-N 基线在这个任务上是不是到 128 个完成就差不多饱和了？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f5::ref",
+  "elementId": "ca43c272585cb778#f5",
+  "source": "ref",
+  "query": "能给我讲讲你们人类研究里那个调查问卷在SurveyMonkey上是怎么排布的吗？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f4::caption",
+  "elementId": "ca43c272585cb778#f4",
+  "source": "caption",
+  "query": "用N等于1、4、16、64、128做Best of N基线，性能大概在64到128个样本之后就不怎么涨了，这个结论对吗？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f1::ref",
+  "elementId": "618c75d6cbcd9e00#f1",
+  "source": "ref",
+  "query": "论文里提到用经验回放机制随机采样过去的转移来平滑训练分布，那配图展示的是哪五个Atari 2600游戏？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f5::caption",
+  "elementId": "ca43c272585cb778#f5",
+  "source": "caption",
+  "query": "SurveyMonkey 上的问卷是怎么排版的？每个受访者要做多少个格式差不多的判断任务？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f1::caption",
+  "elementId": "618c75d6cbcd9e00#f1",
+  "source": "caption",
+  "query": "你能列出这五个Atari 2600游戏的名字吗？顺序是从左到右。"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f2::ref",
+  "elementId": "618c75d6cbcd9e00#f2",
+  "source": "ref",
+  "query": "在训练过程中，Breakout和Seaquest这两个游戏的平均动作价值（Q值）随训练轮次是怎么变化的？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f2::caption",
+  "elementId": "618c75d6cbcd9e00#f2",
+  "source": "caption",
+  "query": "训练过程中，Breakout和Seaquest的平均每回合奖励以及平均最大预测动作价值是怎么变化的？这些统计量是用ϵ-greedy策略跑10000步算出来的吗？还有，一个epoch大概对应多少次小批量权重更新或多长时间训练？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f3::ref",
+  "elementId": "618c75d6cbcd9e00#f3",
+  "source": "ref",
+  "query": "你们的方法能学习价值函数在相当复杂的事件序列中如何演变吗？有没有展示这个结果的图表？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f3::caption",
+  "elementId": "618c75d6cbcd9e00#f3",
+  "source": "caption",
+  "query": "能给我讲讲那个预测值函数图吗？就是展示 Seaquest 游戏 30 帧片段的那张，左边图里标了 A、B、C 的三张截图分别对应什么？"
+ },
+ {
+  "queryId": "fae71946ca105ab6#f1::ref",
+  "elementId": "fae71946ca105ab6#f1",
+  "source": "ref",
+  "query": "生成对抗网络是怎么训练的？能不能解释一下判别分布和生成分布是怎么同时更新来区分真实样本和生成样本的？"
+ },
+ {
+  "queryId": "fae71946ca105ab6#f3::ref",
+  "elementId": "fae71946ca105ab6#f3",
+  "source": "ref",
+  "query": "能展示一下在完整模型里对z空间坐标做线性插值得到的数字吗？"
+ },
+ {
+  "queryId": "fae71946ca105ab6#f3::caption",
+  "elementId": "fae71946ca105ab6#f3",
+  "source": "caption",
+  "query": "在完整模型的 z 空间里对坐标做线性插值，能得到什么样的数字？"
+ },
+ {
+  "queryId": "fae71946ca105ab6#f2::ref",
+  "elementId": "fae71946ca105ab6#f2",
+  "source": "ref",
+  "query": "能给我看看模型生成的样本可视化吗？"
+ },
+ {
+  "queryId": "fae71946ca105ab6#f1::caption",
+  "elementId": "fae71946ca105ab6#f1",
+  "source": "caption",
+  "query": "能给我讲讲生成对抗网络是怎么训练的吗？就是那个判别器D和生成器G一起更新的过程，还有随着训练进行，生成分布pg怎么慢慢接近真实数据分布pdata，最后判别器分不出真假的那个变化过程"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f1.1::ref",
+  "elementId": "692d30a4cdc2c14d#f1.1",
+  "source": "ref",
+  "query": "在语言模型里，元学习是怎么一回事？能不能用简单的话解释一下，最好能结合示意图说明模型在训练时学到什么、推理时又怎么快速适应新任务？"
+ },
+ {
+  "queryId": "fae71946ca105ab6#f2::caption",
+  "elementId": "fae71946ca105ab6#f2",
+  "source": "caption",
+  "query": "这个模型生成的样本可视化里，最右边一列展示的是相邻样本在训练集中最接近的示例，用来证明模型没有死记硬背训练集。这些样本是公平随机抽取的，不是特意挑选的，而且展示的是模型分布中的实际样本，不是给定隐藏单元样本的条件均值。另外，因为采样过程不依赖马尔可夫链混合，所以这些样本之间是不相关的。能详细解释一下这些样本分别来自哪些数据集和模型吗？比如MNIST、TFD、CIFAR-10全连接模型，还有CIFAR-10卷积判别器和反卷积生成器？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f1.2::ref",
+  "elementId": "692d30a4cdc2c14d#f1.2",
+  "source": "ref",
+  "query": "能给我讲讲你们研究的是在什么条件下进行的吗？还有模型怎么通过少量样本学会把一个单词里多余的符号去掉这种简单任务的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f1.1::caption",
+  "elementId": "692d30a4cdc2c14d#f1.1",
+  "source": "caption",
+  "query": "语言模型的元学习是怎么回事？无监督预训练时模型能学到哪些能力，推理时又是怎么快速适应新任务的？还有那个“上下文学习”具体指什么，是不是每次前向传播里都会发生？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f1.2::caption",
+  "elementId": "692d30a4cdc2c14d#f1.2",
+  "source": "caption",
+  "query": "大模型是不是能更高效地利用上下文信息来学习任务？比如有个简单的任务是从单词里去掉随机符号，给不给自然语言描述都行，大模型在上下文学习上的表现是不是更好？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f1.3::ref",
+  "elementId": "692d30a4cdc2c14d#f1.3",
+  "source": "ref",
+  "query": "我想了解所有42个以准确率衡量的基准测试的整体表现情况，零样本和少样本性能随模型规模变化有什么不同？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f1.3::caption",
+  "elementId": "692d30a4cdc2c14d#f1.3",
+  "source": "caption",
+  "query": "在所有42个准确率基准测试中，零样本和少样本性能随模型规模如何变化？哪个提升更快？能说明大模型更擅长上下文学习吗？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f2.1::ref",
+  "elementId": "692d30a4cdc2c14d#f2.1",
+  "source": "ref",
+  "query": "在 GPT-3 里，few-shot 是怎么用带上下文和期望补全的样本做示例的？能结合一个典型数据集的例子说说吗？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f2.2::ref",
+  "elementId": "692d30a4cdc2c14d#f2.2",
+  "source": "ref",
+  "query": "训练过程中总共用了多少计算量？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f2.2::caption",
+  "elementId": "692d30a4cdc2c14d#f2.2",
+  "source": "caption",
+  "query": "GPT-3 3B 和 RoBERTa-Large 在预训练时用的计算量差不多，但 GPT-3 模型大很多，这是怎么做到的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.1::ref",
+  "elementId": "692d30a4cdc2c14d#f3.1",
+  "source": "ref",
+  "query": "模型继续扩大规模时，这种趋势是不是基本延续？虽然曲线可能稍微有点弯曲，但很多下游任务在三个数量级的规模变化中是不是也相对平滑地提升？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f2.1::caption",
+  "elementId": "692d30a4cdc2c14d#f2.1",
+  "source": "caption",
+  "query": "能给我讲讲零样本、单样本和少样本学习跟传统微调有什么区别吗？是不是零样本、单样本和少样本这几种方法都只需要在测试时做前向传播就能完成任务，而微调是传统做法？另外少样本设置一般会给模型展示多少条示例？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.1::caption",
+  "elementId": "692d30a4cdc2c14d#f3.1",
+  "source": "caption",
+  "query": "GPT-3 的性能随着训练算力增加是怎么变化的？是不是还符合幂律趋势？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.2::ref",
+  "elementId": "692d30a4cdc2c14d#f3.2",
+  "source": "ref",
+  "query": "在LAMBADA任务上，语言模型的少样本能力是不是能大幅提升准确率？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.4::ref",
+  "elementId": "692d30a4cdc2c14d#f3.4",
+  "source": "ref",
+  "query": "这个在少样本结果的情况下是怎么展示的，还有所有三种设置的缩放情况在哪里能看到？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.3::ref",
+  "elementId": "692d30a4cdc2c14d#f3.3",
+  "source": "ref",
+  "query": "为什么 GPT-3 在 WebQS 上从零样本到少样本的提升比 TriviaQA 大得多？是不是因为 WebQS 的零样本和单样本表现本身就很差？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.3::caption",
+  "elementId": "692d30a4cdc2c14d#f3.3",
+  "source": "caption",
+  "query": "GPT-3在TriviaQA上的表现随着模型变大是怎么变化的？零样本、单样本和少样本之间差别大吗？跟当时最好的微调开放域模型RAG比又怎么样？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.2::caption",
+  "elementId": "692d30a4cdc2c14d#f3.2",
+  "source": "caption",
+  "query": "在LAMBADA上，语言模型的少样本能力能大幅提升准确率，GPT-3 2.7B超过了此前最好的17B参数Turing-NLG，而GPT-3 175B又把最好成绩提高了18%。另外，零样本用的格式和单样本、少样本不一样。这个结论具体是怎么说的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.5::ref",
+  "elementId": "692d30a4cdc2c14d#f3.5",
+  "source": "ref",
+  "query": "在对抗性 Winogrande 数据集上，零样本、单样本和少样本的表现随着模型容量增大是怎么变化的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.4::caption",
+  "elementId": "692d30a4cdc2c14d#f3.4",
+  "source": "caption",
+  "query": "随着模型容量增加，GPT-3在6个语言对上的少样本翻译表现怎么样？是不是所有数据集都随着模型变大而提升，而且翻成英语比从英语翻出去效果更好？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.6::caption",
+  "elementId": "692d30a4cdc2c14d#f3.6",
+  "source": "caption",
+  "query": "GPT-3在PIQA任务上零样本、单样本和少样本设置下的表现如何？最大的模型在开发集上的得分是不是在三种情况下都超过了该任务之前记录的最佳成绩？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.7::ref",
+  "elementId": "692d30a4cdc2c14d#f3.7",
+  "source": "ref",
+  "query": "GPT-3 在 CoQA 阅读理解任务上表现怎么样？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.5::caption",
+  "elementId": "692d30a4cdc2c14d#f3.5",
+  "source": "caption",
+  "query": "在对抗性 Winogrande 数据集上，零样本、单样本和少样本的性能随着模型容量增加是怎么变化的？特别是少样本学习的收益是否随模型规模增大而提高？另外，175B 的少样本 GPT-3 和微调后的 RoBERTa-large 相比表现如何？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.8::ref",
+  "elementId": "692d30a4cdc2c14d#f3.8",
+  "source": "ref",
+  "query": "随着模型变大和上下文里给的例子变多，few-shot SuperGLUE 分数是不是一直在提升啊？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.7::caption",
+  "elementId": "692d30a4cdc2c14d#f3.7",
+  "source": "caption",
+  "query": "GPT-3在CoQA阅读理解任务上的表现怎么样？特别是175B模型在少样本设置下能达到多少F1分数？和人类表现以及微调模型相比差多少？零样本和单样本的表现又如何？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.9::ref",
+  "elementId": "692d30a4cdc2c14d#f3.9",
+  "source": "ref",
+  "query": "GPT-3 在 ANLI Round 3 上表现怎么样？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.10::ref",
+  "elementId": "692d30a4cdc2c14d#f3.10",
+  "source": "ref",
+  "query": "小模型在这些任务上表现怎么样？13亿参数的那个模型做两位数加减法能对多少？其他运算呢？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.8::caption",
+  "elementId": "692d30a4cdc2c14d#f3.8",
+  "source": "caption",
+  "query": "我想知道GPT-3在SuperGLUE上的表现是不是随着模型变大和给的示例数变多而变好？K=32是不是指每个任务给32个例子、总共256个例子分给8个任务？你们报的是开发集结果，所以不能直接和虚线参考线比对吧？BERT-Large是在SuperGLUE训练集上微调的，BERT++是先微调MultiNLI和SWAG再微调SuperGLUE，它俩的性能差距大概相当于GPT-3每个上下文1个例子和8个例子的差距，是这样吗？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.9::caption",
+  "elementId": "692d30a4cdc2c14d#f3.9",
+  "source": "caption",
+  "query": "GPT-3在ANLI第三轮上的表现怎么样？听说是在开发集上测的，样本只有1500个，结果波动挺大的是吗？小模型是不是基本靠猜，而少样本的175B GPT-3把随机猜和SOTA之间的差距缩小了将近一半？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.11::ref",
+  "elementId": "692d30a4cdc2c14d#f3.11",
+  "source": "ref",
+  "query": "不同大小的模型在五个单词打乱任务上的少样本表现怎么样？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.10::caption",
+  "elementId": "692d30a4cdc2c14d#f3.10",
+  "source": "caption",
+  "query": "不同规模的GPT-3模型在少样本设置下做那10个算术任务的表现怎么样？是不是从13B到175B提升特别大，175B能做对两位数运算、三位数基本没问题，四五位数、两位数乘法和复合运算也能对不少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.11::caption",
+  "elementId": "692d30a4cdc2c14d#f3.11",
+  "source": "caption",
+  "query": "不同大小的模型在五个单词打乱任务上的少样本表现怎么样？特别是随机插入任务，听说175B模型大部分时候都能解决，是这样吗？还有，这些任务是不是都用了K=100？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.13::ref",
+  "elementId": "692d30a4cdc2c14d#f3.13",
+  "source": "ref",
+  "query": "是不是模型越大，人们就越难分辨新闻文章是不是模型生成的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.12::ref",
+  "elementId": "692d30a4cdc2c14d#f3.12",
+  "source": "ref",
+  "query": "模型规模变大后效果是不是更好？比如1750亿参数的模型比130亿参数的模型提升了多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.12::caption",
+  "elementId": "692d30a4cdc2c14d#f3.12",
+  "source": "caption",
+  "query": "不同大小的模型在SAT类比任务上零样本、单样本和少样本的表现怎么样？最大的模型在少样本设置下能达到65%的准确率，而且只有大模型才表现出明显的上下文学习提升，小模型没有，是这样吗？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.15::ref",
+  "elementId": "692d30a4cdc2c14d#f3.15",
+  "source": "ref",
+  "query": "GPT-3生成的那篇新闻文章，人类最容易分辨出不是人写的，准确率是61%，这是哪一篇？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.13::caption",
+  "elementId": "692d30a4cdc2c14d#f3.13",
+  "source": "caption",
+  "query": "人们分辨新闻文章是不是模型生成的能力，是不是随着模型变大而下降？那个故意弄差的对照模型准确率大概在哪，随机猜的概率又是多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.14::caption",
+  "elementId": "692d30a4cdc2c14d#f3.14",
+  "source": "caption",
+  "query": "GPT-3生成的哪篇新闻文章最难和人类写的区分开，准确率只有12%？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.15::caption",
+  "elementId": "692d30a4cdc2c14d#f3.15",
+  "source": "caption",
+  "query": "GPT-3生成的新闻文章里，人类觉得最容易和真人写的区分开的那篇，准确率是多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f4.1::ref",
+  "elementId": "692d30a4cdc2c14d#f4.1",
+  "source": "ref",
+  "query": "既然用了这么多数据，GPT-3 175B 在训练集上会不会明显过拟合？跟去重后的验证集比怎么样？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f4.1::caption",
+  "elementId": "692d30a4cdc2c14d#f4.1",
+  "source": "caption",
+  "query": "GPT-3在训练过程中的表现曲线是怎样的？训练集和验证集的表现差距会随着模型变大或训练时间变长而明显扩大吗？这种差距主要是什么原因造成的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.16::caption",
+  "elementId": "692d30a4cdc2c14d#f3.16",
+  "source": "caption",
+  "query": "GPT-3在少样本任务中怎么用新词造句？能给我看看它生成的例子吗？这些例子里哪些是人工写的、哪些是GPT-3生成的？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f4.2::ref",
+  "elementId": "692d30a4cdc2c14d#f4.2",
+  "source": "ref",
+  "query": "你们在分析中标记了哪几组基准需要进一步调查？能具体说说吗？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.17::caption",
+  "elementId": "692d30a4cdc2c14d#f3.17",
+  "source": "caption",
+  "query": "GPT-3在少样本英语语法纠错任务中表现如何？能给我讲讲它的具体例子吗？比如它是怎么根据几个示例来纠正语法的，还有它会不会在纠正时改变原意？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f1::ref",
+  "elementId": "f75599290ec7d11c#f1",
+  "source": "ref",
+  "query": "能给我看看 GPT-4 早期版本里那些会导致有害内容的示例提示词吗？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f6.1::caption",
+  "elementId": "692d30a4cdc2c14d#f6.1",
+  "source": "caption",
+  "query": "不同模型在种族情绪上的表现有什么区别？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f4.2::caption",
+  "elementId": "692d30a4cdc2c14d#f4.2",
+  "source": "caption",
+  "query": "你们做基准测试污染分析时，怎么构建清洗后的基准版本？x轴和y轴分别代表什么？哪些基准的性能变化可以忽略，哪些被标记需要进一步检查？最后发现哪些基准有污染证据，哪些没有？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f1::caption",
+  "elementId": "f75599290ec7d11c#f1",
+  "source": "caption",
+  "query": "GPT-4 和更小的模型在内部代码数据集上的最终损失表现怎么样？听说小模型的幂律拟合能准确预测 GPT-4 的最终损失，而且 x 轴训练算力是以 GPT-4 为 1 归一化的，是这样吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f2::ref",
+  "elementId": "f75599290ec7d11c#f2",
+  "source": "ref",
+  "query": "在那些我们能用几个小模型准确估计通过率对数的 HumanEval 问题里，第三简单那组的结果怎么样？预测准不准？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f4::caption",
+  "elementId": "f75599290ec7d11c#f4",
+  "source": "caption",
+  "query": "GPT-4在学术和专业考试中的表现怎么样？和GPT-3.5相比有什么提升？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f2::caption",
+  "elementId": "f75599290ec7d11c#f2",
+  "source": "caption",
+  "query": "GPT-4 和那些更小的模型在 HumanEval 数据集上的表现怎么样？听说有个幂律拟合能准确预测 GPT-4 的性能，能具体说说吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f3::ref",
+  "elementId": "f75599290ec7d11c#f3",
+  "source": "ref",
+  "query": "能给我看看那些导致 GPT-4 早期版本产生偏见内容的提示词示例吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f3::caption",
+  "elementId": "f75599290ec7d11c#f3",
+  "source": "caption",
+  "query": "GPT-4和那些小模型在Hindsight Neglect任务上表现怎么样？准确率越高越好，ada、babbage、curie这些模型都包括在内，能给我讲讲吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f4::ref",
+  "elementId": "f75599290ec7d11c#f4",
+  "source": "ref",
+  "query": "GPT-4在模拟的统一律师资格考试中成绩怎么样？是不是能排进前10%？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f5::ref",
+  "elementId": "f75599290ec7d11c#f5",
+  "source": "ref",
+  "query": "GPT-4 加上工具后能完成哪些有潜在风险的任务？能举个具体例子说说吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f6::ref",
+  "elementId": "f75599290ec7d11c#f6",
+  "source": "ref",
+  "query": "在敏感内容和禁止内容上，不同提示类型的不当行为率分别是多少？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f6::caption",
+  "elementId": "f75599290ec7d11c#f6",
+  "source": "caption",
+  "query": "GPT-4在九个内部对抗性设计的真实性评估中表现如何？和之前基于GPT-3.5的三个ChatGPT版本相比，准确率提升了多少？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f7::ref",
+  "elementId": "f75599290ec7d11c#f7",
+  "source": "ref",
+  "query": "GPT-4在TruthfulQA这类公开基准测试上表现怎么样？就是那个测试模型能不能从一堆故意选出来的错误说法里分辨出事实的测试。"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f5::caption",
+  "elementId": "f75599290ec7d11c#f5",
+  "source": "caption",
+  "query": "GPT-4 在多语言上的表现怎么样？跟之前的模型比，在 MMLU 上它是不是大多数语言都超过了那些模型在英语上的成绩？包括拉脱维亚语、威尔士语和斯瓦希里语这些低资源语言吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f7::caption",
+  "elementId": "f75599290ec7d11c#f7",
+  "source": "caption",
+  "query": "GPT-4在TruthfulQA上的表现怎么样？准确率多少？跟零样本提示、少样本提示和RLHF微调后的版本比有什么区别？它比GPT-3.5和Anthropic-LM好吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f1-2::ref",
+  "elementId": "f75599290ec7d11c#f1-2",
+  "source": "ref",
+  "query": "能给我看看GPT-4早期版本里那些会导致有害内容的示例提示词吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f8::ref",
+  "elementId": "f75599290ec7d11c#f8",
+  "source": "ref",
+  "query": "不过训练之后校准效果是不是变差了？能结合那张图讲讲吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f9::ref",
+  "elementId": "f75599290ec7d11c#f9",
+  "source": "ref",
+  "query": "能给我看看那个用自然语言对GPT-4进行分类的示例提示是什么样的吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f9::caption",
+  "elementId": "f75599290ec7d11c#f9",
+  "source": "caption",
+  "query": "在敏感和被禁止的提示上，GPT-4 出现不当行为的比例是不是比之前的模型低很多？这个比例是不是越低越好？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f8::caption",
+  "elementId": "f75599290ec7d11c#f8",
+  "source": "caption",
+  "query": "预训练的 GPT-4 在 MMLU 数据集子集上的校准图长什么样？横轴是按每个问题 A/B/C/D 选项的模型置信度（logprob）分箱，纵轴是每个箱内的准确率，虚线对角线代表完美校准。另外，后训练后的 GPT-4 在同一个子集上的校准图又是什么样？后训练是不是显著损害了校准？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f1-2::caption",
+  "elementId": "f75599290ec7d11c#f1-2",
+  "source": "caption",
+  "query": "能给我看看那些让早期GPT-4生成有害内容的提示词例子吗？另外，正式发布的GPT-4还有哪些关键的安全限制？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f2-2::ref",
+  "elementId": "f75599290ec7d11c#f2-2",
+  "source": "ref",
+  "query": "在第三容易的那组 HumanEval 问题上，几个小模型能较准确估计 log(pass_rate) 时，预测结果是不是很准？能给我看看相关结果吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f3-2::ref",
+  "elementId": "f75599290ec7d11c#f3-2",
+  "source": "ref",
+  "query": "GPT-4 刚发布的时候，有哪些提示词会让它生成有偏见的内容？能举个例子吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f3-2::caption",
+  "elementId": "f75599290ec7d11c#f3-2",
+  "source": "caption",
+  "query": "GPT-4早期版本里有哪些提示词会导致有偏见的内容？能举些例子说明吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f2-2::caption",
+  "elementId": "f75599290ec7d11c#f2-2",
+  "source": "caption",
+  "query": "能给我讲讲那个例子吗？就是GPT-4早期版本在非对抗性提示下，生成内容里表现出对性取向和婚姻规范的偏见，比如用了常见男女名字和异性恋婚姻设定。"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f4-2::ref",
+  "elementId": "f75599290ec7d11c#f4-2",
+  "source": "ref",
+  "query": "GPT-4 在模拟的统一律师资格考试里表现怎么样？能考进前 10% 吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f4-2::caption",
+  "elementId": "f75599290ec7d11c#f4-2",
+  "source": "caption",
+  "query": "有哪些提示词例子会让GPT-4生成可能被用于虚假信息或影响力操作的内容？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f5-2::caption",
+  "elementId": "f75599290ec7d11c#f5-2",
+  "source": "caption",
+  "query": "能举个例子说明GPT-4配上工具后可以完成哪些可能有风险的任务吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f6-2::caption",
+  "elementId": "f75599290ec7d11c#f6-2",
+  "source": "caption",
+  "query": "RBRM 的示例提示词是什么样的？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f6-2::ref",
+  "elementId": "f75599290ec7d11c#f6-2",
+  "source": "ref",
+  "query": "在那些被禁止和敏感的内容上，text-davinci-003 和 gpt-3 的错误行为率大概是多少？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f5-2::ref",
+  "elementId": "f75599290ec7d11c#f5-2",
+  "source": "ref",
+  "query": "你能帮我解释一下，为什么给 GPT-4 加上工具后，能完成那个有潜在风险的任务，而且还能达到 57% 的安全水平吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f7-2::ref",
+  "elementId": "f75599290ec7d11c#f7-2",
+  "source": "ref",
+  "query": "GPT-4 在 TruthfulQA 这种测试模型区分事实与对抗性错误陈述能力的公开基准上表现怎么样？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f8-2::ref",
+  "elementId": "f75599290ec7d11c#f8-2",
+  "source": "ref",
+  "query": "训练后的校准度为什么会降低？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f9-2::ref",
+  "elementId": "f75599290ec7d11c#f9-2",
+  "source": "ref",
+  "query": "能给我看看用GPT-4做自然语言分类的示例提示词长什么样吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f7-2::caption",
+  "elementId": "f75599290ec7d11c#f7-2",
+  "source": "caption",
+  "query": "在那些试图诱导不安全或敏感输出（比如受监管的医疗建议）的挑战性提示上，GPT-4 和之前模型的安全指标对比怎么样？具体来说，在敏感和禁止提示上错误行为的比率，以及禁止类别的 Moderation API 触发率，GPT-4 是不是都比之前的模型低很多？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f8-2::caption",
+  "elementId": "f75599290ec7d11c#f8-2",
+  "source": "caption",
+  "query": "GPT-4在TruthfulQA上的表现怎么样？跟GPT-3.5和Askell等人的结果比，准确率差多少？零样本、少样本和RLHF微调这几种设置下分别是什么水平？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f10::ref",
+  "elementId": "f75599290ec7d11c#f10",
+  "source": "ref",
+  "query": "能给我看看 GPT-4 刚发布时被越狱的提示词示例吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f9-2::caption",
+  "elementId": "f75599290ec7d11c#f9-2",
+  "source": "caption",
+  "query": "能给我看一个用GPT-4做自然语言分类的提示词示例吗？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f11::ref",
+  "elementId": "f75599290ec7d11c#f11",
+  "source": "ref",
+  "query": "GPT-4 在 IF 评测上的结果和 GPT-3 比怎么样？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f10::caption",
+  "elementId": "f75599290ec7d11c#f10",
+  "source": "caption",
+  "query": "GPT-4 刚发布时有哪些越狱的例子？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f11::caption",
+  "elementId": "f75599290ec7d11c#f11",
+  "source": "caption",
+  "query": "GPT-3.5、GPT-3.5-Turbo 和刚发布时的 GPT-4 在 IF 评测上的结果分别是怎样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f1::ref",
+  "elementId": "30dc139c6b40f116#f1",
+  "source": "ref",
+  "query": "在你们的 API 提示分布上，各个模型与 175B SFT 模型相比，人类偏好胜率怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f1::caption",
+  "elementId": "30dc139c6b40f116#f1",
+  "source": "caption",
+  "query": "在API提示分布上，InstructGPT模型和GPT-3基线相比人类评估结果怎么样？特别是1.3B的PPO-ptx模型和175B GPT-3比呢？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f2::ref",
+  "elementId": "30dc139c6b40f116#f2",
+  "source": "ref",
+  "query": "能给我讲讲你们方法里那三个步骤的示意图吗？就是监督微调、奖励模型训练，还有用PPO做强化学习那部分。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f2::caption",
+  "elementId": "30dc139c6b40f116#f2",
+  "source": "caption",
+  "query": "能给我讲讲你们这个方法里的三个步骤吗？就是监督微调、奖励模型训练和用PPO做强化学习那三步，最好说说每一步大概是怎么做的，还有那些蓝色箭头和A到D的样本框是什么意思？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f3::ref",
+  "elementId": "30dc139c6b40f116#f3",
+  "source": "ref",
+  "query": "你们的结果在评估提交给 API 上 GPT-3 模型的提示时变化大吗？PPO-ptx 模型在更大模型规模下表现会不会差一些？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f4::ref",
+  "elementId": "30dc139c6b40f116#f4",
+  "source": "ref",
+  "query": "在 InstructGPT 里，标注员是不是在几个更具体的维度上也更认可模型的输出？能说说相关结果吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f3::caption",
+  "elementId": "30dc139c6b40f116#f3",
+  "source": "caption",
+  "query": "你们模型和175B SFT模型比，胜率怎么样？在API上提交给GPT模型的提示和提交给InstructGPT模型的提示上分别如何？还有，来自留出标注员和训练标注员的结果有什么不同？另外，为什么在GPT-3模型提示的评估里没有GPT（prompted）？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f4::caption",
+  "elementId": "30dc139c6b40f116#f4",
+  "source": "caption",
+  "query": "能跟我说说 InstructGPT 论文里那个 API 分布上的元数据结果吗？就是按模型大小合并后的那些，听说 PPO 模型比 GPT-3 更像客服助手、更能遵守指令里的明确约束、也更少胡编乱造，这些具体是怎么说的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f6::ref",
+  "elementId": "30dc139c6b40f116#f6",
+  "source": "ref",
+  "query": "在 TruthfulQA 数据集上做人工评估时，PPO 模型相比 GPT-3 在生成真实且有信息量的内容方面表现如何？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f5::ref",
+  "elementId": "30dc139c6b40f116#f5",
+  "source": "ref",
+  "query": "在InstructGPT的提示分布上，我们的模型和FLAN、T0相比，1到7分的Likert评分怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f5::caption",
+  "elementId": "30dc139c6b40f116#f5",
+  "source": "caption",
+  "query": "在InstructGPT的提示分布下，用1到7分的李克特量表来比较我们的模型和FLAN、T0的表现，结果怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f6::caption",
+  "elementId": "30dc139c6b40f116#f6",
+  "source": "caption",
+  "query": "在TruthfulQA数据集上，灰色条和彩色条分别代表什么评分？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f7::ref",
+  "elementId": "30dc139c6b40f116#f7",
+  "source": "ref",
+  "query": "人类评估和自动评估（Perspective API 分数）在 RealToxicityPrompts 上是怎么对比的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f9::caption",
+  "elementId": "30dc139c6b40f116#f9",
+  "source": "caption",
+  "query": "能给我讲讲 InstructGPT 175B 相比 GPT-3 175B 容易犯哪些简单错误吗？比如它会不会被错误前提带偏，或者回答太模棱两可？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f8::ref",
+  "elementId": "30dc139c6b40f116#f8",
+  "source": "ref",
+  "query": "你能展示一下那个完整的法语样本吗？我想看看模型怎么处理其他语言的指令，毕竟训练数据几乎全是英语。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f8::caption",
+  "elementId": "30dc139c6b40f116#f8",
+  "source": "caption",
+  "query": "InstructGPT 175B 和 GPT-3 175B 在泛化能力上有啥区别？比如多语言指令跟随和代码摘要问答这些方面，能简单说说吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f7::caption",
+  "elementId": "30dc139c6b40f116#f7",
+  "source": "caption",
+  "query": "在RealToxicityPrompts上，人类评估和自动评估（Perspective API分数）是怎么比较的？我了解到有1729个提示被标注了，涉及三个不同的175B模型，还分有没有‘尊重’指令的情况。另外，这里的自动评估是基于和人类评估相同的那组提示算出来的，所以跟附录D表14里的完整评估结果会有点不一样，对吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f10::caption",
+  "elementId": "30dc139c6b40f116#f10",
+  "source": "caption",
+  "query": "能给我看看你们给标注员用来最终评估模型输出质量的那段说明的节选吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f11::caption",
+  "elementId": "30dc139c6b40f116#f11",
+  "source": "caption",
+  "query": "能说说给标注员用来评估模型在RealToxicityPrompts分布上输出毒性的完整指令是什么吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f12::ref",
+  "elementId": "30dc139c6b40f116#f12",
+  "source": "ref",
+  "query": "你们标注数据用的那个网页界面长什么样啊？能给我看看截图吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f13::ref",
+  "elementId": "30dc139c6b40f116#f13",
+  "source": "ref",
+  "query": "在根据奖励模型分数微调FLAN和T0时，批次大小64、学习率6e-6以及100万个样本这些设置具体是怎样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f13::caption",
+  "elementId": "30dc139c6b40f116#f13",
+  "source": "caption",
+  "query": "能说说怎么根据奖励模型的分数来调优 FLAN 和 T0 吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f12::caption",
+  "elementId": "30dc139c6b40f116#f12",
+  "source": "caption",
+  "query": "能给我看看你们标注界面的截图吗？我想了解标注员是怎么给每个输出打1到7分的整体质量评分，以及他们怎么收集其他元数据标签的。另外，在单独评估每个输出之后，他们又是怎么对同一个提示的所有输出进行排名的？如果两个输出质量差不多，会鼓励他们打平局吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f14::caption",
+  "elementId": "30dc139c6b40f116#f14",
+  "source": "caption",
+  "query": "Winogender 的提示、示例和数据集特征都是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f15::caption",
+  "elementId": "30dc139c6b40f116#f15",
+  "source": "caption",
+  "query": "CrowS-Pairs 的提示方式、示例和数据集特征是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f17::caption",
+  "elementId": "30dc139c6b40f116#f17",
+  "source": "caption",
+  "query": "TruthfulQA 在提示、示例和数据集特征方面是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f16::caption",
+  "elementId": "30dc139c6b40f116#f16",
+  "source": "caption",
+  "query": "RealToxicityPrompts 这个数据集里的提示、示例和数据集特征都是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f18::caption",
+  "elementId": "30dc139c6b40f116#f18",
+  "source": "caption",
+  "query": "DROP 数据集在提示、示例和数据集特征方面有什么特点？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f21::caption",
+  "elementId": "30dc139c6b40f116#f21",
+  "source": "caption",
+  "query": "Hellaswag 的提示方式、示例和数据集特征是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f22::caption",
+  "elementId": "30dc139c6b40f116#f22",
+  "source": "caption",
+  "query": "能给我讲讲 RTE 任务里提示词、示例和数据集特征都是什么样的吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f20::caption",
+  "elementId": "30dc139c6b40f116#f20",
+  "source": "caption",
+  "query": "能给我讲讲SQuAD v2任务里用的提示、示例和数据集特征是什么样的吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f19::caption",
+  "elementId": "30dc139c6b40f116#f19",
+  "source": "caption",
+  "query": "能给我讲讲QuAC这个数据集在提示、示例和特征方面的具体情况吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f23::caption",
+  "elementId": "30dc139c6b40f116#f23",
+  "source": "caption",
+  "query": "SST 这个数据集在提示、示例和数据特征方面是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f24::caption",
+  "elementId": "30dc139c6b40f116#f24",
+  "source": "caption",
+  "query": "能给我讲讲WSC这个数据集在提示、示例和数据集特征方面的情况吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f25::caption",
+  "elementId": "30dc139c6b40f116#f25",
+  "source": "caption",
+  "query": "WMT法译英任务里，提示词、示例和数据特征分别是什么？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f26::caption",
+  "elementId": "30dc139c6b40f116#f26",
+  "source": "caption",
+  "query": "CNN/DM 数据集在 InstructGPT 里的提示、示例和数据特征分别是什么？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f27::caption",
+  "elementId": "30dc139c6b40f116#f27",
+  "source": "caption",
+  "query": "TL;DR 的提示词、示例和数据集特征是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f25::ref",
+  "elementId": "30dc139c6b40f116#f25",
+  "source": "ref",
+  "query": "能给我讲讲 WMT 法译英任务里用的提示、示例和数据集特征都有哪些吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f28::ref",
+  "elementId": "30dc139c6b40f116#f28",
+  "source": "ref",
+  "query": "在 Winograd 准确率方面，你们的模型在多个公开 NLP 数据集上的少样本表现怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f28::caption",
+  "elementId": "30dc139c6b40f116#f28",
+  "source": "caption",
+  "query": "我的模型在多个公开NLP数据集上零样本表现怎么样？特别是175B的PPO模型是不是经常性能下降？如果在微调时加入预训练数据的更新，能不能缓解这个问题？另外，翻译任务的误差棒为什么没有？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f30::caption",
+  "elementId": "30dc139c6b40f116#f30",
+  "source": "caption",
+  "query": "模型类型和模型大小对元数据评分有什么影响？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f30::ref",
+  "elementId": "30dc139c6b40f116#f30",
+  "source": "ref",
+  "query": "模型规模对元数据结果有什么影响？能展示一下相关结果吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f29::ref",
+  "elementId": "30dc139c6b40f116#f29",
+  "source": "ref",
+  "query": "在PPO微调中加入预训练更新后，对各个数据集上的性能下降有什么缓解效果？是不是甚至能在HellaSwag上超过GPT-3？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f29::caption",
+  "elementId": "30dc139c6b40f116#f29",
+  "source": "caption",
+  "query": "我们模型在各种公开NLP数据集上的少样本性能怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f31::ref",
+  "elementId": "30dc139c6b40f116#f31",
+  "source": "ref",
+  "query": "你们各个模型在这批提示上的Likert评分怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f31::caption",
+  "elementId": "30dc139c6b40f116#f31",
+  "source": "caption",
+  "query": "我们各个模型的Likert分数分别是多少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f32::ref",
+  "elementId": "30dc139c6b40f116#f32",
+  "source": "ref",
+  "query": "不同模型规模下，Winogender 和 CrowS-Pairs 上的偏差结果怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f32::caption",
+  "elementId": "30dc139c6b40f116#f32",
+  "source": "caption",
+  "query": "InstructGPT 在 Winogender 和 CrowS-Pairs 上的偏见测试结果是什么样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f33::ref",
+  "elementId": "30dc139c6b40f116#f33",
+  "source": "ref",
+  "query": "在预训练数据混合系数取什么值时，既能逆转SQuADv2和DROP上的性能回退，又能让验证奖励下降最少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f33::caption",
+  "elementId": "30dc139c6b40f116#f33",
+  "source": "caption",
+  "query": "在公开NLP数据集上，预训练损失系数怎么影响表现？是不是有个系数能让DROP和SQuAD明显提升，同时验证奖励不怎么下降？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f35::ref",
+  "elementId": "30dc139c6b40f116#f35",
+  "source": "ref",
+  "query": "在公开的自然语言处理数据集上，模型的表现随着训练轮数增加是怎么变化的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f34::ref",
+  "elementId": "30dc139c6b40f116#f34",
+  "source": "ref",
+  "query": "在不同 KL reward 系数下，模型在公开 NLP 数据集（比如 DROP 和 SQuAD v2）上的 F1 和验证奖励是怎么变化的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f34::caption",
+  "elementId": "30dc139c6b40f116#f34",
+  "source": "caption",
+  "query": "在公开NLP数据集上评估时，KL奖励系数增大后，DROP和SQuAD上的性能下降能完全缓解吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f35::caption",
+  "elementId": "30dc139c6b40f116#f35",
+  "source": "caption",
+  "query": "在公开的NLP数据集上，训练回合数对评估结果有什么影响？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f36::ref",
+  "elementId": "30dc139c6b40f116#f36",
+  "source": "ref",
+  "query": "人类 likert 分数随 KL reward 系数变化的情况是怎样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f36::caption",
+  "elementId": "30dc139c6b40f116#f36",
+  "source": "caption",
+  "query": "Likert评分随着KL奖励系数的变化是怎样的？蓝色线代表什么？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f37::ref",
+  "elementId": "30dc139c6b40f116#f37",
+  "source": "ref",
+  "query": "用不同初始模型做PPO时，人类Likert评分分别是多少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f38::ref",
+  "elementId": "30dc139c6b40f116#f38",
+  "source": "ref",
+  "query": "学习率对胜率有什么影响？人类评估指标随学习率变化的情况是怎样的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f38::caption",
+  "elementId": "30dc139c6b40f116#f38",
+  "source": "caption",
+  "query": "人类评估指标是怎么随学习率变化的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f37::caption",
+  "elementId": "30dc139c6b40f116#f37",
+  "source": "caption",
+  "query": "用不同初始模型做PPO时，人类likert评分分别是多少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f39::ref",
+  "elementId": "30dc139c6b40f116#f39",
+  "source": "ref",
+  "query": "你们是怎么从数据集中抽样提示词的？为什么说这样抽样会让毒性指标的绝对值偏高？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f40::caption",
+  "elementId": "30dc139c6b40f116#f40",
+  "source": "caption",
+  "query": "RealToxicityPrompts 实验里，连贯性和相对毒性评分的结果怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f41::ref",
+  "elementId": "30dc139c6b40f116#f41",
+  "source": "ref",
+  "query": "PPO-ptx 和 SFT 在 RealToxicityPrompts 上相对于 175B GPT-3 的胜率分别是多少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f40::ref",
+  "elementId": "30dc139c6b40f116#f40",
+  "source": "ref",
+  "query": "RealToxicityPrompts 实验里，连续性和相对毒性评分的结果怎么样？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f41::caption",
+  "elementId": "30dc139c6b40f116#f41",
+  "source": "caption",
+  "query": "PPO-ptx 和 SFT 在 RealToxicityPrompts 上相对 175B GPT-3 的胜率是多少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f39::caption",
+  "elementId": "30dc139c6b40f116#f39",
+  "source": "caption",
+  "query": "在RealToxicityPrompts上，毒性分数随输入提示毒性变化的情况是怎样的？PPO指令跟随模型和非指令跟随模型相比，毒性输出有什么不同？特别是当被指示要尊重或有偏见时，这些模型的表现如何？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f42::ref",
+  "elementId": "30dc139c6b40f116#f42",
+  "source": "ref",
+  "query": "能给我看看那个完整的法语示例吗？我想了解模型在非英语语言上的表现，虽然训练数据几乎全是英语。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f42::caption",
+  "elementId": "30dc139c6b40f116#f42",
+  "source": "caption",
+  "query": "能给我看看InstructGPT在非英语指令跟随上的表现吗？比如那个法语的例子，和GPT-3 175B的随机样本对比一下。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f44::ref",
+  "elementId": "30dc139c6b40f116#f44",
+  "source": "ref",
+  "query": "你们的模型在回答可能有害的指令时倾向性如何？这是不是因为训练数据里更看重对用户有帮助？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f43::caption",
+  "elementId": "30dc139c6b40f116#f43",
+  "source": "caption",
+  "query": "能给我看看InstructGPT在瑞典语提示下的表现吗？跟GPT-3 175B比，它是不是真的按指令来了，还是主要用英语写的？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f45::ref",
+  "elementId": "30dc139c6b40f116#f45",
+  "source": "ref",
+  "query": "能给我看看你们模型描述代码的另一个例子吗？虽然还不太完美。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f44::caption",
+  "elementId": "30dc139c6b40f116#f44",
+  "source": "caption",
+  "query": "能给我看看在可能有害的提示上，InstructGPT 175B 和 GPT-3 175B 的随机样本对比吗？我想了解指令跟随的效果。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f45::caption",
+  "elementId": "30dc139c6b40f116#f45",
+  "source": "caption",
+  "query": "能给我看看那个挑出来的示例吗？就是展示模型按指令描述代码能力的，再对比一下GPT-3 175B和InstructGPT 175B随机生成的样本。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f49::ref",
+  "elementId": "30dc139c6b40f116#f49",
+  "source": "ref",
+  "query": "你能给我看看数据集中标注员写的提示，以及人工写的示范，还有GPT-3 175B和InstructGPT 175B的补全结果吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f46::caption",
+  "elementId": "30dc139c6b40f116#f46",
+  "source": "caption",
+  "query": "能给我看看你们数据集里标注员写的提示词，加上人工写的示范，还有GPT-3 175B和InstructGPT 175B分别生成的回答吗？听说提示词是从15个里挑了5个来展示不同任务，但回答没挑过，是这样吗？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f49::caption",
+  "elementId": "30dc139c6b40f116#f49",
+  "source": "caption",
+  "query": "能给我看看你们数据集里标注员写的提示词，加上人工写的示范，以及GPT-3 175B和InstructGPT 175B的补全结果吗？提示词是从15个里挑了5个来展示不同任务类型的，但补全结果没挑过。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f48::caption",
+  "elementId": "30dc139c6b40f116#f48",
+  "source": "caption",
+  "query": "这个数据集里标注员写的提示词长什么样？能给我看看人工写的示范，还有GPT-3 175B和InstructGPT 175B分别给出的补全结果吗？另外，这个提示词是怎么挑出来的？补全结果有没有经过筛选？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f47::caption",
+  "elementId": "30dc139c6b40f116#f47",
+  "source": "caption",
+  "query": "能给我看看你们数据集里标注员写的提示词吗？顺便把人工写的示范，还有GPT-3 175B和InstructGPT 175B的补全结果也一起展示一下。提示词是从15个里挑了5个，想展示任务多样性，但补全结果没挑过。"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f50::caption",
+  "elementId": "30dc139c6b40f116#f50",
+  "source": "caption",
+  "query": "能给我看看你们数据集里标注员写的提示词长什么样吗？最好也附上人工写的示范回答，以及GPT-3 175B和InstructGPT 175B各自生成的补全，顺便说说这个提示词是不是特意挑的、补全有没有经过筛选。"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f1::caption",
+  "elementId": "bc016c87c1b2fe24#f1",
+  "source": "caption",
+  "query": "你们这个检索增强生成方法是怎么把预训练检索器和预训练seq2seq模型结合起来的？具体来说，给定查询x后怎么用MIPS找前K个文档，然后怎么把文档当潜在变量做边缘化来得到最终预测？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f1::ref",
+  "elementId": "bc016c87c1b2fe24#f1",
+  "source": "ref",
+  "query": "能解释一下你们模型里检索器和生成器这两个组件是怎么配合工作的吗？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f3::ref",
+  "elementId": "bc016c87c1b2fe24#f3",
+  "source": "ref",
+  "query": "检索更多文档时，NQ 上的性能是怎么变化的？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f2::ref",
+  "elementId": "bc016c87c1b2fe24#f2",
+  "source": "ref",
+  "query": "这篇论文里，针对输入“Hemingway”生成Jeopardy问题时，每个生成token对5篇检索文档的后验概率是怎么展示的？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f2::caption",
+  "elementId": "bc016c87c1b2fe24#f2",
+  "source": "caption",
+  "query": "在RAG-Token模型里，输入“Hemingway”做Jeopardy问答生成时，5篇检索文档的文档后验概率是怎么随每个生成token变化的？是不是生成“A Farewell to Arms”时第1篇文档后验高，生成“The Sun Also Rises”时第2篇文档后验高？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f3::caption",
+  "elementId": "bc016c87c1b2fe24#f3",
+  "source": "caption",
+  "query": "在知识密集型任务里，检索更多文档对NQ性能、检索召回率以及MS-MARCO的BLEU-1和ROUGE-L有什么影响？"
+ },
+ {
+  "queryId": "295f51b797d926af#f1::caption",
+  "elementId": "295f51b797d926af#f1",
+  "source": "caption",
+  "query": "ViT模型是怎么处理图片的？是把图片切成小块然后怎么操作？能简单说说它的整体流程吗？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f4::ref",
+  "elementId": "bc016c87c1b2fe24#f4",
+  "source": "ref",
+  "query": "你们做事实性人工评估时用的标注界面长什么样？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f4::caption",
+  "elementId": "bc016c87c1b2fe24#f4",
+  "source": "caption",
+  "query": "那个用来做事实性人工评估的标注界面长什么样？听说点“查看工具指南”会弹出详细说明和示例，具体是怎么回事？"
+ },
+ {
+  "queryId": "295f51b797d926af#f2::caption",
+  "elementId": "295f51b797d926af#f2",
+  "source": "caption",
+  "query": "ViT在VTAB的Natural、Specialized和Structured这三类任务上的表现分别是怎样的？"
+ },
+ {
+  "queryId": "295f51b797d926af#f2::ref",
+  "elementId": "295f51b797d926af#f2",
+  "source": "ref",
+  "query": "能给我说说在VTAB里，Natural、Specialized和Structured这几组任务上，ViT-H/14、BiT-L (R152x4)、VIVI-Ex-100% (R50x3)和S4L (R50x1)这些模型的表现分别是多少吗？"
+ },
+ {
+  "queryId": "295f51b797d926af#f1::ref",
+  "elementId": "295f51b797d926af#f1",
+  "source": "ref",
+  "query": "你能给我讲讲这个模型的大致结构吗？就是那个把图像切成小块、加上位置信息，然后经过多头注意力、归一化和MLP，还带残差连接，最后堆叠成Transformer编码器的那个。"
+ },
+ {
+  "queryId": "295f51b797d926af#f3::ref",
+  "elementId": "295f51b797d926af#f3",
+  "source": "ref",
+  "query": "不同预训练数据集和模型大小对迁移到ImageNet的Top-1准确率有什么影响？"
+ },
+ {
+  "queryId": "295f51b797d926af#f3::caption",
+  "elementId": "295f51b797d926af#f3",
+  "source": "caption",
+  "query": "ViT模型在ImageNet上迁移表现怎么样？是不是在小数据集上预训练不如BiT ResNets，但在大数据集上就更好？而且数据集越大，越大的ViT模型是不是越有优势？"
+ },
+ {
+  "queryId": "295f51b797d926af#f5::ref",
+  "elementId": "295f51b797d926af#f5",
+  "source": "ref",
+  "query": "不同架构（视觉Transformer、ResNet和混合模型）在预训练计算量不同时，性能表现怎么样？"
+ },
+ {
+  "queryId": "295f51b797d926af#f4::ref",
+  "elementId": "295f51b797d926af#f4",
+  "source": "ref",
+  "query": "ViT-L/16、ViT-L/32、ViT-B/32、ViT-b/32、ResNet50x1 (BiT) 和 ResNet152x2 (BiT) 这些模型在 ImageNet 上做线性 few-shot 评估时，随着 JFT 预训练样本数从 1000 万增加到 3 亿，它们的 Top-1 准确率是怎么变化的？"
+ },
+ {
+  "queryId": "295f51b797d926af#f4::caption",
+  "elementId": "295f51b797d926af#f4",
+  "source": "caption",
+  "query": "在ImageNet上做线性few-shot评估时，预训练数据量大小对ResNet和ViT的表现有什么不同？是不是ResNet在数据少时更好但很快就不涨了，而ViT需要更多数据才能发挥优势？另外ViT-b和ViT-B是什么关系？"
+ },
+ {
+  "queryId": "295f51b797d926af#f6::ref",
+  "elementId": "295f51b797d926af#f6",
+  "source": "ref",
+  "query": "能给我看看输出 token 对输入空间的注意力示例吗？"
+ },
+ {
+  "queryId": "295f51b797d926af#f5::caption",
+  "elementId": "295f51b797d926af#f5",
+  "source": "caption",
+  "query": "在预训练计算量相同的情况下，Vision Transformer、ResNet和混合架构的性能有什么差异？特别是ViT和ResNet对比，以及混合架构在模型大小不同时的表现如何？"
+ },
+ {
+  "queryId": "295f51b797d926af#f6::caption",
+  "elementId": "295f51b797d926af#f6",
+  "source": "caption",
+  "query": "ViT里输出token对输入空间的注意力有哪些典型例子？"
+ },
+ {
+  "queryId": "295f51b797d926af#f8::caption",
+  "elementId": "295f51b797d926af#f8",
+  "source": "caption",
+  "query": "Vision Transformer 不同模型维度是怎么扩展的？"
+ },
+ {
+  "queryId": "295f51b797d926af#f8::ref",
+  "elementId": "295f51b797d926af#f8",
+  "source": "ref",
+  "query": "Vision Transformer 在不同模型维度（比如深度、patch 大小、宽度和 MLP 宽度）上的扩展表现怎么样？"
+ },
+ {
+  "queryId": "295f51b797d926af#f7::ref",
+  "elementId": "295f51b797d926af#f7",
+  "source": "ref",
+  "query": "为什么在 Transformer 前面加 ResNet 的混合模型里，这种高度局部化的注意力就没那么明显了？是不是说明它和 CNN 早期卷积层的作用差不多？"
+ },
+ {
+  "queryId": "295f51b797d926af#f7::caption",
+  "elementId": "295f51b797d926af#f7",
+  "source": "caption",
+  "query": "ViT-L/32 初始线性嵌入的 RGB 滤波器长什么样？它的位置嵌入相似性如何？还有不同注意力头在不同网络深度下的关注区域大小是怎么变化的？"
+ },
+ {
+  "queryId": "295f51b797d926af#f9::caption",
+  "elementId": "295f51b797d926af#f9",
+  "source": "caption",
+  "query": "ViT里用class token和全局平均池化做分类器有什么区别？效果差不多吗？学习率需要怎么调？"
+ },
+ {
+  "queryId": "295f51b797d926af#f9::ref",
+  "elementId": "295f51b797d926af#f9",
+  "source": "ref",
+  "query": "在ViT里，用CLS token和用全局平均池化（GAP）做分类器，在ImageNet 5-shot线性准确率上随着训练轮数变化有什么差别？"
+ },
+ {
+  "queryId": "295f51b797d926af#f10::caption",
+  "elementId": "295f51b797d926af#f10",
+  "source": "caption",
+  "query": "用不同超参数训练出来的模型，它们的位置嵌入有什么不同？"
+ },
+ {
+  "queryId": "295f51b797d926af#f10::ref",
+  "elementId": "295f51b797d926af#f10",
+  "source": "ref",
+  "query": "网络学到的位置嵌入相似性具体模式是不是跟训练超参数有关？"
+ },
+ {
+  "queryId": "295f51b797d926af#f11::ref",
+  "elementId": "295f51b797d926af#f11",
+  "source": "ref",
+  "query": "ViT 在不同层里，自注意力权重的平均跨度是怎么变化的？我想了解它怎么用自注意力整合整张图的信息。"
+ },
+ {
+  "queryId": "295f51b797d926af#f12::ref",
+  "elementId": "295f51b797d926af#f12",
+  "source": "ref",
+  "query": "不同架构在不同输入尺寸下的实际推理速度（wall-clock timings）是怎么样的？"
+ },
+ {
+  "queryId": "295f51b797d926af#f11::caption",
+  "elementId": "295f51b797d926af#f11",
+  "source": "caption",
+  "query": "ViT模型里，不同注意力头和网络深度所关注区域的大小是怎么变化的？具体来说，注意力距离是怎么算的？是不是用128张示例图片，对每个查询像素和其他所有像素的距离按注意力权重加权平均？每个点代表某一层16个注意力头中一个头的平均注意力距离？图片宽度是224像素吗？"
+ },
+ {
+  "queryId": "295f51b797d926af#f14::caption",
+  "elementId": "295f51b797d926af#f14",
+  "source": "caption",
+  "query": "能再给我看一些随机选择的注意力图示例吗？就像之前展示的那种。"
+ },
+ {
+  "queryId": "295f51b797d926af#f13::caption",
+  "elementId": "295f51b797d926af#f13",
+  "source": "caption",
+  "query": "基于轴向注意力的模型在ImageNet 5-shot线性评估下的top-1准确率怎么样？和它们的FLOPs以及推理时间分别是什么关系？"
+ },
+ {
+  "queryId": "295f51b797d926af#f12::caption",
+  "elementId": "295f51b797d926af#f12",
+  "source": "caption",
+  "query": "不同输入尺寸下，ViT 模型和 ResNet 这类架构在实际运行时间上差不多吗？另外，它们在设备上能跑的最大单核批大小哪个更省内存？"
+ },
+ {
+  "queryId": "295f51b797d926af#f13::ref",
+  "elementId": "295f51b797d926af#f13",
+  "source": "ref",
+  "query": "Axial-Attention 模型在 ImageNet 5-shot linear top-1 准确率上，跟它们的 FLOPs 和推理时间相比表现怎么样？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f1::ref",
+  "elementId": "756b2d33d2afc37a#f1",
+  "source": "ref",
+  "query": "你能解释一下近端策略优化里那个裁剪项在不同优势值下是怎么变化的吗？就是优势大于零和小于零时分别对应哪个曲线？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f3::caption",
+  "elementId": "756b2d33d2afc37a#f3",
+  "source": "caption",
+  "query": "能帮我对比一下几种算法在几个 MuJoCo 环境上训练一百万步的效果吗？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f1::caption",
+  "elementId": "756b2d33d2afc37a#f1",
+  "source": "caption",
+  "query": "能给我讲讲近端策略优化里那个替代目标函数 LCLIP 的图吗？就是展示它作为概率比 r 的函数，在优势为正和优势为负两种情况下的样子，图上还标了优化起点 r=1 的那个红圈。另外 LCLIP 是把很多这样的项加起来，对吧？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f2::caption",
+  "elementId": "756b2d33d2afc37a#f2",
+  "source": "caption",
+  "query": "能解释一下PPO里替代目标函数在初始策略参数和更新后参数之间插值时的变化吗？比如在Hopper-v1问题第一次更新时，KL散度大概0.02，LCLIP达到最大，这图说明了什么？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f2::ref",
+  "elementId": "756b2d33d2afc37a#f2",
+  "source": "ref",
+  "query": "在 PPO 里，代理目标是怎么随着旧策略参数和更新后的策略参数之间的插值变化的？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f4::ref",
+  "elementId": "756b2d33d2afc37a#f4",
+  "source": "ref",
+  "query": "PPO 在 Roboschool 的 3D 人形控制任务上（比如 RoboschoolHumanoid-v0、RoboschoolHumanoidFlagrun-v0 和 RoboschoolHumanoidFlagrunHarder-v0）的学习曲线怎么样？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f5::ref",
+  "elementId": "756b2d33d2afc37a#f5",
+  "source": "ref",
+  "query": "论文里提到的学习策略的静止帧在哪里能看到？还有那三个任务的学习曲线展示在哪儿？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f4::caption",
+  "elementId": "756b2d33d2afc37a#f4",
+  "source": "caption",
+  "query": "PPO在Roboschool的3D人形控制任务上学习曲线怎么样？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f6::caption",
+  "elementId": "756b2d33d2afc37a#f6",
+  "source": "caption",
+  "query": "PPO 和 A2C 在 OpenAI Gym 当时包含的全部 49 个 ATARI 游戏上表现对比怎么样？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f6::ref",
+  "elementId": "756b2d33d2afc37a#f6",
+  "source": "ref",
+  "query": "那个展示三个随机种子学习曲线的图，还有显示平均性能的表格，分别是什么内容？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f5::caption",
+  "elementId": "756b2d33d2afc37a#f5",
+  "source": "caption",
+  "query": "这个策略在RoboschoolHumanoidFlagrun任务里具体是怎么表现的？前六帧机器人朝目标跑，之后位置随机变了，它是怎么转向跑向新目标的？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f5::visual",
+  "elementId": "756b2d33d2afc37a#f5",
+  "source": "visual",
+  "query": "图中人物奔跑时，其身体重心在水平方向上的位置相对于脚部支撑点是偏前、偏后还是基本垂直？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f7::visual",
+  "elementId": "b73397c0c285bd6b#f7",
+  "source": "visual",
+  "query": "在LiveCodeBench Pass@1指标上，带LC Reward（蓝色线）和不带LC Reward（绿色线）的模型性能随训练步数变化的趋势有何关键差异？具体在哪一阶段蓝色线明显领先于绿色线？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f4.1::visual",
+  "elementId": "692d30a4cdc2c14d#f4.1",
+  "source": "visual",
+  "query": "随着训练 tokens 从 0 增加到 300B，验证损失（实线）和训练损失（虚线）之间的差距如何变化？在约 200B tokens 处，模型参数量最大的那条曲线（紫色）的验证损失与训练损失之差大约是多少 nat/token？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f5::visual",
+  "elementId": "221c3eff38f8ab54#f5",
+  "source": "visual",
+  "query": "在训练初期（横坐标较小区域），BERT_BASE (Masked LM) 和 BERT_BASE (Left-to-Right) 的性能差距是否显著？随着横坐标增大，两者差距如何变化？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f7::visual",
+  "elementId": "539c212a1a1a355a#f7",
+  "source": "visual",
+  "query": "在上图中，ResNet-110（黑色实线）的层标准差在原始层序下何时首次降至接近0.5以下？"
+ },
+ {
+  "queryId": "295f51b797d926af#f14::visual",
+  "elementId": "295f51b797d926af#f14",
+  "source": "visual",
+  "query": "在编号61到64的四张图中，从左到右物体的清晰度和可辨识度如何变化？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f9::visual",
+  "elementId": "f75599290ec7d11c#f9",
+  "source": "visual",
+  "query": "在粉色柱（text-davinci-003）和蓝色柱（gpt-3.5-turbo）中，哪一模型在左侧两个数据点上的表现更高，且两者的误差棒长度是否相近？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f26::visual",
+  "elementId": "30dc139c6b40f116#f26",
+  "source": "visual",
+  "query": "在few-shot设置下，随着示例数量从1增加到5，模型在法语-英语对上的ROUGE-L分数提升幅度是否显著高于仅使用新闻文章时的提升幅度？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f13::visual",
+  "elementId": "30dc139c6b40f116#f13",
+  "source": "visual",
+  "query": "在学习率 LR = 6e-6 的情况下，FLAN 模型的奖励均值在约 750,000 个样本处出现明显下降，而 TO 模型在同一位置是否也出现类似下降？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f2::visual",
+  "elementId": "70765ea7c94cbbd2#f2",
+  "source": "visual",
+  "query": "为什么在Scaled Dot-Product Attention模块上方有多个堆叠的浅灰色矩形层，且这些层都指向同一个Concat操作？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f35::visual",
+  "elementId": "30dc139c6b40f116#f35",
+  "source": "visual",
+  "query": "在SQuAD v2数据集上，模型F1分数在约1e5训练轮次后出现明显下降，而DROP数据集上的F1分数在此阶段保持稳定；请说明这两个数据集在该训练阶段的F1分数变化趋势有何差异？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f30::visual",
+  "elementId": "30dc139c6b40f116#f30",
+  "source": "visual",
+  "query": "在模型规模为6B时，GPT（prompted）在‘Follows explicit constraints’指标上的表现是否优于SFT模型？具体数值大约是多少？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f27::visual",
+  "elementId": "30dc139c6b40f116#f27",
+  "source": "visual",
+  "query": "在few-shot设置下，随着示例数量从0增加到15，模型在法语-英语对上的ROUGE-L分数提升幅度是否显著高于仅使用Reddit帖子时的提升幅度？"
+ },
+ {
+  "queryId": "756b2d33d2afc37a#f3::visual",
+  "elementId": "756b2d33d2afc37a#f3",
+  "source": "visual",
+  "query": "在Swimmer-v1环境中，A2C + Trust Region（绿色线）的性能在训练初期快速上升后趋于平稳，而PPO（Clip）（紫色线）则持续缓慢增长并在约600,000步后超过前者；请比较两者在1,000,000步时的最终回报值大致是多少？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f1::visual",
+  "elementId": "f75599290ec7d11c#f1",
+  "source": "visual",
+  "query": "gpt-4 的预测值在横轴最右侧是否高于、低于还是等于对应的观测值？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f22::visual",
+  "elementId": "30dc139c6b40f116#f22",
+  "source": "visual",
+  "query": "In the few-shot setting, how does the performance gap between the best-performing model and the random baseline change as the number of shots increases from 1 to 16?"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f15::visual",
+  "elementId": "b73397c0c285bd6b#f15",
+  "source": "visual",
+  "query": "在哪些学科类别中，DeepSeek-R1 的准确率比 DeepSeek-V3 高出至少 10 个百分点？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f41::visual",
+  "elementId": "30dc139c6b40f116#f41",
+  "source": "visual",
+  "query": "在‘Respectful prompt’条件下，PPO-ptx模型的胜率是否显著高于SFT模型？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f2::visual",
+  "elementId": "b73397c0c285bd6b#f2",
+  "source": "visual",
+  "query": "在DeepSeek R1的三个版本（Dev-1、Dev-2、R1）中，哪些版本使用了强化学习（RL）作为训练算法，并且各自对应的提示类型和奖励机制是什么？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.1::visual",
+  "elementId": "692d30a4cdc2c14d#f3.1",
+  "source": "visual",
+  "query": "当计算量为 10^2 PetaFLOP/s-days 时，验证损失约为多少？对应的颜色条显示参数量级大约是多少？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f5::visual",
+  "elementId": "b73397c0c285bd6b#f5",
+  "source": "visual",
+  "query": "在右侧的训练流程中，Actor Model 和 Critic Model（Optional）的参数更新依赖于哪些输入数据？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f40::visual",
+  "elementId": "30dc139c6b40f116#f40",
+  "source": "visual",
+  "query": "在‘respectful_prompt’条件下，PPO-ptx模型的绝对毒性值约为多少，且与GPT模型相比高出了多少？"
+ },
+ {
+  "queryId": "221c3eff38f8ab54#f3::visual",
+  "elementId": "221c3eff38f8ab54#f3",
+  "source": "visual",
+  "query": "在ELMo结构中，每个输入词元T_i对应的LSTM层是如何连接的？具体来说，上层LSTM和下层LSTM之间是否存在跨时间步的横向连接，以及它们与输入E_i的连接方式是否与BERT和OpenAI GPT相同？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f2::visual",
+  "elementId": "ca43c272585cb778#f2",
+  "source": "visual",
+  "query": "在右侧图中，当采样温度为0.5时，DPO（黄色线）与PPO（粉色线）的胜率差距大约是多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.2::visual",
+  "elementId": "692d30a4cdc2c14d#f3.2",
+  "source": "visual",
+  "query": "在参数量为1.3B时，Few-Shot (K=15) 方法的准确率大约是多少？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f1::visual",
+  "elementId": "618c75d6cbcd9e00#f1",
+  "source": "visual",
+  "query": "橙色背景上，左侧橙色竖条与右侧绿色竖条的宽度是否相等？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f38::visual",
+  "elementId": "30dc139c6b40f116#f38",
+  "source": "visual",
+  "query": "在175B模型规模下，随着学习率从2.5e-6增加到3.75e-6，‘Pretrain mix’和‘No pretrain mix’两种设置的Likert评分分别呈现怎样的变化趋势？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f14::visual",
+  "elementId": "b73397c0c285bd6b#f14",
+  "source": "visual",
+  "query": "在所有语言中，哪一种语言的Claude GP14o模型得分最高？其具体数值是多少？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f2::visual",
+  "elementId": "bc016c87c1b2fe24#f2",
+  "source": "visual",
+  "query": "图中左侧和右侧各有一个深蓝色方块，它们在水平方向上的位置是否对称？如果是，它们距离图像左右边缘的距离大约是多少像素？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f2.2::visual",
+  "elementId": "692d30a4cdc2c14d#f2.2",
+  "source": "visual",
+  "query": "GPT-3系列模型中，训练所用总计算量（以Petaflop/s-days为单位）随参数规模增大呈现怎样的变化趋势？具体比较GPT-3 175B与GPT-3 6.7B的计算量差异是多少数量级？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f16::visual",
+  "elementId": "b73397c0c285bd6b#f16",
+  "source": "visual",
+  "query": "在哪些学科中，DeepSeek-R1 的准确率比 DeepSeek-V3 高出超过 5 个百分点？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f16::visual",
+  "elementId": "30dc139c6b40f116#f16",
+  "source": "visual",
+  "query": "在RealToxicityPrompts数据集中，5000个样本的毒性分布是否呈现右偏态？即低毒性提示是否显著多于高毒性提示？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.12::visual",
+  "elementId": "692d30a4cdc2c14d#f3.12",
+  "source": "visual",
+  "query": "在参数量为13B时，Few-Shot（K=20）方法的准确率大约是多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.6::visual",
+  "elementId": "692d30a4cdc2c14d#f3.6",
+  "source": "visual",
+  "query": "在参数量为13B时，Few-Shot (K=50)方法的准确率大约是多少？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f7::visual",
+  "elementId": "f75599290ec7d11c#f7",
+  "source": "visual",
+  "query": "在对抗性问题（TruthfulQA mc1）上，gpt-4 的准确率比 gpt-3.5 高出大约多少个百分点？"
+ },
+ {
+  "queryId": "295f51b797d926af#f1::visual",
+  "elementId": "295f51b797d926af#f1",
+  "source": "visual",
+  "query": "Vision Transformer 中的输入序列包含多少个 patch（不包括 [class] token）？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.7::visual",
+  "elementId": "692d30a4cdc2c14d#f3.7",
+  "source": "visual",
+  "query": "在参数量为13B时，Few-Shot（K=5）方法的准确率比Zero-Shot高多少个百分点？"
+ },
+ {
+  "queryId": "295f51b797d926af#f2::visual",
+  "elementId": "295f51b797d926af#f2",
+  "source": "visual",
+  "query": "在VTAB（19 tasks）和Natural（7 tasks）这两个基准上，ViT-H/14模型的准确率是否均高于Bit-L（R152x4）模型？"
+ },
+ {
+  "queryId": "295f51b797d926af#f4::visual",
+  "elementId": "295f51b797d926af#f4",
+  "source": "visual",
+  "query": "在横坐标约 0.4 的位置，Hybrid 方法（橙色菱形）的纵坐标值大约是多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.11::visual",
+  "elementId": "692d30a4cdc2c14d#f3.11",
+  "source": "visual",
+  "query": "在参数量为13B时，'random insertion'（红色线）的准确率约为多少？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f3::visual",
+  "elementId": "70765ea7c94cbbd2#f3",
+  "source": "visual",
+  "query": "在2009年之后，'making the registration'这一短语的各组成部分（如'making'、'the'、'registration'）在图中通过连线连接到哪些下游词项？其中哪些下游词项被标记为'pad'，哪些被标记为'EOS'？"
+ },
+ {
+  "queryId": "295f51b797d926af#f6::visual",
+  "elementId": "295f51b797d926af#f6",
+  "source": "visual",
+  "query": "蛇体表的红黑相间环纹在身体前段与后段的宽度比例是否一致？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f2::visual",
+  "elementId": "f75599290ec7d11c#f2",
+  "source": "visual",
+  "query": "gpt-4 的预测值在横轴最右侧是否高于、低于还是等于其对应的观测值？"
+ },
+ {
+  "queryId": "539c212a1a1a355a#f5::visual",
+  "elementId": "539c212a1a1a355a#f5",
+  "source": "visual",
+  "query": "左侧结构中两个3x3,64卷积层的输出通道数均为64，而右侧结构中1x1,64和1x1,256卷积层的输出通道数分别为64和256，这种设计如何影响残差路径的特征维度变化？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.10::visual",
+  "elementId": "692d30a4cdc2c14d#f3.10",
+  "source": "visual",
+  "query": "在参数量为13B时，Three Digit Subtraction的准确率大约是多少？"
+ },
+ {
+  "queryId": "bc016c87c1b2fe24#f1::visual",
+  "elementId": "bc016c87c1b2fe24#f1",
+  "source": "visual",
+  "query": "在Retriever模块中，MIPS操作后输出的多个文档表示（z¹, z², z³, z⁴）中，哪些是通过虚线箭头连接到Generator的？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f11::visual",
+  "elementId": "f75599290ec7d11c#f11",
+  "source": "visual",
+  "query": "当对手是 GPT-3.5 RLHF 时，GPT-4 RLHF 的胜率是多少？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f3.3::visual",
+  "elementId": "692d30a4cdc2c14d#f3.3",
+  "source": "visual",
+  "query": "在参数量为13B时，Few-Shot (K=64) 方法的准确率比 Zero-Shot 高出多少个百分点？"
+ },
+ {
+  "queryId": "f75599290ec7d11c#f3-2::visual",
+  "elementId": "f75599290ec7d11c#f3-2",
+  "source": "visual",
+  "query": "在两个Prompt-GPT-4对比场景中，GPT-4 (launch)版本相比GPT-4 (early)版本，在处理涉及敏感社会议题（如轮椅使用者、宗教、性别与种族吸引力评分）的请求时，其响应策略发生了怎样的结构性变化？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f6::visual",
+  "elementId": "30dc139c6b40f116#f6",
+  "source": "visual",
+  "query": "在‘Instruction + QA prompt’条件下，PPO模型的性能（百分比）是否显著高于GPT模型？如果是，高出多少个百分点（取中位值近似）？"
+ },
+ {
+  "queryId": "692d30a4cdc2c14d#f6.1::visual",
+  "elementId": "692d30a4cdc2c14d#f6.1",
+  "source": "visual",
+  "query": "在模型大小为2.7B时，哪个群体的 sentiment score 最高，其具体数值约为多少？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f2::visual",
+  "elementId": "618c75d6cbcd9e00#f2",
+  "source": "visual",
+  "query": "在帧号约21处出现的陡峭下降（标记为B）之后，Q值最低点（标记为C）出现在哪一帧附近？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f18::visual",
+  "elementId": "b73397c0c285bd6b#f18",
+  "source": "visual",
+  "query": "当问题难度从1.0（最简单）降至0.0（最难）时，平均思考令牌数整体呈现怎样的变化趋势？在哪些难度区间内出现局部峰值，且峰值大致对应的令牌数是多少？"
+ },
+ {
+  "queryId": "295f51b797d926af#f3::visual",
+  "elementId": "295f51b797d926af#f3",
+  "source": "visual",
+  "query": "在相同横坐标位置下，Hybrid 方法（橙色十字）的纵坐标值是否普遍高于 Transformer (ViT)（蓝色圆点）和 ResNet (BiT)（灰色方块）？"
+ },
+ {
+  "queryId": "ca43c272585cb778#f5::visual",
+  "elementId": "ca43c272585cb778#f5",
+  "source": "visual",
+  "query": "在总结评估任务中，当两个摘要内容高度相似时，标注者选择‘I can’t tell’的比例是否显著高于内容差异较大的摘要对？"
+ },
+ {
+  "queryId": "618c75d6cbcd9e00#f3::visual",
+  "elementId": "618c75d6cbcd9e00#f3",
+  "source": "visual",
+  "query": "在帧号约21处出现的陡峭下降（标记为B）之后，Q值最低点（标记为C）出现在哪一帧附近？"
+ },
+ {
+  "queryId": "70765ea7c94cbbd2#f5::visual",
+  "elementId": "70765ea7c94cbbd2#f5",
+  "source": "visual",
+  "query": "绿色连线和红色连线在词汇对齐上有什么明显差异？例如，哪些词在绿色图中被连接到多个目标词，而在红色图中连接更稀疏？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f24::visual",
+  "elementId": "30dc139c6b40f116#f24",
+  "source": "visual",
+  "query": "在模型性能对比柱状图中，WSC-Baseline 模型在 few-shot setting 下的准确率比 zero-shot setting 高出多少个百分点？"
+ },
+ {
+  "queryId": "30dc139c6b40f116#f18::visual",
+  "elementId": "30dc139c6b40f116#f18",
+  "source": "visual",
+  "query": "在年龄分布柱状图中，18–24岁组的柱高明显高于其他组，其对应的人口比例数值是多少？"
+ },
+ {
+  "queryId": "b73397c0c285bd6b#f1::visual",
+  "elementId": "b73397c0c285bd6b#f1",
+  "source": "visual",
+  "query": "在训练过程中，r1-zero-pass@1 的准确率何时首次超过 human participants 的基准线（0.4）？"
+ }
+]

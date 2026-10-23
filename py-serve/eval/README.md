@@ -146,6 +146,51 @@ python eval/scripts/run_qa_rerank_eval.py --sample 0 --skip-rerank              
 > 与旧五臂结果的差异：本次候选深度为 20（旧实验为 10），D 的数值会略低；
 > 语料是改造前 1563 chunk（1523 个有 QA 索引），不代表当前 v3 切分下的绝对值。
 
+## 图表召回：图注 vs 正文引用 vs VLM 描述
+
+`prepare_figure_dataset.py` 用 PyMuPDF 从 docs/ 抽图注、图区域、正文引用句，
+可选调用 `qwen3-vl-plus` 生成图片描述；`run_figure_index_eval.py` 做 4 个文本视角
+（图注 / 图注+引用 / 图注+描述 / 全都要）和多视角融合的对照。
+
+数据集体检（14 篇论文）：
+
+| 项 | 数值 |
+|---|---|
+| 候选图注 | 168 |
+| 有 bbox + 裁剪图 + VLM 描述 | 165 |
+| 正文中无引用句 | 33（19.6%） |
+| 文字型图（instructions/excerpt 等） | 28 |
+| 无法定位的图 | 3（GPT-3 附录图） |
+
+结果（ElementRecall@5，360 条自动查询）：
+
+| 实验臂 | 正文引用（135） | 图注（165） | 看图提问（60） |
+|---|---|---|---|
+| A 仅图注 | 65.2% | **97.6%** | 30.0% |
+| B 图注+引用 | **83.7%** | 93.3% | 31.7% |
+| C 图注+描述 | 57.0% | 89.7% | 73.3% |
+| D 全部拼接 | 83.7% | 90.3% | 71.7% |
+| **G 多视角 max** | **85.2%** | **97.6%** | **76.7%** |
+
+结论：
+
+1. **正文引用对“作者怎么描述这张图”最有效**（65.2% → 83.7%），验证了“用引用句做依据”的价值；
+2. **VLM 描述对“看图提问”最有效**（30.0% → 73.3%），两者不能互相替代；
+3. **不要把所有文本拼成一个向量**：D 比单视角最好的结果低；
+4. **不要用等权 RRF 融合多视角**：E/F 明显掉分，因为 RRF 会混入不含答案的视角；
+5. **分开建索引 + 分数级 max（G）在所有查询类型上都最好**，这是推荐架构；
+6. 30 个图没有正文引用，只靠引用句会漏；文字型图需要单独分类，不能都当视觉图。
+
+```bash
+python eval/scripts/prepare_figure_dataset.py --describe   # 抽图 + qwen3-vl-plus 描述
+python eval/scripts/run_figure_index_eval.py --rebuild-queries
+```
+
+注意：修改 bbox 规则后，旧 `figure_desc.json` / `figure_queries.json` / `figure_vec_*.npy`
+会和新裁剪图不一致，需先删除再重跑。
+
+明细：`data/figure_index_eval.json`；报告：`reports/figure_index_eval.md`。
+
 ## 复现
 
 ```bash

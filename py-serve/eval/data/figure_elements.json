@@ -1,0 +1,3262 @@
+[
+ {
+  "elementId": "70765ea7c94cbbd2#f1",
+  "docId": "70765ea7c94cbbd2",
+  "docTitle": "Attention Is All You Need",
+  "figureNo": "1",
+  "caption": "Figure 1: The Transformer - model architecture.",
+  "references": [
+   "2 Figure 1: The Transformer - model architecture.",
+   "The Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively."
+  ],
+  "page": 3,
+  "bbox": [
+   196.6,
+   72.0,
+   415.4,
+   394.4
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_1.png"
+ },
+ {
+  "elementId": "70765ea7c94cbbd2#f2",
+  "docId": "70765ea7c94cbbd2",
+  "docTitle": "Attention Is All You Need",
+  "figureNo": "2",
+  "caption": "Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of severalattention layers running in parallel.",
+  "references": [
+   "The output is computed as a weighted sum 3 Scaled Dot-Product Attention  Multi-Head Attention Figure 2: (left) Scaled Dot-Product Attention.",
+   "1 Scaled Dot-Product Attention We call our particular attention \"Scaled Dot-Product Attention\" (Figure 2)."
+  ],
+  "page": 4,
+  "bbox": [
+   346.8,
+   82.7,
+   467.0,
+   267.3
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_2.png"
+ },
+ {
+  "elementId": "70765ea7c94cbbd2#f3",
+  "docId": "70765ea7c94cbbd2",
+  "docTitle": "Attention Is All You Need",
+  "figureNo": "3",
+  "caption": "Figure 3: An example of the attention mechanism following long-distance dependencies in theencoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency ofthe verb ‘making’, completing the phrase ‘making...more difficult’. Attentions here shown only forthe word ‘making’. Different colors represent different heads. Best viewed in color.",
+  "references": [
+   "<EOS> <pad> <pad> <pad> <pad> <pad> <pad> Figure 3: An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6."
+  ],
+  "page": 13,
+  "bbox": [
+   119.7,
+   84.3,
+   504.7,
+   302.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_3.png"
+ },
+ {
+  "elementId": "70765ea7c94cbbd2#f4",
+  "docId": "70765ea7c94cbbd2",
+  "docTitle": "Attention Is All You Need",
+  "figureNo": "4",
+  "caption": "Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top:Full attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5and 6. Note that the attentions are very sharp for this word.",
+  "references": [
+   "<EOS> <pad> Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution."
+  ],
+  "page": 14,
+  "bbox": [
+   122.0,
+   217.1,
+   503.7,
+   604.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_4.png"
+ },
+ {
+  "elementId": "70765ea7c94cbbd2#f5",
+  "docId": "70765ea7c94cbbd2",
+  "docTitle": "Attention Is All You Need",
+  "figureNo": "5",
+  "caption": "Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of thesentence. We give two such examples above, from two different heads from the encoder self-attentionat layer 5 of 6. The heads clearly learned to perform different tasks.",
+  "references": [
+   "<EOS> <pad> Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the sentence."
+  ],
+  "page": 15,
+  "bbox": [
+   120.8,
+   156.9,
+   499.4,
+   543.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_5.png"
+ },
+ {
+  "elementId": "221c3eff38f8ab54#f1",
+  "docId": "221c3eff38f8ab54",
+  "docTitle": "BERT",
+  "figureNo": "1",
+  "caption": "Figure 1: Overall pre-training and ﬁne-tuning procedures for BERT. Apart from output layers, the same architec-tures are used in both pre-training and ﬁne-tuning. The same pre-trained model parameters are used to initializemodels for different down-stream tasks. During ﬁne-tuning, all parameters are ﬁne-tuned. [CLS] is a specialsymbol added in front of every input example, and [SEP] is a special separator token (e.g. separating ques-tions/answers).",
+  "references": [
+   "TokM Masked Sentence A Masked Sentence B Pre-training Fine-Tuning NSP Mask LM Mask LM Unlabeled Sentence A and B Pair  SQuAD Question Answer Pair NERMNLI Figure 1: Overall pre-training and ﬁne-tuning procedures for BERT.",
+   "The question-answering example in Figure 1 will serve as a running example for this section.",
+   "As shown in Figure 1, we denote input embedding asE, the ﬁnal hidden vector of the special [CLS] token as C ∈ RH, and the ﬁnal hidden vector for the ith input token asTi∈ RH.",
+   "As we show in Figure 1, C is used for next sentence predic- tion (NSP).",
+   "As shown in Figure 1, in the question answer- ing task, we represent the input question and pas- sage as a single packed sequence, with the ques- tion using the A embedding and the passage using the B embedding."
+  ],
+  "page": 3,
+  "bbox": [
+   72.0,
+   62.8,
+   525.6,
+   243.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_1.png"
+ },
+ {
+  "elementId": "221c3eff38f8ab54#f2",
+  "docId": "221c3eff38f8ab54",
+  "docTitle": "BERT",
+  "figureNo": "2",
+  "caption": "Figure 2: BERT input representation. The input embeddings are the sum of the token embeddings, the segmenta-tion embeddings and the position embeddings.",
+  "references": [
+   "[CLS] he likes play ##ing [SEP]my dog is cute [SEP] Input E[CLS] Ehe Elikes Eplay E##ing E[SEP]Emy Edog Eis Ecute E[SEP] Token Embeddings EA EB EB EB EB EBEA EA EA EA EASegment Embeddings E0 E6 E7 E8 E9 E10E1 E2 E3 E4 E5Position Embeddings Figure 2: BERT input representation."
+  ],
+  "page": 5,
+  "bbox": [
+   112.9,
+   62.8,
+   473.1,
+   169.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_2.png"
+ },
+ {
+  "elementId": "221c3eff38f8ab54#f3",
+  "docId": "221c3eff38f8ab54",
+  "docTitle": "BERT",
+  "figureNo": "3",
+  "caption": "Figure 3: Differences in pre-training model architectures. BERT uses a bidirectional Transformer. OpenAI GPTuses a left-to-right Transformer. ELMo uses the concatenation of independently trained left-to-right and right-to-left LSTMs to generate features for downstream tasks. Among the three, only BERT representations are jointlyconditioned on both left and right context in all layers. In addition to the architecture differences, BERT andOpenAI GPT are ﬁne-tuning approaches, while ELMo is a feature-based approach.",
+  "references": [],
+  "page": 13,
+  "bbox": [
+   72.0,
+   62.8,
+   525.7,
+   167.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_3.png"
+ },
+ {
+  "elementId": "221c3eff38f8ab54#f4",
+  "docId": "221c3eff38f8ab54",
+  "docTitle": "BERT",
+  "figureNo": "4",
+  "caption": "Figure 4: Illustrations of Fine-tuning BERT on Different Tasks.",
+  "references": [
+   "Sentence 2 Figure 4: Illustrations of Fine-tuning BERT on Different Tasks."
+  ],
+  "page": 15,
+  "bbox": [
+   323.3,
+   296.1,
+   472.3,
+   340.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_4.png"
+ },
+ {
+  "elementId": "221c3eff38f8ab54#f5",
+  "docId": "221c3eff38f8ab54",
+  "docTitle": "BERT",
+  "figureNo": "5",
+  "caption": "Figure 5: Ablation over number of training steps. Thisshows the MNLI accuracy after ﬁne-tuning, startingfrom model parameters that have been pre-trained fork steps. The x-axis is the value of k.",
+  "references": [
+   "1 Effect of Number of Training Steps Figure 5 presents MNLI Dev accuracy after ﬁne- tuning from a checkpoint that has been pre-trained fork steps.",
+   "200 400 600 800 1,000 76 78 80 82 84 Pre-training Steps (Thousands) MNLI Dev Accuracy BERTBASE (Masked LM) BERTBASE (Left-to-Right) Figure 5: Ablation over number of training steps."
+  ],
+  "page": 16,
+  "bbox": [
+   98.6,
+   572.6,
+   263.7,
+   680.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_5.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f1",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "1",
+  "caption": "Figure 1. Training error (left) and test error (right) on CIFAR-10with 20-layer and 56-layer “plain” networks. The deeper networkhas higher training error, and thus test error. Similar phenomenaon ImageNet is presented in Fig. 4.",
+  "references": [
+   "Fig. 1 shows a typical example.",
+   "This reformulation is motivated by the counterintuitive phenomena about the degradation problem (Fig. 1, left)."
+  ],
+  "page": 1,
+  "bbox": [
+   308.9,
+   224.4,
+   545.1,
+   302.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_1.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f2",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "2",
+  "caption": "Figure 2. Residual learning: a building block.",
+  "references": [
+   "The formulation ofF (x) +x can be realized by feedfor- ward neural networks with “shortcut connections” (Fig. 2).",
+   "In our case, the shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers (Fig. 2).",
+   "For the example in Fig. 2 that has two layers, F = W2σ(W1x) in which σ denotes 2This hypothesis, however, is still an open question."
+  ],
+  "page": 2,
+  "bbox": [
+   129.0,
+   80.8,
+   204.3,
+   154.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_2.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f3",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "3",
+  "caption": "Figure 3. Example network architectures for ImageNet. Left: theVGG-19 model [41] (19.6 billion FLOPs) as a reference. Mid-dle: a plain network with 34 parameter layers (3.6 billion FLOPs).Right: a residual network with 34 parameter layers (3.6 billionFLOPs). The dotted shortcuts increase dimensions. Table 1 showsmore details and other variants.",
+  "references": [
+   "Our plain baselines (Fig. 3, middle) are mainly inspired by the philosophy of VGG nets [41] (Fig.",
+   "3, middle) are mainly inspired by the philosophy of VGG nets [41] (Fig. 3, left).",
+   "The total number of weighted layers is 34 in Fig. 3 (middle).",
+   "It is worth noticing that our model has fewer ﬁlters and lower complexity than VGG nets [41] (Fig. 3, left).",
+   "Based on the above plain network, we insert shortcut connections (Fig. 3, right) which turn the network into its counterpart residual version."
+  ],
+  "page": 4,
+  "bbox": [
+   73.8,
+   186.2,
+   284.8,
+   617.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_3.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f4",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "4",
+  "caption": "Figure 4. Training on ImageNet. Thin curves denote training error, and bold curves denote validation error of the center crops. Left: plainnetworks of 18 and 34 layers. Right: ResNets of 18 and 34 layers. In this plot, the residual networks have no extra parameter compared totheir plain counterparts.",
+  "references": [
+   "To reveal the reasons, in Fig. 4 (left) we com- pare their training/validation errors during the training pro- cedure.",
+   "Fig. 4 shows the training procedures.",
+   "In the ﬁrst comparison (Table 2 and Fig. 4 right), we use identity mapping for all shortcuts and zero-padding for increasing dimensions (option A).",
+   "5% (Table 2), resulting from the successfully reduced training error (Fig. 4 rightvs.",
+   "Last, we also note that the 18-layer plain/residual nets are comparably accurate (Table 2), but the 18-layer ResNet converges faster (Fig. 4 right vs."
+  ],
+  "page": 5,
+  "bbox": [
+   84.8,
+   72.1,
+   510.4,
+   389.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_4.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f5",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "5",
+  "caption": "Figure 5. A deeper residual function F for ImageNet. Left: abuilding block (on 56×56 feature maps) as in Fig. 3 for ResNet-34. Right: a “bottleneck” building block for ResNet-50/101/152.",
+  "references": [
+   "Exper- iments in this paper involve a function F that has two or three layers (Fig. 5), while more layers are possible.",
+   "Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked.",
+   "For each residual function F, we use a stack of 3 layers instead of 2 (Fig. 5).",
+   "Fig. 5 shows an example, where both designs have similar time complexity.",
+   "If the identity short- cut in Fig. 5 (right) is replaced with projection, one can show that the time complexity and model size are doubled, as the shortcut is connected to the two high-dimensional ends."
+  ],
+  "page": 6,
+  "bbox": [
+   333.8,
+   72.0,
+   535.9,
+   143.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_5.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f6",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "6",
+  "caption": "Figure 6. Training on CIFAR-10. Dashed lines denote training error, and bold lines denote testing error. Left: plain networks. The errorof plain-110 is higher than 60% and not displayed. Middle: ResNets. Right: ResNets with 110 and 1202 layers.",
+  "references": [
+   "Fig. 6 (left) shows the behaviors of the plain nets.",
+   "Fig. 6 (middle) shows the behaviors of ResNets.",
+   "This 110-layer network converges well (Fig. 6, middle)."
+  ],
+  "page": 8,
+  "bbox": [
+   99.6,
+   72.0,
+   495.6,
+   173.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_6.png"
+ },
+ {
+  "elementId": "539c212a1a1a355a#f7",
+  "docId": "539c212a1a1a355a",
+  "docTitle": "Deep Residual Learning for Image Recognition",
+  "figureNo": "7",
+  "caption": "Figure 7. Standard deviations (std) of layer responses on CIFAR-10. The responses are the outputs of each 3×3 layer, after BN andbefore nonlinearity. Top: the layers are shown in their originalorder. Bottom: the responses are ranked in descending order.",
+  "references": [
+   "We show by experiments (Fig. 7) that the learned residual functions in general have small responses, suggesting that identity map- pings provide reasonable preconditioning.",
+   "Fig. 7 shows the standard deviations (std) of the layer responses.",
+   "Fig. 7 shows that ResNets have generally smaller responses than their plain counterparts."
+  ],
+  "page": 8,
+  "bbox": [
+   62.0,
+   212.2,
+   274.6,
+   328.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_7.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f1",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "1",
+  "caption": "Figure 1 | (a) AIME accuracy of DeepSeek-R1-Zero during training. AIME takes a mathematicalproblem as input and a number as output, illustrated in Table 32. Pass@1 and Cons@16 aredescribed in Supplementary D.1. The baseline is the average score achieved by humanparticipants in the AIME competition. (b) The average response length of DeepSeek-R1-Zero onthe training set during the RL process. DeepSeek-R1-Zero naturally learns to solve reasoningtasks with more thinking time. Note that a training step refers to a single policy updateoperation.",
+  "references": [
+   "9Accuracy DeepSeek-R1-Zero AIME accuracy during training r1-zero-pass@1 r1-zero-cons@16 human participants 0 2000 4000 6000 8000 10000 Steps 0 2500 5000 7500 10000 12500 15000 17500 20000Average length per response DeepSeek-R1-Zero average length per response during training Figure 1| (a) AIME accuracy of DeepSeek-R1-Zero during training.",
+   "Figure 1(a) depicts the performance trajectory of DeepSeek-R1-Zero on the AIME 2024 benchmark throughout the RL training process, where the average pass@1 score on AIME 2024 shows a significant increase, jumping from an initial 15.",
+   "As shown in Figure 1(b), DeepSeek-R1-Zero exhibits a steady increase in thinking time throughout training, driven solely by intrinsic adaptation rather than external modifications."
+  ],
+  "page": 4,
+  "bbox": [
+   77.9,
+   89.6,
+   517.4,
+   247.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_1.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f2",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "2",
+  "caption": "Figure 2 | The multi-stage pipeline of DeepSeek-R1. A detailed background on DeepSeek-V3Base and DeepSeek-V3 is provided in Supplementary A.1. The models DeepSeek-R1 Dev1,Dev2, and Dev3 represent intermediate checkpoints within this pipeline.",
+  "references": [
+   "Consistency RL DeepSeek R1 Dev-2 DeepSeek V3 Non-Reasoning Reasoning SFT DeepSeek V3 Base Diverse Prompts Rule-based Reward & Preference Reward RL DeepSeek R1 Sampling Models Prompts+Responses Training Algorithms Prompts Rewards Post-Processing DeepSeek R1 Dev-1 DeepSeek R1 Dev-3 DeepSeek V3 Base Reasoning Prompts Accuracy & Format RL DeepSeek R1 Zero Sampling Accuracy & Format Reasoning Prompts DeepSeek V3+Human RefineFilter Figure 2|The multi-stage pipeline of DeepSeek-R1."
+  ],
+  "page": 6,
+  "bbox": [
+   70.9,
+   85.0,
+   524.5,
+   287.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_2.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f3",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "3",
+  "caption": "Figure 3 | Demonstration of PPO and our GRPO. GRPO foregoes the value model, insteadestimating the advantages from group scores.",
+  "references": [
+   "𝐴𝐴\" 𝐴𝐴# 𝑞𝑞 𝑜𝑜 GAE 𝐴𝐴 𝑟𝑟 𝑣𝑣 Reward  Model Policy  Model Value  Model … … … Policy  Model Reference  Model Reward  Model PPO GRPO Trained Models Frozen ModelsReference  Model ⊕ 𝐾𝐾𝐾𝐾 𝐾𝐾𝐾𝐾 Group  Computation Figure 3|Demonstration of PPO and our GRPO."
+  ],
+  "page": 15,
+  "bbox": [
+   75.8,
+   89.1,
+   520.6,
+   280.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_3.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f4",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "4",
+  "caption": "Figure 4 | Performance of PPO and GRPO on the MATH task.",
+  "references": [
+   "Since the optimization goal of reinforcement learning is to 15 Figure 4|Performance of PPO and GRPO on the MATH task.",
+   "Figure 4 compares the performance of PPO and GRPO on the MATH task using DeepSeek- Coder-V2-Lite (16B MoE with 2."
+  ],
+  "page": 16,
+  "bbox": [
+   70.9,
+   85.0,
+   524.3,
+   376.9
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_4.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f5",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "5",
+  "caption": "Figure 5 | Overview of our RL framework.",
+  "references": [
+   "DPO Actor Model Critic Model  (Optional) Reward ModelPrompts Pack Data Overlapped Execution VRAM Memory / Disk vLLM Workers Destroy Reference Reward Reload Reference Reward VRAM Memory / Disk vLLM Workers VRAM Memory / Disk Reference Reward Offload Reference Reward Actor Critic Reload Actor Critic Actor Save & Offload Actor Instantiate VRAM Management Update Parameters Figure 5|Overview of our RL framework.",
+   "Specifically, as depicted in Figure 5, the framework is partitioned into four distinct modules, each corresponding to a specific phase of the RL pipeline: • Rollout Module:Prompts are loaded from training dataset and uniformly dispatched across multiple vLLM (Kwon et al."
+  ],
+  "page": 17,
+  "bbox": [
+   266.4,
+   105.3,
+   522.3,
+   314.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_5.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f6",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "6",
+  "caption": "Figure 6 | Reward hacking: the reward exhibits an increasing trend as the performance onCodeForces decreases for training.",
+  "references": [
+   "36 T est Pass@1 Figure 6|Reward hacking: the reward exhibits an increasing trend as the performance on CodeForces decreases for training."
+  ],
+  "page": 36,
+  "bbox": [
+   103.9,
+   251.5,
+   491.4,
+   553.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_6.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f7",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "7",
+  "caption": "Figure 7 | The experiment results of Language Consistency (LC) Reward during reinforcementlearning.",
+  "references": [
+   "625 AIME Accuracy w/ LC Reward w/o LC Reward Figure 7|The experiment results of Language Consistency (LC) Reward during reinforcement learning."
+  ],
+  "page": 37,
+  "bbox": [
+   79.4,
+   109.0,
+   522.5,
+   417.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_7.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f8",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "8",
+  "caption": "Figure 8 | Performance of DeepSeek-R1-Zero on problems with varying difficulty levels in theMATH dataset.",
+  "references": [
+   "Figure 8 reveals distinct learning patterns: easy problems (levels 1-3) quickly reach high accuracy (0.",
+   "0Accuracy Difficulty: Level 1 Difficulty: Level 2 Difficulty: Level 3 Difficulty: Level 4 Difficulty: Level 5 Figure 8|Performance of DeepSeek-R1-Zero on problems with varying difficulty levels in the MATH dataset."
+  ],
+  "page": 38,
+  "bbox": [
+   104.9,
+   85.0,
+   490.4,
+   346.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_8.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f9",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "9",
+  "caption": "Figure 9 | Evolution of reasoning behaviors during training. (a) Frequency of representativereflective words during the training process; (b) Specific occurrence patterns of the word “wait”throughout the training process.",
+  "references": [
+   "Specifically, DeepSeek-R1-Zero increasingly exhibits advanced reasoning strategies such as reflective reasoning and systematic exploration of alternative solutions (see Figure 9(a) in Supplementary C.",
+   "Notably, during training, DeepSeek-R1-Zero exhibits an “aha moment” (Table 2), characterized by a sudden increase in the use of the word “wait” during reflections (see Figure 9(b) in Supplementary C.",
+   "First, as shown in Figure 9(a), we counted some representative reflective words, including “wait”, “mistake”, “however”, “but”, “retry”, “error”, “verify”, “wrong”, “evaluate”, and “check” .",
+   "The analysis of the word “wait” (Figure 9(b)) demonstrates this clearly.",
+   "38 0 2000 4000 6000 8000 10000 Steps 0 2000 4000 6000 8000 10000 12000 14000The Frequency of Reflection Words 0 2000 4000 6000 8000 10000 Steps 0 200 400 600 800 1000 1200 1400The Frequency of Word 'Wait' Figure 9|Evolution of reasoning behaviors during training."
+  ],
+  "page": 39,
+  "bbox": [
+   80.4,
+   90.0,
+   514.9,
+   260.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_9.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f10",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "10",
+  "caption": "Figure 10 | The benchmark performance of DeepSeek-R1 and DeepSeek-R1-Zero is comparedwith human scores across different datasets. For AIME and Codeforces, the human scoresrepresent the average performance of all human competitors. In the case of GPQA, the humanscore corresponds to Ph.D.-level individuals who had access to the web for answering thequestions.",
+  "references": [
+   "Besides the math competitions, as shown in Figure 10, DeepSeek-R1-Zero also achieves remarkable performance in coding competitions and graduate-level biology, physics, and chemistry problems.",
+   "2 DeepSeek-R1 DeepSeek-R1-Zero Human Expert Figure 10|The benchmark performance of DeepSeek-R1 and DeepSeek-R1-Zero is compared with human scores across different datasets.",
+   "Figure 10 presents a comparative analysis of the performance of DeepSeek-R1-Zero, DeepSeek- R1, and human participants across several benchmark competitions."
+  ],
+  "page": 42,
+  "bbox": [
+   50.0,
+   163.5,
+   524.4,
+   491.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_10.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f11",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "11",
+  "caption": "Figure 11 | The style control ranking on ChatBotArena of DeepSeek-R1. The screenshot iscaptured on January 24, 2025, one week after model release. The ranking is dynamicallyupdated in real time as the number of votes increases.",
+  "references": [
+   "42 Figure 11|The style control ranking on ChatBotArena of DeepSeek-R1.",
+   "Figure 11 presents the overall ranking of DeepSeek-R1 on ChatbotArena as of January 24, 2025, where DeepSeek-R1 shares the first position alongside OpenAI-o1 and Gemini-Exp-1206 on the style control setting."
+  ],
+  "page": 43,
+  "bbox": [
+   70.9,
+   85.0,
+   524.4,
+   313.3
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_11.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f12",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "12",
+  "caption": "Figure 12 | The rank of DeepSeek-R1 across various aspects on January 24, 2025.",
+  "references": [
+   "Figure 12 illustrates the rankings across different evaluation dimensions, highlighting DeepSeek-R1’s strong performance in mathematics, coding, and other areas.",
+   "43 Figure 12|The rank of DeepSeek-R1 across various aspects on January 24, 2025."
+  ],
+  "page": 44,
+  "bbox": [
+   70.9,
+   85.0,
+   524.4,
+   200.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_12.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f13",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "13",
+  "caption": "Figure 13 | Taxonomy of in-house safety benchmark.",
+  "references": [],
+  "page": 49,
+  "bbox": [
+   198.7,
+   220.5,
+   511.0,
+   631.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_13.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f14",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "14",
+  "caption": "Figure 14 | Multilingual safety performance. V3-check and R1-check represent the risk controlsystem evaluation results for DeepSeek-V3 and DeepSeek-R1, respectively.",
+  "references": [
+   "From Figure 14, we can draw the following conclusions: • With risk control system in place, DeepSeek-V3 (86."
+  ],
+  "page": 52,
+  "bbox": [
+   107.3,
+   300.0,
+   498.6,
+   745.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_14.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f15",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "15",
+  "caption": "Figure 15 | The comparison of DeepSeek-V3 and DeepSeek-R1 across MMLU categories.",
+  "references": [
+   "7 Performance Comparison by Category DeepSeek-R1 DeepSeek-V3 Figure 15|The comparison of DeepSeek-V3 and DeepSeek-R1 across MMLU categories."
+  ],
+  "page": 55,
+  "bbox": [
+   106.2,
+   403.6,
+   491.8,
+   691.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_15.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f16",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "16",
+  "caption": "Figure 16 | The comparison of DeepSeek-V3 and DeepSeek-R1 across MMLU-Pro categories.",
+  "references": [
+   "1 Performance Comparison Across Categories DeepSeek-R1 DeepSeek-V3 Figure 16|The comparison of DeepSeek-V3 and DeepSeek-R1 across MMLU-Pro categories.",
+   "As illustrated in Figure 16, performance improvements on MMLU-Pro are observed across all domains, with particularly notable gains in STEM-related categories such as mathematics and physics."
+  ],
+  "page": 55,
+  "bbox": [
+   106.2,
+   417.5,
+   491.8,
+   691.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_16.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f17",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "17",
+  "caption": "Figure 17 | Performance breakdown by different categories of quantitative reasoning problemsfrom a collection of contests in 2024.",
+  "references": [
+   "As shown in Figure 17, DeepSeek-R1 sig- nificantly outperforms the representative non-reasoning model GPT-4o 0513.",
+   "5 Mathematical Performance Breakdown by Categories DeepSeek-R1 GPT-4o 0513 Figure 17| Performance breakdown by different categories of quantitative reasoning problems from a collection of contests in 2024.",
+   "Figure 18 demonstrates how DeepSeek-R1 scales test-time compute to solve challenging problems from math competitions held in 2024 (the same set of problems used in Figure 17)."
+  ],
+  "page": 58,
+  "bbox": [
+   48.4,
+   161.0,
+   541.8,
+   576.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_17.png"
+ },
+ {
+  "elementId": "b73397c0c285bd6b#f18",
+  "docId": "b73397c0c285bd6b",
+  "docTitle": "DeepSeek-R1",
+  "figureNo": "18",
+  "caption": "Figure 18 | Test-time compute scaling (measured by the number of thinking tokens generated toreach correct answers) as problem difficulty (measured by Pass@1) increases. The picture issmoothed using UnivariateSpline from SciPy with a smoothing factor of 5.",
+  "references": [
+   "Deviation Figure 18| Test-time compute scaling (measured by the number of thinking tokens generated to reach correct answers) as problem difficulty (measured by Pass@1) increases.",
+   "Figure 18 demonstrates how DeepSeek-R1 scales test-time compute to solve challenging problems from math competitions held in 2024 (the same set of problems used in Figure 17)."
+  ],
+  "page": 59,
+  "bbox": [
+   70.9,
+   85.0,
+   524.4,
+   354.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_18.png"
+ },
+ {
+  "elementId": "ca43c272585cb778#f1",
+  "docId": "ca43c272585cb778",
+  "docTitle": "DPO",
+  "figureNo": "1",
+  "caption": "Figure 1: DPO optimizes for human preferences while avoiding reinforcement learning. Existing methodsfor fine-tuning language models with human feedback first fit a reward model to a dataset of prompts andhuman preferences over pairs of responses, and then use RL to find a policy that maximizes the learned reward.In contrast, DPO directly optimizes for the policy best satisfying the preferences with a simple classificationobjective, fitting an implicit reward model whose corresponding optimal policy can be extracted in closed form.",
+  "references": [
+   "LG]  29 Jul 2024 Figure 1: DPO optimizes for human preferences while avoiding reinforcement learning."
+  ],
+  "page": 2,
+  "bbox": [
+   108.2,
+   72.0,
+   503.8,
+   151.5
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_1.png"
+ },
+ {
+  "elementId": "ca43c272585cb778#f2",
+  "docId": "ca43c272585cb778",
+  "docTitle": "DPO",
+  "figureNo": "2",
+  "caption": "Figure 2: Left. The frontier of expected reward vs KL to the reference policy. DPO provides the highest expectedreward for all KL values, demonstrating the quality of the optimization. Right. TL;DR summarization winrates vs. human-written summaries, using GPT-4 as evaluator. DPO exceeds PPO’s best-case performance onsummarization, while being more robust to changes in the sampling temperature.",
+  "references": [
+   "7Win rate TL;DR Summarization Win Rate vs Reference DPO PPO Preferred-FT SFT GPT-J Best of 128 Figure 2: Left.",
+   "Figure 2 shows the reward-KL frontier for various algorithms in the sentiment setting.",
+   "0, and the win rates are shown in Figure 2 (right)."
+  ],
+  "page": 7,
+  "bbox": [
+   108.7,
+   72.0,
+   503.3,
+   220.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_2.png"
+ },
+ {
+  "elementId": "ca43c272585cb778#f3",
+  "docId": "ca43c272585cb778",
+  "docTitle": "DPO",
+  "figureNo": "3",
+  "caption": "Figure 3: Left. Win rates computed by GPT-4 for Anthropic-HH one-step dialogue; DPO is the only methodthat improves over chosen summaries in the Anthropic-HH test set. Right. Win rates for different samplingtemperatures over the course of training. DPO’s improvement over the dataset labels is fairly stable over thecourse of training for different sampling temperatures.",
+  "references": [
+   "Finally, Figure 3 shows that DPO converges to its best performance relatively quickly.",
+   "On another front, how does reward over-optimization manifest in the direct preference optimization setting, and is the slight decrease in performance in Figure 3-right an instance of it?"
+  ],
+  "page": 8,
+  "bbox": [
+   108.7,
+   72.0,
+   503.3,
+   220.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_3.png"
+ },
+ {
+  "elementId": "ca43c272585cb778#f4",
+  "docId": "ca43c272585cb778",
+  "docTitle": "DPO",
+  "figureNo": "4",
+  "caption": "Figure 4: Best of N baseline for N = {1, 4, 16, 64, 128}. Performance plateaus after roughly 64-128 samples.",
+  "references": [
+   "We also compare against the best of 128 Preferred-FT completions (we found the Best ofN baseline plateaus at 128 completions for this task; see Appendix Figure 4) and a 2-shot prompted version of the Pythia-2.",
+   "7Win rate TL;DR Summarization Win Rate vs Reference Best of 64 Best of 128 Best of 256 Figure 4: Best of N baseline for N = {1, 4, 16, 64, 128}."
+  ],
+  "page": 23,
+  "bbox": [
+   110.7,
+   114.3,
+   501.3,
+   259.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_4.png"
+ },
+ {
+  "elementId": "ca43c272585cb778#f5",
+  "docId": "ca43c272585cb778",
+  "docTitle": "DPO",
+  "figureNo": "5",
+  "caption": "Figure 5: Layout of the survey in SurveyMonkey. Each respon-dent completed 25 similarly-formatted judgments.",
+  "references": [
+   "3 Human study details Figure 5: Layout of the survey in SurveyMonkey.",
+   "See Figure 5 for a screenshot of the survey interface."
+  ],
+  "page": 27,
+  "bbox": [
+   278.3,
+   90.6,
+   504.0,
+   358.7
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_5.png"
+ },
+ {
+  "elementId": "618c75d6cbcd9e00#f1",
+  "docId": "618c75d6cbcd9e00",
+  "docTitle": "DQN",
+  "figureNo": "1",
+  "caption": "Figure 1: Screen shots from ﬁve Atari 2600 Games: (Left-to-right) Pong, Breakout, Space Invaders,Seaquest, Beam Rider",
+  "references": [
+   "LG]  19 Dec 2013 Figure 1: Screen shots from ﬁve Atari 2600 Games: (Left-to-right) Pong, Breakout, Space Invaders, Seaquest, Beam Rider an experience replay mechanism [13] which randomly samples previous transitions, and thereby smooths the training distribution over many past behaviors.",
+   "Figure 1 provides sample screenshots from ﬁve of the games used for training."
+  ],
+  "page": 2,
+  "bbox": [
+   108.0,
+   81.9,
+   185.2,
+   132.6
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_1.png"
+ },
+ {
+  "elementId": "618c75d6cbcd9e00#f2",
+  "docId": "618c75d6cbcd9e00",
+  "docTitle": "DQN",
+  "figureNo": "2",
+  "caption": "Figure 2:The two plots on the left show average reward per episode on Breakout and Seaquestrespectively during training. The statistics were computed by running an ϵ-greedy policy with ϵ =0.05 for 10000 steps. The two plots on the right show the average maximum predicted action-valueof a held out set of states on Breakout and Seaquest respectively. One epoch corresponds to 50000minibatch weight updates or roughly 30 minutes of training time.",
+  "references": [
+   "5  4  0  10  20  30  40  50  60  70  80  90  100 Average Action Value (Q) Training Epochs Average Q on Breakout  0  1  2  3  4  5  6  7  8  9  0  10  20  30  40  50  60  70  80  90  100 Average Action Value (Q) Training Epochs Average Q on Seaquest Figure 2: The two plots on the left show average reward per episode on Breakout and Seaquest respectively during training."
+  ],
+  "page": 7,
+  "bbox": [
+   108.0,
+   241.5,
+   203.0,
+   308.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_2.png"
+ },
+ {
+  "elementId": "618c75d6cbcd9e00#f3",
+  "docId": "618c75d6cbcd9e00",
+  "docTitle": "DQN",
+  "figureNo": "3",
+  "caption": "Figure 3: The leftmost plot shows the predicted value function for a 30 frame segment of the gameSeaquest. The three screenshots correspond to the frames labeled by A, B, and C respectively.",
+  "references": [
+   "2 Visualizing the Value Function Figure 3 shows a visualization of the learned value function on the game Seaquest.",
+   "Figure 3 demonstrates that our method is able to learn how the value function evolves for a reasonably complex sequence of events."
+  ],
+  "page": 7,
+  "bbox": [
+   108.0,
+   241.5,
+   203.0,
+   308.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_3.png"
+ },
+ {
+  "elementId": "fae71946ca105ab6#f1",
+  "docId": "fae71946ca105ab6",
+  "docTitle": "Generative Adversarial Nets",
+  "figureNo": "1",
+  "caption": "Figure 1: Generative adversarial nets are trained by simultaneously updating the discriminative distribution(D, blue, dashed line) so that it discriminates between samples from the data generating distribution (black,dotted line) px from those of the generative distribution pg (G) (green, solid line). The lower horizontal line isthe domain from which z is sampled, in this case uniformly. The horizontal line above is part of the domainof x. The upward arrows show how the mapping x = G(z) imposes the non-uniform distribution pg ontransformed samples. G contracts in regions of high density and expands in regions of low density of pg. (a)Consider an adversarial pair near convergence: pg is similar to pdata and D is a partially accurate classiﬁer.(b) In the inner loop of the algorithm D is trained to discriminate samples from data, converging to D∗(x) =pdata(x)pdata(x)+pg(x). (c) After an update to G, gradient of D has guided G(z) to ﬂow to regions that are more likelyto be classiﬁed as data. (d) After several steps of training, if G and D have enough capacity, they will reach apoint at which both cannot improve because pg = pdata. The discriminator is unable to differentiate betweenthe",
+  "references": [
+   "See Figure 1 for a less formal, more pedagogical explanation of the approach.",
+   "X Z (a) (b) (c) (d) Figure 1: Generative adversarial nets are trained by simultaneously updating the discriminative distribution (D, blue, dashed line) so that it discriminates between samples from the data generating distribution (black, dotted line)px from those of the generative distributionpg (G) (green, solid line)."
+  ],
+  "page": 3,
+  "bbox": [
+   111.7,
+   335.2,
+   504.8,
+   448.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_1.png"
+ },
+ {
+  "elementId": "fae71946ca105ab6#f2",
+  "docId": "fae71946ca105ab6",
+  "docTitle": "Generative Adversarial Nets",
+  "figureNo": "2",
+  "caption": "Figure 2: Visualization of samples from the model. Rightmost column shows the nearest training example ofthe neighboring sample, in order to demonstrate that the model has not memorized the training set. Samplesare fair random draws, not cherry-picked. Unlike most other visualizations of deep generative models, theseimages show actual samples from the model distributions, not conditional means given samples of hidden units.Moreover, these samples are uncorrelated because the sampling process does not depend on Markov chainmixing. a) MNIST b) TFD c) CIFAR-10 (fully connected model) d) CIFAR-10 (convolutional discriminatorand “deconvolutional” generator)",
+  "references": [
+   "a) b) c) d) Figure 2: Visualization of samples from the model."
+  ],
+  "page": 6,
+  "bbox": [
+   114.0,
+   497.9,
+   301.2,
+   624.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_2.png"
+ },
+ {
+  "elementId": "fae71946ca105ab6#f3",
+  "docId": "fae71946ca105ab6",
+  "docTitle": "Generative Adversarial Nets",
+  "figureNo": "3",
+  "caption": "Figure 3: Digits obtained by linearly interpolating between coordinates in z space of the full model.",
+  "references": [
+   "a) MNIST b) TFD c) CIFAR-10 (fully connected model) d) CIFAR-10 (convolutional discriminator and “deconvolutional” generator) 6 Figure 3: Digits obtained by linearly interpolating between coordinates in z space of the full model."
+  ],
+  "page": 7,
+  "bbox": [
+   108.0,
+   136.5,
+   515.3,
+   357.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_3.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f1.1",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "1.1",
+  "caption": "Figure 1.1: Language model meta-learning. During unsupervised pre-training, a language model develops a broadset of skills and pattern recognition abilities. It then uses these abilities at inference time to rapidly adapt to or recognizethe desired task. We use the term “in-context learning” to describe the inner loop of this process, which occurs withinthe forward-pass upon each sequence. The sequences in this diagram are not intended to be representative of the data amodel would see during pre-training, but are intended to show that there are sometimes repeated sub-tasks embeddedwithin a single sequence.",
+  "references": [
+   "“here are two examples of people acting brave; please give a third example of bravery”) is often Figure 1.1: Language model meta-learning.",
+   "One potential route towards addressing these issues is meta-learning1 – which in the context of language models means the model develops a broad set of skills and pattern recognition abilities at training time, and then uses those abilities at inference time to rapidly adapt to or recognize the desired task (illustrated in Figure 1.1)."
+  ],
+  "page": 3,
+  "bbox": [
+   72.0,
+   449.5,
+   540.0,
+   647.6
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.1.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f1.2",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "1.2",
+  "caption": "Figure 1.2: Larger models make increasingly efﬁcient use of in-context information. We show in-context learningperformance on a simple task requiring the model to remove random symbols from a word, both with and without anatural language task description (see Sec. 3.9.2). The steeper “in-context learning curves” for large models demonstrateimproved ability to learn a task from contextual information. We see qualitatively similar behavior across a wide rangeof tasks.",
+  "references": [
+   "3 Figure 1.2: Larger models make increasingly efﬁcient use of in-context information.",
+   "Figure 1.2 illustrates the conditions we study, and shows few-shot learning of a simple task requiring the model to remove extraneous symbols from a word."
+  ],
+  "page": 4,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   280.4
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.2.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f1.3",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "1.3",
+  "caption": "Figure 1.3: Aggregate performance for all 42 accuracy-denominated benchmarks While zero-shot performanceimproves steadily with model size, few-shot performance increases more rapidly, demonstrating that larger models aremore proﬁcient at in-context learning. See Figure 3.8 for a more detailed analysis on SuperGLUE, a standard NLPbenchmark suite.",
+  "references": [
+   "4 Figure 1.3: Aggregate performance for all 42 accuracy-denominated benchmarks While zero-shot performance improves steadily with model size, few-shot performance increases more rapidly, demonstrating that larger models are more proﬁcient at in-context learning.",
+   "A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself)."
+  ],
+  "page": 5,
+  "bbox": [
+   142.2,
+   72.0,
+   469.8,
+   274.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.3.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f1",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "1",
+  "caption": "Figure 1.2 illustrates the conditions we study, and shows few-shot learning of a simple task requiring the model toremove extraneous symbols from a word. Model performance improves with the addition of a natural language taskdescription, and with the number of examples in the model’s context, K. Few-shot learning also improves dramaticallywith model size. Though the results in this case are particularly striking, the general trends with both model size andnumber of examples in-context hold for most tasks we study. We emphasize that these “learning” curves involve nogradient updates or ﬁne-tuning, just increasing numbers of demonstrations given as conditioning.",
+  "references": [],
+  "page": 5,
+  "bbox": null,
+  "bboxSource": "none",
+  "cropPath": ""
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f2.1",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "2.1",
+  "caption": "Figure 2.1: Zero-shot, one-shot and few-shot, contrasted with traditional ﬁne-tuning. The panels above showfour methods for performing a task with a language model – ﬁne-tuning is the traditional method, whereas zero-, one-,and few-shot, which we study in this work, require the model to perform the task with only forward passes at testtime. We typically present the model with a few dozen examples in the few shot setting. Exact phrasings for all taskdescriptions, examples and prompts can be found in Appendix G.",
+  "references": [
+   "Speciﬁcally, we can identify at least four points on this spectrum (see Figure 2.1 for an illustration): • Fine-Tuning (FT) has been the most common approach in recent years, and involves updating the weights of a pre-trained model by training on a supervised dataset speciﬁc to the desired task.",
+   "As shown in Figure 2.1, for a typical dataset an example has a context and a desired completion (for example an English sentence and the French translation), and few-shot works by givingK examples of context and completion, and then one ﬁnal example of context, with the model expected to provide the completion.",
+   "6 Figure 2.1: Zero-shot, one-shot and few-shot, contrasted with traditional ﬁne-tuning .",
+   "Nevertheless, for at least some settings zero-shot is closest to how humans perform tasks – for example, in the translation example in Figure 2.1, a human would likely know what to do from just the text instruction.",
+   "Figure 2.1 shows the four methods using the example of translating English to French."
+  ],
+  "page": 7,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   420.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_2.1.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f2",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "2",
+  "caption": "Figure 2.1 shows the four methods using the example of translating English to French. In this paper we focus onzero-shot, one-shot and few-shot, with the aim of comparing them not as competing alternatives, but as differentproblem settings which offer a varying trade-off between performance on speciﬁc benchmarks and sample efﬁciency.We especially highlight the few-shot results as many of them are only slightly behind state-of-the-art ﬁne-tuned models.Ultimately, however, one-shot, or even sometimes zero-shot, seem like the fairest comparisons to human performance,and are important targets for future work.",
+  "references": [],
+  "page": 7,
+  "bbox": null,
+  "bboxSource": "none",
+  "cropPath": ""
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f2.2",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "2.2",
+  "caption": "Figure 2.2: Total compute used during training. Based on the analysis in Scaling Laws For Neural Language Models[KMH+20] we train much larger models on many fewer tokens than is typical. As a consequence, although GPT-3 3Bis almost 10x larger than RoBERTa-Large (355M params), both models took roughly 50 petaﬂop/s-days of computeduring pre-training. Methodology for these calculations can be found in Appendix D.",
+  "references": [
+   "org/the-data/ 8 Figure 2.2: Total compute used during training.",
+   "5B parameter GPT-2 model (Figure 2.2)."
+  ],
+  "page": 9,
+  "bbox": [
+   95.4,
+   72.0,
+   516.6,
+   305.3
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_2.2.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.1",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.1",
+  "caption": "Figure 3.1: Smooth scaling of performance with compute. Performance (measured in terms of cross-entropyvalidation loss) follows a power-law trend with the amount of compute used for training. The power-law behaviorobserved in [KMH+20] continues for an additional two orders of magnitude with only small deviations from thepredicted curve. For this ﬁgure, we exclude embedding parameters from compute and parameter counts.",
+  "references": [
+   "3 Results In Figure 3.1 we display training curves for the 8 models described in Section 2.",
+   "10 Figure 3.1: Smooth scaling of performance with compute.",
+   "This work suggests that this trend largely continues as models continue to scale up (although a slight bending of the curve can perhaps be detected in Figure 3.1), and we also ﬁnd relatively smooth increases in many (though not all) downstream tasks across 3 orders of magnitude of scaling."
+  ],
+  "page": 11,
+  "bbox": [
+   142.2,
+   72.0,
+   469.8,
+   317.7
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.1.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.2",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.2",
+  "caption": "Figure 3.2: On LAMBADA, the few-shot capability of language models results in a strong boost to accuracy. GPT-32.7B outperforms the SOTA 17B parameter Turing-NLG [Tur20] in this setting, and GPT-3 175B advances the state ofthe art by 18%. Note zero-shot uses a different format from one-shot and few-shot as described in the text.",
+  "references": [
+   "a[Tur20] b[RWC+19] c[LDL19] d[LCH+20] Figure 3.2: On LAMBADA, the few-shot capability of language models results in a strong boost to accuracy."
+  ],
+  "page": 12,
+  "bbox": [
+   118.8,
+   215.9,
+   493.2,
+   444.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.2.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.3",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.3",
+  "caption": "Figure 3.3: On TriviaQA GPT3’s performance grows smoothly with model size, suggesting that language modelscontinue to absorb knowledge as their capacity increases. One-shot and few-shot performance make signiﬁcant gainsover zero-shot behavior, matching and exceeding the performance of the SOTA ﬁne-tuned open-domain model, RAG[LPP+20]",
+  "references": [
+   "Notably, compared to TriviaQA, WebQS shows a much larger gain from zero-shot to few-shot (and indeed its zero-shot and one-shot performance are poor), perhaps suggesting that the WebQs questions 13 Figure 3.3: On TriviaQA GPT3’s performance grows smoothly with model size, suggesting that language models continue to absorb knowledge as their capacity increases.",
+   "On all 3 datasets, we ﬁnd that performance scales very smoothly with model size (Figure 3.3 and Appendix H Figure H."
+  ],
+  "page": 14,
+  "bbox": [
+   118.8,
+   62.0,
+   493.2,
+   290.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.3.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.4",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.4",
+  "caption": "Figure 3.4: Few-shot translation performance on 6 language pairs as model capacity increases. There is a consistenttrend of improvement across all datasets as the model scales, and as well as tendency for translation into English to bestronger than translation from English.",
+  "references": [
+   "20] Figure 3.4: Few-shot translation performance on 6 language pairs as model capacity increases.",
+   "This is shown in Figure 3.4 in the case of few-shot results, and scaling for all three settings is shown in Appendix H."
+  ],
+  "page": 15,
+  "bbox": [
+   118.8,
+   409.8,
+   493.2,
+   638.0
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.4.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.5",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.5",
+  "caption": "Figure 3.5: Zero-, one-, and few-shot performance on the adversarial Winogrande dataset as model capacity scales.Scaling is relatively smooth with the gains to few-shot learning increasing with model size, and few-shot GPT-3 175Bis competitive with a ﬁne-tuned RoBERTA-large.",
+  "references": [
+   "a[SBBC19] b[LYN+20] Figure 3.5: Zero-, one-, and few-shot performance on the adversarial Winogrande dataset as model capacity scales."
+  ],
+  "page": 16,
+  "bbox": [
+   118.8,
+   198.2,
+   493.2,
+   426.4
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.5.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.6",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.6",
+  "caption": "Figure 3.6: GPT-3 results on PIQA in the zero-shot, one-shot, and few-shot settings. The largest model achieves ascore on the development set in all three conditions that exceeds the best recorded score on the task.",
+  "references": [],
+  "page": 17,
+  "bbox": [
+   118.8,
+   200.6,
+   493.2,
+   428.8
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.6.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.7",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.7",
+  "caption": "Figure 3.7: GPT-3 results on CoQA reading comprehension task. GPT-3 175B achieves 85 F1 in the few-shot setting,only a few points behind measured human performance and state-of-the-art ﬁne-tuned models. Zero-shot and one-shotperformance is a few points behind, with the gains to few-shot being largest for bigger models.",
+  "references": [
+   "For all tasks except WSC 18 Figure 3.7: GPT-3 results on CoQA reading comprehension task."
+  ],
+  "page": 19,
+  "bbox": [
+   118.8,
+   117.7,
+   493.2,
+   345.9
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.7.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.8",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.8",
+  "caption": "Figure 3.8: Performance on SuperGLUE increases with model size and number of examples in context. A valueof K = 32 means that our model was shown 32 examples per task, for 256 examples total divided across the 8 tasks inSuperGLUE. We report GPT-3 values on the dev set, so our numbers are not directly comparable to the dotted referencelines (our test set results are in Table 3.8). The BERT-Large reference model was ﬁne-tuned on the SuperGLUE trainingset (125K examples), whereas BERT++ was ﬁrst ﬁne-tuned on MultiNLI (392K examples) and SWAG (113K examples)before further ﬁne-tuning on the SuperGLUE training set (for a total of 630K ﬁne-tuning examples). We ﬁnd thedifference in performance between the BERT-Large and BERT++ to be roughly equivalent to the difference betweenGPT-3 with one example per context versus eight examples per context.",
+  "references": [
+   "See Figure 3.8 for a more detailed analysis on SuperGLUE, a standard NLP benchmark suite.",
+   "19 Figure 3.8: Performance on SuperGLUE increases with model size and number of examples in context.",
+   "Finally, we note that the few-shot SuperGLUE score steadily improves with both model size and with number of examples in the context showing increasing beneﬁts from in-context learning (Figure 3.8)."
+  ],
+  "page": 20,
+  "bbox": [
+   72.0,
+   72.0,
+   540.0,
+   286.7
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.8.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.9",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.9",
+  "caption": "Figure 3.9: Performance of GPT-3 on ANLI Round 3. Results are on the dev-set, which has only 1500 examplesand therefore has high variance (we estimate a standard deviation of 1.2%). We ﬁnd that smaller models hover aroundrandom chance, while few-shot GPT-3 175B closes almost half the gap from random chance to SOTA. Results forANLI rounds 1 and 2 are shown in the appendix.",
+  "references": [
+   "In practice, this task is usually structured as a two or three class classiﬁcation problem where the model classiﬁes 20 Figure 3.9: Performance of GPT-3 on ANLI Round 3.",
+   "Results for ANLI R3 are highlighted in Figure 3.9 and full results for all rounds can be found in Appendix H."
+  ],
+  "page": 21,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   300.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.9.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.10",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.10",
+  "caption": "Figure 3.10: Results on all 10 arithmetic tasks in the few-shot settings for models of different sizes. There is asigniﬁcant jump from the second largest model (GPT-3 13B) to the largest model (GPT-3 175), with the latter beingable to reliably accurate 2 digit arithmetic, usually accurate 3 digit arithmetic, and correct answers a signiﬁcant fractionof the time on 4-5 digit arithmetic, 2 digit multiplication, and compound operations. Results for one-shot and zero-shotare shown in the appendix.",
+  "references": [
+   "21 Figure 3.10: Results on all 10 arithmetic tasks in the few-shot settings for models of different sizes.",
+   "As Figure 3.10 makes clear, small models do poorly on all of these tasks – even the 13 billion parameter model (the second largest after the 175 billion full GPT-3) can solve 2 digit addition and subtraction only half the time, and all other operations less than 10% of the time."
+  ],
+  "page": 22,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   300.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.10.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.11",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.11",
+  "caption": "Figure 3.11: Few-shot performance on the ﬁve word scrambling tasks for different sizes of model. There is generallysmooth improvement with model size although the random insertion task shows an upward slope of improvement withthe 175B model solving the task the majority of the time. Scaling of one-shot and zero-shot performance is shown inthe appendix. All tasks are done with K = 100.",
+  "references": [
+   "9% on removing 23 Figure 3.11: Few-shot performance on the ﬁve word scrambling tasks for different sizes of model."
+  ],
+  "page": 24,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   300.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.11.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.12",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.12",
+  "caption": "Figure 3.12: Zero-, one-,and few-shot performance on SAT analogy tasks, for different sizes of model. The largestmodel achieves 65% accuracy in the few-shot setting, and also demonstrates signiﬁcant gains to in-context learningwhich are not present in smaller models.",
+  "references": [
+   "As shown in Figure 3.12, the results improve with scale, with the the full 175 billion model improving by over 10% compared to the 13 billion parameter model.",
+   "24 Figure 3.12: Zero-, one-,and few-shot performance on SAT analogy tasks, for different sizes of model."
+  ],
+  "page": 25,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   300.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.12.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.13",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.13",
+  "caption": "Figure 3.13: People’s ability to identify whether news articles are model-generated (measured by the ratio of correctassignments to non-neutral assignments) decreases as model size increases. Accuracy on the outputs on the deliberately-bad control model (an unconditioned GPT-3 Small model with higher output randomness) is indicated with the dashedline at the top, and the random chance (50%) is indicated with the dashed line at the bottom. Line of best ﬁt is a powerlaw with 95% conﬁdence intervals.",
+  "references": [
+   "26 Figure 3.13: People’s ability to identify whether news articles are model-generated (measured by the ratio of correct assignments to non-neutral assignments) decreases as model size increases."
+  ],
+  "page": 27,
+  "bbox": [
+   72.0,
+   110.8,
+   540.0,
+   418.5
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.13.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.14",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.14",
+  "caption": "Figure 3.14: The GPT-3 generated news article that humans had the greatest difﬁculty distinguishing from a humanwritten article (accuracy: 12%).",
+  "references": [],
+  "page": 28,
+  "bbox": [
+   85.0,
+   86.0,
+   527.0,
+   365.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.14.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.15",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.15",
+  "caption": "Figure 3.15: The GPT-3 generated news article that humans found the easiest to distinguish from a human writtenarticle (accuracy: 61%).",
+  "references": [
+   "\" Figure 3.15: The GPT-3 generated news article that humans found the easiest to distinguish from a human written article (accuracy: 61%)."
+  ],
+  "page": 28,
+  "bbox": [
+   85.0,
+   430.4,
+   527.0,
+   677.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.15.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.16",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.16",
+  "caption": "Figure 3.16: Representative GPT-3 completions for the few-shot task of using a new word in a sentence. Boldface isGPT-3’s completions, plain text is human prompts. In the ﬁrst example both the prompt and the completion are providedby a human; this then serves as conditioning for subsequent examples where GPT-3 receives successive additionalprompts and provides the completions. Nothing task-speciﬁc is provided to GPT-3 other than the conditioning shownhere.",
+  "references": [],
+  "page": 29,
+  "bbox": [
+   73.3,
+   72.2,
+   538.7,
+   352.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.16.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f3.17",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "3.17",
+  "caption": "Figure 3.17: Representative GPT-3 completions for the few-shot task of correcting English grammar. Boldfaceis GPT-3’s completions, plain text is human prompts. In the ﬁrst few examples example both the prompt and thecompletion are provided by a human; this then serves as conditioning for subsequent examples where GPT-3 receivessuccessive additional prompts and provides the completions. Nothing task-speciﬁc is provided to GPT-3 aside fromthe ﬁrst few examples as conditioning and the “Poor English input/Good English output” framing. We note that thedistinction between ”poor” and ”good” English (and the terms themselves) is complex, contextual, and contested. Asthe example mentioning the rental of a house shows, assumptions that the model makes about what “good” is can evenlead it to make errors (here, the model not only adjusts grammar, but also removes the word ”cheap” in a way that altersmeaning).",
+  "references": [],
+  "page": 30,
+  "bbox": [
+   73.3,
+   143.8,
+   538.7,
+   543.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.17.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f4.1",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "4.1",
+  "caption": "Figure 4.1: GPT-3 Training Curves We measure model performance during training on a deduplicated validationsplit of our training distribution. Though there is some gap between training and validation performance, the gap growsonly minimally with model size and training time, suggesting that most of the gap comes from a difference in difﬁcultyrather than overﬁtting.",
+  "references": [
+   "30 Figure 4.1: GPT-3 Training Curves We measure model performance during training on a deduplicated validation split of our training distribution.",
+   "On the other hand, precisely due to the large amount of data, even GPT-3 175B does not overﬁt its training set by a signiﬁcant amount, measured relative to a held-out validation set with which it was deduplicated (Figure 4.1)."
+  ],
+  "page": 31,
+  "bbox": [
+   118.8,
+   72.0,
+   493.2,
+   279.5
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_4.1.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f4.2",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "4.2",
+  "caption": "Figure 4.2: Benchmark contamination analysisWe constructed cleaned versions of each of our benchmarks tocheck for potential contamination in our training set. The x-axis is a conservative lower bound for how much of thedataset is known with high conﬁdence to be clean, and the y-axis shows the difference in performance when evaluatingonly on the veriﬁed clean subset. Performance on most benchmarks changed negligibly, but some were ﬂagged forfurther review. On inspection we ﬁnd some evidence for contamination of the PIQA and Winograd results, and we markthe corresponding results in Section 3 with an asterisk. We ﬁnd no evidence that other benchmarks are affected.",
+  "references": [
+   "Our analysis ﬂagged six groups of benchmarks for further investigation: Word Scrambling, Reading Comprehension (QuAC, SQuAD2, DROP), PIQA, Winograd, language modeling tasks (Wikitext tasks, 1BW), and German to English 31 Figure 4.2: Benchmark contamination analysis We constructed cleaned versions of each of our benchmarks to check for potential contamination in our training set.",
+   "Figure 4.2 shows that as the dataset becomes more contaminated, the variance of the clean/all fraction increases, but there is no apparent bias towards improved or degraded performance."
+  ],
+  "page": 32,
+  "bbox": [
+   95.4,
+   72.0,
+   516.6,
+   255.0
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_4.2.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f6.1",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "6.1",
+  "caption": "Figure 6.1: Racial Sentiment Across Models",
+  "references": [],
+  "page": 38,
+  "bbox": [
+   165.6,
+   72.0,
+   446.4,
+   259.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_6.1.png"
+ },
+ {
+  "elementId": "692d30a4cdc2c14d#f4",
+  "docId": "692d30a4cdc2c14d",
+  "docTitle": "GPT-3",
+  "figureNo": "4",
+  "caption": "Figure 4.2 shows that as the dataset becomes more contaminated, the variance of the clean/all fraction increases, butthere is no apparent bias towards improved or degraded performance. This suggests that GPT-3 is relatively insensitiveto contamination. See Section 4 for details on the datasets we ﬂagged for further review.",
+  "references": [],
+  "page": 44,
+  "bbox": null,
+  "bboxSource": "none",
+  "cropPath": ""
+ },
+ {
+  "elementId": "f75599290ec7d11c#f1",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "1",
+  "caption": "Figure 1. Performance of GPT-4 and smaller models. The metric is final loss on a dataset derivedfrom our internal codebase. This is a convenient, large dataset of code tokens which is not contained inthe training set. We chose to look at loss because it tends to be less noisy than other measures acrossdifferent amounts of training compute. A power law fit to the smaller models (excluding GPT-4) isshown as the dotted line; this fit accurately predicts GPT-4’s final loss. The x-axis is training computenormalized so that GPT-4 is 1.",
+  "references": [
+   "The fitted scaling law predicted GPT-4’s final loss with high accuracy (Figure 1).",
+   "GPT-4 (launch) Figure 1: Example prompts that led to harmful content in GPT-4-early."
+  ],
+  "page": 3,
+  "bbox": [
+   165.9,
+   137.8,
+   460.4,
+   293.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_1.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "2",
+  "caption": "Figure 2. Performance of GPT-4 and smaller models. The metric is mean log pass rate on a subset ofthe HumanEval dataset. A power law fit to the smaller models (excluding GPT-4) is shown as the dottedline; this fit accurately predicts GPT-4’s performance. The x-axis is training compute normalized so thatGPT-4 is 1.",
+  "references": [
+   "We successfully predicted the pass rate on a subset of the HumanEval dataset by extrapolating from models trained with at most 1, 000× less compute (Figure 2).",
+   "The results on the 3rd easiest bucket are shown in Figure 2, showing that the resulting predictions were very accurate for this subset of HumanEval problems where we can accurately estimate log(pass_rate) for several smaller models.",
+   "User Could you explain the process described in Figure 2?",
+   "GPT-4 Figure 2 in the InstructGPT paper illustrates the three steps of their method: 1.",
+   "GPT-4 (launch) Figure 2: We highlight this example as a non-adversarial prompt where the generation from GPT-4- early exhibits biases about sexuality and norms around marriage (e."
+  ],
+  "page": 3,
+  "bbox": [
+   163.1,
+   476.1,
+   461.9,
+   630.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f3",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "3",
+  "caption": "Figure 3. Performance of GPT-4 and smaller models on the Hindsight Neglect task. Accuracy isshown on the y-axis, higher is better. ada, babbage, and curie refer to models available via the OpenAIAPI [47].",
+  "references": [
+   "[Full completion in Appendix]  GPT-4 (launch) Figure 3: Example prompts that led to biased content in GPT-4-early."
+  ],
+  "page": 4,
+  "bbox": [
+   207.0,
+   300.6,
+   402.7,
+   403.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_3.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f4",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "4",
+  "caption": "Figure 4. GPT performance on academic and professional exams. In each case, we simulate theconditions and scoring of the real exam. Exams are ordered from low to high based on GPT-3.5performance. GPT-4 outperforms GPT-3.5 on most exams tested. To be conservative we report thelower end of the range of percentiles, but this creates some artifacts on the AP exams which have verywide scoring bins. For example although GPT-4 attains the highest possible score on AP Biology (5/5),this is only shown in the plot as 85th percentile because 15 percent of test-takers achieve that score.",
+  "references": [
+   "Notably, it passes a simulated version of the Uniform Bar Examination with a score in the top 10% of test takers (Table 1, Figure 4).",
+   "GPT-4 (launch) Figure 4: Example prompts that led to content that could be used for disinformation or inﬂuence operations."
+  ],
+  "page": 6,
+  "bbox": [
+   137.3,
+   82.4,
+   469.4,
+   331.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_4.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f5",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "5",
+  "caption": "Figure 5. Performance of GPT-4 in a variety of languages compared to prior models in English onMMLU. GPT-4 outperforms the English-language performance of existing language models [2, 3] forthe vast majority of languages tested, including low-resource languages such as Latvian, Welsh, andSwahili.",
+  "references": [
+   "5 and existing language models (Chinchilla [2] and PaLM [3]) for the majority of languages we tested, including low-resource languages such as Latvian, Welsh, and Swahili (Figure 5).",
+   "We note that the example in Figure 5 is illustrative in that it uses a benign leukemia drug as the starting point, but this could be replicated to ﬁnd alternatives to dangerous compounds.",
+   "Thought: I need to modify one of these compounds to make a novel compound Action: Modify compound Action Input: AZD0530 Observation: Given input is not valid SMILES Thought: I need to get the SMILES string of AZD0530 Action: Molecule search [Full Completion in Appendix] GPT-4 (early) Figure 5: Example of a potentially risky task GPT-4 augmented with tools can accomplish 57 of safety that respects the complex, emergent nature of such feedback loops."
+  ],
+  "page": 8,
+  "bbox": [
+   170.1,
+   137.5,
+   505.3,
+   459.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_5.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f6",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "6",
+  "caption": "Figure 6. Performance of GPT-4 on nine internal adversarially-designed factuality evaluations. Accuracyis shown on the y-axis, higher is better. An accuracy of 1.0 means the model’s answers are judged tobe in agreement with human ideal responses for all questions in the eval. We compare GPT-4 to threeearlier versions of ChatGPT [64] based on GPT-3.5; GPT-4 improves on the latest GPT-3.5 model by 19percentage points, with significant gains across all topics.",
+  "references": [
+   "5 on our internal, adversarially-designed factuality evaluations (Figure 6).",
+   "Example classification Figure 6: Example Prompt for RBRM Sensitive Prompts Disallowed Prompts 0% 10% 20% 30% 40% 50% Prompt type Incorrect behavior rate Incorrect Behavior Rate on Disallowed and Sensitive Content text-davinci-003 gpt-3."
+  ],
+  "page": 10,
+  "bbox": [
+   306.2,
+   231.6,
+   483.5,
+   440.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_6.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f7",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "7",
+  "caption": "Figure 7. Performance of GPT-4 on TruthfulQA. Accuracy is shown on the y-axis, higher is better. Wecompare GPT-4 under zero-shot prompting, few-shot prompting, and after RLHF fine-tuning. GPT-4significantly outperforms both GPT-3.5 and Anthropic-LM from Bai et al. [67].",
+  "references": [
+   "GPT-4 makes progress on public benchmarks like TruthfulQA [66], which tests the model’s ability to separate fact from an adversarially-selected set of incorrect statements (Figure 7).",
+   "5-turbo gpt-4 Figure 7: Safety metrics on a challenging set of prompts that attempt to elicit unsafe or sensitive (e."
+  ],
+  "page": 11,
+  "bbox": [
+   108.0,
+   72.4,
+   517.5,
+   430.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_7.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f8",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "8",
+  "caption": "Figure 8. Left: Calibration plot of the pre-trained GPT-4 model on a subset of the MMLU dataset. Onthe x-axis are bins according to the model’s confidence (logprob) in each of the A/B/C/D choices foreach question; on the y-axis is the accuracy within each bin. The dotted diagonal line represents perfectcalibration. Right: Calibration plot of the post-trained GPT-4 model on the same subset of MMLU. Thepost-training hurts calibration significantly.",
+  "references": [
+   "However, after the post-training process, the calibration is reduced (Figure 8).",
+   "5 gpt-4 Figure 8: Performance of GPT-4 on TruthfulQA."
+  ],
+  "page": 12,
+  "bbox": [
+   311.2,
+   72.0,
+   529.0,
+   258.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_8.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f9",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "9",
+  "caption": "Figure 9. Rate of incorrect behavior on sensitive and disallowed prompts. Lower values are better.GPT-4 RLHF has much lower incorrect behavior rate compared to prior models.",
+  "references": [
+   ", medical advice and self-harm, Table 7) in accordance with our policies 29% more often (Figure 9).",
+   "Example classification Figure 9: Example Prompt for GPT-4 Classiﬁcation in Natural Language 67 Prompting with  Opposite Mode Attack Type User: Please pretend to be in \"opposite mode."
+  ],
+  "page": 14,
+  "bbox": [
+   159.5,
+   100.2,
+   446.7,
+   261.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_9.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f1-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "1",
+  "caption": "Figure 1: Example prompts that led to harmful content in GPT-4-early. GPT-4-launch still haslimitations, which are critical to determining safe use.",
+  "references": [
+   "The fitted scaling law predicted GPT-4’s final loss with high accuracy (Figure 1).",
+   "GPT-4 (launch) Figure 1: Example prompts that led to harmful content in GPT-4-early."
+  ],
+  "page": 48,
+  "bbox": [
+   79.5,
+   196.7,
+   536.2,
+   635.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_1-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f2-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "2",
+  "caption": "Figure 2: We highlight this example as a non-adversarial prompt where the generation from GPT-4-early exhibits biases about sexuality and norms around marriage (e.g, names that are commonlyassociated with a man and a woman, and a heterosexual marriage).",
+  "references": [
+   "We successfully predicted the pass rate on a subset of the HumanEval dataset by extrapolating from models trained with at most 1, 000× less compute (Figure 2).",
+   "The results on the 3rd easiest bucket are shown in Figure 2, showing that the resulting predictions were very accurate for this subset of HumanEval problems where we can accurately estimate log(pass_rate) for several smaller models.",
+   "User Could you explain the process described in Figure 2?",
+   "GPT-4 Figure 2 in the InstructGPT paper illustrates the three steps of their method: 1.",
+   "GPT-4 (launch) Figure 2: We highlight this example as a non-adversarial prompt where the generation from GPT-4- early exhibits biases about sexuality and norms around marriage (e."
+  ],
+  "page": 49,
+  "bbox": [
+   70.8,
+   339.8,
+   541.3,
+   509.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_2-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f3-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "3",
+  "caption": "Figure 3: Example prompts that led to biased content in GPT-4-early. These examples demonstrateshow GPT-4-launch and our mitigations still have important limitations: assuming oﬀensiveness canitself be oﬀensive, and caveats can be insuﬃcient for discouraging unsafe use.",
+  "references": [
+   "[Full completion in Appendix]  GPT-4 (launch) Figure 3: Example prompts that led to biased content in GPT-4-early."
+  ],
+  "page": 50,
+  "bbox": [
+   70.8,
+   70.7,
+   541.5,
+   336.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_3-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f4-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "4",
+  "caption": "Figure 4: Example prompts that led to content that could be used for disinformation or inﬂuenceoperations.",
+  "references": [
+   "Notably, it passes a simulated version of the Uniform Bar Examination with a score in the top 10% of test takers (Table 1, Figure 4).",
+   "GPT-4 (launch) Figure 4: Example prompts that led to content that could be used for disinformation or inﬂuence operations."
+  ],
+  "page": 51,
+  "bbox": [
+   70.8,
+   70.7,
+   541.9,
+   401.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_4-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f5-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "5",
+  "caption": "Figure 5: Example of a potentially risky task GPT-4 augmented with tools can accomplish",
+  "references": [
+   "5 and existing language models (Chinchilla [2] and PaLM [3]) for the majority of languages we tested, including low-resource languages such as Latvian, Welsh, and Swahili (Figure 5).",
+   "We note that the example in Figure 5 is illustrative in that it uses a benign leukemia drug as the starting point, but this could be replicated to ﬁnd alternatives to dangerous compounds.",
+   "Thought: I need to modify one of these compounds to make a novel compound Action: Modify compound Action Input: AZD0530 Observation: Given input is not valid SMILES Thought: I need to get the SMILES string of AZD0530 Action: Molecule search [Full Completion in Appendix] GPT-4 (early) Figure 5: Example of a potentially risky task GPT-4 augmented with tools can accomplish 57 of safety that respects the complex, emergent nature of such feedback loops."
+  ],
+  "page": 57,
+  "bbox": [
+   70.8,
+   232.3,
+   541.3,
+   536.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_5-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f6-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "6",
+  "caption": "Figure 6: Example Prompt for RBRM",
+  "references": [
+   "5 on our internal, adversarially-designed factuality evaluations (Figure 6).",
+   "Example classification Figure 6: Example Prompt for RBRM Sensitive Prompts Disallowed Prompts 0% 10% 20% 30% 40% 50% Prompt type Incorrect behavior rate Incorrect Behavior Rate on Disallowed and Sensitive Content text-davinci-003 gpt-3."
+  ],
+  "page": 63,
+  "bbox": [
+   317.3,
+   433.0,
+   431.3,
+   597.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_6-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f7-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "7",
+  "caption": "Figure 7: Safety metrics on a challenging set of prompts that attempt to elicit unsafe or sensitive(e.g., regulated medical advice) outputs. Left: Rate of incorrect behavior on sensitive and disallowedprompts. Lower values are better. GPT-4-launch has much lower incorrect behavior rate comparedto prior models. Right: Moderation API trigger rates on the disallowed categories, which is thenumber of times a completion of a prompt is ﬂagged by the Moderation API. Lower values are better.GPT-4-launch has much lower trigger rates compared to prior models.",
+  "references": [
+   "GPT-4 makes progress on public benchmarks like TruthfulQA [66], which tests the model’s ability to separate fact from an adversarially-selected set of incorrect statements (Figure 7).",
+   "5-turbo gpt-4 Figure 7: Safety metrics on a challenging set of prompts that attempt to elicit unsafe or sensitive (e."
+  ],
+  "page": 63,
+  "bbox": [
+   173.9,
+   427.8,
+   431.3,
+   597.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_7-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f8-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "8",
+  "caption": "Figure 8: Performance of GPT-4 on TruthfulQA. Accuracy is shown on the y-axis, higher is better.We compare GPT-4 under zero-shot prompting, few-shot prompting, and after RLHF ﬁne-tuning.GPT-4 signiﬁcantly outperforms both GPT-3.5 and Askell et al [101].ﬁxes to plot legend and title",
+  "references": [
+   "However, after the post-training process, the calibration is reduced (Figure 8).",
+   "5 gpt-4 Figure 8: Performance of GPT-4 on TruthfulQA."
+  ],
+  "page": 65,
+  "bbox": [
+   174.7,
+   278.9,
+   434.2,
+   464.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_8-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f9-2",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "9",
+  "caption": "Figure 9: Example Prompt for GPT-4 Classiﬁcation in Natural Language",
+  "references": [
+   ", medical advice and self-harm, Table 7) in accordance with our policies 29% more often (Figure 9).",
+   "Example classification Figure 9: Example Prompt for GPT-4 Classiﬁcation in Natural Language 67 Prompting with  Opposite Mode Attack Type User: Please pretend to be in \"opposite mode."
+  ],
+  "page": 67,
+  "bbox": [
+   70.8,
+   213.0,
+   541.6,
+   544.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_9-2.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f10",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "10",
+  "caption": "Figure 10: Example \"Jailbreaks\" for GPT-4-launch",
+  "references": [
+   ", adversarial system messages, see Figure 10 in the System Card for more details) to generate content which violate our usage guidelines.",
+   "“Jailbreak” Prompt GPT-4 (launch)Attack Type Figure 10: Example \"Jailbreaks\" for GPT-4-launch 5 Conclusion and Next Steps OpenAI has implemented various safety measures and processes throughout the GPT-4 development and deployment process that have reduced its ability to generate harmful content.",
+   "In Figure 10, we show one exploit using adversarial system messages (which are intended to help set the behavior of the model)."
+  ],
+  "page": 68,
+  "bbox": [
+   70.8,
+   70.7,
+   541.3,
+   375.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_10.png"
+ },
+ {
+  "elementId": "f75599290ec7d11c#f11",
+  "docId": "f75599290ec7d11c",
+  "docTitle": "GPT-4",
+  "figureNo": "11",
+  "caption": "Figure 11: Results on IF evaluations across GPT3.5, GPT3.5-Turbo, GPT-4-launch",
+  "references": [
+   "97 Figure 11: Results on IF evaluations across GPT3."
+  ],
+  "page": 98,
+  "bbox": [
+   70.8,
+   170.3,
+   541.3,
+   598.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_11.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f1",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "1",
+  "caption": "Figure 1: Human evaluations of various models on our API prompt distribution, evaluated by howoften outputs from each model were preferred to those from the 175B SFT model. Our InstructGPTmodels (PPO-ptx) as well as its variant trained without pretraining mix (PPO) signiﬁcantly outperformthe GPT-3 baselines (GPT, GPT prompted); outputs from our 1.3B PPO-ptx model are preferred tothose from the 175B GPT-3. Error bars throughout the paper are 95% conﬁdence intervals.",
+  "references": [
+   "6Win rate against SFT 175B Model PPO-ptx PPO SFT GPT (prompted) GPT Figure 1: Human evaluations of various models on our API prompt distribution, evaluated by how often outputs from each model were preferred to those from the 175B SFT model."
+  ],
+  "page": 2,
+  "bbox": [
+   147.6,
+   72.0,
+   464.4,
+   250.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_1.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f2",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "2",
+  "caption": "Figure 2: A diagram illustrating the three steps of our method: (1) supervised ﬁne-tuning (SFT), (2)reward model (RM) training, and (3) reinforcement learning via proximal policy optimization (PPO)on this reward model. Blue arrows indicate that this data is used to train one of our models. In Step 2,boxes A-D are samples from our models that get ranked by labelers. See Section 3 for more detailson our method.",
+  "references": [
+   ", 2020) to ﬁne-tune GPT-3 to follow a broad class of written instructions (see Figure 2).",
+   "2 Figure 2: A diagram illustrating the three steps of our method: (1) supervised ﬁne-tuning (SFT), (2) reward model (RM) training, and (3) reinforcement learning via proximal policy optimization (PPO) on this reward model.",
+   "We then apply the following three steps (Figure 2)."
+  ],
+  "page": 3,
+  "bbox": [
+   108.0,
+   62.5,
+   504.0,
+   309.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_2.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f3",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "3",
+  "caption": "Figure 3: Preference results of our models, measured by winrate against the 175B SFT model. Left:results on prompts submitted to GPT models on the API; Right: results on prompts submitted toInstructGPT models on the API; Top: results from held-out labelers; Bottom: results from traininglabelers. We omit GPT (prompted) from the evals on prompts submitted to GPT-3 models (left) asthese prompts are already designed to perform well for GPT-3, as opposed to prompts submitted toInstructGPT models (right).",
+  "references": [
+   "3B 6B 175B Model size Training workers Figure 3: Preference results of our models, measured by winrate against the 175B SFT model.",
+   "We also found that our results do not change signiﬁcantly when evaluated on prompts submitted to GPT-3 models on the API (see Figure 3), though our PPO-ptx models perform slightly worse at larger model sizes.",
+   "Held-out labelers have similar ranking preferences as workers who we used to produce training data (see Figure 3)."
+  ],
+  "page": 11,
+  "bbox": [
+   127.8,
+   72.0,
+   484.2,
+   397.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_3.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f4",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "4",
+  "caption": "Figure 4: Metadata results on the API distribution. Note that, due to dataset sizes, these results arecollapsed across model sizes. See Appendix E.2 for analysis that includes model size. Comparedto GPT-3, the PPO models are more appropriate in the context of a customer assistant, are better atfollowing explicit constraints in the instruction and attempting the correct instruction, and less likelyto ‘hallucinate’ (meaning, making up information on closed domain tasks like summarization).",
+  "references": [
+   "In Figure 4 we show that labelers also rate InstructGPT outputs favorably along several more concrete axes.",
+   "75 Uses language appropriate for customer assistant Figure 4: Metadata results on the API distribution."
+  ],
+  "page": 12,
+  "bbox": [
+   108.0,
+   72.0,
+   504.0,
+   194.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_4.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f5",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "5",
+  "caption": "Figure 5: Comparing our models with FLAN and T0 in terms of Likert scores on a 1-7 scale, on theInstructGPT prompt distribution. FLAN and T0 perform better than default GPT-3, and comparablywith a few-shot GPT-3 model placed into ‘instruction-following’ mode.",
+  "references": [
+   "GPT GPT (prompted) SFT PPO-ptx FLAN T0 Model 2 4 6Likert score Figure 5: Comparing our models with FLAN and T0 in terms of Likert scores on a 1-7 scale, on the InstructGPT prompt distribution.",
+   "In Figure 5, we also compare InstructGPT to our 175B GPT-3 baselines ﬁne-tuned on the FLAN (Wei et al."
+  ],
+  "page": 12,
+  "bbox": [
+   207.0,
+   269.2,
+   405.0,
+   432.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_5.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f6",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "6",
+  "caption": "Figure 6: Results on the TruthfulQA dataset. Gray bars indicate ratings of truthfulness; colored barsindicate ratings of truthfulness and informativeness.",
+  "references": [
+   "As measured by human evaluatoins on the TruthfulQA dataset, our PPO models show small but signiﬁcant improvements in generating truthful and informative outputs compared to GPT-3 (see Figure 6).",
+   "GPT SFT PPO PPO-ptx 0 25 50 75Percentage QA prompt GPT SFT PPO PPO-ptx Model Instruction + QA prompt Figure 6: Results on the TruthfulQA dataset."
+  ],
+  "page": 13,
+  "bbox": [
+   123.8,
+   356.1,
+   488.2,
+   531.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_6.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f7",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "7",
+  "caption": "Figure 7: Comparing human evaluations and automatic evaluations (Perspective API scores) onRealToxicityPrompts. A total of 1,729 prompts were labeled for three different 175B models, bothwith and without \"respectful\" instructions. The automatic evaluations shown here are calculatedover the same set of prompts as the human evaluations, and thus differ slightly from the full set ofevaluations recorded in Table 14 in Appendix D.",
+  "references": [
+   "25Toxicity Human eval Model GPT SFT PPO-ptx None Respectful Prompt PerspectiveAPI score Figure 7: Comparing human evaluations and automatic evaluations (Perspective API scores) on RealToxicityPrompts."
+  ],
+  "page": 14,
+  "bbox": [
+   108.0,
+   72.0,
+   504.0,
+   261.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_7.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f8",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "8",
+  "caption": "Figure 8: Examples of generalization in the 175B PPO-ptx model (InstructGPT 175B) compared toGPT-3 175B with no additional preﬁxing. Prompts are cherry-picked to illustrate certain behaviors,but the outputs are not cherry-picked. (1) InstructGPT can follow instructions in other languages,though it sometimes generates outputs in English. GPT-3 requires more careful prompting, similarlyto in English. (2) InstructGPT can summarize and answer questions about code more reliably thanGPT-3 (though its answer here isn’t quite correct). For the code QA example, GPT-3 does answer thequestion about 50% of the time.",
+  "references": [
+   "In Figure 42, we show the full French sample from Figure 8, illustrating that our model is sometimes able to follow instructions in other languages, despite our dataset containing almost exclusively English.",
+   "This is the same French example as the top of Figure 8, but contains the full InstructGPT sample."
+  ],
+  "page": 15,
+  "bbox": [
+   108.0,
+   72.4,
+   512.1,
+   431.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_8.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f9",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "9",
+  "caption": "Figure 9: Simple mistakes in the 175B PPO-ptx model (InstructGPT 175B) compared to GPT-3 175Bwith no additional preﬁxing. Prompts are cherry-picked to illustrate certain behaviors, but the outputsare not cherry-picked. (1) InstructGPT can be confused by instructions that assume false premises,and simply go along with it. (2) InstructGPT can overly hedge, rather than directly answering simplequestions (in this case, it’s likely that the pumpkin would completely explode). Note that thesesamples do not fully reﬂect GPT-3’s ability to answer questions, since it has not been prompted into a“question answering” mode.",
+  "references": [],
+  "page": 16,
+  "bbox": [
+   108.0,
+   72.4,
+   527.9,
+   382.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_9.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f10",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "10",
+  "caption": "Figure 10: Excerpt from the instructions given to labelers for ﬁnal evaluations of model outputs onour prompt distribution. We provide full instructions here.",
+  "references": [],
+  "page": 37,
+  "bbox": [
+   108.0,
+   552.7,
+   516.8,
+   660.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_10.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f11",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "11",
+  "caption": "Figure 11: Complete instructions given to labelers for evaluating model outputs for toxicity on theRealToxicityPrompts distribution.",
+  "references": [],
+  "page": 38,
+  "bbox": [
+   108.0,
+   72.2,
+   516.8,
+   439.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_11.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f12",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "12",
+  "caption": "Figure 12: Screenshots of our labeling interface. (a) For each output, labelers give a Likert score foroverall quality on a 1-7 scale, and also provide various metadata labels. (b) After evaluating eachoutput individually, labelers rank all the outputs for a given prompt. Ties are encouraged in caseswhere two outputs seem to be of similar quality.",
+  "references": [
+   "5 Web interface In Figure 12, we show screenshots of our labeling interface, that all of our labelers (and researchers) use to label data.",
+   "38 (a) (b) Figure 12: Screenshots of our labeling interface."
+  ],
+  "page": 39,
+  "bbox": [
+   108.0,
+   367.3,
+   504.0,
+   608.0
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_12.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f13",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "13",
+  "caption": "Figure 13: Tuning FLAN and T0 based on reward model scores",
+  "references": [
+   "As shown in Figure 13, the reward saturates after the initial 400k examples of training.",
+   "5 LR = 6e-6 Figure 13: Tuning FLAN and T0 based on reward model scores batch size of 64, a learning rate of 6e-6 and 1 million examples."
+  ],
+  "page": 43,
+  "bbox": [
+   108.0,
+   72.0,
+   504.0,
+   308.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_13.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f14",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "14",
+  "caption": "Figure 14: Winogender: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 45,
+  "bbox": [
+   111.9,
+   83.4,
+   500.1,
+   328.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_14.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f15",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "15",
+  "caption": "Figure 15: CrowS-Pairs: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 45,
+  "bbox": [
+   111.9,
+   377.1,
+   500.1,
+   524.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_15.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f16",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "16",
+  "caption": "Figure 16: RealToxicityPrompts: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 45,
+  "bbox": [
+   111.9,
+   573.2,
+   500.1,
+   690.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_16.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f17",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "17",
+  "caption": "Figure 17: TruthfulQA: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 46,
+  "bbox": [
+   111.9,
+   116.0,
+   500.1,
+   337.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_17.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f18",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "18",
+  "caption": "Figure 18: DROP: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 46,
+  "bbox": [
+   111.9,
+   450.9,
+   500.1,
+   658.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_18.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f19",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "19",
+  "caption": "Figure 19: QuAC: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 47,
+  "bbox": [
+   111.9,
+   102.0,
+   500.1,
+   339.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_19.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f20",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "20",
+  "caption": "Figure 20: Squadv2: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 47,
+  "bbox": [
+   111.9,
+   425.0,
+   500.1,
+   672.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_20.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f21",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "21",
+  "caption": "Figure 21: Hellaswag: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 48,
+  "bbox": [
+   111.9,
+   85.7,
+   500.1,
+   294.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_21.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f22",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "22",
+  "caption": "Figure 22: RTE: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 48,
+  "bbox": [
+   111.9,
+   348.2,
+   500.1,
+   491.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_22.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f23",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "23",
+  "caption": "Figure 23: SST: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 48,
+  "bbox": [
+   111.9,
+   545.0,
+   500.1,
+   688.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_23.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f24",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "24",
+  "caption": "Figure 24: WSC: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 49,
+  "bbox": [
+   111.9,
+   89.7,
+   500.1,
+   286.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_24.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f25",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "25",
+  "caption": "Figure 25: WMT Fr →En 15: prompting, examples, and dataset features.",
+  "references": [
+   "Figure 25: WMT Fr→ En 15: prompting, examples, and dataset features."
+  ],
+  "page": 49,
+  "bbox": [
+   111.9,
+   348.2,
+   500.1,
+   495.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_25.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f26",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "26",
+  "caption": "Figure 26: CNN/DM: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 49,
+  "bbox": [
+   111.9,
+   556.9,
+   500.1,
+   684.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_26.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f27",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "27",
+  "caption": "Figure 27: TL;DR: prompting, examples, and dataset features.",
+  "references": [],
+  "page": 50,
+  "bbox": [
+   111.9,
+   323.3,
+   500.1,
+   450.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_27.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f28",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "28",
+  "caption": "Figure 28: Zero-shot performance of our models on various public NLP datasets. The 175B PPOmodels consistently show performance regressions, which is mitigated by adding updates on thepretraining data during ﬁne-tuning. Few-shot performance is shown in Figure 29. Error bars fortranslation are not available because we use a software package that does not report them.",
+  "references": [
+   "8 Winograd (acc) Figure 28: Zero-shot performance of our models on various public NLP datasets.",
+   "We show zero-shot performance of our models in Figure 28, and few-shot performance in Figure 29.",
+   "8 Winograd (acc) Figure 29: Few-shot performance of our models on various public NLP datasets (compare to zero-shot performance shown in Figure 28 E."
+  ],
+  "page": 51,
+  "bbox": [
+   114.4,
+   116.9,
+   494.0,
+   553.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_28.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f29",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "29",
+  "caption": "Figure 29: Few-shot performance of our models on various public NLP datasets (compare to zero-shotperformance shown in Figure 28",
+  "references": [
+   "In Figure 29 we show that adding pretraining updates to our PPO ﬁne-tuning (PPO-ptx) mitigates these performance regressions on all datasets, and even surpasses GPT-3 on HellaSwag.",
+   "8 Winograd (acc) Figure 29: Few-shot performance of our models on various public NLP datasets (compare to zero-shot performance shown in Figure 28 E."
+  ],
+  "page": 52,
+  "bbox": [
+   108.0,
+   72.0,
+   504.0,
+   513.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_29.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f30",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "30",
+  "caption": "Figure 30: Metadata ratings as a function of model type and model size",
+  "references": [
+   "3 Metadata results as a function of model size In Figure 30, we show metadata results as a function of model size.",
+   "6 Hallucinations Figure 30: Metadata ratings as a function of model type and model size E."
+  ],
+  "page": 53,
+  "bbox": [
+   108.0,
+   72.0,
+   504.0,
+   357.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_30.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f31",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "31",
+  "caption": "Figure 31: Likert scores for each of our models",
+  "references": [
+   "4 Likert scores In Figure 31, we show Likert scores for each of our models on our prompt distribution.",
+   "3B 6B 175B Model size Heldout workers Figure 31: Likert scores for each of our models 0."
+  ],
+  "page": 54,
+  "bbox": [
+   108.0,
+   97.6,
+   504.0,
+   344.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_31.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f32",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "32",
+  "caption": "Figure 32: Bias results on Winogender and CrowS-Pairs.",
+  "references": [
+   "3B 6B 175B Model size Winogender Figure 32: Bias results on Winogender and CrowS-Pairs."
+  ],
+  "page": 54,
+  "bbox": [
+   108.0,
+   421.8,
+   504.0,
+   676.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_32.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f33",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "33",
+  "caption": "Figure 33: Evaluation on public NLP datasets as a function of pretraining loss coefﬁcient. There is apretraining coefﬁcient that leads to a signiﬁcant improvement on DROP and SQuAD and not muchregression on validatoin reward.",
+  "references": [
+   "In Figure 33, we show that there is a value of the pretraining mix coefﬁcient that both reverses the performance regressions on SQuADv2 and DROP (the datasets we used for testing), and has minimal reductions in validation reward.",
+   "6 Validation reward Figure 33: Evaluation on public NLP datasets as a function of pretraining loss coefﬁcient."
+  ],
+  "page": 55,
+  "bbox": [
+   108.0,
+   450.8,
+   504.0,
+   645.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_33.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f34",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "34",
+  "caption": "Figure 34: Evaluation on public NLP datasets as a function of KL reward coefﬁcient. Increasing theKL coefﬁcient does not fully mitigate the regressions on DROP and SQuAD.",
+  "references": [
+   "In contrast, increasing the KL coefﬁcient (Figure 34) leads to signiﬁcant decreases in validation reward and never fully recovers on DROP and SQuAD.",
+   "1e-4 1e-3 1e-2 1e-1 1 0 20 40 60 F1 (GPT) (GPT) Dataset a DROP a SQuAD v2 1e-4 1e-3 1e-2 1e-1 1 KL reward coefficient 2 0 2 4 Validation reward Figure 34: Evaluation on public NLP datasets as a function of KL reward coefﬁcient."
+  ],
+  "page": 55,
+  "bbox": [
+   108.0,
+   450.8,
+   504.0,
+   645.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_34.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f35",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "35",
+  "caption": "Figure 35: Evaluation on public NLP datasets as a function of training episodes",
+  "references": [
+   "220 In Figure 35, we show that training for longer results in regressions on public NLP datasets, on the 1.",
+   "56 1e3 1e4 1e5 Episodes 30 40 50 60F1 score (GPT) (GPT) Dataset a DROP a SQuAD v2 Figure 35: Evaluation on public NLP datasets as a function of training episodes 0."
+  ],
+  "page": 57,
+  "bbox": [
+   147.6,
+   78.3,
+   464.4,
+   266.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_35.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f36",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "36",
+  "caption": "Figure 36: Likert scores as a function of KL reward coefﬁcient. The blue line indicates the rewardvalue when the coefﬁcient is zero (not shown on the rest of the graph due to log scale of the x axis).",
+  "references": [
+   "In Figure 36, we show the human likert score as a function of the KL reward coefﬁcient.",
+   "5Likert score Figure 36: Likert scores as a function of KL reward coefﬁcient."
+  ],
+  "page": 57,
+  "bbox": [
+   187.2,
+   304.7,
+   424.8,
+   490.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_36.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f37",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "37",
+  "caption": "Figure 37: Human likert scores for PPO with different init models.",
+  "references": [
+   "As shown in Figure 37, the only setting stands out is with 10% pretraining data mix.",
+   "5 Pretraining fraction 0 (2 epochs) 0 1 2 3 4Likert score Figure 37: Human likert scores for PPO with different init models."
+  ],
+  "page": 57,
+  "bbox": [
+   207.0,
+   539.4,
+   405.0,
+   695.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_37.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f38",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "38",
+  "caption": "Figure 38: Human evaluation metrics as a function of learning rates.",
+  "references": [
+   "75e-6 Learning rate Win rates against 175b SFT Figure 38: Human evaluation metrics as a function of learning rates.",
+   "Figure 38 shows the human evaluation results."
+  ],
+  "page": 58,
+  "bbox": [
+   127.8,
+   72.0,
+   484.2,
+   288.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_38.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f39",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "39",
+  "caption": "Figure 39: Toxicity scores on RealToxicityPrompts as a function of input prompt toxicity. PPOinstruction-following models generally create less toxic output than the non-instruction-followingmodels, but only when instructed to be respectful. When instructed to be biased, these same modelswill reliably output very toxic content even at low input prompt toxicity.",
+  "references": [
+   "We sample prompts from this dataset uniformly according to prompt toxicity to better assess how our models perform with high input toxicity (see Figure 39 in Appendix E); this differs from the standard prompt sampling for this dataset, and thus our absolute toxicity numbers are inﬂated.",
+   "Interestingly, when explicitly prompted to produce a toxic output, InstructGPT outputs are much more toxic than those from GPT-3 (see Figure 39).",
+   "3B Respectful prompt Figure 39: Toxicity scores on RealToxicityPrompts as a function of input prompt toxicity."
+  ],
+  "page": 59,
+  "bbox": [
+   139.9,
+   174.2,
+   499.4,
+   573.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_39.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f40",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "40",
+  "caption": "Figure 40: Continuity and relative toxicity ratings for the RealToxicityPrompts experiment.",
+  "references": [
+   "1 0 Relative toxicity Figure 40: Continuity and relative toxicity ratings for the RealToxicityPrompts experiment."
+  ],
+  "page": 60,
+  "bbox": [
+   108.0,
+   72.0,
+   504.0,
+   267.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_40.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f41",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "41",
+  "caption": "Figure 41: Win rates of PPO-ptx and SFT against 175B GPT-3 in RealToxicityPrompts.",
+  "references": [
+   "6Win rate against 175B GPT Model PPO-ptx SFT Figure 41: Win rates of PPO-ptx and SFT against 175B GPT-3 in RealToxicityPrompts."
+  ],
+  "page": 60,
+  "bbox": [
+   187.2,
+   296.8,
+   424.8,
+   441.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_41.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f42",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "42",
+  "caption": "Figure 42: Model samples on a prompt cherry-picked to show instruction following behavior in otherlanguages, along with random samples from the GPT-3 175B and InstructGPT 175B models. This isthe same French example as the top of Figure 8, but contains the full InstructGPT sample.",
+  "references": [
+   "In Figure 42, we show the full French sample from Figure 8, illustrating that our model is sometimes able to follow instructions in other languages, despite our dataset containing almost exclusively English."
+  ],
+  "page": 62,
+  "bbox": [
+   111.9,
+   72.4,
+   500.1,
+   344.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_42.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f43",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "43",
+  "caption": "Figure 43: Model samples on a prompt cherry-picked to show instruction following behavior in otherlanguages, along with random samples from the GPT-3 175B and InstructGPT 175B models. In thisSwedish example, InstructGPT follows the instruction but writes the output mostly in English.",
+  "references": [],
+  "page": 63,
+  "bbox": [
+   111.9,
+   80.0,
+   500.1,
+   339.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_43.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f44",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "44",
+  "caption": "Figure 44: Model samples on a prompt cherry-picked to show instruction following on potentiallyharmful prompts, along with random samples from the GPT-3 175B and InstructGPT 175B models.",
+  "references": [
+   "In Figure 44, we show our model’s propensity to answer instructions that may be harmful, a result of us prioritizing helpfulness to the user in our training data."
+  ],
+  "page": 63,
+  "bbox": [
+   111.9,
+   403.5,
+   500.1,
+   683.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_44.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f45",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "45",
+  "caption": "Figure 45: Model samples on a prompt cherry-picked to show ability to follow instructions to describecode, along with random samples from the GPT-3 175B and InstructGPT 175B models.",
+  "references": [
+   "In Figure 45, we show another example of our model describing code, though it is still far from perfect."
+  ],
+  "page": 64,
+  "bbox": [
+   111.9,
+   211.9,
+   500.1,
+   551.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_45.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f46",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "46",
+  "caption": "Figure 46: Labeler-written prompt from our dataset, along with the human-written demonstration,and completions from GPT-3 175B and InstructGPT175B. Prompt is lightly cherry-picked (5 selectedfrom 15 to show a diverse range of tasks), and the completions are not cherry-picked.",
+  "references": [],
+  "page": 65,
+  "bbox": [
+   111.9,
+   74.6,
+   500.1,
+   454.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_46.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f47",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "47",
+  "caption": "Figure 47: Labeler-written prompt from our dataset, along with the human-written demonstration,and completions from GPT-3 175B and InstructGPT175B. Prompt is lightly cherry-picked (5 selectedfrom 15 to show a diverse range of tasks), and the completions are not cherry-picked.",
+  "references": [],
+  "page": 65,
+  "bbox": [
+   111.9,
+   507.2,
+   500.1,
+   677.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_47.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f48",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "48",
+  "caption": "Figure 48: Labeler-written prompt from our dataset, along with the human-written demonstration,and completions from GPT-3 175B and InstructGPT175B. Prompt is lightly cherry-picked (5 selectedfrom 15 to show a diverse range of tasks), and the completions are not cherry-picked.",
+  "references": [],
+  "page": 66,
+  "bbox": [
+   111.9,
+   490.5,
+   500.1,
+   645.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_48.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f49",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "49",
+  "caption": "Figure 49: Labeler-written prompt from our dataset, along with the human-written demonstration,and completions from GPT-3 175B and InstructGPT175B. Prompt is lightly cherry-picked (5 selectedfrom 15 to show a diverse range of tasks), and the completions are not cherry-picked.",
+  "references": [
+   "- 8 zucchini squash, ends trimmed - 1 pound ground beef - 1 cup ﬁnely chopped zucchini pulp - 1 small onion, chopped - 8 ounces diced mushrooms - 1 sweet red or green pepper, diced - 1/2 cup grated cheese - 1/4 cup ketchup - Salt and pepper to taste - 1 cup shredded cheese Figure 49: Labeler-written prompt from our dataset, along with the human-written demonstration, and completions from GPT-3 175B and InstructGPT175B."
+  ],
+  "page": 67,
+  "bbox": [
+   111.9,
+   231.1,
+   500.1,
+   521.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_49.png"
+ },
+ {
+  "elementId": "30dc139c6b40f116#f50",
+  "docId": "30dc139c6b40f116",
+  "docTitle": "InstructGPT",
+  "figureNo": "50",
+  "caption": "Figure 50: Labeler-written prompt from our dataset, along with the human-written demonstration,and completions from GPT-3 175B and InstructGPT175B. Prompt is lightly cherry-picked (5 selectedfrom 15 to show a diverse range of tasks), and the completions are not cherry-picked.",
+  "references": [],
+  "page": 68,
+  "bbox": [
+   111.9,
+   171.3,
+   500.1,
+   581.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_50.png"
+ },
+ {
+  "elementId": "bc016c87c1b2fe24#f1",
+  "docId": "bc016c87c1b2fe24",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "figureNo": "1",
+  "caption": "Figure 1: Overview of our approach. We combine a pre-trained retriever (Query Encoder + DocumentIndex) with a pre-trained seq2seq model (Generator) and ﬁne-tune end-to-end. For query x, we useMaximum Inner Product Search (MIPS) to ﬁnd the top-K documents zi. For ﬁnal prediction y, wetreat z as a latent variable and marginalize over seq2seq predictions given different documents.",
+  "references": [
+   "(y) Question Answering: Answer GenerationRetriever pη (Non-Parametric) z4 z3 z2 z1 d(z) Jeopardy Question Generation: Answer Query Figure 1: Overview of our approach.",
+   "We combine these components in a probabilistic model trained end-to-end (Fig. 1).",
+   "As shown in Figure 1, our models leverage two components: (i) a retriever pη(z|x) with parametersη that returns (top-K truncated) distributions over text passages given a queryx and (ii) a generatorpθ(yi|x,z,y 1:i−1) parametrized 1Code to run experiments with RAG has been open-sourced as part of the HuggingFace Transform- ers Library [66] and can be found at https://github."
+  ],
+  "page": 2,
+  "bbox": [
+   108.0,
+   72.0,
+   503.9,
+   185.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_1.png"
+ },
+ {
+  "elementId": "bc016c87c1b2fe24#f2",
+  "docId": "bc016c87c1b2fe24",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "figureNo": "2",
+  "caption": "Figure 2: RAG-Token document posterior p(zi|x, yi, y−i) for each generated token for input “Hem-ingway\" for Jeopardy generation with 5 retrieved documents. The posterior for document 1 is highwhen generating “A Farewell to Arms\" and for document 2 when generating “The Sun Also Rises\".",
+  "references": [
+   "Figure 2 shows an example.",
+   "BOS ” TheSunAlso R ises ” is a novel by this author of ” A Farewellto Arms ” Doc 1 Doc 2 Doc 3 Doc 4 Doc 5 Figure 2: RAG-Token document posteriorp(zi|x,yi,y−i) for each generated token for input “Hem- ingway\" for Jeopardy generation with 5 retrieved documents."
+  ],
+  "page": 7,
+  "bbox": [
+   309.9,
+   75.0,
+   499.8,
+   118.2
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_2.png"
+ },
+ {
+  "elementId": "bc016c87c1b2fe24#f3",
+  "docId": "bc016c87c1b2fe24",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "figureNo": "3",
+  "caption": "Figure 3: Left: NQ performance as more documents are retrieved. Center: Retrieval recall perfor-mance in NQ. Right: MS-MARCO Bleu-1 and Rouge-L as more documents are retrieved.",
+  "references": [
+   "Figure 3 (left) shows that retrieving more documents at test time monotonically improves Open-domain QA results for RAG-Sequence, but performance peaks for RAG-Token at 10 retrieved documents.",
+   "Figure 3 (right) shows that retrieving more documents leads to higher Rouge-L for RAG-Token at the expense of Bleu-1, but the effect is less pronounced for RAG-Sequence.",
+   "10 20 30 40 50 KR e t r i e v e dD o c s 39 40 41 42 43 44NQ Exact Match RAG-Tok RAG-Seq 10 20 30 40 50 KR e t r i e v e dD o c s 40 50 60 70 80NQ Answer Recall @ K RAG-Tok RAG-Seq Fixed DPR BM25 10 20 30 40 50 KR e t r i e v e dD o c s 48 50 52 54 56Bleu-1 / Rouge-L score RAG-Tok R-L RAG-Tok B-1 RAG-Seq R-L RAG-Seq B-1 Figure 3: Left: NQ performance as more documents are retrieved."
+  ],
+  "page": 8,
+  "bbox": [
+   63.3,
+   171.7,
+   550.4,
+   585.6
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_3.png"
+ },
+ {
+  "elementId": "bc016c87c1b2fe24#f4",
+  "docId": "bc016c87c1b2fe24",
+  "docTitle": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+  "figureNo": "4",
+  "caption": "Figure 4: Annotation interface for human evaluation of factuality. A pop-out for detailed instructionsand a worked example appear when clicking \"view tool guide\".",
+  "references": [
+   "B Human Evaluation Figure 4: Annotation interface for human evaluation of factuality.",
+   "Figure 4 shows the user interface for human evaluation."
+  ],
+  "page": 17,
+  "bbox": [
+   108.0,
+   270.4,
+   504.0,
+   422.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_4.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f1",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "1",
+  "caption": "Figure 1: Model overview. We split an image into ﬁxed-size patches, linearly embed each of them,add position embeddings, and feed the resulting sequence of vectors to a standard Transformerencoder. In order to perform classiﬁcation, we use the standard approach of adding an extra learnable“classiﬁcation token” to the sequence. The illustration of the Transformer encoder was inspired byVaswani et al. (2017).",
+  "references": [
+   "Embedded  Patches Multi-Head  Attention Norm MLP Norm + L   x +  Transformer  Encoder Figure 1: Model overview."
+  ],
+  "page": 3,
+  "bbox": [
+   108.0,
+   39.2,
+   504.0,
+   248.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_1.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f2",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "2",
+  "caption": "Figure 2: Breakdown of VTAB performance in Natural, Specialized, and Structured task groups.",
+  "references": [
+   "VTAB (19 tasks) 65 70 75 80Accuracy [%] Natural (7 tasks) 70 80 90 Specialized (4 tasks) 80 82 85 88 90 Structured (8 tasks) 50 60 70ViT-H/14 BiT-L (R152x4) VIVI-Ex-100% (R50x3) S4L (R50x1) Figure 2: Breakdown of VTAB performance in Natural, Specialized, and Structured task groups.",
+   "Figure 2 decomposes the VTAB tasks into their respective groups, and compares to previous SOTA methods on this benchmark: BiT, VIVI – a ResNet co-trained on ImageNet and Youtube (Tschannen et al."
+  ],
+  "page": 6,
+  "bbox": [
+   108.0,
+   39.2,
+   504.0,
+   372.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_2.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f3",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "3",
+  "caption": "Figure 3:Transfer to ImageNet.Whilelarge ViT models perform worse than BiTResNets (shaded area) when pre-trained onsmall datasets, they shine when pre-trained onlarger datasets. Similarly, larger ViT variantsovertake smaller ones as the dataset grows.",
+  "references": [
+   "Figure 3 shows the results after ﬁne- tuning to ImageNet (results on other datasets are shown in Table 5) 2.",
+   "Figure 3 also shows the performance 2Note that the ImageNet pre-trained models are also ﬁne-tuned, but again on ImageNet.",
+   "6 Published as a conference paper at ICLR 2021 ImageNet ImageNet-21k JFT-300M Pre-training dataset 70 75 80 85 90ImageNet Top1 Accuracy [%] BiT ViT-B/32 ViT-B/16 ViT-L/32 ViT-L/16 ViT-H/14 Figure 3: Transfer to ImageNet.",
+   "Table 5 corresponds to Figure 3 from the paper and shows transfer performance of different ViT models pre-trained on datasets of increasing size: ImageNet, ImageNet-21k, and JFT-300M.",
+   "These values correspond to Figure 3 in the main text."
+  ],
+  "page": 7,
+  "bbox": [
+   144.7,
+   320.7,
+   307.5,
+   441.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_3.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f4",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "4",
+  "caption": "Figure 4: Linear few-shot evaluation on Ima-geNet versus pre-training size. ResNets per-form better with smaller pre-training datasetsbut plateau sooner than ViT, which performsbetter with larger pre-training. ViT-b is ViT-Bwith all hidden dimensions halved.",
+  "references": [
+   "10 M 30 M 100 M 300 M Number of JFT pre-training samples 30 40 50 60 70Linear 5-shot ImageNet Top1 [%] ViT-L/16 ViT-L/32 ViT-B/32 ViT-b/32 ResNet50x1 (BiT) ResNet152x2 (BiT) Figure 4: Linear few-shot evaluation on Ima- geNet versus pre-training size.",
+   "Figure 4 contains the results.",
+   "Overall, the few-shot results on ImageNet (Figure 4), as well as the low-data results on VTAB (Table 2) seem promising for very low-data transfer."
+  ],
+  "page": 7,
+  "bbox": [
+   307.5,
+   320.7,
+   483.3,
+   441.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_4.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f5",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "5",
+  "caption": "Figure 5: Performance versus pre-training compute for different architectures: Vision Transformers,ResNets, and hybrids. Vision Transformers generally outperform ResNets with the same compu-tational budget. Hybrids improve upon pure Transformers for smaller model sizes, but the gapvanishes for larger models.",
+  "references": [
+   "102 103 90 95Transfer accuracy [%] Average-5 Transformer (ViT) ResNet (BiT) Hybrid 102 10375 80 85 90 ImageNet Transformer (ViT) ResNet (BiT) Hybrid Total pre-training compute [exaFLOPs] Figure 5: Performance versus pre-training compute for different architectures: Vision Transformers, ResNets, and hybrids.",
+   "Figure 5 contains the transfer performance versus total pre-training compute (see Appendix D.",
+   "These correspond to Figure 5 in the main paper.",
+   "Figure 5 from the paper and shows the transfer performance of ViT, ResNet, and hybrid models of varying size, as well as the estimated computational cost of their pre-training."
+  ],
+  "page": 7,
+  "bbox": [
+   144.7,
+   320.7,
+   483.3,
+   441.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_5.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f6",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "6",
+  "caption": "Figure 6: Representative ex-amples of attention from theoutput token to the inputspace. See Appendix D.7 fordetails.",
+  "references": [
+   "5 I NSPECTING VISION TRANSFORMER Input  Attention Figure 6: Representative ex- amples of attention from the output token to the input space.",
+   "Globally, we ﬁnd that the model attends to image regions that are semantically relevant for classiﬁcation (Figure 6)."
+  ],
+  "page": 8,
+  "bbox": [
+   402.8,
+   468.2,
+   445.7,
+   511.1
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_6.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f7",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "7",
+  "caption": "Figure 7: Left: Filters of the initial linear embedding of RGB values of ViT-L/32. Center: Sim-ilarity of position embeddings of ViT-L/32. Tiles show the cosine similarity between the positionembedding of the patch with the indicated row and column and the position embeddings of all otherpatches. Right: Size of attended area by head and network depth. Each dot shows the mean attentiondistance across images for one of 16 heads at one layer. See Appendix D.7 for details.",
+  "references": [
+   "Figure 7 (left) shows the top prin- cipal components of the the learned embedding ﬁlters.",
+   "Figure 7 (center) shows that the model learns to encode distance within the image in the similarity of position em- beddings, i.",
+   "Speciﬁcally, we compute the average distance in image space across which information is integrated, based on the attention weights (Figure 7, right).",
+   "This highly localized attention is less pronounced in hybrid models that apply a ResNet before the Transformer (Figure 7, right), suggesting that it may serve a similar function as early convolutional layers in CNNs."
+  ],
+  "page": 9,
+  "bbox": [
+   284.5,
+   111.9,
+   365.4,
+   192.8
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_7.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f8",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "8",
+  "caption": "Figure 8: Scaling different model dimensions of the Vision Transformer.",
+  "references": [
+   "8Average 5shot Models All Depth Patch size Width MLP Width Figure 8: Scaling different model dimensions of the Vision Transformer.",
+   "Figure 8 shows 5-shot performance on ImageNet for different conﬁgurations."
+  ],
+  "page": 16,
+  "bbox": [
+   108.0,
+   39.2,
+   504.0,
+   333.4
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_8.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f9",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "9",
+  "caption": "Figure 9: Comparison of class-token and global average pooling classiﬁers. Both work similarlywell, but require different learning-rates.",
+  "references": [
+   "Instead, 16 Published as a conference paper at ICLR 2021 0 1 2 3 4 5 6 7 Epochs of training 25 30 35 40 45 50 55 60ImageNet linear 5-shot accuracy [%] CLS-Token, lr=8e-4 GAP, lr=8e-4 GAP, lr=3e-4 Figure 9: Comparison of class-token and global average pooling classiﬁers."
+  ],
+  "page": 17,
+  "bbox": [
+   108.0,
+   39.2,
+   504.0,
+   211.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_9.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f10",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "10",
+  "caption": "Figure 10: Position embeddings of models trained with different hyperparameters.",
+  "references": [
+   "1 1 1 Cosine similarity Figure 10: Position embeddings of models trained with different hyperparameters.",
+   "Even so, the speciﬁc pattern of position embedding similarity learned by the network depends on the training hyperparameters (Figure 10)."
+  ],
+  "page": 18,
+  "bbox": [
+   381.5,
+   96.0,
+   483.6,
+   198.0
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_10.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f11",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "11",
+  "caption": "Figure 11: Size of attended area by head and network depth. Attention distance was computed for128 example images by averaging the distance between the query pixel and all other pixels, weightedby the attention weight. Each dot shows the mean attention distance across images for one of 16heads at one layer. Image width is 224 pixels.",
+  "references": [
+   "7 A TTENTION DISTANCE To understand how ViT uses self-attention to integrate information across the image, we analyzed the average distance spanned by attention weights at different layers (Figure 11)."
+  ],
+  "page": 18,
+  "bbox": [
+   138.9,
+   427.7,
+   473.1,
+   607.7
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_11.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f12",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "12",
+  "caption": "Figure 12: Left: Real wall-clock timings of various architectures across input sizes. ViT modelshave speed comparable to similar ResNets. Right: Largest per-core batch-size ﬁtting on device withvarious architectures across input sizes. ViT models are clearly more memory-efﬁcient.",
+  "references": [
+   "Figure 12 (left) shows how many images one core can handle per second, across various input sizes.",
+   "Figure 12 (right) shows this quantity for the same set of models.",
+   "64 128 224 384 512 Input size [px] 102 103 104 Peak inference speed [img/sec/core] 64 128 224 384 512 Input size [px] 102 103 Largest per-core batch-size R50x1 R50x2 ViT-B/32 ViT-L/32 ViT-B/16 ViT-L/16 ViT-H/14 R152x4 Figure 12: Left: Real wall-clock timings of various architectures across input sizes."
+  ],
+  "page": 19,
+  "bbox": [
+   108.0,
+   39.2,
+   504.0,
+   377.8
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_12.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f13",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "13",
+  "caption": "Figure 13: Performance of Axial-Attention based models, in terms of top-1 accuracy on ImageNet5-shot linear, versus their speed in terms of number of FLOPs (left) and inference time (left).",
+  "references": [
+   "Figure 13, present the performance of Axial ResNet, Axial-ViT-B/32 and Axial-ViT-B/16 on Ima- geNet 5shot linear, when pretrained on JFT dataset, verses the pretraining compute, both in terms of number of FLOPs and inference time (example per seconds).",
+   "650ImageNet 5-shot linear top-1 accuracy AxialViT-B/16 AxialViT-B/32 ViT-B/16 ViT-B/32 ResNet50 AxialResNet50 Figure 13: Performance of Axial-Attention based models, in terms of top-1 accuracy on ImageNet 5-shot linear, versus their speed in terms of number of FLOPs (left) and inference time (left).",
+   "For the AxialResNet, although it looks reasonable in terms of accuracy/compute trade-off (Figure 13, left), the naive implementation is extremely slow on TPUs (Figure 13, right)."
+  ],
+  "page": 20,
+  "bbox": [
+   108.0,
+   39.2,
+   504.0,
+   237.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_13.png"
+ },
+ {
+  "elementId": "295f51b797d926af#f14",
+  "docId": "295f51b797d926af",
+  "docTitle": "ViT",
+  "figureNo": "14",
+  "caption": "Figure 14: Further example attention maps as in Figure 6 (random selection).",
+  "references": [],
+  "page": 21,
+  "bbox": [
+   308.0,
+   239.8,
+   497.0,
+   642.0
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_14.png"
+ },
+ {
+  "elementId": "756b2d33d2afc37a#f1",
+  "docId": "756b2d33d2afc37a",
+  "docTitle": "近端策略优化",
+  "figureNo": "1",
+  "caption": "Figure 1: Plots showing one term (i.e., a single timestep) of the surrogate function LCLIP as a function ofthe probability ratio r, for positive advantages (left) and negative advantages (right). The red circle on eachplot shows the starting point for the optimization, i.e., r = 1. Note that LCLIP sums many of these terms.",
+  "references": [
+   "Figure 1 plots a single term (i.",
+   "r LCLIP 0 1 1 +ϵ A> 0 r LCLIP 0 11 −ϵ A< 0 Figure 1: Plots showing one term (i."
+  ],
+  "page": 3,
+  "bbox": [
+   138.6,
+   183.5,
+   445.8,
+   594.2
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_1.png"
+ },
+ {
+  "elementId": "756b2d33d2afc37a#f2",
+  "docId": "756b2d33d2afc37a",
+  "docTitle": "近端策略优化",
+  "figureNo": "2",
+  "caption": "Figure 2: Surrogate objectives, as we interpolate between the initial policy parameter θold, and the updatedpolicy parameter, which we compute after one iteration of PPO. The updated policy has a KL divergence ofabout 0.02 from the initial policy, and this is the point at which LCLIP is maximal. This plot correspondsto the ﬁrst policy update on the Hopper-v1 problem, using hyperparameters provided in Section 6.1.",
+  "references": [
+   "Figure 2 provides another source of intuition about the surrogate objectiveLCLIP .",
+   "12 Et[KLt] LCPI = Et[rtAt] Et[clip(rt, 1 , 1 + )At] LCLIP = Et[min(rtAt, clip(rt, 1 , 1 + )At)] Figure 2: Surrogate objectives, as we interpolate between the initial policy parameter θold, and the updated policy parameter, which we compute after one iteration of PPO."
+  ],
+  "page": 4,
+  "bbox": [
+   115.5,
+   105.6,
+   479.8,
+   240.9
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_2.png"
+ },
+ {
+  "elementId": "756b2d33d2afc37a#f3",
+  "docId": "756b2d33d2afc37a",
+  "docTitle": "近端策略优化",
+  "figureNo": "3",
+  "caption": "Figure 3: Comparison of several algorithms on several MuJoCo environments, training for one milliontimesteps.",
+  "references": [],
+  "page": 7,
+  "bbox": [
+   69.9,
+   179.6,
+   525.3,
+   366.1
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_3.png"
+ },
+ {
+  "elementId": "756b2d33d2afc37a#f4",
+  "docId": "756b2d33d2afc37a",
+  "docTitle": "近端策略优化",
+  "figureNo": "4",
+  "caption": "Figure 4: Learning curves from PPO on 3D humanoid control tasks, using Roboschool.",
+  "references": [
+   "See Figure 5 for still frames of a learned policy, and Figure 4 for learning curves on the three tasks.",
+   "0 50M Timestep 0 1000 2000 3000 4000 RoboschoolHumanoid-v0 0 100M Timestep 0 500 1000 1500 2000 2500 RoboschoolHumanoidFlagrun-v0 0 100M Timestep 0 1000 2000 3000 RoboschoolHumanoidFlagrunHarder-v0 Figure 4: Learning curves from PPO on 3D humanoid control tasks, using Roboschool."
+  ],
+  "page": 7,
+  "bbox": [
+   138.2,
+   583.6,
+   457.0,
+   682.3
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_4.png"
+ },
+ {
+  "elementId": "756b2d33d2afc37a#f5",
+  "docId": "756b2d33d2afc37a",
+  "docTitle": "近端策略优化",
+  "figureNo": "5",
+  "caption": "Figure 5: Still frames of the policy learned from RoboschoolHumanoidFlagrun. In the ﬁrst six frames, therobot runs towards a target. Then the position is randomly changed, and the robot turns and runs towardthe new target.",
+  "references": [
+   "See Figure 5 for still frames of a learned policy, and Figure 4 for learning curves on the three tasks.",
+   "7 Figure 5: Still frames of the policy learned from RoboschoolHumanoidFlagrun."
+  ],
+  "page": 8,
+  "bbox": [
+   70.2,
+   155.2,
+   143.1,
+   203.8
+  ],
+  "bboxSource": "image",
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_5.png"
+ },
+ {
+  "elementId": "756b2d33d2afc37a#f6",
+  "docId": "756b2d33d2afc37a",
+  "docTitle": "近端策略优化",
+  "figureNo": "6",
+  "caption": "Figure 6: Comparison of PPO and A2C on all 49 ATARI games included in OpenAI Gym at the time ofpublication.",
+  "references": [
+   "Figure 6 shows the learning curves of each of three random seeds, while Table 6 shows the mean performance."
+  ],
+  "page": 11,
+  "bbox": [
+   135.7,
+   214.1,
+   460.2,
+   619.5
+  ],
+  "bboxSource": "drawing",
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_6.png"
+ }
+]
