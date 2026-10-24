@@ -12,6 +12,10 @@
   - 正文引用句数量：0 引用 / 1 引用 / 多引用
   - 无法定位的图：单独列出，实验时标记为缺失而不是硬造
 
+置信度闸门：
+  - bbox 缺失 / 正文占比 > 12% / 撞相邻图注 / 超过 70% 页面 / 空白图 → low
+  - low 只保留 caption + page，不生成 VLM 描述、不建图元素索引
+
 用法：
   python eval/scripts/prepare_figure_dataset.py
   python eval/scripts/prepare_figure_dataset.py --describe --limit 30
@@ -183,6 +187,74 @@ def _crop(page: fitz.Page, rect: fitz.Rect, target: Path) -> bool:
         return False
 
 
+def _ink_ratio(path: Path) -> float:
+    try:
+        image = Image.open(path).convert("L")
+        image.thumbnail((200, 200))
+        pixels = list(image.getdata())
+        return sum(1 for p in pixels if p < 245) / max(len(pixels), 1)
+    except Exception:
+        return 0.0
+
+
+def _body_text_ratio(page: fitz.Page, crop: fitz.Rect, caption_rects: list[fitz.Rect]) -> float:
+    """裁剪区域内「长正文块」的面积占比；图内标签较短，不算正文。"""
+    area = crop.width * crop.height
+    if area <= 0:
+        return 0.0
+    covered = 0.0
+    for block in page.get_text("dict").get("blocks", []):
+        if block.get("type") != 0:
+            continue
+        text = "".join(
+            span.get("text", "") for line in block.get("lines", []) for span in line.get("spans", [])
+        ).strip()
+        if len(text) < 80:
+            continue
+        rect = fitz.Rect(block["bbox"])
+        if any(rect.intersects(c) for c in caption_rects):
+            continue
+        inter = rect & crop
+        if inter.is_empty:
+            continue
+        covered += inter.width * inter.height
+    return min(covered / area, 1.0)
+
+
+def _assess_quality(
+    page: fitz.Page,
+    bbox: fitz.Rect | None,
+    source: str,
+    caption_rect: fitz.Rect,
+    caption_rects: list[fitz.Rect],
+    crop_path: str,
+) -> dict:
+    """给 bbox 打置信度：低置信度的图不生成描述、不建索引，只留 caption + page。"""
+    if bbox is None:
+        return {"confidence": "low", "reasons": ["no_bbox"], "textRatio": 0, "inkRatio": 0}
+
+    reasons: list[str] = []
+    text_ratio = _body_text_ratio(page, bbox, caption_rects)
+    if text_ratio > 0.12:
+        reasons.append("body_text")
+    if any(other is not caption_rect and bbox.intersects(other) for other in caption_rects):
+        reasons.append("adjacent_caption")
+    if (bbox.width * bbox.height) / (page.rect.width * page.rect.height) > 0.7:
+        reasons.append("page_like")
+
+    ink_ratio = _ink_ratio(EVAL_DIR / crop_path) if crop_path else 0.0
+    if ink_ratio < 0.01:
+        reasons.append("blank")
+
+    return {
+        "confidence": "high" if not reasons else "low",
+        "reasons": reasons,
+        "textRatio": round(text_ratio, 3),
+        "inkRatio": round(ink_ratio, 3),
+        "source": source,
+    }
+
+
 def _find_references(text: str, figure_no: str, caption: str) -> list[str]:
     pattern = re.compile(rf"(?i)\bfig(?:ure)?\.?\s*{re.escape(figure_no)}(?![\d.])")
     parent = re.compile(r"(?i)\bof\s*\[\d+\]|\bin\s*\[\d+\]|\bfrom\s*\[\d+\]")
@@ -246,6 +318,7 @@ def build_elements(describe: bool, limit: int, vl_model: str) -> list[dict]:
                 drawing_rects = []
 
             captions = sorted(captions, key=lambda item: item[2].y0)
+            caption_rects = [item[2] for item in captions]
             for cap_index, (figure_no, caption, rect) in enumerate(captions):
                 counter[figure_no] += 1
                 suffix = "" if counter[figure_no] == 1 else f"-{counter[figure_no]}"
@@ -271,6 +344,7 @@ def build_elements(describe: bool, limit: int, vl_model: str) -> list[dict]:
                     if _crop(page, bbox, target):
                         crop_path = str(target.relative_to(EVAL_DIR))
                 references = _find_references(full_text, figure_no, caption) if full_text else []
+                quality = _assess_quality(page, bbox, source, rect, caption_rects, crop_path)
                 elements.append(
                     {
                         "elementId": element_id,
@@ -283,6 +357,10 @@ def build_elements(describe: bool, limit: int, vl_model: str) -> list[dict]:
                         "bbox": [round(v, 1) for v in bbox] if bbox else None,
                         "bboxSource": source,
                         "cropPath": crop_path,
+                        "confidence": quality["confidence"],
+                        "confidenceReasons": quality["reasons"],
+                        "textRatio": quality["textRatio"],
+                        "inkRatio": quality["inkRatio"],
                     }
                 )
                 doc_elements += 1
@@ -295,8 +373,12 @@ def build_elements(describe: bool, limit: int, vl_model: str) -> list[dict]:
     no_crop = [e for e in elements if not e["cropPath"]]
     no_refs = [e for e in elements if not e["references"]]
     ref_counts = Counter(len(e["references"]) for e in elements)
+    high = [e for e in elements if e["confidence"] == "high"]
+    low = [e for e in elements if e["confidence"] == "low"]
+    reason_counts = Counter(reason for e in low for reason in e["confidenceReasons"])
     log("体检：")
     log(f"  有 bbox: {len(elements) - len(no_bbox)}/{len(elements)}；有裁剪图: {len(elements) - len(no_crop)}")
+    log(f"  高置信度: {len(high)}/{len(elements)}；低置信度: {len(low)}（{dict(reason_counts)}）")
     log(f"  无正文引用: {len(no_refs)}/{len(elements)}；引用句分布: {dict(sorted(ref_counts.items()))}")
     if no_bbox:
         log(f"  无法定位的图: {[e['elementId'] for e in no_bbox][:10]}")
@@ -313,10 +395,19 @@ def build_elements(describe: bool, limit: int, vl_model: str) -> list[dict]:
 async def describe_elements(elements: list[dict], limit: int, vl_model: str) -> None:
     cache_path = DATA_DIR / "figure_desc.json"
     cache = json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
-    targets = [e for e in elements if e["cropPath"] and e["elementId"] not in cache]
+    # 低置信度的裁剪不生成描述，也不保留旧描述，避免把错误裁剪带进索引
+    high_ids = {e["elementId"] for e in elements if e["confidence"] == "high"}
+    dropped = len(cache) - len(set(cache) & high_ids)
+    cache = {key: value for key, value in cache.items() if key in high_ids}
+    if dropped:
+        log(f"  丢弃 {dropped} 条低置信度图的旧描述")
+    targets = [
+        e for e in elements
+        if e["confidence"] == "high" and e["cropPath"] and e["elementId"] not in cache
+    ]
     if limit:
         targets = targets[:limit]
-    log(f"生成 {len(targets)} 张图的 VLM 描述（{vl_model}）...")
+    log(f"生成 {len(targets)} 张高置信度图的描述（{vl_model}）...")
 
     from openai import AsyncOpenAI
 

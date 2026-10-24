@@ -1,0 +1,512 @@
+{
+ "756b2d33d2afc37a#f2::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "756b2d33d2afc37a#f2::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "756b2d33d2afc37a#f2::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "756b2d33d2afc37a#f2::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f12::drawing": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "b73397c0c285bd6b#f12::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f12::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "221c3eff38f8ab54#f2::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f12::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f2::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f12::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f2::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f4.1::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f2::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f4.1::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f4.1::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.10::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f4.1::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.10::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.10::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.5::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.5::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.10::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.5::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.5::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.5::page": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "ca43c272585cb778#f1::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "ca43c272585cb778#f1::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "ca43c272585cb778#f1::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f10::drawing": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "ca43c272585cb778#f1::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f10::hybrid": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f10::band": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f10::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f46::drawing": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "30dc139c6b40f116#f46::hybrid": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "30dc139c6b40f116#f46::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f46::page": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": false
+ },
+ "b73397c0c285bd6b#f6::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f6::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f6::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f6::page": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "295f51b797d926af#f4::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "295f51b797d926af#f4::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "295f51b797d926af#f4::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f15::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f15::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "295f51b797d926af#f4::page": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": false
+ },
+ "30dc139c6b40f116#f15::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "30dc139c6b40f116#f15::page": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f4::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "221c3eff38f8ab54#f4::drawing": {
+  "single_figure": false,
+  "includes_body_text": false,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f4::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "221c3eff38f8ab54#f4::band": {
+  "single_figure": false,
+  "includes_body_text": false,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f4::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f3::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f3::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f7::drawing": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": false
+ },
+ "221c3eff38f8ab54#f3::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "221c3eff38f8ab54#f3::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f7::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "b73397c0c285bd6b#f7::hybrid": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": false
+ },
+ "b73397c0c285bd6b#f7::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.3::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.3::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.3::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.7::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.7::drawing": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.3::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.7::page": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.7::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "692d30a4cdc2c14d#f3.7::band": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f36::hybrid": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "30dc139c6b40f116#f36::drawing": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "30dc139c6b40f116#f36::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "30dc139c6b40f116#f36::page": {
+  "single_figure": false,
+  "includes_body_text": false,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "295f51b797d926af#f7::drawing": {
+  "single_figure": false,
+  "includes_body_text": false,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "295f51b797d926af#f7::image": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "295f51b797d926af#f7::hybrid": {
+  "single_figure": true,
+  "includes_body_text": false,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "295f51b797d926af#f7::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": true,
+  "complete": true
+ },
+ "295f51b797d926af#f7::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f50::drawing": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": false
+ },
+ "30dc139c6b40f116#f50::band": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f50::hybrid": {
+  "single_figure": false,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ },
+ "30dc139c6b40f116#f50::page": {
+  "single_figure": true,
+  "includes_body_text": true,
+  "includes_other_figure": false,
+  "complete": true
+ }
+}

@@ -17,7 +17,11 @@
    394.4
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_1.png"
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.373
  },
  {
   "elementId": "70765ea7c94cbbd2#f2",
@@ -37,7 +41,11 @@
    267.3
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_2.png"
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.326
  },
  {
   "elementId": "70765ea7c94cbbd2#f3",
@@ -56,7 +64,11 @@
    302.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_3.png"
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.138
  },
  {
   "elementId": "70765ea7c94cbbd2#f4",
@@ -75,7 +87,11 @@
    604.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_4.png"
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.191
  },
  {
   "elementId": "70765ea7c94cbbd2#f5",
@@ -94,7 +110,11 @@
    543.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_5.png"
+  "cropPath": "data\\figures\\70765ea7c94cbbd2\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.26
  },
  {
   "elementId": "221c3eff38f8ab54#f1",
@@ -117,7 +137,11 @@
    243.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_1.png"
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.793
  },
  {
   "elementId": "221c3eff38f8ab54#f2",
@@ -136,7 +160,11 @@
    169.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_2.png"
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.586
  },
  {
   "elementId": "221c3eff38f8ab54#f3",
@@ -153,7 +181,11 @@
    167.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_3.png"
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.513
  },
  {
   "elementId": "221c3eff38f8ab54#f4",
@@ -172,7 +204,11 @@
    340.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_4.png"
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 1.0
  },
  {
   "elementId": "221c3eff38f8ab54#f5",
@@ -192,7 +228,11 @@
    680.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_5.png"
+  "cropPath": "data\\figures\\221c3eff38f8ab54\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.185
  },
  {
   "elementId": "539c212a1a1a355a#f1",
@@ -212,7 +252,11 @@
    302.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_1.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.139
  },
  {
   "elementId": "539c212a1a1a355a#f2",
@@ -233,7 +277,11 @@
    154.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_2.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.15
  },
  {
   "elementId": "539c212a1a1a355a#f3",
@@ -256,7 +304,11 @@
    617.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_3.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.505
  },
  {
   "elementId": "539c212a1a1a355a#f4",
@@ -279,7 +331,11 @@
    389.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_4.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.111,
+  "inkRatio": 0.298
  },
  {
   "elementId": "539c212a1a1a355a#f5",
@@ -302,7 +358,11 @@
    143.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_5.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.166
  },
  {
   "elementId": "539c212a1a1a355a#f6",
@@ -323,7 +383,11 @@
    173.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_6.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.233
  },
  {
   "elementId": "539c212a1a1a355a#f7",
@@ -344,7 +408,11 @@
    328.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_7.png"
+  "cropPath": "data\\figures\\539c212a1a1a355a\\fig_7.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.192
  },
  {
   "elementId": "b73397c0c285bd6b#f1",
@@ -365,7 +433,11 @@
    247.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_1.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.239
  },
  {
   "elementId": "b73397c0c285bd6b#f2",
@@ -384,7 +456,11 @@
    287.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_2.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.375
  },
  {
   "elementId": "b73397c0c285bd6b#f3",
@@ -403,7 +479,11 @@
    280.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_3.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.351
  },
  {
   "elementId": "b73397c0c285bd6b#f4",
@@ -423,7 +503,11 @@
    376.9
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_4.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.112
  },
  {
   "elementId": "b73397c0c285bd6b#f5",
@@ -443,7 +527,11 @@
    314.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_5.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.366
  },
  {
   "elementId": "b73397c0c285bd6b#f6",
@@ -462,7 +550,11 @@
    553.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_6.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.545
  },
  {
   "elementId": "b73397c0c285bd6b#f7",
@@ -481,7 +573,13 @@
    417.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_7.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_7.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.343,
+  "inkRatio": 0.34
  },
  {
   "elementId": "b73397c0c285bd6b#f8",
@@ -501,7 +599,11 @@
    346.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_8.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_8.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.035,
+  "inkRatio": 0.205
  },
  {
   "elementId": "b73397c0c285bd6b#f9",
@@ -524,7 +626,11 @@
    260.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_9.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_9.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.137
  },
  {
   "elementId": "b73397c0c285bd6b#f10",
@@ -545,7 +651,13 @@
    491.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_10.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_10.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.148,
+  "inkRatio": 0.405
  },
  {
   "elementId": "b73397c0c285bd6b#f11",
@@ -565,7 +677,11 @@
    313.3
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_11.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_11.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.194
  },
  {
   "elementId": "b73397c0c285bd6b#f12",
@@ -585,7 +701,11 @@
    200.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_12.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_12.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.552
  },
  {
   "elementId": "b73397c0c285bd6b#f13",
@@ -602,7 +722,11 @@
    631.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_13.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_13.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.577
  },
  {
   "elementId": "b73397c0c285bd6b#f14",
@@ -621,7 +745,11 @@
    745.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_14.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_14.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.806
  },
  {
   "elementId": "b73397c0c285bd6b#f15",
@@ -640,7 +768,11 @@
    691.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_15.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_15.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.404
  },
  {
   "elementId": "b73397c0c285bd6b#f16",
@@ -660,7 +792,11 @@
    691.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_16.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_16.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.427
  },
  {
   "elementId": "b73397c0c285bd6b#f17",
@@ -681,7 +817,11 @@
    576.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_17.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_17.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.216
  },
  {
   "elementId": "b73397c0c285bd6b#f18",
@@ -701,7 +841,11 @@
    354.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_18.png"
+  "cropPath": "data\\figures\\b73397c0c285bd6b\\fig_18.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.502
  },
  {
   "elementId": "ca43c272585cb778#f1",
@@ -720,7 +864,11 @@
    151.5
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\ca43c272585cb778\\fig_1.png"
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.92
  },
  {
   "elementId": "ca43c272585cb778#f2",
@@ -741,7 +889,11 @@
    220.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\ca43c272585cb778\\fig_2.png"
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.224
  },
  {
   "elementId": "ca43c272585cb778#f3",
@@ -761,7 +913,11 @@
    220.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\ca43c272585cb778\\fig_3.png"
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.217
  },
  {
   "elementId": "ca43c272585cb778#f4",
@@ -781,7 +937,11 @@
    259.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\ca43c272585cb778\\fig_4.png"
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.215
  },
  {
   "elementId": "ca43c272585cb778#f5",
@@ -801,7 +961,11 @@
    358.7
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\ca43c272585cb778\\fig_5.png"
+  "cropPath": "data\\figures\\ca43c272585cb778\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.248
  },
  {
   "elementId": "618c75d6cbcd9e00#f1",
@@ -821,7 +985,11 @@
    132.6
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_1.png"
+  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.897
  },
  {
   "elementId": "618c75d6cbcd9e00#f2",
@@ -840,7 +1008,11 @@
    308.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_2.png"
+  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.113
  },
  {
   "elementId": "618c75d6cbcd9e00#f3",
@@ -860,7 +1032,11 @@
    308.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_3.png"
+  "cropPath": "data\\figures\\618c75d6cbcd9e00\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.113
  },
  {
   "elementId": "fae71946ca105ab6#f1",
@@ -880,7 +1056,11 @@
    448.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_1.png"
+  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.19
  },
  {
   "elementId": "fae71946ca105ab6#f2",
@@ -899,7 +1079,11 @@
    624.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_2.png"
+  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 1.0
  },
  {
   "elementId": "fae71946ca105ab6#f3",
@@ -918,7 +1102,11 @@
    357.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_3.png"
+  "cropPath": "data\\figures\\fae71946ca105ab6\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.042,
+  "inkRatio": 0.36
  },
  {
   "elementId": "692d30a4cdc2c14d#f1.1",
@@ -938,7 +1126,11 @@
    647.6
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.1.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.281
  },
  {
   "elementId": "692d30a4cdc2c14d#f1.2",
@@ -958,7 +1150,11 @@
    280.4
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.2.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.111
  },
  {
   "elementId": "692d30a4cdc2c14d#f1.3",
@@ -978,7 +1174,11 @@
    274.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.3.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_1.3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.323
  },
  {
   "elementId": "692d30a4cdc2c14d#f1",
@@ -990,7 +1190,13 @@
   "page": 5,
   "bbox": null,
   "bboxSource": "none",
-  "cropPath": ""
+  "cropPath": "",
+  "confidence": "low",
+  "confidenceReasons": [
+   "no_bbox"
+  ],
+  "textRatio": 0,
+  "inkRatio": 0
  },
  {
   "elementId": "692d30a4cdc2c14d#f2.1",
@@ -1013,7 +1219,11 @@
    420.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_2.1.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_2.1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.337
  },
  {
   "elementId": "692d30a4cdc2c14d#f2",
@@ -1025,7 +1235,13 @@
   "page": 7,
   "bbox": null,
   "bboxSource": "none",
-  "cropPath": ""
+  "cropPath": "",
+  "confidence": "low",
+  "confidenceReasons": [
+   "no_bbox"
+  ],
+  "textRatio": 0,
+  "inkRatio": 0
  },
  {
   "elementId": "692d30a4cdc2c14d#f2.2",
@@ -1045,7 +1261,11 @@
    305.3
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_2.2.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_2.2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.26
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.1",
@@ -1066,7 +1286,11 @@
    317.7
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.1.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.169
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.2",
@@ -1085,7 +1309,11 @@
    444.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.2.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.099
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.3",
@@ -1105,7 +1333,11 @@
    290.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.3.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.091
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.4",
@@ -1125,7 +1357,11 @@
    638.0
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.4.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.13
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.5",
@@ -1144,7 +1380,11 @@
    426.4
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.5.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.123
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.6",
@@ -1161,7 +1401,11 @@
    428.8
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.6.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.094
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.7",
@@ -1180,7 +1424,11 @@
    345.9
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.7.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.7.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.094
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.8",
@@ -1201,7 +1449,11 @@
    286.7
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.8.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.8.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.178
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.9",
@@ -1221,7 +1473,11 @@
    300.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.9.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.9.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.127
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.10",
@@ -1241,7 +1497,11 @@
    300.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.10.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.10.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.159
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.11",
@@ -1260,7 +1520,11 @@
    300.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.11.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.11.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.113
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.12",
@@ -1280,7 +1544,11 @@
    300.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.12.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.12.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.083
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.13",
@@ -1299,7 +1567,11 @@
    418.5
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.13.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.13.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.154
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.14",
@@ -1316,7 +1588,13 @@
    365.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.14.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.14.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.881,
+  "inkRatio": 0.469
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.15",
@@ -1335,7 +1613,13 @@
    677.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.15.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.15.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.873,
+  "inkRatio": 0.432
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.16",
@@ -1352,7 +1636,13 @@
    352.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.16.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.16.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.653,
+  "inkRatio": 0.309
  },
  {
   "elementId": "692d30a4cdc2c14d#f3.17",
@@ -1369,7 +1659,13 @@
    543.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.17.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_3.17.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.532,
+  "inkRatio": 0.341
  },
  {
   "elementId": "692d30a4cdc2c14d#f4.1",
@@ -1389,7 +1685,11 @@
    279.5
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_4.1.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_4.1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.312
  },
  {
   "elementId": "692d30a4cdc2c14d#f4.2",
@@ -1409,7 +1709,11 @@
    255.0
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_4.2.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_4.2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.196
  },
  {
   "elementId": "692d30a4cdc2c14d#f6.1",
@@ -1426,7 +1730,11 @@
    259.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_6.1.png"
+  "cropPath": "data\\figures\\692d30a4cdc2c14d\\fig_6.1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.16
  },
  {
   "elementId": "692d30a4cdc2c14d#f4",
@@ -1438,7 +1746,13 @@
   "page": 44,
   "bbox": null,
   "bboxSource": "none",
-  "cropPath": ""
+  "cropPath": "",
+  "confidence": "low",
+  "confidenceReasons": [
+   "no_bbox"
+  ],
+  "textRatio": 0,
+  "inkRatio": 0
  },
  {
   "elementId": "f75599290ec7d11c#f1",
@@ -1458,7 +1772,11 @@
    293.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_1.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.045
  },
  {
   "elementId": "f75599290ec7d11c#f2",
@@ -1481,7 +1799,11 @@
    630.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.044
  },
  {
   "elementId": "f75599290ec7d11c#f3",
@@ -1500,7 +1822,11 @@
    403.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_3.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.025
  },
  {
   "elementId": "f75599290ec7d11c#f4",
@@ -1520,7 +1846,11 @@
    331.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_4.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.59
  },
  {
   "elementId": "f75599290ec7d11c#f5",
@@ -1541,7 +1871,11 @@
    459.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_5.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.871
  },
  {
   "elementId": "f75599290ec7d11c#f6",
@@ -1561,7 +1895,11 @@
    440.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_6.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.53
  },
  {
   "elementId": "f75599290ec7d11c#f7",
@@ -1581,7 +1919,11 @@
    430.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_7.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_7.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.076,
+  "inkRatio": 0.273
  },
  {
   "elementId": "f75599290ec7d11c#f8",
@@ -1601,7 +1943,11 @@
    258.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_8.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_8.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.354
  },
  {
   "elementId": "f75599290ec7d11c#f9",
@@ -1621,7 +1967,11 @@
    261.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_9.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_9.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.34
  },
  {
   "elementId": "f75599290ec7d11c#f1-2",
@@ -1641,7 +1991,13 @@
    635.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_1-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_1-2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.268,
+  "inkRatio": 0.487
  },
  {
   "elementId": "f75599290ec7d11c#f2-2",
@@ -1664,7 +2020,13 @@
    509.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_2-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_2-2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.312,
+  "inkRatio": 0.381
  },
  {
   "elementId": "f75599290ec7d11c#f3-2",
@@ -1683,7 +2045,13 @@
    336.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_3-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_3-2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.36,
+  "inkRatio": 0.474
  },
  {
   "elementId": "f75599290ec7d11c#f4-2",
@@ -1703,7 +2071,13 @@
    401.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_4-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_4-2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.314,
+  "inkRatio": 0.436
  },
  {
   "elementId": "f75599290ec7d11c#f5-2",
@@ -1724,7 +2098,13 @@
    536.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_5-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_5-2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.757,
+  "inkRatio": 0.389
  },
  {
   "elementId": "f75599290ec7d11c#f6-2",
@@ -1744,7 +2124,11 @@
    597.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_6-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_6-2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.179
  },
  {
   "elementId": "f75599290ec7d11c#f7-2",
@@ -1764,7 +2148,11 @@
    597.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_7-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_7-2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.336
  },
  {
   "elementId": "f75599290ec7d11c#f8-2",
@@ -1784,7 +2172,11 @@
    464.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_8-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_8-2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.426
  },
  {
   "elementId": "f75599290ec7d11c#f9-2",
@@ -1804,7 +2196,13 @@
    544.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_9-2.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_9-2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.474,
+  "inkRatio": 0.398
  },
  {
   "elementId": "f75599290ec7d11c#f10",
@@ -1825,7 +2223,13 @@
    375.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_10.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_10.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.42,
+  "inkRatio": 0.43
  },
  {
   "elementId": "f75599290ec7d11c#f11",
@@ -1844,7 +2248,11 @@
    598.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_11.png"
+  "cropPath": "data\\figures\\f75599290ec7d11c\\fig_11.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.641
  },
  {
   "elementId": "30dc139c6b40f116#f1",
@@ -1863,7 +2271,11 @@
    250.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_1.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.115
  },
  {
   "elementId": "30dc139c6b40f116#f2",
@@ -1884,7 +2296,11 @@
    309.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_2.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.208
  },
  {
   "elementId": "30dc139c6b40f116#f3",
@@ -1905,7 +2321,11 @@
    397.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_3.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.181
  },
  {
   "elementId": "30dc139c6b40f116#f4",
@@ -1925,7 +2345,11 @@
    194.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_4.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.484
  },
  {
   "elementId": "30dc139c6b40f116#f5",
@@ -1945,7 +2369,11 @@
    432.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_5.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.328
  },
  {
   "elementId": "30dc139c6b40f116#f6",
@@ -1965,7 +2393,11 @@
    531.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_6.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.27
  },
  {
   "elementId": "30dc139c6b40f116#f7",
@@ -1984,7 +2416,11 @@
    261.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_7.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_7.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.405
  },
  {
   "elementId": "30dc139c6b40f116#f8",
@@ -2004,7 +2440,13 @@
    431.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_8.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_8.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.643,
+  "inkRatio": 0.302
  },
  {
   "elementId": "30dc139c6b40f116#f9",
@@ -2021,7 +2463,13 @@
    382.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_9.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_9.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.678,
+  "inkRatio": 0.438
  },
  {
   "elementId": "30dc139c6b40f116#f10",
@@ -2038,7 +2486,13 @@
    660.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_10.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_10.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.762,
+  "inkRatio": 0.484
  },
  {
   "elementId": "30dc139c6b40f116#f11",
@@ -2055,7 +2509,13 @@
    439.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_11.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_11.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.56,
+  "inkRatio": 0.359
  },
  {
   "elementId": "30dc139c6b40f116#f12",
@@ -2075,7 +2535,11 @@
    608.0
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_12.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_12.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.981
  },
  {
   "elementId": "30dc139c6b40f116#f13",
@@ -2095,7 +2559,11 @@
    308.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_13.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_13.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.153
  },
  {
   "elementId": "30dc139c6b40f116#f14",
@@ -2112,7 +2580,13 @@
    328.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_14.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_14.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.431,
+  "inkRatio": 0.258
  },
  {
   "elementId": "30dc139c6b40f116#f15",
@@ -2129,7 +2603,13 @@
    524.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_15.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_15.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.223,
+  "inkRatio": 0.257
  },
  {
   "elementId": "30dc139c6b40f116#f16",
@@ -2146,7 +2626,13 @@
    690.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_16.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_16.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.145,
+  "inkRatio": 0.271
  },
  {
   "elementId": "30dc139c6b40f116#f17",
@@ -2163,7 +2649,13 @@
    337.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_17.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_17.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.355,
+  "inkRatio": 0.269
  },
  {
   "elementId": "30dc139c6b40f116#f18",
@@ -2180,7 +2672,13 @@
    658.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_18.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_18.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.331,
+  "inkRatio": 0.285
  },
  {
   "elementId": "30dc139c6b40f116#f19",
@@ -2197,7 +2695,11 @@
    339.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_19.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_19.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.104,
+  "inkRatio": 0.186
  },
  {
   "elementId": "30dc139c6b40f116#f20",
@@ -2214,7 +2716,11 @@
    672.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_20.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_20.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.104,
+  "inkRatio": 0.203
  },
  {
   "elementId": "30dc139c6b40f116#f21",
@@ -2231,7 +2737,13 @@
    294.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_21.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_21.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.286,
+  "inkRatio": 0.254
  },
  {
   "elementId": "30dc139c6b40f116#f22",
@@ -2248,7 +2760,13 @@
    491.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_22.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_22.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.438,
+  "inkRatio": 0.281
  },
  {
   "elementId": "30dc139c6b40f116#f23",
@@ -2265,7 +2783,13 @@
    688.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_23.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_23.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.358,
+  "inkRatio": 0.238
  },
  {
   "elementId": "30dc139c6b40f116#f24",
@@ -2282,7 +2806,13 @@
    286.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_24.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_24.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.492,
+  "inkRatio": 0.31
  },
  {
   "elementId": "30dc139c6b40f116#f25",
@@ -2301,7 +2831,11 @@
    495.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_25.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_25.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.235
  },
  {
   "elementId": "30dc139c6b40f116#f26",
@@ -2318,7 +2852,11 @@
    684.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_26.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_26.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.063,
+  "inkRatio": 0.231
  },
  {
   "elementId": "30dc139c6b40f116#f27",
@@ -2335,7 +2873,11 @@
    450.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_27.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_27.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.063,
+  "inkRatio": 0.227
  },
  {
   "elementId": "30dc139c6b40f116#f28",
@@ -2356,7 +2898,11 @@
    553.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_28.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_28.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.263
  },
  {
   "elementId": "30dc139c6b40f116#f29",
@@ -2376,7 +2922,11 @@
    513.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_29.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_29.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.267
  },
  {
   "elementId": "30dc139c6b40f116#f30",
@@ -2396,7 +2946,11 @@
    357.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_30.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_30.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.198
  },
  {
   "elementId": "30dc139c6b40f116#f31",
@@ -2416,7 +2970,11 @@
    344.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_31.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_31.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.181
  },
  {
   "elementId": "30dc139c6b40f116#f32",
@@ -2435,7 +2993,11 @@
    676.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_32.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_32.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.21
  },
  {
   "elementId": "30dc139c6b40f116#f33",
@@ -2455,7 +3017,11 @@
    645.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_33.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_33.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.147
  },
  {
   "elementId": "30dc139c6b40f116#f34",
@@ -2475,7 +3041,11 @@
    645.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_34.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_34.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.147
  },
  {
   "elementId": "30dc139c6b40f116#f35",
@@ -2495,7 +3065,11 @@
    266.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_35.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_35.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.092
  },
  {
   "elementId": "30dc139c6b40f116#f36",
@@ -2515,7 +3089,11 @@
    490.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_36.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_36.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.081
  },
  {
   "elementId": "30dc139c6b40f116#f37",
@@ -2535,7 +3113,11 @@
    695.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_37.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_37.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.602
  },
  {
   "elementId": "30dc139c6b40f116#f38",
@@ -2555,7 +3137,11 @@
    288.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_38.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_38.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.172
  },
  {
   "elementId": "30dc139c6b40f116#f39",
@@ -2576,7 +3162,11 @@
    573.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_39.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_39.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.288
  },
  {
   "elementId": "30dc139c6b40f116#f40",
@@ -2595,7 +3185,11 @@
    267.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_40.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_40.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.364
  },
  {
   "elementId": "30dc139c6b40f116#f41",
@@ -2614,7 +3208,11 @@
    441.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_41.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_41.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.363
  },
  {
   "elementId": "30dc139c6b40f116#f42",
@@ -2633,7 +3231,13 @@
    344.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_42.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_42.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.756,
+  "inkRatio": 0.351
  },
  {
   "elementId": "30dc139c6b40f116#f43",
@@ -2650,7 +3254,13 @@
    339.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_43.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_43.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.719,
+  "inkRatio": 0.338
  },
  {
   "elementId": "30dc139c6b40f116#f44",
@@ -2669,7 +3279,13 @@
    683.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_44.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_44.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.562,
+  "inkRatio": 0.322
  },
  {
   "elementId": "30dc139c6b40f116#f45",
@@ -2688,7 +3304,13 @@
    551.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_45.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_45.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 1.0,
+  "inkRatio": 0.381
  },
  {
   "elementId": "30dc139c6b40f116#f46",
@@ -2705,7 +3327,13 @@
    454.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_46.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_46.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.878,
+  "inkRatio": 0.451
  },
  {
   "elementId": "30dc139c6b40f116#f47",
@@ -2722,7 +3350,13 @@
    677.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_47.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_47.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.622,
+  "inkRatio": 0.378
  },
  {
   "elementId": "30dc139c6b40f116#f48",
@@ -2739,7 +3373,13 @@
    645.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_48.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_48.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.816,
+  "inkRatio": 0.36
  },
  {
   "elementId": "30dc139c6b40f116#f49",
@@ -2758,7 +3398,13 @@
    521.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_49.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_49.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.443,
+  "inkRatio": 0.255
  },
  {
   "elementId": "30dc139c6b40f116#f50",
@@ -2775,7 +3421,13 @@
    581.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_50.png"
+  "cropPath": "data\\figures\\30dc139c6b40f116\\fig_50.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.888,
+  "inkRatio": 0.373
  },
  {
   "elementId": "bc016c87c1b2fe24#f1",
@@ -2796,7 +3448,11 @@
    185.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_1.png"
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.044,
+  "inkRatio": 0.502
  },
  {
   "elementId": "bc016c87c1b2fe24#f2",
@@ -2816,7 +3472,11 @@
    118.2
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_2.png"
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.967
  },
  {
   "elementId": "bc016c87c1b2fe24#f3",
@@ -2837,7 +3497,13 @@
    585.6
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_3.png"
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_3.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.419,
+  "inkRatio": 0.346
  },
  {
   "elementId": "bc016c87c1b2fe24#f4",
@@ -2857,7 +3523,11 @@
    422.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_4.png"
+  "cropPath": "data\\figures\\bc016c87c1b2fe24\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.593
  },
  {
   "elementId": "295f51b797d926af#f1",
@@ -2876,7 +3546,11 @@
    248.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_1.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_1.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.032,
+  "inkRatio": 0.338
  },
  {
   "elementId": "295f51b797d926af#f2",
@@ -2896,7 +3570,13 @@
    372.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_2.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_2.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.434,
+  "inkRatio": 0.356
  },
  {
   "elementId": "295f51b797d926af#f3",
@@ -2919,7 +3599,11 @@
    441.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_3.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.114
  },
  {
   "elementId": "295f51b797d926af#f4",
@@ -2940,7 +3624,11 @@
    441.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_4.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.127
  },
  {
   "elementId": "295f51b797d926af#f5",
@@ -2962,7 +3650,11 @@
    441.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_5.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.152
  },
  {
   "elementId": "295f51b797d926af#f6",
@@ -2982,7 +3674,11 @@
    511.1
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_6.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 1.0
  },
  {
   "elementId": "295f51b797d926af#f7",
@@ -3004,7 +3700,11 @@
    192.8
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_7.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_7.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.606
  },
  {
   "elementId": "295f51b797d926af#f8",
@@ -3024,7 +3724,11 @@
    333.4
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_8.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_8.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.105,
+  "inkRatio": 0.198
  },
  {
   "elementId": "295f51b797d926af#f9",
@@ -3043,7 +3747,11 @@
    211.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_9.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_9.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.097
  },
  {
   "elementId": "295f51b797d926af#f10",
@@ -3063,7 +3771,11 @@
    198.0
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_10.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_10.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.857
  },
  {
   "elementId": "295f51b797d926af#f11",
@@ -3082,7 +3794,11 @@
    607.7
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_11.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_11.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.154
  },
  {
   "elementId": "295f51b797d926af#f12",
@@ -3103,7 +3819,13 @@
    377.8
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_12.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_12.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.315,
+  "inkRatio": 0.251
  },
  {
   "elementId": "295f51b797d926af#f13",
@@ -3124,7 +3846,11 @@
    237.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_13.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_13.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.095
  },
  {
   "elementId": "295f51b797d926af#f14",
@@ -3141,7 +3867,11 @@
    642.0
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\295f51b797d926af\\fig_14.png"
+  "cropPath": "data\\figures\\295f51b797d926af\\fig_14.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.712
  },
  {
   "elementId": "756b2d33d2afc37a#f1",
@@ -3161,7 +3891,13 @@
    594.2
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_1.png"
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_1.png",
+  "confidence": "low",
+  "confidenceReasons": [
+   "body_text"
+  ],
+  "textRatio": 0.461,
+  "inkRatio": 0.257
  },
  {
   "elementId": "756b2d33d2afc37a#f2",
@@ -3181,7 +3917,11 @@
    240.9
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_2.png"
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_2.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.146
  },
  {
   "elementId": "756b2d33d2afc37a#f3",
@@ -3198,7 +3938,11 @@
    366.1
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_3.png"
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_3.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.644
  },
  {
   "elementId": "756b2d33d2afc37a#f4",
@@ -3218,7 +3962,11 @@
    682.3
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_4.png"
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_4.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.651
  },
  {
   "elementId": "756b2d33d2afc37a#f5",
@@ -3238,7 +3986,11 @@
    203.8
   ],
   "bboxSource": "image",
-  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_5.png"
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_5.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 1.0
  },
  {
   "elementId": "756b2d33d2afc37a#f6",
@@ -3257,6 +4009,10 @@
    619.5
   ],
   "bboxSource": "drawing",
-  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_6.png"
+  "cropPath": "data\\figures\\756b2d33d2afc37a\\fig_6.png",
+  "confidence": "high",
+  "confidenceReasons": [],
+  "textRatio": 0.0,
+  "inkRatio": 0.637
  }
 ]

@@ -94,7 +94,13 @@ def load_elements() -> tuple[list[dict], dict[str, str]]:
     descriptions = (
         json.loads(desc_path.read_text(encoding="utf-8")) if desc_path.exists() else {}
     )
-    usable = [e for e in elements if e.get("cropPath") and descriptions.get(e["elementId"])]
+    usable = [
+        e
+        for e in elements
+        if e.get("cropPath")
+        and e.get("confidence") == "high"
+        and descriptions.get(e["elementId"])
+    ]
     for element in usable:
         element["description"] = descriptions[element["elementId"]]
         element["isTextbox"] = bool(TEXTBOX_RE.search(element["caption"]))

@@ -1,0 +1,219 @@
+{
+ "elements": 165,
+ "textbox": 28,
+ "noRefs": 30,
+ "queries": {
+  "caption": 165,
+  "ref": 135,
+  "visual": 60
+ },
+ "results": {
+  "A_caption": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.8545,
+    "elementRecall@5": 0.9758,
+    "mrr@5": 0.9073,
+    "captionChunkRecall@5": 0.5212
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.4074,
+    "elementRecall@5": 0.6519,
+    "mrr@5": 0.5005,
+    "captionChunkRecall@5": 0.3481
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.0833,
+    "elementRecall@5": 0.3,
+    "mrr@5": 0.1856,
+    "captionChunkRecall@5": 0.3
+   }
+  },
+  "B_caption_refs": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.7212,
+    "elementRecall@5": 0.9333,
+    "mrr@5": 0.817,
+    "captionChunkRecall@5": 0.5333
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.5407,
+    "elementRecall@5": 0.837,
+    "mrr@5": 0.6634,
+    "captionChunkRecall@5": 0.3481
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.1333,
+    "elementRecall@5": 0.3167,
+    "mrr@5": 0.2133,
+    "captionChunkRecall@5": 0.2833
+   }
+  },
+  "C_caption_desc": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.5758,
+    "elementRecall@5": 0.897,
+    "mrr@5": 0.7158,
+    "captionChunkRecall@5": 0.5152
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.2815,
+    "elementRecall@5": 0.5704,
+    "mrr@5": 0.4229,
+    "captionChunkRecall@5": 0.3333
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.4167,
+    "elementRecall@5": 0.7333,
+    "mrr@5": 0.5401,
+    "captionChunkRecall@5": 0.2333
+   }
+  },
+  "D_all": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.6485,
+    "elementRecall@5": 0.903,
+    "mrr@5": 0.7642,
+    "captionChunkRecall@5": 0.5152
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.4296,
+    "elementRecall@5": 0.837,
+    "mrr@5": 0.6076,
+    "captionChunkRecall@5": 0.3333
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.3833,
+    "elementRecall@5": 0.7167,
+    "mrr@5": 0.5246,
+    "captionChunkRecall@5": 0.2167
+   }
+  },
+  "E_B+C_rrf": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.6364,
+    "elementRecall@5": 0.897,
+    "mrr@5": 0.7596,
+    "captionChunkRecall@5": 0.5333
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.3481,
+    "elementRecall@5": 0.6296,
+    "mrr@5": 0.485,
+    "captionChunkRecall@5": 0.3556
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.1,
+    "elementRecall@5": 0.4667,
+    "mrr@5": 0.2704,
+    "captionChunkRecall@5": 0.25
+   }
+  },
+  "F_A+B+C_rrf": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.6788,
+    "elementRecall@5": 0.9212,
+    "mrr@5": 0.7863,
+    "captionChunkRecall@5": 0.5273
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.3185,
+    "elementRecall@5": 0.6074,
+    "mrr@5": 0.4564,
+    "captionChunkRecall@5": 0.3556
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.1167,
+    "elementRecall@5": 0.4,
+    "mrr@5": 0.2262,
+    "captionChunkRecall@5": 0.2833
+   }
+  },
+  "G_views_max": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.8727,
+    "elementRecall@5": 0.9758,
+    "mrr@5": 0.9194,
+    "captionChunkRecall@5": 0.497
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.6074,
+    "elementRecall@5": 0.8519,
+    "mrr@5": 0.7079,
+    "captionChunkRecall@5": 0.3259
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.4667,
+    "elementRecall@5": 0.7667,
+    "mrr@5": 0.5805,
+    "captionChunkRecall@5": 0.2333
+   }
+  },
+  "H_B+C_score": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.6606,
+    "elementRecall@5": 0.9212,
+    "mrr@5": 0.7761,
+    "captionChunkRecall@5": 0.5333
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.3852,
+    "elementRecall@5": 0.6815,
+    "mrr@5": 0.5293,
+    "captionChunkRecall@5": 0.3556
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.2167,
+    "elementRecall@5": 0.6,
+    "mrr@5": 0.3703,
+    "captionChunkRecall@5": 0.25
+   }
+  },
+  "I_A+B+C_score": {
+   "caption": {
+    "n": 165,
+    "elementRecall@1": 0.7576,
+    "elementRecall@5": 0.9394,
+    "mrr@5": 0.8441,
+    "captionChunkRecall@5": 0.5273
+   },
+   "ref": {
+    "n": 135,
+    "elementRecall@1": 0.3778,
+    "elementRecall@5": 0.6667,
+    "mrr@5": 0.5155,
+    "captionChunkRecall@5": 0.3556
+   },
+   "visual": {
+    "n": 60,
+    "elementRecall@1": 0.1833,
+    "elementRecall@5": 0.5167,
+    "mrr@5": 0.3199,
+    "captionChunkRecall@5": 0.25
+   }
+  }
+ }
+}

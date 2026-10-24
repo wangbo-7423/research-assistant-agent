@@ -1,0 +1,2908 @@
+{
+ "summary": {
+  "pymupdf": {
+   "tables": 72,
+   "valid": 39,
+   "validRate": 0.542,
+   "captionLinkedRate": 0.347,
+   "avgRows": 4.9,
+   "avgCols": 10.5,
+   "avgNumericRatio": 0.167,
+   "avgEmptyRatio": 0.376,
+   "avgColConsistency": 1.0
+  },
+  "pdfplumber": {
+   "tables": 80,
+   "valid": 28,
+   "validRate": 0.35,
+   "captionLinkedRate": 0.25,
+   "avgRows": 3.6,
+   "avgCols": 14.2,
+   "avgNumericRatio": 0.105,
+   "avgEmptyRatio": 0.442,
+   "avgColConsistency": 1.0
+  }
+ },
+ "records": [
+  {
+   "doc": "Attention Is All You Need",
+   "page": 9,
+   "method": "pymupdf",
+   "bbox": [
+    108.0,
+    129.87200927734375,
+    508.73699951171875,
+    384.1730041503906
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 8,
+   "cols": 3,
+   "numeric_ratio": 0.478,
+   "empty_ratio": 0.042,
+   "col_consistency": 1.0,
+   "markdown": "|  | train\nN d d h d d P ϵ\nmodel ff k v drop ls steps | PPL BLEU params\n(dev) (dev) ×106 |\n|---|---|---|\n| base | 6 512 2048 8 64 64 0.1 0.1 100K | 4.92 25.8 65 |\n| (A) | 1 512 512\n4 128 128\n16 32 32\n32 16 16 | 5.29 24.9\n5.00 25.5\n4.91 25.8\n5.01 25.4 |\n| (B) | 16\n32 | 5.16 25.1 58\n5.01 25.4 60 |\n| (C) | 2\n4\n8\n256 32 32\n1024 128 128\n1024\n4096 | 6.11 23.7 36\n5.19 25.3 50\n4.88 25.5 80\n5.75 24.5 28\n4.66 26.0 168\n5.12 25.4 53\n4.75 26.2 90 |\n| (D) | 0.0\n0.2\n0.0\n0.2 | 5.77 24.6\n4.95 25.5\n4.67 25.3\n5.47 25.7 |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 9,
+   "method": "pdfplumber",
+   "bbox": [
+    140.149,
+    129.87199999999996,
+    397.315,
+    384.173
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 8,
+   "cols": 1,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| train\nN d d h d d P ϵ\nmodel ff k v drop ls steps |\n|---|\n| 6 512 2048 8 64 64 0.1 0.1 100K |\n| 1 512 512\n4 128 128\n16 32 32\n32 16 16 |\n| 16\n32 |\n| 2\n4\n8\n256 32 32\n1024 128 128\n1024\n4096 |\n| 0.0\n0.2\n0.0\n0.2 |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 10,
+   "method": "pymupdf",
+   "bbox": [
+    145.0500030517578,
+    93.947021484375,
+    466.95001220703125,
+    236.56201171875
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 6,
+   "cols": 3,
+   "numeric_ratio": 0.278,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Parser | Training | WSJ 23 F1 |\n|---|---|---|\n| Vinyals & Kaiser el al. (2014) [37]\nPetrov et al. (2006) [29]\nZhu et al. (2013) [40]\nDyer et al. (2016) [8] | WSJ only, discriminative\nWSJ only, discriminative\nWSJ only, discriminative\nWSJ only, discriminative | 88.3\n90.4\n90.4\n91.7 |\n| Transformer (4 layers) | WSJ only, discriminative | 91.3 |\n| Zhu et al. (2013) [40]\nHuang & Harper (2009) [14]\nMcClosky et al. (2006) [26]\nVinyals & Kaiser el al. (2014) [37] | semi-supervised\nsemi-supervised\nsemi-supervised\nsemi-supervised | 91.3\n91.3\n92.1\n92.1 |\n| Transformer (4 layers) | semi-supervised | 92.7 |\n| Luong et al. (2015) [23]\nDyer et al. (2016) [8] | multi-task\ngenerative | 93.0\n93.3 |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 10,
+   "method": "pdfplumber",
+   "bbox": [
+    296.58,
+    93.947,
+    408.499,
+    236.562
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 6,
+   "cols": 1,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Training |\n|---|\n| WSJonly,discriminative\nWSJonly,discriminative\nWSJonly,discriminative\nWSJonly,discriminative |\n| WSJonly,discriminative |\n| semi-supervised\nsemi-supervised\nsemi-supervised\nsemi-supervised |\n| semi-supervised |\n| multi-task\ngenerative |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 13,
+   "method": "pymupdf",
+   "bbox": [
+    119.66806030273438,
+    84.25202941894531,
+    504.72137451171875,
+    162.0406723022461
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 6,
+   "cols": 39,
+   "numeric_ratio": 0.032,
+   "empty_ratio": 0.603,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ts |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  | n |  | en |  |  |  |  |  |  |  |  | on |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  |  | ty |  |  | ca |  | m |  | d |  |  |  |  | g |  | ati |  |  | s |  | t |  | > |  |  |  |  |  |  |\n|  |  |  |  |  |  | t |  |  |  |  | ori |  |  | ri |  | ern | e | se |  |  | e | 9 | in |  | str |  | ng | es | e | ul |  | S | d> | d> | d> | d> | d> | d> |\n|  |  |  |  |  | is | iri |  | at |  |  | aj |  |  | me |  | ov | av | as | ew | ws | nc | 00 | ak | e | gi |  | ti | oc | or | ffic |  | EO | pa | pa | pa | pa | pa | pa |\n| It |  | is |  | in | th | sp |  | th |  | a | m | of |  | A |  | g | h | p | n | la | si | 2 | m | th | re | or | vo | pr | m | di | . | < | < | < | < | < | < | < |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 13,
+   "method": "pymupdf",
+   "bbox": [
+    119.66806030273438,
+    239.82826232910156,
+    504.72137451171875,
+    302.05999755859375
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 6,
+   "cols": 33,
+   "numeric_ratio": 0.032,
+   "empty_ratio": 0.525,
+   "col_consistency": 1.0,
+   "markdown": "| It | is | in | is | rit | at | a | ty | of | n | ts | e | d | w | s | e | 9 | g | e | n | or | g | ss | re | ult | . | > | > | > | > | > | > | > |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  | th | pi | th |  | ori |  | ica | en | av | se | ne | aw | inc | 00 | kin | th | tio |  | tin | e | o | ic |  | OS | ad | ad | ad | ad | ad | ad |\n|  |  |  |  | s |  |  | aj |  | er | m | h | as |  | l | s | 2 | a |  | tra |  | vo | roc | m | iff |  | E | <p | <p | <p | <p | <p | <p |\n|  |  |  |  |  |  |  | m |  | m | rn |  | p |  |  |  |  | m |  | gis |  |  | p |  | d |  | < |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  | A | ve |  |  |  |  |  |  |  |  | re |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  | go |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 13,
+   "method": "pdfplumber",
+   "bbox": [
+    119.66806170000001,
+    84.25203848000001,
+    504.7213482599999,
+    162.04067014999998
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 6,
+   "cols": 39,
+   "numeric_ratio": 0.032,
+   "empty_ratio": 0.603,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | st |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  | n |  | ne |  |  |  |  |  |  |  |  | no |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  |  | yt |  |  | ac |  | m |  | d |  |  |  |  | g |  | ita |  |  | s |  | t |  | > |  |  |  |  |  |  |\n|  |  |  |  |  |  | t |  |  |  |  | iro |  |  | ir |  | nre | e | es |  |  | e | 9 | ni |  | rts |  | gn | se | e | lu |  | S | >d | >d | >d | >d | >d | >d |\n|  |  |  |  |  | si | iri |  | ta |  |  | ja |  |  | em |  | vo | va | sa | we | sw | cn | 00 | ka | e | ig |  | it | co | ro | ciff |  | OE | ap | ap | ap | ap | ap | ap |\n| tI |  | si |  | ni | ht | ps |  | ht |  | a | m | fo |  | A |  | g | h | p | n | al | is | 2 | m | ht | er | ro | ov | rp | m | id | . | < | < | < | < | < | < | < |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 13,
+   "method": "pdfplumber",
+   "bbox": [
+    288.85878873600007,
+    162.04067014999998,
+    323.86297383600004,
+    239.82826604000002
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 13,
+   "method": "pdfplumber",
+   "bbox": [
+    119.66806170000001,
+    239.82826604000002,
+    504.7213482599999,
+    302.06
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 6,
+   "cols": 33,
+   "numeric_ratio": 0.032,
+   "empty_ratio": 0.525,
+   "col_consistency": 1.0,
+   "markdown": "| tI | si | ni | si | tir | ta | a | yt | fo | n | st | e | d | w | s | e | 9 | g | e | n | ro | g | ss | er | tlu | . | > | > | > | > | > | > | > |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  | ht | ip | ht |  | iro |  | aci | ne | va | es | en | wa | cni | 00 | nik | ht | oit |  | nit | e | o | ci |  | SO | da | da | da | da | da | da |\n|  |  |  |  | s |  |  | ja |  | re | m | h | sa |  | l | s | 2 | a |  | art |  | ov | cor | m | ffi |  | E | p< | p< | p< | p< | p< | p< |\n|  |  |  |  |  |  |  | m |  | m | nr |  | p |  |  |  |  | m |  | sig |  |  | p |  | d |  | < |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  | A | ev |  |  |  |  |  |  |  |  | er |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  | og |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 14,
+   "method": "pymupdf",
+   "bbox": [
+    122.05939393884995,
+    123.90110778808594,
+    503.7409973144531,
+    641.64404296875
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 8,
+   "cols": 56,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.692,
+   "col_consistency": 1.0,
+   "markdown": "| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | application | should |  | be |  | just |  | - |  | this |  | is |  | what |  | we |  | are | missing |  |  | , |  | in |  | my |  |  | opinion |  |  | . |  |  | <EOS> |  | <pad> |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | lication | should |  | be |  | just |  | - |  | this |  | is |  | what |  | we |  | are | missing |  |  | , |  | in |  | my |  |  | opinion |  |  | . |  |  | <EOS> |  | <pad> |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | app |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | on |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | applicati | should |  | be |  | just |  | - |  | this |  | is |  | what |  | we |  | are |  | missing |  |  | , |  | in |  | my |  |  | opinion |  |  | . |  |  | <EOS> |  | <pad> |\n| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | plication | should |  | be |  | just |  | - |  | this |  | is |  | what |  | we |  | are |  | missing |  |  | , |  | in |  | my |  |  | opinion |  |  | . |  |  | <EOS> |  | <pad> |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 14,
+   "method": "pdfplumber",
+   "bbox": [
+    122.06191516363636,
+    123.90109228000006,
+    503.74102274,
+    528.57392116
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 59,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.719,
+   "col_consistency": 1.0,
+   "markdown": "| ehT |  | waL |  | lliw |  | reven |  | eb |  | tcefrep |  | , |  | tub |  | sti |  | noitacilppa | dluohs |  | eb |  | tsuj |  | - |  | siht |  | si |  | tahw |  | ew |  | era |  | gnissim |  |  | , |  |  | ni |  |  | ym |  |  | noinipo |  |  | . |  |  | >SOE< |  | >dap< |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| ehT\np |  | waL\nu |  | lliw\nt- |  | reven\nIn |  | eb\np |  | tcefrep\nu |  | ,\nt |  | tub\nLa |  | sti\ny |  | noitacil\ne | dluohs\nr5 |  | eb |  | tsuj |  | - |  | siht |  | si |  | tahw |  | ew |  | era |  | gnissim |  |  | , |  |  | ni |  |  | ym |  |  | noinipo |  |  | . |  |  | >SOE< |  | >dap< |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ppa |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | no |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| ehT |  | waL |  | lliw |  | reven |  | eb |  | tcefrep |  | , |  | tub |  | sti |  | itacilppa | dluohs |  | eb |  | tsuj |  | - |  | siht |  | si |  | tahw |  | ew |  | era |  |  | gnissim |  |  | , |  |  | ni |  |  | ym |  |  | noinipo |  |  | . |  |  | >SOE< |  | >dap< |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 14,
+   "method": "pdfplumber",
+   "bbox": [
+    122.06191516363636,
+    528.57392116,
+    503.74102274,
+    641.6440394199999
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 27,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.321,
+   "col_consistency": 1.0,
+   "markdown": "| ehT | waL | lliw | reven | eb | tcefrep | , | tub | sti | noitacilp | dluohs | eb | tsuj | - | siht | si | tahw | ew | era | gnissim | , | ni | ym | noinipo | . | >SOE< | >dap< |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  | pa |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| ure\nlatt\n6. | 4:\nent\nNot | Two\nions\neth | att\nfor\natt | enti\nhe\nhea | on\nad5\ntten | hea\n. B\ntio | ds,a\notto\nnsa | lso\nm:\nrev | in\nIso\nery | laye\nlate\nsha | r5\ndat\nrp | of6\nten\nfor | ,ap\ntion\nthis | par\nsfr\nwo | ent\nom\nrd. | lyi\njus | nvol\ntth | ved\newo | in\nrd‘ | ana\nits’ | pho\nfor | rar\natt | esol\nenti | utio\non | n.\nhea | Top\nds5 |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 15,
+   "method": "pymupdf",
+   "bbox": [
+    120.87900842939105,
+    138.21046447753906,
+    499.3437042236328,
+    618.1871337890625
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 48,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.546,
+   "col_consistency": 1.0,
+   "markdown": "| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | application |  | should |  | be | just |  | - |  | this | is | what |  | we | are | missing |  | , | in |  | my |  | opinion |  | . |  | <EOS> |  | <pad> |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | lication |  | should |  | be | just |  | - |  | this | is | what |  | we | are | missing |  | , | in |  | my |  | opinion |  | . |  | <EOS> |  | <pad> |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | app |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| The |  | Law |  | will |  | never |  | be |  | perfect |  | , |  | but |  | its |  | application |  | should |  | be | just |  | - |  | this | is | what |  | we | are | missing |  | , | in |  | my |  | opinion |  | . |  | <EOS> |  | <pad> |  |\n| The\nure |  | Law\n5: |  | will\nMa |  | never\nny |  | be\nof t |  | perfect\nhe a |  | ,\ntten |  | but\ntio |  | its\nn h |  | application\nead |  | should\ns ex |  | be\nhib | just\nit b |  | -\neha |  | this\nvio | is\nur t | what\nhat |  | we\nsee | are\nms | missing\nrela |  | ,\nted | in\nto t |  | my\nhe |  | opinion\nstru |  | .\nctu |  | <EOS>\nre o |  | <pad>\nf th |  |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 15,
+   "method": "pdfplumber",
+   "bbox": [
+    120.88247399037037,
+    138.21046256,
+    499.3434418807407,
+    325.05698643999995
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 54,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| ehT |  | waL |  | lliw |  | reven |  | eb |  | tcefrep |  | , |  | tub |  | sti |  | noitacilppa |  | dluohs |  | eb |  | tsuj |  | - |  | siht |  | si |  | tahw |  | ew |  | era |  | gnissim |  | , |  | ni |  | ym |  | noinipo |  | . |  | >SOE< |  | >dap< |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 15,
+   "method": "pdfplumber",
+   "bbox": [
+    120.88247399037037,
+    325.05698643999995,
+    499.3434418807407,
+    543.41080214
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 54,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.66,
+   "col_consistency": 1.0,
+   "markdown": "| ehT\np |  | waL\nu |  | lliw\nt- |  | reven\nIn |  | eb\np |  | tcefrep\nu |  | ,\nt |  | tub\nLa |  | sti\ny |  | noitacil\ne |  | dluohs\nr5 |  | eb |  | tsuj |  | - |  | siht |  | si |  | tahw |  | ew |  | era |  | gnissim |  | , |  | ni |  | ym |  | noinipo |  | . |  | >SOE< |  | >dap< |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ppa |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n| ehT |  | waL |  | lliw |  | reven |  | eb |  | tcefrep |  | , |  | tub |  | sti |  | noitacilppa |  | dluohs |  | eb |  | tsuj |  | - |  | siht |  | si |  | tahw |  | ew |  | era |  | gnissim |  | , |  | ni |  | ym |  | noinipo |  | . |  | >SOE< |  | >dap< |  |"
+  },
+  {
+   "doc": "Attention Is All You Need",
+   "page": 15,
+   "method": "pdfplumber",
+   "bbox": [
+    120.88247399037037,
+    543.41080214,
+    499.3434418807407,
+    618.18705688
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 27,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| ehT\nure\nten | waL\n5:\nce. | lliw\nMa\nWe | reven\nny\ngive | eb\noft\ntw | tcefrep\nhea\nosu | ,\ntten\nch | tub\ntio\nexa | sti\nnh\nmpl | noitacilppa\nead\nesa | dluohs\nsex\nbov | eb\nhib\ne,f | tsuj\nitb\nrom | -\neha\ntw | siht\nvio\nodi | si\nurt\nffer | tahw\nhat\nent | ew\nsee\nhea | era\nms\ndsf | gnissim\nrela\nrom | ,\nted\nthe | ni\ntot\nen | ym\nhe\ncod | noinipo\nstru\ners | .\nctu\nelf- | >SOE<\nreo\natte | >dap<\nfth\nntio |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 1,
+   "method": "pymupdf",
+   "bbox": [
+    308.86199951171875,
+    225.43072509765625,
+    544.5430297851562,
+    302.4001159667969
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 20\n(%)\nerror\n10\n56-layer training\n20-layer\n0 0 1 2 3 4 5 6\niter. (1e4) | 56-layer\n20-layer | test error (%) | 20\n56-layer\n20-layer\n10\n00 1 2 3 4 5 6\niter. (1e4) | 56-layer\n20-layer |\n|---|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 1,
+   "method": "pdfplumber",
+   "bbox": [
+    308.862,
+    225.6048872476,
+    544.34296278,
+    302.4001415428
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 20\n)%(\nrorre\n10\ngniniart 56-layer\n20-layer\n0 0 1 2 3 4 5 6\niter. (1e4) | 56-layer\n20-layer | )%(\nrorre\ntset | 20\n56-layer\n20-layer\n10\n00 1 2 3 4 5 6\niter. (1e4) | 56-layer\n20-layer |\n|---|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 4,
+   "method": "pymupdf",
+   "bbox": [
+    73.9734521484375,
+    97.40374755859375,
+    122.03726348876953,
+    356.6540298461914
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 15,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| 3x3 conv, 64 |  |\n|---|---|\n| 3x3 conv, 64 |  |\n| pool, /2 |  |\n| 3x3 conv, 128 |  |\n| 3x3 conv, 128 |  |\n| pool, /2 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 4,
+   "method": "pymupdf",
+   "bbox": [
+    144.847466546136,
+    97.40374755859375,
+    192.88479820457664,
+    584.8599243164062
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 34,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| 7x7 conv, 64, /2 |  |\n|---|---|\n| pool, /2 |  |\n| 3x3 conv, 64 |  |\n| 3x3 conv, 64 |  |\n| 3x3 conv, 64 |  |\n| 3x3 conv, 64 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 4,
+   "method": "pymupdf",
+   "bbox": [
+    73.9734521484375,
+    363.6829833984375,
+    122.03726348876953,
+    508.830322265625
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 4,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| 3x3 conv, 512 |  |\n|---|---|\n| 3x3 conv, 512 |  |\n| 3x3 conv, 512 |  |\n| 3x3 conv, 512 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 4,
+   "method": "pymupdf",
+   "bbox": [
+    73.9734521484375,
+    515.8592529296875,
+    122.03726348876953,
+    617.3101196289062
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 3,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| fc 4096 |  |\n|---|---|\n| fc 4096 |  |\n| fc 1000 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 4,
+   "method": "pymupdf",
+   "bbox": [
+    144.847466546136,
+    591.8888549804688,
+    192.88479820457664,
+    604.5408935546875
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| fc 1000 |  |\n|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 4,
+   "method": "pymupdf",
+   "bbox": [
+    214.67153694260287,
+    591.8888549804688,
+    262.7031764439174,
+    604.5408935546875
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| fc 1000 |  |\n|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    158.44215864942254,
+    72.12966918945312,
+    407.79752883911135,
+    80.920654296875
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 4,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| output size 18-layer | 34-layer | 50-layer | 101-layer |\n|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    158.44215864942254,
+    98.5032958984375,
+    407.79752883911135,
+    201.66986083984375
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 4,
+   "cols": 4,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.062,
+   "col_consistency": 1.0,
+   "markdown": "|  | \u0014 3 3× ×3 3, 6 64 \u0015 ×3\n, 4 |  1×1, 64 \n 3×3, 64 ×\n1×1, 256 |  1×1, 64 \n3 3×3, 64 ×3\n\n1×1, 256 |\n|---|---|---|---|\n| 28×28 \u0014 3 3× ×3 3, 1 12 28 \u0015 ×2 \u0014\n, 8 | 3 3× ×33 ,, 1 1228 \u0015 ×4\n8 |  1×1, 128 \n 3×3, 128 ×\n1×1, 512 |  1×1, 128 \n4 3×3, 128 ×4\n\n1×1, 512 |\n| 14×14 \u0014 3 3× ×3 3, 2 25 56 \u0015 ×2 \u0014\n, 6 | 3 3× ×33 ,, 2 2556 \u0015 ×6\n6 |  1×1, 256 \n 3×3, 256 ×\n1×1, 1024 |  1×1, 256 \n6 3×3, 256 ×23\n\n1×1, 1024 |\n| 7×7 \u0014 3 3× ×3 3, 5 51 12 \u0015 ×2 \u0014\n, 2 | 3 3× ×33 ,, 5 5112 \u0015 ×3\n2 |  1×1, 512 \n 3×3, 512 ×\n1×1, 2048 |  1×1, 512 \n3 3×3, 512 ×3\n\n1×1, 2048 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    158.44215864942254,
+    210.46087646484375,
+    407.79752883911135,
+    219.25250244140625
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 4,
+   "numeric_ratio": 0.75,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| OPs 1.8×109 | 3.6×109 | 3.8×109 | 7.6×109 |\n|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    84.76200103759766,
+    252.74981689453125,
+    484.4018615722656,
+    389.6285400390625
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 5,
+   "numeric_ratio": 0.25,
+   "empty_ratio": 0.733,
+   "col_consistency": 1.0,
+   "markdown": "| 60\n50\n(%)\n40 error\n34-layer\n30\n18-layer\nplain-18\nplain-34\n20\n0 10 20 30 40 50\niter. (1e4) |  | 60\n50\n(%)\n40 error\n18\n30\nResNet-18\nResNet-34 34\n20\n0 10 20 30 40\niter. (1e4) |  |  |\n|---|---|---|---|---|\n|  |  |  | 18 |  |\n|  |  |  | ResNet-18\nResNet-34 34 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    102.96053992377387,
+    252.74981689453125,
+    284.97650146484375,
+    372.5727996826172
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| 34-layer |  |\n|---|---|\n| 18-layer\nplain-18\nplain-34 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    158.52019716,
+    72.12966322,
+    411.01304049,
+    219.25251455000011
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 9,
+   "cols": 5,
+   "numeric_ratio": 0.29,
+   "empty_ratio": 0.311,
+   "col_consistency": 1.0,
+   "markdown": "| outputsize | 18-layer | 34-layer | 50-layer | 101-layer |\n|---|---|---|---|---|\n| 112 112 |  |  |  |  |\n| ×\n56 56\n× |  |  |  |  |\n|  | (cid:20) 3 3,64 (cid:21)\n× 2\n3 3,64 ×\n× | (cid:20) 3 3,64 (cid:21)\n× 3\n3 3,64 ×\n× | × 1 1,64 \n 3 × 3,64  3\n× ×\n1 1,256\n× |  1 1,64 \n 3 × 3,64  3\n× ×\n1 1,256\n× |\n| 28 28\n× | (cid:20) 3 3,128 (cid:21)\n× 2\n3 3,128 ×\n× | (cid:20) 3 3,128 (cid:21)\n× 4\n3 3,128 ×\n× |  1 1,128 \n 3 × 3,128  4\n× ×\n1 1,512\n× |  1 1,128 \n 3 × 3,128  4\n× ×\n1 1,512\n× |\n| 14 14\n× | (cid:20) 3 3,256 (cid:21)\n× 2\n3 3,256 ×\n× | (cid:20) 3 3,256 (cid:21)\n× 6\n3 3,256 ×\n× |  1 1,256 \n 3 × 3,256  6\n× ×\n1 1,1024\n× |  1 1,256 \n 3 × 3,256  23\n× ×\n1 1,1024\n× |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    84.762,
+    252.9425856574857,
+    509.47086695333337,
+    389.62856080119997
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 4,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.667,
+   "col_consistency": 1.0,
+   "markdown": "| 60\n50\n)%(\n40 rorre\n34-layer\n30\n18-layer\nplain-18\nplain-34\n20\n0 10 20 30 40 50\niter. (1e4) |  | 60\n50\n)%(\n40 rorre\n18-layer\n30\nResNet-18\nResNet-34 34-layer\n20\n0 10 20 30 40 50\niter. (1e4) |  |\n|---|---|---|---|\n|  |  |  | 18-layer |\n|  |  |  | ResNet-18\nResNet-34 34-layer |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    102.96053989666667,
+    252.9425856574857,
+    284.97650483,
+    372.5728038
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 2,
+   "cols": 1,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 34-layer |\n|---|\n| 18-layer\nplain-18\nplain-34 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    143.32644596,
+    443.155,
+    200.7841523075,
+    480.116
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 2,
+   "cols": 1,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| plain |\n|---|\n| 27.94\n28.54 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    88.45999908447266,
+    72.079150390625,
+    248.01300048828125,
+    208.78802490234375
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 4,
+   "cols": 2,
+   "numeric_ratio": 0.25,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| model | top-1 err. top-5 err. |\n|---|---|\n| VGG-16 [41]\nGoogLeNet [44]\nPReLU-net [13] | 28.07 9.33\n- 9.15\n24.27 7.38 |\n| plain-34\nResNet-34 A\nResNet-34 B\nResNet-34 C | 28.54 10.02\n25.03 7.76\n24.52 7.46\n24.19 7.40 |\n| ResNet-50\nResNet-101\nResNet-152 | 22.85 6.71\n21.75 6.05\n21.43 5.71 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    334.5065002441406,
+    72.079150390625,
+    535.2601928710938,
+    142.98199462890625
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 3,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.556,
+   "col_consistency": 1.0,
+   "markdown": "| 64-d\n3x3, 64\nrelu\n3x3, 64\nrelu |  | 256-d\n1x1, 64\nrelu\n3x3, 64\nrelu\n1x1, 256\nrelu |\n|---|---|---|\n| 3x3, 64 |  |  |\n| 3x3, 64 |  |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    59.973501205444336,
+    255.0670166015625,
+    276.50099182128906,
+    389.2640075683594
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 4,
+   "cols": 2,
+   "numeric_ratio": 0.25,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| method | top-1 err. top-5 err. |\n|---|---|\n| VGG [41] (ILSVRC’14)\nGoogLeNet [44] (ILSVRC’14) | - 8.43†\n- 7.89 |\n| VGG [41] (v5)\nPReLU-net [13]\nBN-inception [16] | 24.4 7.1\n21.59 5.71\n21.99 5.81 |\n| ResNet-34 B\nResNet-34 C\nResNet-50\nResNet-101\nResNet-152 | 21.84 5.71\n21.53 5.60\n20.74 5.25\n19.87 4.60\n19.38 4.49 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    59.973501205444336,
+    426.17498779296875,
+    276.50099182128906,
+    512.1530151367188
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 4,
+   "cols": 2,
+   "numeric_ratio": 0.375,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| method | top-5 err. (test) |\n|---|---|\n| VGG [41] (ILSVRC’14)\nGoogLeNet [44] (ILSVRC’14) | 7.32\n6.66 |\n| VGG [41] (v5)\nPReLU-net [13]\nBN-inception [16] | 6.8\n4.94\n4.82 |\n| ResNet (ILSVRC’15) | 3.57 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 6,
+   "method": "pdfplumber",
+   "bbox": [
+    334.92857982320004,
+    72.06584666666667,
+    534.5931224,
+    142.98199999999997
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.333,
+   "col_consistency": 1.0,
+   "markdown": "| 64-d\n3x3, 64\nrelu\n3x3, 64\nrelu |  | 256-d\n1x1, 64\nrelu\n3x3, 64\nrelu\n1x1, 256\nrelu |\n|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 6,
+   "method": "pdfplumber",
+   "bbox": [
+    334.92857982320004,
+    85.70500331428568,
+    383.114217179,
+    122.38698069999997
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 2,
+   "cols": 1,
+   "numeric_ratio": 1.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 3x3, 64 |\n|---|\n| 3x3, 64 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    311.19110107421875,
+    73.20293426513672,
+    542.7860717773438,
+    242.6279296875
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 5,
+   "cols": 4,
+   "numeric_ratio": 0.214,
+   "empty_ratio": 0.3,
+   "col_consistency": 1.0,
+   "markdown": "| method |  |  | error (%) |\n|---|---|---|---|\n| Maxout [10]\nNIN [25]\nDSN [24] |  |  | 9.38\n8.81\n8.22 |\n|  | # layers | # params |  |\n| FitNet [35]\nHighway [42, 43]\nHighway [42, 43] | 19\n19\n32 | 2.5M\n2.3M\n1.25M | 8.39\n7.54 (7.72±0.16)\n8.80 |\n| ResNet\nResNet\nResNet\nResNet\nResNet\nResNet | 20\n32\n44\n56\n110\n1202 | 0.27M\n0.46M\n0.66M\n0.85M\n1.7M\n19.4M | 8.75\n7.51\n7.17\n6.97\n6.43 (6.61±0.16)\n7.93 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    74.19999694824219,
+    632.791015625,
+    262.27398681640625,
+    669.7529907226562
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 4,
+   "numeric_ratio": 0.375,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| output map size | 32×32 | 16×16 | 8×8 |\n|---|---|---|---|\n| # layers\n# filters | 1+2n\n16 | 2n\n32 | 2n\n64 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    387.62033505,
+    121.84706515000005,
+    472.26375535,
+    242.62792155
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 2,
+   "numeric_ratio": 0.333,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| #layers | #params |\n|---|---|\n| 19\n19\n32 | 2.5M\n2.3M\n1.25M |\n| 20\n32\n44\n56\n110\n1202 | 0.27M\n0.46M\n0.66M\n0.85M\n1.7M\n19.4M |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    147.123,
+    632.7909999999999,
+    230.001,
+    669.753
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 32×32 | 16×16 |\n|---|---|\n| 1+2n\n16 | 2n\n32 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    157.4490921667316,
+    74.69954798771785,
+    493.90844345092773,
+    173.39697265625
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 20\nResNet-20\nResNet-32\nResNet-44\nResNet-56\n56-layer ResNet-110\n(%)\n20-layer 10 20-layer error\n5 110-layer\n3 4 5 6 00 1 2 3 4 5 6\niter. (1e4) iter. (1e4) | 2\n(%)\n1 error | 0\nresidual-110\nresidual-1202\n0\n5\n1\n0 4 5 6\niter. (1e4) | residual-110\nresidual-1202 | residual-110\nresidual-1202 |\n|---|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    274.4598582874645,
+    74.69954798771785,
+    407.57639857700894,
+    160.9446273553567
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 2,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "|  | ResNet-20\nResNet-32\nResNet-44\nResNet-56\nResNet-110\n20-layer | ResNet-20\nResNet-32\nResNet-44\nResNet-56\nResNet-110 |\n|---|---|---|\n|  | 110-layer |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    397.8781956263951,
+    213.12840576171874,
+    518.3060302734375,
+    258.60813598632814
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 2,
+   "numeric_ratio": 0.333,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 07+12 | 07++12 |\n|---|---|\n| VOC 07 test | VOC 12 test |\n| 73.2\n76.4 | 70.4\n73.8 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    390.7046639578683,
+    306.87069411504837,
+    514.718994140625,
+    335.45098876953125
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 1.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 41.5\n48.4 | 21.2\n27.2 |\n|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    99.611,
+    74.80600849600003,
+    493.66235894000005,
+    173.39700000000005
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 7,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.143,
+   "col_consistency": 1.0,
+   "markdown": "| 56-layer\n)%(\n10 rorre 20-layer\n5 plain-20\nplain-32\nplain-44\nplain-56\n00 1 2 3 4 5 6\niter. (1e4) |  | ResNet-20\nResNet-32\nResNet-44\nResNet-56\nResNet-110\n)%(\n10 rorre 20-layer\n110-layer\n5\n00 1 2 3 4 5 6\niter. (1e4) | )%(\n1 rorre | residual-110\nresidual-1202\n0\n5\n1\n0 4 5 6\niter. (1e4) | residual-110\nresidual-1202 | residual-110\nresidual-1202 |\n|---|---|---|---|---|---|---|"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    111.33943221909091,
+    74.80600849600003,
+    244.85563223000003,
+    160.94465400655744
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| 56-layer\n20-layer |  |\n|---|---|\n| plain-20\nplain-32\nplain-44\nplain-56 |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    274.446391206708,
+    74.80600849600003,
+    407.81689743,
+    160.94465400655744
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.25,
+   "col_consistency": 1.0,
+   "markdown": "| ResNet-20\nResNet-32\nResNet-44\nResNet-56\nResNet-110\n20-layer | ResNet-20\nResNet-32\nResNet-44\nResNet-56\nResNet-110 |\n|---|---|\n| 110-layer |  |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    61.95399283354,
+    213.33814265,
+    274.446391206708,
+    328.7930695677
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 3 plain-20 plain-56\nResNet-20\n2 dts ResNet-56\nResNet-110\n1\n0 20 40 60 80 100\nlayer index (original) | plain-20\nplain-56\nResNet-20\nResNet-56\nResNet-110 |\n|---|---|\n| 3 plain-20 plain-56\nResNet-20\n2 dts ResNet-56\nResNet-110\n1\n0 20 40 60 80 100\nlayer index (sorted by magnitude) | plain-20\nplain-56\nResNet-20\nResNet-56\nResNet-110 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    396.881,
+    213.33814265,
+    458.7024112388889,
+    258.35467040000003
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 3,
+   "cols": 1,
+   "numeric_ratio": 0.333,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 07+12 |\n|---|\n| VOC07test |\n| 73.2\n76.4 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pymupdf",
+   "bbox": [
+    140.03700256347656,
+    72.198974609375,
+    456.872607421875,
+    177.7540283203125
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 5,
+   "cols": 5,
+   "numeric_ratio": 0.316,
+   "empty_ratio": 0.24,
+   "col_consistency": 1.0,
+   "markdown": "| training data | COCO train |  | COCO trainval |  |\n|---|---|---|---|---|\n| test data | COCO val |  | COCO test-dev |  |\n| mAP | @.5 | @[.5, .95] | @.5 | @[.5, .95] |\n| baseline Faster R-CNN (VGG-16)\nbaseline Faster R-CNN (ResNet-101)\n+box refinement\n+context\n+multi-scale testing | 41.5\n48.4\n49.9\n51.1\n53.8 | 21.2\n27.2\n29.9\n30.0\n32.5 | 53.3\n55.7 | 32.2\n34.9 |\n| ensemble |  |  | 59.0 | 37.4 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pymupdf",
+   "bbox": [
+    51.91366195678711,
+    208.10690307617188,
+    543.3140258789062,
+    249.91598510742188
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 2,
+   "cols": 5,
+   "numeric_ratio": 0.2,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| system | net | data | mAP | areo bike bird boat bottle bus car cat chair cow table dog horse mbike person plant sheep sofa train tv |\n|---|---|---|---|---|\n| baseline\nbaseline\nbaseline+++ | VGG-16\nResNet-101\nResNet-101 | 07+12\n07+12\nCOCO+07+12 | 73.2\n76.4\n85.6 | 76.5 79.0 70.9 65.5 52.1 83.1 84.7 86.4 52.0 81.9 65.7 84.8 84.6 77.5 76.7 38.8 73.6 73.9 83.0 72.6\n79.8 80.7 76.2 68.3 55.9 85.1 85.3 89.8 56.7 87.8 69.4 88.3 88.9 80.9 78.4 41.7 78.6 79.8 85.3 72.0\n90.0 89.6 87.8 80.8 76.1 89.9 89.9 89.6 75.5 90.0 80.7 89.6 90.3 89.1 88.7 65.4 88.1 85.6 89.0 86.8 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pymupdf",
+   "bbox": [
+    51.91366195678711,
+    293.75189208984375,
+    543.3140258789062,
+    335.5610046386719
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 2,
+   "cols": 5,
+   "numeric_ratio": 0.2,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| system | net | data | mAP | areo bike bird boat bottle bus car cat chair cow table dog horse mbike person plant sheep sofa train tv |\n|---|---|---|---|---|\n| baseline\nbaseline\nbaseline+++ | VGG-16\nResNet-101\nResNet-101 | 07++12\n07++12\nCOCO+07++12 | 70.4\n73.8\n83.8 | 84.9 79.8 74.3 53.9 49.8 77.5 75.9 88.5 45.6 77.1 55.3 86.9 81.7 80.9 79.6 40.1 72.6 60.9 81.2 61.5\n86.5 81.6 77.2 58.0 51.0 78.6 76.6 93.2 48.6 80.4 59.0 92.1 85.3 84.8 80.7 48.1 77.3 66.5 84.7 65.6\n92.1 88.4 84.8 75.9 71.4 86.3 87.8 94.2 66.8 89.4 69.2 93.9 91.9 90.9 89.6 67.9 88.2 76.8 90.3 80.0 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pymupdf",
+   "bbox": [
+    324.1708793640137,
+    391.8169860839844,
+    529.125,
+    445.614990234375
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 3,
+   "numeric_ratio": 0.375,
+   "empty_ratio": 0.111,
+   "col_consistency": 1.0,
+   "markdown": "|  | val2 | test |\n|---|---|---|\n| GoogLeNet [44] (ILSVRC’14) | - | 43.9 |\n| our single model (ILSVRC’15)\nour ensemble (ILSVRC’15) | 60.5\n63.6 | 58.8\n62.1 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pdfplumber",
+   "bbox": [
+    282.79,
+    72.19899999999996,
+    410.372,
+    177.75400000000002
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 5,
+   "cols": 3,
+   "numeric_ratio": 0.444,
+   "empty_ratio": 0.4,
+   "col_consistency": 1.0,
+   "markdown": "| COCOtrain |  |  |\n|---|---|---|\n| COCOval |  |  |\n| @.5 | @[.5,.95] | @.5 |\n| 41.5\n48.4\n49.9\n51.1\n53.8 | 21.2\n27.2\n29.9\n30.0\n32.5 | 53.3\n55.7 |\n|  |  | 59.0 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pdfplumber",
+   "bbox": [
+    90.61598434999999,
+    208.10687829999995,
+    202.52900955,
+    249.91598399999998
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 2,
+   "cols": 3,
+   "numeric_ratio": 0.167,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| net | data | mAP |\n|---|---|---|\n| VGG-16\nResNet-101\nResNet-101 | 07+12\n07+12\nCOCO+07+12 | 73.2\n76.4\n85.6 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pdfplumber",
+   "bbox": [
+    90.61598434999999,
+    293.7518783,
+    202.52900955,
+    335.560984
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 2,
+   "cols": 3,
+   "numeric_ratio": 0.167,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| net | data | mAP |\n|---|---|---|\n| VGG-16\nResNet-101\nResNet-101 | 07++12\n07++12\nCOCO+07++12 | 70.4\n73.8\n83.8 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 11,
+   "method": "pdfplumber",
+   "bbox": [
+    457.294,
+    391.817,
+    493.309,
+    445.615
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 3,
+   "cols": 1,
+   "numeric_ratio": 0.333,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| val2 |\n|---|\n| - |\n| 60.5\n63.6 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 12,
+   "method": "pymupdf",
+   "bbox": [
+    51.8986930847168,
+    72.67695617675781,
+    284.58099365234375,
+    147.46853637695312
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 6,
+   "numeric_ratio": 0.067,
+   "empty_ratio": 0.167,
+   "col_consistency": 1.0,
+   "markdown": "| LOC\nmethod | LOC\nnetwork | testing | LOC error\non GT CLS | classification\nnetwork | top-5 LOC error\non predicted CLS |\n|---|---|---|---|---|---|\n| VGG’s [41]\nRPN\nRPN | VGG-16\nResNet-101\nResNet-101 | 1-crop\n1-crop\ndense | 33.1 [41]\n13.3\n11.7 |  |  |\n| RPN\nRPN+RCNN\nRPN+RCNN | ResNet-101\nResNet-101\nensemble | dense\ndense\ndense |  | ResNet-101\nResNet-101\nensemble | 14.4\n10.6\n8.9 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 12,
+   "method": "pymupdf",
+   "bbox": [
+    313.4830017089844,
+    72.67695617675781,
+    540.490966796875,
+    142.43597412109375
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 4,
+   "cols": 3,
+   "numeric_ratio": 0.3,
+   "empty_ratio": 0.167,
+   "col_consistency": 1.0,
+   "markdown": "| method | top-5 localization err |  |\n|---|---|---|\n|  | val | test |\n| OverFeat [40] (ILSVRC’13)\nGoogLeNet [44] (ILSVRC’14)\nVGG [41] (ILSVRC’14) | 30.0\n-\n26.9 | 29.9\n26.7\n25.3 |\n| ours (ILSVRC’15) | 8.9 | 9.0 |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 12,
+   "method": "pdfplumber",
+   "bbox": [
+    93.01100052,
+    72.67695517999994,
+    230.83512684000002,
+    147.46849727999995
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 4,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.167,
+   "col_consistency": 1.0,
+   "markdown": "| LOC\nnetwork | testing | LOCerror\nonGTCLS | classification\nnetwork |\n|---|---|---|---|\n| VGG-16\nResNet-101\nResNet-101 | 1-crop\n1-crop\ndense | 33.1[41]\n13.3\n11.7 |  |\n| ResNet-101\nResNet-101\nensemble | dense\ndense\ndense |  | ResNet-101\nResNet-101\nensemble |"
+  },
+  {
+   "doc": "Deep Residual Learning for Image Recognition",
+   "page": 12,
+   "method": "pdfplumber",
+   "bbox": [
+    445.166,
+    84.10500000000002,
+    481.1809999999999,
+    142.43600000000004
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 3,
+   "cols": 1,
+   "numeric_ratio": 0.333,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| val |\n|---|\n| 30.0\n-\n26.9 |\n| 8.9 |"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    322.25327555338544,
+    87.64868809626653,
+    501.90565388997396,
+    205.57255045572916
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 7,
+   "cols": 12,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.786,
+   "col_consistency": 1.0,
+   "markdown": "|  | C T ... T T T’ ...\n1 N [SEP] 1\nBERT BERT\nE[CLS] E ... E E E 1’ .\n1 N [SEP] |  |  |  |  |  |  |  |  | T ’\nM |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  | T’\n1 |  | ... |  |  |\n|  |  | BERT BERT |  |  |  |  |  |  |  |  |  |\n|  |  | E[CLS] | E\n1 | ... | E\nN | E\n[SEP] | E’\n1 |  | . | .. | E ’\nM |\n|  |  |  |  |  |  |  |  |  |  | .. TokM |  |\n|  |  |  |  |  |  |  |  |  | . | .. |  |"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    106.53672866821289,
+    95.79829607511822,
+    138.49468612670898,
+    106.89337666829427
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| T\n1 | ... |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    366.230461968316,
+    95.79829607511822,
+    399.9165344238281,
+    106.89337666829427
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| T\n1 | ... |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    87.66283743722099,
+    106.89337666829427,
+    241.6326110839844,
+    155.39628982543945
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 8,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.438,
+   "col_consistency": 1.0,
+   "markdown": "| BERT |  |  |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|\n| E[CLS] | E\n1 | ... | E\nN | E\n[SEP] | E’\n1 | ... | E ’\nM |"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    352.26744588216144,
+    118.54757690429688,
+    463.1296953473772,
+    129.36363220214844
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| BER | T B | ERT |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    106.53672866821289,
+    167.29198946271623,
+    138.49468612670898,
+    179.66560554504395
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Tok 1 | ... |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    366.230461968316,
+    167.29198946271623,
+    399.9165344238281,
+    179.66560554504395
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Tok 1 | ... |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pdfplumber",
+   "bbox": [
+    301.35554278819603,
+    88.56212081281039,
+    514.2782687119592,
+    205.9517777306441
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 7,
+   "cols": 14,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.786,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  | C T ... T T T’\n1 N [SEP] 1 |  |  |  |  |  |  |  |  | T | ’\nM\n’\nM |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  | T’\n1 |  | ... |  |  | ’\nM |\n|  |  |  | BERT BERT |  |  |  |  |  |  |  |  |  |  |\n|  |  |  | E[CLS] | E\n1 | ... | E\nN | E\n[SEP] | E’\n1 |  | . | .. | E | ’\nM |\n|  |  |  |  |  |  |  |  |  |  |  | .. Tok |  |  |\n|  |  |  |  |  |  |  |  |  |  | . | .. |  |  |"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pdfplumber",
+   "bbox": [
+    106.61474773140642,
+    95.87064927088073,
+    138.3995780098258,
+    106.96682342846255
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| T\n1 | ... |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pdfplumber",
+   "bbox": [
+    87.52739600868767,
+    95.87064927088073,
+    241.83852122785837,
+    155.51790888910136
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 8,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.583,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  | T ’\nM |\n|---|---|---|---|---|---|---|---|\n| BERT |  |  |  |  |  |  |  |\n| E[CLS] | E\n1 | ... | E\nN | E\n[SEP] | E’\n1 | ... | E ’\nM |"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pdfplumber",
+   "bbox": [
+    366.40076879090304,
+    95.87064927088073,
+    399.916558753172,
+    106.96682342846255
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| T\n1 | ... |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 3,
+   "method": "pdfplumber",
+   "bbox": [
+    352.65567632743796,
+    118.54760734272213,
+    463.1353254710544,
+    129.36366275970204
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| BER | T B | ERT |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    251.36558532714844,
+    63.98569815499442,
+    328.49561767578126,
+    80.37865447998047
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| is | cute | [SEP] |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    332.2239990234375,
+    63.98569815499442,
+    407.4411193847656,
+    80.37865447998047
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| he | likes | play |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    412.28765869140625,
+    63.98569815499442,
+    470.89197213309154,
+    80.37865447998047
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| ##ing | [SEP] |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    251.36558532714844,
+    89.52388000488281,
+    328.49561767578126,
+    105.43457412719727
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\nis | E\ncute | E\n[SEP] |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    332.2239990234375,
+    89.52388000488281,
+    407.4411193847656,
+    105.43457412719727
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\nhe | E\nlikes | E\nplay |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    412.28765869140625,
+    89.52388000488281,
+    470.89197213309154,
+    105.43457412719727
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n##ing | E\n[SEP] |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    251.36558532714844,
+    150.1676788330078,
+    328.49561767578126,
+    166.5121067592076
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n3 | E\n4 | E\n5 |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    332.2239990234375,
+    150.1676788330078,
+    407.4411193847656,
+    166.5121067592076
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n6 | E\n7 | E\n8 |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pymupdf",
+   "bbox": [
+    412.28765869140625,
+    150.1676788330078,
+    470.89197213309154,
+    166.5121067592076
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n9 | E\n10 |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    251.36560088647198,
+    64.14556884111552,
+    329.02923250556637,
+    80.3100984251279
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| is | cute | [SEP] |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    332.2240034739408,
+    64.14556884111552,
+    407.78929019321095,
+    80.3100984251279
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| he | likes | play |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    412.35974545757574,
+    64.14556884111552,
+    470.81988017497537,
+    80.3100984251279
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| ##ing | [SEP] |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    251.36560088647198,
+    89.52389805966482,
+    329.02923250556637,
+    105.48111089484195
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\nis | E\ncute | E\n[SEP] |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    332.2240034739408,
+    89.52389805966482,
+    407.78929019321095,
+    105.48111089484195
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\nhe | E\nlikes | E\nplay |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    412.35974545757574,
+    89.52389805966482,
+    470.81988017497537,
+    105.48111089484195
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n##ing | E\n[SEP] |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    251.36560088647198,
+    150.16770000026634,
+    329.02923250556637,
+    166.24948415989658
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n3 | E\n4 | E\n5 |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    332.2240034739408,
+    150.16770000026634,
+    407.78929019321095,
+    166.24948415989658
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n6 | E\n7 | E\n8 |\n|---|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 5,
+   "method": "pdfplumber",
+   "bbox": [
+    412.35974545757574,
+    150.16770000026634,
+    470.81988017497537,
+    166.24948415989658
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| E\n9 | E\n10 |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 13,
+   "method": "pdfplumber",
+   "bbox": [
+    72.0,
+    64.32006616492636,
+    524.3997144767903,
+    167.9227667100887
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| BERT (Ours) OpenAI GPT ELMo\nT1 T2 ... TN T1 T2 ... TN T1 T2 ... TN\nTrm Trm ... Trm Trm Trm ... Trm\nLstm Lstm ... Lstm Lstm Lstm ... Lstm\nTrm Trm ... Trm Trm Trm ... Trm\nLstm Lstm ... Lstm Lstm Lstm ... Lstm\nE1 E2 ... EN E1 E2 ... EN E1 E2 ... EN | ELMo\nT1 T2 ... TN\nLstm Lstm ... Lstm Lstm Lstm ... Lstm\nLstm Lstm ... Lstm Lstm Lstm ... Lstm\nE1 E2 ... EN |\n|---|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 13,
+   "method": "pdfplumber",
+   "bbox": [
+    398.7834140117327,
+    81.16811613219285,
+    417.07222083561777,
+    103.33381848182506
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 1,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| T2 |\n|---|"
+  },
+  {
+   "doc": "BERT",
+   "page": 13,
+   "method": "pdfplumber",
+   "bbox": [
+    375.86145280427485,
+    127.69030282422466,
+    417.07222083561777,
+    157.36520437843345
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| ... |  |  |\n|---|---|---|\n| E1 |  | E2 |"
+  },
+  {
+   "doc": "BERT",
+   "page": 15,
+   "method": "pymupdf",
+   "bbox": [
+    356.5821297838797,
+    91.68648238409133,
+    468.0592296969506,
+    163.05083759014423
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.444,
+   "col_consistency": 1.0,
+   "markdown": "| T T\n1 2 | ... | T\nN |\n|---|---|---|\n| BERT |  |  |\n| E E\n1 2 |  |  |"
+  },
+  {
+   "doc": "BERT",
+   "page": 15,
+   "method": "pymupdf",
+   "bbox": [
+    356.5821297838797,
+    279.24867163764105,
+    468.0592296969506,
+    351.6406813401442
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.167,
+   "col_consistency": 1.0,
+   "markdown": "| T ...\n1 2 | T\nN |\n|---|---|\n| BERT |  |\n| E\n1 2 | E\nN |"
+  },
+  {
+   "doc": "BERT",
+   "page": 15,
+   "method": "pdfplumber",
+   "bbox": [
+    117.13650722037465,
+    91.628319361843,
+    223.28369261582708,
+    163.2929395404322
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.333,
+   "col_consistency": 1.0,
+   "markdown": "| C | T ...\n1 | T T\nN [SEP] |\n|---|---|---|\n| BERT |  |  |\n| E[CLS] | E ...\n1 |  |"
+  },
+  {
+   "doc": "BERT",
+   "page": 15,
+   "method": "pdfplumber",
+   "bbox": [
+    350.39544143547937,
+    91.628319361843,
+    476.1804198197739,
+    163.2929395404322
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.444,
+   "col_consistency": 1.0,
+   "markdown": "| T T\n1 2 | ... | T\nN |\n|---|---|---|\n| BERT |  |  |\n| E E\n1 2 |  |  |"
+  },
+  {
+   "doc": "BERT",
+   "page": 15,
+   "method": "pdfplumber",
+   "bbox": [
+    117.13650722037465,
+    279.17111339892165,
+    223.28369261582708,
+    351.8827863665259
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.333,
+   "col_consistency": 1.0,
+   "markdown": "| C | T ...\n1 | T T\nN [SEP] |\n|---|---|---|\n| BERT |  |  |\n| E[CLS] | E ...\n1 |  |"
+  },
+  {
+   "doc": "BERT",
+   "page": 16,
+   "method": "pymupdf",
+   "bbox": [
+    102.07012939453125,
+    572.6236572265625,
+    261.09691619873047,
+    680.5125528971354
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.4,
+   "col_consistency": 1.0,
+   "markdown": "|  |  | BER | TBASE (Mas | ked LM) |\n|---|---|---|---|---|\n|  |  | BER | TBASE (Left | -to-Right) |"
+  },
+  {
+   "doc": "BERT",
+   "page": 16,
+   "method": "pdfplumber",
+   "bbox": [
+    100.4405,
+    572.62369,
+    260.4895257142857,
+    680.479385
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "|  |  | BER | TBASE(Mas | kedLM) |\n|---|---|---|---|---|\n|  |  |  | TBASE(Left | -to-Right) |"
+  },
+  {
+   "doc": "DPO",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    108.73400115966797,
+    72.9886983235677,
+    503.2668762207031,
+    220.5
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| IMDb Sentiment Generation\n1.0\n0.9\n0.8\nReward\n0.7\n0.6\n0.5\nDPO (Ours) PPO-GT (Our impl.)\nUnlikelihood PPO-GT (TRL)\n0.4 PPO (Our impl.) Preferred-FT\n0.0 2.5 5.0 7.5 10.0 12.5 15.0 17.5 20.0\nKL( ref) | TL;DR Summarization Win Rate vs Reference\n0.7 DPO Preferred-FT GPT-J\nPPO SFT Best of 128\n0.6\n0.5\nrate\n0.4\nWin\n0.3\n0.2\n0.1\n0.0\n0.00 0.25 0.50 0.75 1.00\nSampling temperature |\n|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    108.734,
+    73.48348800000002,
+    503.26688,
+    220.5
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| IMDb Sentiment Generation\n1.0\n0.9\n0.8\ndraweR\n0.7\n0.6\n0.5\nDPO (Ours) PPO-GT (Our impl.)\nUnlikelihood PPO-GT (TRL)\n0.4 PPO (Our impl.) Preferred-FT\n0.0 2.5 5.0 7.5 10.0 12.5 15.0 17.5 20.0\nKL( ref) | TL;DR Summarization Win Rate vs Reference\n0.7 DPO Preferred-FT GPT-J\nPPO SFT Best of 128\n0.6\n0.5\netar\n0.4\nniW\n0.3\n0.2\n0.1\n0.0\n0.00 0.25 0.50 0.75 1.00\nSampling temperature |\n|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    131.0950676,
+    106.01974942564082,
+    300.80543,
+    192.89225193399048
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| DPO (Ours) PPO-GT (Our impl.)\nUnlikelihood PPO-GT (TRL) |  |\n|---|---|\n|  | DPO (Ours) PPO-GT (Our impl.)\nUnlikelihood PPO-GT (TRL) |"
+  },
+  {
+   "doc": "DPO",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    108.73400115966797,
+    72.9886983235677,
+    503.2668762207031,
+    220.5
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Anthropic-HH Dialogue Win Rate vs Chosen\n0.6\n0.5\nrate\n0.4\nWin\n0.3\n0.2\nDPO Preferred-FT\nBest of 128 Pythia-2.8B\n0.1\n0.25 0.50 0.75 1.00\nSampling temperature | Dialogue Win Rate Evolution\n0.70\n0.65\n0.60\n0.55 rate\n0.50\nWin\n0.45\n0.40\n0.35\nDPO (temp = 1.0) DPO (temp = 0.7)\n0.30\n0 300 600 900 1200 1500 1800 2100 2400 2700 3000 3300\nFine-tuning step |\n|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    108.734,
+    73.48348800000002,
+    503.26688,
+    220.5
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Anthropic-HH Dialogue Win Rate vs Chosen\n0.6\n0.5\netar\n0.4\nniW\n0.3\n0.2\nDPO Preferred-FT\nBest of 128 Pythia-2.8B\n0.1\n0.25 0.50 0.75 1.00\nSampling temperature | Dialogue Win Rate Evolution\n0.70\n0.65\n0.60\n0.55 etar\n0.50 niW\n0.45\n0.40\n0.35\nDPO (temp = 1.0) DPO (temp = 0.7)\n0.30\n0 300 600 900 12001500180021002400270030003300\nFine-tuning step |\n|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    131.0950676,
+    85.40546399999994,
+    300.80543,
+    191.40763201632896
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 1,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| DPO Preferred-FT |\n|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    333.790974,
+    88.88190841731,
+    497.66625,
+    191.40763201632896
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "DPO",
+   "page": 23,
+   "method": "pymupdf",
+   "bbox": [
+    110.71199798583984,
+    114.33282470703125,
+    501.2878723144531,
+    259.864990234375
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Anthropic-HH Dialogue Win Rate vs Chosen\n0.60\n0.55\n0.50\nrate\n0.45\n0.40 Win\n0.35\n0.30\n0.25 Best of 1 Best of 16 Best of 128\nBest of 4 Best of 64\n0.20\n0.25 0.50 0.75 1.00\nSampling temperature | TL;DR Summarization Win Rate vs Reference\n0.7 Best of 64 Best of 128 Best of 256\n0.6\n0.5\nrate\n0.4\nWin\n0.3\n0.2\n0.1\n0.0\n0.00 0.25 0.50 0.75 1.00\nSampling temperature |\n|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 23,
+   "method": "pymupdf",
+   "bbox": [
+    136.12117513020834,
+    132.70692998712713,
+    300.2070007324219,
+    230.66768939678485
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.667,
+   "col_consistency": 1.0,
+   "markdown": "| Best of 1 Best of 16 Best of 128 |  |  |\n|---|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 23,
+   "method": "pdfplumber",
+   "bbox": [
+    110.712,
+    114.33284000000003,
+    501.28788,
+    259.865
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Anthropic-HH Dialogue Win Rate vs Chosen\n0.60\n0.55\n0.50\netar\n0.45\n0.40 niW\n0.35\n0.30\n0.25 Best of 1 Best of 16 Best of 128\nBest of 4 Best of 64\n0.20\n0.25 0.50 0.75 1.00\nSampling temperature | TL;DR Summarization Win Rate vs Reference\n0.7 Best of 64 Best of 128 Best of 256\n0.6\n0.5\netar\n0.4\nniW\n0.3\n0.2\n0.1\n0.0\n0.00 0.25 0.50 0.75 1.00\nSampling temperature |\n|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 23,
+   "method": "pdfplumber",
+   "bbox": [
+    136.121174,
+    132.7069354848,
+    300.207,
+    230.66770015908463
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.667,
+   "col_consistency": 1.0,
+   "markdown": "| Best of 1 Best of 16 Best of 128 |  |  |\n|---|---|---|"
+  },
+  {
+   "doc": "DPO",
+   "page": 23,
+   "method": "pdfplumber",
+   "bbox": [
+    329.159044,
+    132.7069354848,
+    495.68725,
+    230.66770015908463
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 1,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| Best of 64 Best of 128 Best of 256 |\n|---|"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 2,
+   "method": "pymupdf",
+   "bbox": [
+    296.93663330078124,
+    114.510986328125,
+    358.6490936279297,
+    155.48148345947266
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 6,
+   "numeric_ratio": 0.2,
+   "empty_ratio": 0.833,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  | z4\nz3\nz2 |  |  |\n|---|---|---|---|---|---|\n|  |  |  | z3\nz2 |  |  |\n|  |  |  | z2 |  |  |\n|  |  | z |  |  |  |\n|  |  | 1 |  |  |  |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 2,
+   "method": "pdfplumber",
+   "bbox": [
+    296.70846597019187,
+    114.51095728589746,
+    358.82025622159387,
+    172.04275576522988
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 3,
+   "cols": 6,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.833,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  | z4\nz3\nz2 |  |  |\n|---|---|---|---|---|---|\n|  |  |  | z3\nz2 |  |  |\n|  |  | z1 |  |  |  |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    259.0487030029297,
+    581.4000244140625,
+    504.34340209960936,
+    602.4873318142361
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 14,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.429,
+   "col_consistency": 1.0,
+   "markdown": "| eding the BART-only baseline with the partial decoding \" |  |  |  |  |  |  |  |  |  |  |  |  | The |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| \"The | Sun | Also | Rises | \" is | a | novel | by | this | au | thor | of | \"The | Sun |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    107.7509994506836,
+    592.2576446533203,
+    504.34340209960936,
+    635.1229858398438
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 4,
+   "cols": 24,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.656,
+   "col_consistency": 1.0,
+   "markdown": "| Sun |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| Also | Rises\" |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |\n|  | T will complete the partial decoding |  |  |  |  |  |  |  |  | \"The |  | Sun | Also R |  | ises\" | is | a | novel | by | this | au | thor o | f \"A |\n|  | \"The | Sun | Also | Rises\" | is | a | novel | by | this |  | au | thor | of | \"A | Farewell |  | to | Arms\" | . This example shows |  |  |  |  |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 6,
+   "method": "pdfplumber",
+   "bbox": [
+    258.65659999999997,
+    581.4,
+    504.32766666666663,
+    602.4781999999999
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 14,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.464,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  |  |  | The |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| \"The | Sun | Also | Rises | \"is | a | novel | by | this | au | thor | of | \"The | Sun |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 6,
+   "method": "pdfplumber",
+   "bbox": [
+    107.751,
+    592.2796428571428,
+    157.873,
+    614.0356666666667
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.25,
+   "col_consistency": 1.0,
+   "markdown": "| Sun |  |\n|---|---|\n| Also | Rises\" |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 6,
+   "method": "pdfplumber",
+   "bbox": [
+    127.89080000000001,
+    614.0356666666667,
+    504.32766666666663,
+    635.123
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 23,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.391,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  | \"The |  | Sun | AlsoR |  | ises\" | is | a | novel | by | this | au | thoro | f\"A |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| \"The | Sun | Also | Rises\" | is | a | novel | by | this |  | au | thor | of | \"A | Farewell |  | to | Arms\" |  |  |  |  |  |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    108.0,
+    242.88197326660156,
+    515.6119995117188,
+    264.8499755859375
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.667,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| RAG-Token-BM25 29.7 41.5 32.1 33.1\nRAG-Sequence-BM25 31.8 44.1 36.6 33.8 | 17.5 22.3 55.5 48.4\n11.1 19.5 56.5 46.9 | 75.1 91.6 |\n|---|---|---|"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 8,
+   "method": "pymupdf",
+   "bbox": [
+    108.0,
+    268.01300048828125,
+    515.6119995117188,
+    289.9809875488281
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 3,
+   "numeric_ratio": 0.667,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| RAG-Token-Frozen 37.8 50.1 37.1 51.1\nRAG-Sequence-Frozen 41.2 52.1 41.8 52.6 | 16.7 21.7 55.9 49.4\n11.8 19.6 56.7 47.3 | 72.9 89.4 |\n|---|---|---|"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    124.14552090999999,
+    499.86862783,
+    236.60931017399997,
+    563.1161443056072
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| RAG-Tok\nRAG-Seq |  |\n|---|---|\n|  | RAG-Tok\nRAG-Seq |"
+  },
+  {
+   "doc": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+   "page": 8,
+   "method": "pdfplumber",
+   "bbox": [
+    256.387787528,
+    499.86862783,
+    368.851576792,
+    563.1161443056072
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 2,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "| RAG-Tok\nRAG-Seq\nFixedDPR\nBM25 |  |\n|---|---|\n|  | RAG-Tok\nRAG-Seq\nFixedDPR\nBM25 |"
+  },
+  {
+   "doc": "ViT",
+   "page": 3,
+   "method": "pymupdf",
+   "bbox": [
+    246.75314258393786,
+    164.6169179280599,
+    351.66803487141925,
+    206.24229736328124
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 4,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| 3 4 5 6 | 7 | 8 | 9 |\n|---|---|---|---|\n| ear Projection of Fl | attene | d Pat | ches |"
+  },
+  {
+   "doc": "ViT",
+   "page": 3,
+   "method": "pdfplumber",
+   "bbox": [
+    242.49171989771796,
+    187.77449389670915,
+    351.56514964937145,
+    205.76460950656403
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| near Proje | ction of Fla | ttened | Pat | ches |\n|---|---|---|---|---|"
+  },
+  {
+   "doc": "ViT",
+   "page": 6,
+   "method": "pymupdf",
+   "bbox": [
+    136.09222412109375,
+    290.4793647317325,
+    493.6464131673177,
+    649.8013916015625
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 26,
+   "numeric_ratio": 0.118,
+   "empty_ratio": 0.564,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  | 90\n14 | 0 |  |  |  |  |  | 90 | 90 | VIVI-Ex-100% (R5 |  |  |  |  |  | 70\n0x3) |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  | VTA | B ( | 19 ta | sks) |  |  |  | Nat | ural | (7 ta | sks) |  |  |  | pecia | lize | d (4 | task |  |  |  | truc | ture | d (8 | task |\n|  | : B\nill t\ntrai\n, su\nnc\ned\nsou\nely\ndec\non\n20)\n4 o\ned\nE-T\non\nbi\nents\npr\no b | rea\nook\nnin\nch\ne vs\non\nrce\n30\nom\nthis\n, an\nutpe\nthe\nRA\nTra\nase\n.\ne-tr\noos | kd\nsu\ng e\nas t\n. c\nthe\ns to\nda\npo\nbe\nd S\nrfo\nper\nINI\nnsf\ns fo\nain\nt t | own\nbst\nffici\nrai\nom\npu\npr\nys.\nses\nnch\n4L\nrm\nfor\nNG\norm\nr v\nVi\nhe |  |  |  | perf\nco\nbe a\nle,\nffer\net-\noul\nask\nVI\nd p\nx4,\ne t\nUI\ns w | or\nmp\nffe\nopt\nent\n21\nd b\ns i\nVI\nlus\nand\nop t\nRE\nell | man\nute\ncte\nimi\narc\nk d\ne tr\nnto\n– a\nse\not\nwo\nMEN\nwh | ce\nto\nd n\nzer,\nhit\natas\naine\nthe\nRes\nmi-\nher\nmo\nTS\nen |  |  |  |  |  |  |  |  |  |  | red\nHow\nbut\nontr\nVi\ntoo\nith\no p\nutu\nhai | tas\nev\nals\noll\nT-L\n, w\n8 c\nrev\nbe (\net | k gr\ner,\no ot\ned s\n/16\nhile\nore\niou\nTsc\nal., | ou\nwe\nher\ntud\nm\nta\ns in\ns S\nhan\n201 |"
+  },
+  {
+   "doc": "ViT",
+   "page": 6,
+   "method": "pdfplumber",
+   "bbox": [
+    136.092224125,
+    290.47935374926703,
+    493.6464369491667,
+    896.796060725
+   ],
+   "captionLinked": true,
+   "valid": true,
+   "rows": 3,
+   "cols": 26,
+   "numeric_ratio": 0.105,
+   "empty_ratio": 0.513,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  | 90\n14 | 0 |  |  |  |  |  | 90 | 90 | VIVI-Ex-100% (R5 |  |  |  |  |  | 70\n0x3) |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  | VTA | B ( | 19 ta | sks) |  |  |  | Nat | ural | (7 ta | sks) |  |  |  | pecia | lize | d (4 | task |  |  |  | truc | ture | d (8 | task |\n|  | : B\nillt\ntrai\n,su\nnc\ned\nsou\nely\ndec\non\n20)\n4o\ned\nE-T\non\nbi\nents\npr\no b | rea\nook\nnin\nch\ne vs\non\nrce\n30\nom\nthis\n,an\nutpe\nthe\nRA\nTra\nase\n.\ne-tr\noos | kd\nsu\ng e\nast\n. c\nthe\nsto\nda\npo\nbe\ndS\nrfo\nper\nINI\nnsf\nsfo\nain\nt t | own\nbst\nffici\nrai\nom\npu\npr\nys.\nses\nnch\n4L\nrm\nfor\nNG\norm\nrv\nVi\nhe |  |  |  | perf\nco\nbe a\nle,\nffer\net-\noul\nask\nVI\ndp\nx4,\net\nUI\nsw | or\nmp\nffe\nopt\nent\n21\ndb\nsi\nVI\nlus\nand\nopt\nRE\nell | man\nute\ncte\nimi\narc\nk d\netr\nnto\n–a\nse\not\nwo\nMEN\nwh | ce\nto\nd n\nzer,\nhit\natas\naine\nthe\nRes\nmi-\nher\nmo\nTS\nen |  |  |  | Spe\nanp\nhe\ncay,\nect\ns w\ntan\negr\nned\near\nnth\nilar.\non\nhed\nsiz\ns,\ng.\nn in\nrm\nng,\nels.\ned,\n. | cia\nrio\narc\netc\nion\nell\ndar\noup\non\nnin\neN\nala\nata\ne: I\nwe\nFig\nTa\nco\nth\nFi\nbut | lize\nrst\nhite\n.\n4.\non\ndcl\ns,\nIm\ngo\natu\nrge\nset\nma\nopti\nure\nble\nmpa\neir\ngur\naga | d,a\nate\nctu\nWe\n4.\nmo\nou\nand\nage\nnI\nral\nJF\nsiz\ngeN\nmi\n3\n5)\nred\nper\ne 3\nino |  |  |  | red\nHow\nbut\nontr\nVi\ntoo\nith\nop\nutu\nhai | tas\nev\nals\noll\nT-L\n, w\n8c\nrev\nbe(\net | kgr\ner,\no ot\neds\n/16\nhile\nore\niou\nTsc\nal., | ou\nwe\nher\ntud\nm\nta\nsin\nsS\nhan\n201 |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    130.0567626953125,
+    87.76081848144531,
+    288.1606811523437,
+    188.3512954711914
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 5,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.6,
+   "col_consistency": 1.0,
+   "markdown": "|  |  | BiT ViT-L/3\nViT-B/32 ViT-L/1 | 2\n6 |  |\n|---|---|---|---|---|\n|  |  | ViT-B/16 ViT-H/ | 14 |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    331.8053833007813,
+    87.76081848144531,
+    488.7291259765625,
+    188.3512954711914
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.667,
+   "col_consistency": 1.0,
+   "markdown": "|  | ViT-L/16 ViT-B/32 ResNet50x1 (BiT) |  |\n|---|---|---|\n|  | ViT-L/32 ViT-b/32 ResNet152x2 (BiT) |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    142.1435073852539,
+    320.7413330078125,
+    306.5745391845703,
+    439.6170227050781
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 16,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.833,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ) |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  |  |  | T | ransform | er ( | ViT |  |\n|  |  |  |  |  |  |  |  |  |  |  | R\nH | esNet (B\nybrid | iT) |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pymupdf",
+   "bbox": [
+    321.6249593098958,
+    320.7413330078125,
+    482.0534184773763,
+    439.6170227050781
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 15,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.733,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  | Tr | ansform | er ( | ViT | ) |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  |  | Re\nHy | sNet (B\nbrid | iT) |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    130.05675725,
+    87.76082387142858,
+    288.1606865769674,
+    188.351293900262
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 2,
+   "cols": 4,
+   "numeric_ratio": 0.5,
+   "empty_ratio": 0.5,
+   "col_consistency": 1.0,
+   "markdown": "|  |  | BiT ViT-L/3\nViT-B/32 ViT-L/1 | 2\n6 |\n|---|---|---|---|\n|  |  | ViT-B/16 ViT-H/ | 14 |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    331.8053872722154,
+    87.76082387142858,
+    488.7291221875,
+    188.351293900262
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 2,
+   "cols": 3,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.667,
+   "col_consistency": 1.0,
+   "markdown": "| ViT-L/16 ViT-B/32 ResNet50x1 (BiT) |  |  |\n|---|---|---|\n|  | ViT-L/32 ViT-b/32 ResNet152x2 (BiT) |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    146.43328625,
+    320.74130875000003,
+    306.2395397624667,
+    439.26183035
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 16,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.833,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ) |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  |  |  | T | ransform | er ( | ViT |  |\n|  |  |  |  |  |  |  |  |  |  |  | R\nH | esNet (B\nybrid | iT) |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 7,
+   "method": "pdfplumber",
+   "bbox": [
+    322.21694225,
+    320.74130875000003,
+    481.9432312983881,
+    439.26183035
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 3,
+   "cols": 14,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.786,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  | T | ransform | er ( | ViT | ) |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  |  |  | R | esNet (B | iT) |  |  |\n|  |  |  |  |  |  |  |  |  |  | Hybrid |  |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 9,
+   "method": "pdfplumber",
+   "bbox": [
+    107.948868,
+    110.61978995173537,
+    257.42280276828,
+    192.31064084852937
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "ViT",
+   "page": 18,
+   "method": "pymupdf",
+   "bbox": [
+    108.0,
+    81.86506652832031,
+    503.9998779296875,
+    211.46197509765625
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| ViT-L16\n7 epochs, LR=0.0002, WD=0.01\n1\n2\n3\n4\n5\nrow\n6\n7 patch\n8 Input\n9\n10\n11\n12\n13\n14\n1 2 3 4 5 6 7 8 9 10 11 12 13 14\nInput patch column | Input patch row | ViT-L16\n7 epochs, LR=0.0004, WD=0.1\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n1 2 3 4 5 6 7 8 9 10 11 12 13 14\nInput patch column | Input patch row | ViT-L16\n14 epochs, LR=0.0004, WD=0.1\n1\n1\n2\n3\n4\n5\nsimilarity\n6\n7\n8 Cosine\n9\n10\n11\n12\n13\n14\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 1\nInput patch column |\n|---|---|---|---|---|"
+  },
+  {
+   "doc": "ViT",
+   "page": 18,
+   "method": "pdfplumber",
+   "bbox": [
+    108.0,
+    81.86509539010001,
+    503.9998778125,
+    211.462
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.0,
+   "col_consistency": 1.0,
+   "markdown": "| ViT-L16\n7 epochs, LR=0.0002, WD=0.01\n1\n1\n2\n3\n4\n5\nwor\n6\nhctap\n7\n8 tupnI\n9\n10\n11\n12\n13\n14\n1 2 3 4 5 6 7 8 9 1011121314\nInput patch column | ywtiorra\nlhimctiasp\ne tnuisponCI\n1 | ViT-L16\n7 epochs, LR=0.0004, WD=0.1\n1\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n1 2 3 4 5 6 7 8 9 1011121314\nInput patch column | ywtiorra\nlhimctiasp\ne tnuisponCI\n1 | ViT-L16\n14 epochs, LR=0.0004, WD=0.1\n1\n1\n2\n3\n4\n5 ytiralimis\n6\n7\n8 enisoC\n9\n10\n11\n12\n13\n14\n1 2 3 4 5 6 7 8 9 1011121314 1\nInput patch column |\n|---|---|---|---|---|"
+  },
+  {
+   "doc": "ViT",
+   "page": 18,
+   "method": "pdfplumber",
+   "bbox": [
+    122.6248334375,
+    95.97117789009997,
+    232.6345334375,
+    198.1255418125
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "ViT",
+   "page": 18,
+   "method": "pdfplumber",
+   "bbox": [
+    252.18259521143,
+    95.97117789009997,
+    362.41136902615335,
+    198.1255418125
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "ViT",
+   "page": 18,
+   "method": "pdfplumber",
+   "bbox": [
+    381.5278334375,
+    95.97117789009997,
+    491.53753343750003,
+    198.1255418125
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "ViT",
+   "page": 19,
+   "method": "pdfplumber",
+   "bbox": [
+    149.990566875,
+    246.9351192635,
+    301.2897303306,
+    355.2958471875
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "ViT",
+   "page": 19,
+   "method": "pdfplumber",
+   "bbox": [
+    331.5495634194,
+    246.9351192635,
+    482.848726875,
+    355.2958471875
+   ],
+   "captionLinked": false,
+   "valid": false,
+   "rows": 0,
+   "cols": 0,
+   "numeric_ratio": 0,
+   "empty_ratio": 1,
+   "col_consistency": 0
+  },
+  {
+   "doc": "ViT",
+   "page": 20,
+   "method": "pymupdf",
+   "bbox": [
+    140.21238708496094,
+    85.2305679321289,
+    295.2191467285156,
+    223.19173431396484
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 10,
+   "numeric_ratio": 0.25,
+   "empty_ratio": 0.76,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  | Axial | ViT-B/16 |  |\n|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  | ViT-B/1 | 6 |  |\n|  |  |  |  |  |  | AxialViT-B/32 |  |  |  |\n|  |  | ViT-\nAxia | B/3\nlRes | 2\nNet | 50 |  |  |  |  |\n|  | Re | sNet | 50 |  |  |  |  |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 20,
+   "method": "pymupdf",
+   "bbox": [
+    333.35540771484375,
+    85.2305679321289,
+    487.82639567057294,
+    223.19173431396484
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 16,
+   "numeric_ratio": 0.118,
+   "empty_ratio": 0.787,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  | AxialViT-B | /1 | 6 |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  | Vi | T-B | /16 |  |  |  |  |  |  |  |\n|  |  |  |  |  |  | Axi | alV | iT-B | /32 |  |  |  |  |  |  |\n|  | ViT-B | /32 |  |  |  |  |  |  |  |  | AxialRes | Ne | t5 | 0 |  |\n|  |  | ResNet50 |  |  |  |  |  |  |  |  |  |  |  |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 20,
+   "method": "pdfplumber",
+   "bbox": [
+    140.212382,
+    85.23053671937498,
+    295.2191399,
+    223.19170792187492
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 10,
+   "numeric_ratio": 0.25,
+   "empty_ratio": 0.76,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  | Axial | ViT-B/16 |  |\n|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  |  | ViT-B/1 | 6 |  |\n|  |  |  |  |  |  | AxialViT-B/32 |  |  |  |\n|  |  | ViT-\nAxia | B/3\nlRes | 2\nNet | 50 |  |  |  |  |\n|  | Re | sNet | 50 |  |  |  |  |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 20,
+   "method": "pdfplumber",
+   "bbox": [
+    333.35538199999996,
+    85.23053671937498,
+    487.82638640471333,
+    223.19170792187492
+   ],
+   "captionLinked": false,
+   "valid": true,
+   "rows": 5,
+   "cols": 16,
+   "numeric_ratio": 0.118,
+   "empty_ratio": 0.787,
+   "col_consistency": 1.0,
+   "markdown": "|  |  |  |  |  |  |  |  |  |  |  | AxialViT-B | /1 | 6 |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  |  |  |  |  | Vi | T-B | /16 |  |  |  |  |  |  |  |\n|  |  |  |  |  |  | Axi | alV | iT-B | /32 |  |  |  |  |  |  |\n|  | ViT-B | /32 |  |  |  |  |  |  |  |  | AxialRes | Ne | t5 | 0 |  |\n|  |  | ResNet50 |  |  |  |  |  |  |  |  |  |  |  |  |  |"
+  },
+  {
+   "doc": "ViT",
+   "page": 22,
+   "method": "pymupdf",
+   "bbox": [
+    107.99996948242188,
+    376.72698974609375,
+    503.9999694824219,
+    425.0459899902344
+   ],
+   "captionLinked": true,
+   "valid": false,
+   "rows": 1,
+   "cols": 5,
+   "numeric_ratio": 0.0,
+   "empty_ratio": 0.2,
+   "col_consistency": 1.0,
+   "markdown": "|  | Caltech101 CIFAR-100 DTD Flowers102 Pets Sun397 SVHN | Camelyon EuroSAT Resisc45 Retinopathy | Clevr-Count Clevr-Dist DMLab dSpr-Loc dSpr-Ori KITTI-Dist sNORB-Azim sNORB-Elev | Mean |\n|---|---|---|---|---|"
+  }
+ ]
+}
