@@ -5,7 +5,3 @@ from pydantic import BaseModel
 class SearchDto(BaseModel):
     query: str
     limit: int | None = 10
-
-
-class DeleteImageDto(BaseModel):
-    imagePath: str

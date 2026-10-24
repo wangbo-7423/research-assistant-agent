@@ -19,7 +19,8 @@ class ChatMessage(MongoDocument):
     content: str = ""  # 发给模型的完整内容（带文档正文时远长于用户输入）
     displayContent: str | None = None  # 前端展示用的内容（上传文档时保留用户原话）
     uploadFileList: list[dict[str, Any]] | None = None
-    uploadImageList: dict[str, Any] | None = None
+    # 旧数据是单个对象，新数据是图片数组（粘贴图片落盘后只存路径）
+    uploadImageList: dict[str, Any] | list[dict[str, Any]] | None = None
     readFileData: dict[str, Any] | None = None  # 助手消息上的「已阅读文档」卡片数据
     citations: list[dict[str, Any]] | None = None  # 知识库回答的出处列表，与正文 [N] 对应
 

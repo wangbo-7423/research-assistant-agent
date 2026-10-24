@@ -7,6 +7,7 @@ import json
 from bson import ObjectId
 
 from ..core.deps import redis_client
+from ..file_management.image_storage import delete_session_image_files
 from .models import ChatSessionDocument, message_payloads
 
 CHAT_COLLECTION = "chatdata"
@@ -106,13 +107,33 @@ async def get_session_list(user_id: str, chat_col) -> list[dict]:
     return result
 
 
+def _collect_image_paths(chat_list: list) -> list[str]:
+    """从会话历史里收集图片路径（兼容旧单对象与新数组两种结构）。"""
+    paths: list[str] = []
+    for message in chat_list:
+        raw = _field(message, "uploadImageList")
+        if not raw:
+            continue
+        items = raw if isinstance(raw, list) else [raw]
+        for item in items:
+            if isinstance(item, dict) and item.get("imagePath"):
+                paths.append(str(item["imagePath"]))
+    return paths
+
+
 async def delete_session(user_id: str, session_id: str, chat_col) -> dict:
     try:
         session_oid = ObjectId(session_id)
     except Exception:
         return {"deleted": False}
+    # 删除前先取出图片路径：文档删掉后就找不到引用了，落盘文件会永久残留
+    chat_data = await chat_col.find_one(
+        {"userId": ObjectId(user_id), "_id": session_oid}, {"chatList": 1}
+    )
     result = await chat_col.delete_one({"userId": ObjectId(user_id), "_id": session_oid})
     await redis_client.delete(_redis_key(user_id, session_id))
+    if chat_data:
+        delete_session_image_files(_collect_image_paths(chat_data.get("chatList") or []))
     return {"deleted": result.deleted_count > 0}
 
 

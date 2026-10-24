@@ -9,15 +9,18 @@ class UploadFileRefDto(BaseModel):
     docId: str
 
 
-class UploadImageDto(BaseModel):
-    imagePath: str
+class InlineImageDto(BaseModel):
+    """粘贴的图片：base64 内联提交，后端落盘后只保留路径。"""
+
     mimetype: str
-    imageUrl: str
+    data: str  # base64，不含 data: 前缀
+    fileName: str | None = None
+    fileSize: int | None = None
 
 
 class SendMessageDto(BaseModel):
-    content: str
+    content: str = ""
     sessionId: str
     uploadFileList: list[UploadFileRefDto] | None = None
+    images: list[InlineImageDto] | None = None
     isKnowledgeBased: bool | None = None
-    uploadImageList: UploadImageDto | None = None

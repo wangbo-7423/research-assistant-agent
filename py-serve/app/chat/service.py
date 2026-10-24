@@ -1,22 +1,26 @@
 """对话编排：组合用户消息 → 首轮意图识别/续问改写 → 检索回答 → 落库。
 
 拆分后的模块职责（本文件只保留编排，不直接碰模型/存储细节）：
-  llm.py        模型调用（文本对话、多模态图片理解）
+  llm.py        模型调用（文本对话 + 原生多模态消息组装）
   stream.py     SSE 流式写端
   retrieval.py  知识库检索问答（query_kb）
   session.py    会话创建、历史读取、落库与缓存
   service.py    串联上述步骤（对外入口 combine_convo）
 """
 import json
-import traceback
+import logging
 
 from bson import ObjectId
 
+from ..core.response import BizError
+from ..file_management.image_storage import save_inline_images
 from ..file_management.service import query_files_by_ids
-from .llm import calling_model, encode_image, model_vl_res
+from .llm import calling_model
 from .retrieval import query_kb
 from .session import create_session, load_history, persist_convo
 from .stream import StreamWriter
+
+logger = logging.getLogger(__name__)
 
 
 def _kb_size(size_bytes) -> str:
@@ -32,7 +36,7 @@ async def combine_convo(
     session_id: str,
     content: str,
     upload_file_list: list[dict] | None,
-    upload_image_list: dict | None,
+    inline_images: list[dict] | None,
     is_knowledge_based: bool | None,
     files_col,
     chat_col,
@@ -80,10 +84,15 @@ async def combine_convo(
             "fileList": [d["fileName"] for d in upload_file_list_data],
         }
 
-    # 如果用户上传图片
-    if upload_image_list:
+    # 用户粘贴的图片：先落盘，消息里只保留路径（base64 绝不入库）
+    if inline_images:
         is_knowledge_based = False
-        messages["uploadImageList"] = upload_image_list
+        try:
+            messages["uploadImageList"] = save_inline_images(inline_images)
+        except BizError as error:
+            await write.notify({"type": "error", "content": error.message})
+            await write.end()
+            return
 
     # 请求数据库：获取用户历史对话，组合上下文，让模型有记忆能力
     is_new_session = session_id == "null"
@@ -98,8 +107,15 @@ async def combine_convo(
         history_convo_list.append(messages)
 
     # 调用模型（slice 不改动原数组，完整历史留给持久化）
-    print("对话数据")
-    print(json.dumps(history_convo_list, ensure_ascii=False))
+    # 只打印摘要：完整历史含文档正文，打日志会膨胀并可能带出用户隐私
+    logger.debug(
+        "本轮对话 session=%s 消息数=%s 图片数=%s 文档数=%s 知识库=%s",
+        real_session_id,
+        len(history_convo_list),
+        len(messages.get("uploadImageList") or []),
+        len(upload_file_list or []),
+        is_knowledge_based,
+    )
     assistant_message = await model_result(
         write,
         history_convo_list[-21:],
@@ -108,7 +124,6 @@ async def combine_convo(
         real_session_id,
         upload_file_list,
         read_file_list,
-        upload_image_list,
         sections_col,
     )
     await persist_convo(
@@ -130,16 +145,14 @@ async def model_result(
     session_id,
     upload_file_list: list[dict] | None,
     read_file_list: dict | None,
-    upload_image_list: dict | None,
     sections_col,
 ) -> dict | None:
-    """模型输出结果（返回助手完整回复，用于持久化；失败返回 None）。"""
+    """模型输出结果（返回助手完整回复，用于持久化；失败返回 None）。
+
+    图片已并入 message_list（见 llm.calling_model），这里不再区分视觉/文本两条链路。
+    """
     try:
-        if upload_image_list:
-            image_url_obj = await encode_image(upload_image_list["imagePath"], upload_image_list["mimetype"])
-            res = await model_vl_res(message_list, image_url_obj)
-        else:
-            res = await calling_model(message_list, bool(is_knowledge_based))
+        res = await calling_model(message_list, bool(is_knowledge_based))
 
         # 如果用户携带文档对话，在这里返回前端
         if upload_file_list and read_file_list:
@@ -173,11 +186,11 @@ async def model_result(
                     if isinstance(candidate, str) and candidate.strip():
                         clarified = candidate
                 if clarified:
-                    print(f"工具生成了新问题-----{clarified}")
+                    logger.info("意图工具生成了新问题: %s", clarified)
                     return await query_kb(
                         write, clarified, message_list, user_id, read_file_list, sections_col
                     )
-                print("工具没有生成新问题")
+                logger.info("意图工具没有生成新问题，沿用原问题检索")
                 last_item = message_list[-1]
                 return await query_kb(
                     write, last_item["content"], message_list, user_id, read_file_list, sections_col
@@ -198,8 +211,7 @@ async def model_result(
             assistant_message["readFileData"] = read_file_list
         return assistant_message
     except Exception:
-        print("调用模型出错")
-        traceback.print_exc()
+        logger.exception("调用模型出错")
         try:
             await write.notify({"type": "error", "content": "模型服务异常，请稍后重试"})
             await write.end()

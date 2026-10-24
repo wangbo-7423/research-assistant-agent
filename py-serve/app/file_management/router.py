@@ -1,29 +1,19 @@
-"""文件管理路由：知识库/对话框上传、检索、列表、删除、图片上传。
+"""文件管理路由：知识库/对话框上传、检索、列表、删除。
 
 对应 NestJS 版 FileanagementController。
+图片不再有独立上传接口：随 /chat/sendmessage 内联提交，由
+file_management.image_storage.save_inline_images 落盘。
 """
 from fastapi import APIRouter, Depends, File, Request, UploadFile
 
-from ..core.config import Config
 from ..core.deps import AuthUser, get_current_user, get_db
 from ..core.response import BizError, wrap_response
 from . import service
-from .image_storage import (
-    ALLOWED_IMAGE_TYPES,
-    IMAGE_PUBLIC_ROUTE,
-    UPLOAD_ROOT,
-    assert_image_signature,
-    create_stored_image_filename,
-    delete_image_file,
-    ensure_image_upload_dir,
-)
-from .schemas import DeleteImageDto, SearchDto
+from .schemas import SearchDto
 from .sections import SECTION_COLLECTION
 from .service import FILE_COLLECTION, validate_doc_file
 
 router = APIRouter(prefix="/file_management")
-
-MAX_IMAGE_SIZE = 10 * 1024 * 1024  # 10MB
 
 
 async def _read_doc_files(files: list[UploadFile]) -> list[tuple[str, str, int, bytes]]:
@@ -112,52 +102,3 @@ async def delete_dialog_file(
     return wrap_response(result, request.url.path)
 
 
-@router.post("/uploadimage")
-async def upload_image(
-    request: Request,
-    file: UploadFile = File(..., description="图片文件"),
-    user: AuthUser = Depends(get_current_user),
-):
-    if not file.filename:
-        raise BizError("请选择要上传的图片", 400)
-    mimetype = file.content_type or ""
-    if mimetype not in ALLOWED_IMAGE_TYPES:
-        raise BizError(f"不支持的图片类型: {mimetype}", 400)
-    content = await file.read()
-    if len(content) <= 0:
-        raise BizError("图片内容不能为空", 400)
-    if len(content) > MAX_IMAGE_SIZE:
-        raise BizError("图片大小不能超过 10MB", 400)
-
-    ensure_image_upload_dir()
-    filename = create_stored_image_filename(file.filename.split(".")[0] or "image", mimetype)
-    target = UPLOAD_ROOT / filename
-    target.write_bytes(content)
-    # 校验文件魔数，失败则删除已落盘文件
-    try:
-        assert_image_signature(target, mimetype)
-    except BizError:
-        target.unlink(missing_ok=True)
-        raise
-
-    base_url = Config.IMAGE_BASE_URL_LOCAL.rstrip("/")
-    public_base = base_url if base_url.endswith(IMAGE_PUBLIC_ROUTE) else f"{base_url}{IMAGE_PUBLIC_ROUTE}"
-    return wrap_response(
-        {
-            "message": "图片上传成功",
-            "data": {
-                "success": True,
-                "image": {
-                    "imagePath": f"uploads-image/{filename}",
-                    "mimetype": mimetype,
-                    "imageUrl": f"{public_base}/{filename}",
-                },
-            },
-        },
-        request.url.path,
-    )
-
-
-@router.post("/deleteimage")
-async def delete_image(request: Request, body: DeleteImageDto, user: AuthUser = Depends(get_current_user)):
-    return wrap_response(delete_image_file(body.imagePath), request.url.path)

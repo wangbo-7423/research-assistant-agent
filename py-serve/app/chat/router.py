@@ -19,8 +19,9 @@ router = APIRouter(prefix="/chat")
 
 @router.post("/sendmessage")
 async def send_message(body: SendMessageDto, request: Request, user: AuthUser = Depends(get_current_user)):
-    if not body.content or not body.content.strip():
-        raise BizError("请输入问题", 400)
+    # 允许只粘贴图片不写文字：图片本身也是提问内容
+    if not body.content.strip() and not body.images:
+        raise BizError("请输入问题或粘贴图片", 400)
 
     user_id = user.user_id
     db = get_db()
@@ -37,7 +38,7 @@ async def send_message(body: SendMessageDto, request: Request, user: AuthUser = 
                 body.sessionId,
                 body.content,
                 [f.model_dump() for f in body.uploadFileList] if body.uploadFileList else None,
-                body.uploadImageList.model_dump() if body.uploadImageList else None,
+                [image.model_dump() for image in body.images] if body.images else None,
                 body.isKnowledgeBased,
                 files_col,
                 chat_col,

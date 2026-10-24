@@ -4,6 +4,7 @@
   第一层（始终加载）：核心身份层
   第二层（按需加载）：知识库问答规则，仅在发生检索后注入
   第三层（按需加载）：意图识别 prompt，仅作为 tool schema 注入
+  图片分析规则仅在当前对话携带图片时追加（模型原生多模态，不再单独走视觉模型）
 """
 
 # ---------- 第一层：核心身份（始终加载） ----------
@@ -125,8 +126,24 @@ INTENT_UNDERSTANDING_PROMPT = """
 """
 
 
-def build_system_prompt(with_kb_rules: bool = False) -> str:
-    return CORE_IDENTITY_PROMPT + "\n" + KB_ANSWERING_RULES_PROMPT if with_kb_rules else CORE_IDENTITY_PROMPT
+# ---------- 图片分析规则（仅在消息里携带图片时注入） ----------
+IMAGE_ANALYSIS_RULES = """
+【图片分析规则】
+- 用户消息中可能直接附带图片（截图、数据可视化图表、论文插图等），请先客观描述图片中的关键信息，再结合用户问题进行分析;
+- 涉及图表时，提取可读出的趋势、对比、异常点和数值；不确定或无法读出的内容要明确说明，不要臆造;
+- 多张图片之间请分别说明，避免把不同图片的结论混在一起;
+- 图片中的文字若模糊不清，请说明识别困难，不要猜测具体内容;
+- 不要因为图片内容而偏离科研、学术相关话题。
+"""
+
+
+def build_system_prompt(with_kb_rules: bool = False, with_images: bool = False) -> str:
+    prompt = CORE_IDENTITY_PROMPT
+    if with_kb_rules:
+        prompt += "\n" + KB_ANSWERING_RULES_PROMPT
+    if with_images:
+        prompt += "\n" + IMAGE_ANALYSIS_RULES
+    return prompt
 
 
 # 意图识别工具（tool schema）
