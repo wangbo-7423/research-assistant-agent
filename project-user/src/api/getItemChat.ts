@@ -20,10 +20,13 @@ export function userFileUploader(options: UserFileUploaderOptions) {
         fileInputRef.value?.click()
     }
 
-    /** 本地上传文件后触发 */
-    const handleFileUpload = async (env: Event) => {
+    /**
+     * 本地上传文件后触发。
+     * filesOverride 用于「混合选择」场景：调用方已把图片分流处理，只把文档交回来。
+     */
+    const handleFileUpload = async (env: Event, filesOverride?: File[]) => {
         const input = env.target as HTMLInputElement
-        const files = input.files
+        const files = filesOverride ?? input.files
         if (!files || files.length === 0) return
         // 如果没有登录，禁止上传
         if (!useUserStore().isLogin) {

@@ -10,16 +10,19 @@
     <div class="chat-message" v-for="(item, index) in chat.messageList" :key="index">
       <!-- 用户消息 -->
       <template v-if="item.role == 'user'">
-        <a
-          class="image-view"
-          v-if="item.uploadImageList"
-          :href="item.uploadImageList.imageUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="点击查看原图"
-        >
-          <img :src="item.uploadImageList.imageUrl" alt="用户上传的待识别图片">
-        </a>
+        <div class="image-view" v-if="itemImages(item).length > 0">
+          <a
+            class="image-item"
+            v-for="(image, imageIndex) in itemImages(item)"
+            :key="imageIndex"
+            :href="image.src"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="点击查看原图"
+          >
+            <img :src="image.src" :alt="image.alt">
+          </a>
+        </div>
         <div class="file-view" v-if="item.uploadFileList && item.uploadFileList.length > 0">
           <div class="file-item" v-for="(itema, indexa) in item.uploadFileList" :key="indexa">
             <div class="file-icon"><img :src="itema.fileType == 'docx' ? docxIcon : pdfIcon" alt=""></div>
@@ -74,11 +77,33 @@ import MarkdownIt from 'markdown-it'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import { useChatStore } from "@/store/index"
+import type { MessageListType, UploadImageRefType } from '@/types/index'
 import docxIcon from "@/assets/docx.png"
 import pdfIcon from "@/assets/pdf.png"
 import CitationList from "@/components/CitationList.vue"
 
 const chat = useChatStore()
+
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:3000').replace(/\/+$/, '')
+
+// 历史数据里 uploadImageList 是单对象，新消息是数组，统一归一化后再渲染
+const itemImages = (item: MessageListType): { src: string; alt: string }[] => {
+  const raw = item.uploadImageList
+  if (!raw) return []
+  const list = Array.isArray(raw) ? raw : [raw]
+  return list
+    .map((image) => ({ src: resolveImageSrc(image), alt: image.fileName || '用户发送的图片' }))
+    .filter(image => Boolean(image.src))
+}
+
+// 优先用后端存的相对路径 + 当前接口地址拼接（换域名后仍可访问），否则回退到历史 imageUrl
+const resolveImageSrc = (image: UploadImageRefType): string => {
+  if (image.imagePath) {
+    const fileName = image.imagePath.split(/[\\/]/).pop() || ''
+    if (fileName) return `${API_BASE}/open-image/${fileName}`
+  }
+  return image.imageUrl || ''
+}
 
 // Markdown 渲染器：禁用原生 HTML（防注入）、自动识别链接、单换行也生效（聊天文本习惯）
 const md = new MarkdownIt({
@@ -226,17 +251,24 @@ watch(
   word-break: break-word;
 }
 .image-view {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
   align-self: flex-end;
-  max-width: min(420px, 72%);
+  max-width: min(560px, 100%);
   margin-top: 15px;
+}
+.image-item {
+  display: block;
+  max-width: min(420px, 100%);
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #e4e7ed;
   background-color: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
-.image-view img {
+.image-item img {
   display: block;
   width: 100%;
   max-height: 320px;

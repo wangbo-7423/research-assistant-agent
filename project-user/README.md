@@ -66,14 +66,15 @@ project-user/
     ├── types/
     │   └── index.d.ts          # 全局类型定义（API 响应 / 消息 / 会话等）
     ├── utils/
-    │   └── validators.ts       # 前端校验工具
+    │   ├── validators.ts       # 前端校验工具
+    │   └── image.ts            # 粘贴图片读取 / canvas 压缩 / base64 转换
     ├── components/
     │   ├── AppShell.vue        # 布局骨架（左栏 + 中央 + 底部）
     │   ├── ChatHistory.vue     # 左侧会话列表（切换 / 删除 / 新建 / 登录 / 知识库入口）
     │   ├── ChatWindow.vue      # 中央消息区（气泡 / Markdown+KaTeX / 文档引用折叠 / 引用角标 / 自动滚底）
     │   ├── CitationList.vue    # 知识库回答出处列表（章节 / 页码 / 段序 / 片段摘录）
     │   ├── ChatWelcome.vue     # 欢迎页（无消息时展示）
-    │   ├── ChatInput.vue       # 底部输入区（文本 / 图片 / DOCX / PDF 上传、知识库模式切换）
+    │   ├── ChatInput.vue       # 底部输入区（文本 / 粘贴或选择图片 / DOCX / PDF 上传、知识库模式切换）
     │   ├── Knowledge.vue       # 知识库管理抽屉（文件网格 / 上传 / 删除）
     │   └── UserLogin.vue       # 登录 / 注册弹窗（手机号 + 密码）
     └── assets/                 # 静态资源
@@ -87,7 +88,7 @@ App.vue
     ├── ChatHistory.vue   —— 会话管理
     ├── ChatWindow.vue    —— 消息渲染（含 ChatWelcome 欢迎态）
     │   └── CitationList.vue —— 知识库出处卡片
-    ├── ChatInput.vue     —— 消息发送 / 多模态上传
+    ├── ChatInput.vue     —— 消息发送 / 粘贴图片（Ctrl+V）/ 选择图片或文档
     ├── Knowledge.vue     —— ElDrawer 知识库抽屉
     └── UserLogin.vue     —— ElDialog 登录注册弹窗
 ```

@@ -3,7 +3,7 @@
 const requestUrl = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:3000"
 import { fetchEventSource } from '@microsoft/fetch-event-source'
 import axios from "axios";
-import type{ UserLoginType, UserRegisterType, ApiResponse, UserInfoResType, UploadResponse, UploadImageResponse, kbFileListType, SendMessageType, AiMessageType, MessageListType, SessionListItemType } from "@/types/index"
+import type{ UserLoginType, UserRegisterType, ApiResponse, UserInfoResType, UploadResponse, kbFileListType, SendMessageType, AiMessageType, MessageListType, SessionListItemType } from "@/types/index"
 import { useUserStore, useChatStore, useUiStore } from "@/store/index"
 
 // 注意：不要在模块顶层调用 useXxxStore()，
@@ -77,7 +77,7 @@ axiosInstance.interceptors.response.use(
 export const SendMessageApi = async(params:SendMessageType, aiMessageObj: MessageListType) => {
   const userStore = useUserStore()
   const chatStore = useChatStore()
-  const { content, sessionId, uploadFileList, uploadImageList, isKnowledgeBased } = params
+  const { content, sessionId, uploadFileList, images, isKnowledgeBased } = params
   const body:Record<string, any> = {
     content,
     sessionId,
@@ -86,8 +86,9 @@ export const SendMessageApi = async(params:SendMessageType, aiMessageObj: Messag
   if (uploadFileList && uploadFileList.length > 0) {
     body.uploadFileList = uploadFileList
   }
-  if (uploadImageList) {
-    body.uploadImageList = uploadImageList
+  // 图片以 base64 内联提交，后端负责校验、落盘并转成多模态消息
+  if (images && images.length > 0) {
+    body.images = images
   }
   // 处理单个 JSON 块
   const handleChunk = (aiMessage: AiMessageType) => {
@@ -184,14 +185,6 @@ export const UploadDialogApi = (params:FormData):Promise<UploadResponse> => {
 // 对话框删除指定文件
 export const DeleteFileApi = (params:{id:string}):Promise<ApiResponse<[]>> => {
   return axiosInstance.delete(`/file_management/dialog/${params.id}`)
-}
-// 上传待识别图片
-export const UploadImageApi = (params:FormData):Promise<UploadImageResponse> => {
-  return axiosInstance.post('/file_management/uploadimage', params, { timeout: 120000 })
-}
-// 删除待识别图片
-export const DeleteImageApi = (params:{imagePath:string}):Promise<ApiResponse<{success:boolean}>> => {
-  return axiosInstance.post('/file_management/deleteimage', params)
 }
 // 知识库文件上传
 export const UploadkbApi = (params:FormData):Promise<UploadResponse> => {

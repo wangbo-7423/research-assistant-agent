@@ -8,50 +8,25 @@
           class="query-kb-button"
           :class="{ 'is-active': isActive }"
           @click="toggleActive"
-          v-if="uploadFileItem.length <= 0 && !uploadImageItem"
+          v-if="uploadFileItem.length <= 0 && pastedImages.length <= 0"
         >
           <div class="query-kb">
             <img src="../assets/knowledge.png" alt="">
             <span>知识库问答</span>
           </div>
         </el-button>
-
-        <!-- 图片上传：一次识别一张图片 -->
-        <input
-          type="file"
-          :accept="uploadImageType.join(',')"
-          style="display: none"
-          @change="handleImageUpload"
-          ref="imageInputRef"
-        />
-        <el-button
-          class="query-kb-button check-report-button"
-          :loading="imageUploading"
-          :disabled="imageUploading || imageDeleting"
-          @click="triggerImageInput"
-        >
-          <el-tooltip content="上传一张不超过10MB的JPG/PNG/JPEG/WEBP图片，可用于图表识别与分析" effect="customized" placement="top">
-            <div class="query-kb">
-              <img src="../assets/research.png" alt=""/>
-              <span>{{ imageUploading ? '图片上传中...' : '上传数据可视化图片' }}</span>
-            </div>
-          </el-tooltip>
-        </el-button>
       </div>
 
-      <!-- 已上传图片预览 -->
-      <div class="upload-image-preview" v-if="uploadImageItem">
-        <img class="image-thumb" :src="uploadImageItem.imageUrl" :alt="uploadImageItem.fileName">
-        <div class="file-info">
-          <span class="hidden-text">{{ uploadImageItem.fileName }}</span>
-          <span class="file-size">{{ formatFileSize(uploadImageItem.fileSize) }}</span>
+      <!-- 已粘贴图片预览：一次最多 4 张，可单张删除 -->
+      <div class="upload-image-list" v-if="pastedImages.length > 0">
+        <div class="upload-image-preview" v-for="image in pastedImages" :key="image.id">
+          <img class="image-thumb" :src="image.dataUrl" :alt="image.fileName">
+          <div class="file-info">
+            <span class="hidden-text">{{ image.fileName }}</span>
+            <span class="file-size">{{ formatFileSize(image.fileSize) }}</span>
+          </div>
+          <el-icon :size="11" class="delete-file" @click="removeImage(image.id)"><CloseBold/></el-icon>
         </div>
-        <el-icon
-          :size="11"
-          class="delete-file"
-          :class="{ 'is-disabled': imageDeleting || imageUploading }"
-          @click="deleteImage"
-        ><CloseBold/></el-icon>
       </div>
 
       <!-- 文件上传的列表 -->
@@ -67,17 +42,17 @@
       </div>
 
       <!-- 输入框 -->
-      <div class="chat-input-content">
+      <div class="chat-input-content" @paste.capture="handlePaste">
         <input
           type="file"
           multiple
-          :accept="uploadFileType.join(',')"
+          :accept="uploadAcceptType.join(',')"
           style="display: none"
-          @change="handleFileUpload"
+          @change="handleFilePickerChange"
           :ref="(el: any) => fileInputRef = el"
         />
         <el-tooltip
-          content="每次最多上传3个文件(每个5MB)，仅支持PDF，DOCX文件类型"
+          content="文档：PDF/DOCX，每个5MB、最多3个；图片：JPG/PNG/WEBP，单张10MB、最多4张"
           effect="customized"
           placement="top"
         >
@@ -88,12 +63,12 @@
         <el-input
           v-model="userMessage"
           type="textarea"
-          placeholder="任何问题都可以问我哦~，shift + enter 换行"
+          placeholder="输入问题，可粘贴（Ctrl+V）或点左侧图标上传图片/文档，shift + enter 换行"
           :autosize="{ minRows: 1, maxRows: 7 }"
           resize="none"
           @keydown="handleKeyDown"
         />
-        <el-button class="send-button" @click="sendMessage" :disabled="sending || imageUploading">
+        <el-button class="send-button" @click="sendMessage" :disabled="sending">
           <el-icon :size="18"><Promotion /></el-icon>
         </el-button>
       </div>
@@ -108,15 +83,14 @@ import {
   UploadDialogApi,
   DeleteFileApi,
   SendMessageApi,
-  UploadImageApi,
-  DeleteImageApi,
 } from "@/api/request"
 import { userFileUploader } from "@/api/getItemChat"
 import docxIcon from "@/assets/docx.png"
 import pdfIcon from "@/assets/pdf.png"
 import { ElLoading, ElMessage } from 'element-plus'
 import { useUserStore, useChatStore, useUiStore } from '@/store/index'
-import type { UploadImageItem, UploadImageRefType } from '@/types/index'
+import type { InlineImagePayload, PastedImageItem, UploadImageRefType } from '@/types/index'
+import { ACCEPTED_IMAGE_TYPES, MAX_IMAGE_COUNT, extractClipboardImages, isSupportedImage, prepareImage } from '@/utils/image'
 
 const user = useUserStore()
 const chat = useChatStore()
@@ -125,15 +99,13 @@ const ui = useUiStore()
 const isActive = ref<boolean>(false)
 const userMessage = ref<string>('')
 const sending = ref<boolean>(false) // 是否正在等待模型回复，防止重复发送
-const imageInputRef = ref<HTMLInputElement | null>(null)
-const uploadImageItem = ref<UploadImageItem | null>(null)
-const imageUploading = ref<boolean>(false)
-const imageDeleting = ref<boolean>(false)
+const pasting = ref<boolean>(false) // 粘贴图片的解码/压缩过程
+const pastedImages = ref<PastedImageItem[]>([])
 
 // 使用数组存储支持的文件类型，方便维护和扩展
 const uploadFileType = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-const uploadImageType = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp']
-const maxImageSize = 10 * 1024 * 1024
+// 同一个上传入口同时支持文档与图片（图片在本地压缩，不上传）
+const uploadAcceptType = [...uploadFileType, ...ACCEPTED_IMAGE_TYPES]
 
 // 文件上传逻辑
 const {
@@ -147,87 +119,90 @@ const toggleActive = (): void => {
   isActive.value = !isActive.value
 }
 
-const triggerImageInput = (): void => {
+// 图片统一入口：粘贴与「选择文件」都走本地压缩，不再调用上传接口
+const addImages = async (files: File[], fallbackName?: string): Promise<void> => {
   if (!user.isLogin) {
     ui.openLoginPopup()
     return
   }
-  if (uploadImageItem.value) {
-    ElMessage('一次只能识别一张图片，请先删除当前图片')
+  const remaining = MAX_IMAGE_COUNT - pastedImages.value.length
+  if (remaining <= 0) {
+    ElMessage(`最多一次携带 ${MAX_IMAGE_COUNT} 张图片`)
     return
   }
-  imageInputRef.value?.click()
+  if (files.length > remaining) {
+    ElMessage(`最多一次携带 ${MAX_IMAGE_COUNT} 张图片，已忽略多余的图片`)
+  }
+  // 图片与知识库检索互斥，避免两套上下文混在一起
+  isActive.value = false
+
+  pasting.value = true
+  try {
+    for (const file of files.slice(0, remaining)) {
+      try {
+        pastedImages.value.push(await prepareImage(file, fallbackName))
+      } catch (error) {
+        ElMessage(error instanceof Error ? error.message : '图片处理失败，请重试')
+      }
+    }
+  } finally {
+    pasting.value = false
+  }
 }
 
-// 本地校验后立即上传到服务端；发送消息时只传递服务端确认过的图片引用
-const handleImageUpload = async (event: Event): Promise<void> => {
+// 粘贴图片：剪贴板里的文件名往往是 hash，统一换成「粘贴的图片」
+const handlePaste = async (event: ClipboardEvent): Promise<void> => {
+  const files = extractClipboardImages(event)
+  if (files.length === 0) return
+
+  // 命中图片时阻止默认粘贴，避免图片二进制/文件名被插进输入框
+  event.preventDefault()
+  await addImages(files, '粘贴的图片')
+}
+
+// 同一个上传入口分流：图片走本地压缩，PDF/DOCX 交回原有的文档上传逻辑
+const handleFilePickerChange = async (event: Event): Promise<void> => {
   const input = event.target as HTMLInputElement
-  const file = input.files?.[0]
-  if (!file) return
+  const files = Array.from(input.files || [])
+  if (files.length === 0) return
 
-  if (!uploadImageType.includes(file.type)) {
-    ElMessage('仅支持 JPG、JPEG、PNG、WEBP 图片')
-    input.value = ''
-    return
+  const images = files.filter(file => isSupportedImage(file.type))
+  const documents = files.filter(file => !isSupportedImage(file.type))
+  input.value = '' // 允许重复选择同一文件
+
+  if (images.length > 0) {
+    await addImages(images, '图片')
   }
-  if (file.size <= 0 || file.size > maxImageSize) {
-    ElMessage('请上传10MB以内且内容不为空的图片')
-    input.value = ''
-    return
-  }
-
-  imageUploading.value = true
-  const formData = new FormData()
-  formData.append('file', file)
-
-  try {
-    const res = await UploadImageApi(formData)
-    const image = res.data?.image
-    if (!res.data?.success || !image) {
-      throw new Error('图片上传响应格式异常')
-    }
-    uploadImageItem.value = {
-      ...image,
-      fileName: file.name,
-      fileSize: file.size,
-    }
-  } catch (error) {
-    // HTTP 错误已由响应拦截器统一提示
-    console.error('图片上传失败', error)
-  } finally {
-    imageUploading.value = false
-    input.value = '' // 允许重复选择同一张图片
+  if (documents.length > 0) {
+    // 文档仍走 userFileUploader：只把文档交回去，复用其校验/占位/上传逻辑
+    await handleFileUpload(event, documents)
   }
 }
 
-// 删除尚未发送的图片；已发送的图片保留在历史记录中用于回显
-const deleteImage = async (): Promise<void> => {
-  if (!uploadImageItem.value || imageUploading.value || imageDeleting.value) return
-  imageDeleting.value = true
-  try {
-    await DeleteImageApi({ imagePath: uploadImageItem.value.imagePath })
-    uploadImageItem.value = null
-  } catch (error) {
-    console.error('图片删除失败', error)
-  } finally {
-    imageDeleting.value = false
-  }
+// 删除尚未发送的图片（纯前端状态，不请求服务端）
+const removeImage = (id: string): void => {
+  pastedImages.value = pastedImages.value.filter(image => image.id !== id)
 }
 
 const sendMessage = async () => {
-  if (imageUploading.value) {
-    ElMessage('图片正在上传，请稍后再发送')
+  if (pasting.value) {
+    ElMessage('图片正在处理，请稍后再发送')
     return
   }
 
   let content = userMessage.value.trim()
-  const hasImage = Boolean(uploadImageItem.value)
-  if (!content && !hasImage) {
-    ElMessage('请输入内容或上传图片')
+  const images: InlineImagePayload[] = pastedImages.value.map(image => ({
+    mimetype: image.mimetype,
+    data: image.base64,
+    fileName: image.fileName,
+    fileSize: image.fileSize,
+  }))
+  if (!content && images.length === 0) {
+    ElMessage('请输入内容或粘贴图片')
     return
   }
-  if (!content && hasImage) {
-    content = '请识别并分析这张图片'
+  if (!content) {
+    content = images.length > 1 ? '请识别并分析这些图片' : '请识别并分析这张图片'
   }
 
   // 未登录先引导登录
@@ -248,15 +223,15 @@ const sendMessage = async () => {
       docId: f.id
     }))
 
-  const imageRef: UploadImageRefType | undefined = uploadImageItem.value
-    ? {
-        imagePath: uploadImageItem.value.imagePath,
-        mimetype: uploadImageItem.value.mimetype,
-        imageUrl: uploadImageItem.value.imageUrl,
-      }
-    : undefined
+  // 本地消息用 dataURL 预览；历史会话由后端回传的 imagePath/imageUrl 回显
+  const imageRefs: UploadImageRefType[] = pastedImages.value.map(image => ({
+    imageUrl: image.dataUrl,
+    mimetype: image.mimetype,
+    fileName: image.fileName,
+    fileSize: image.fileSize,
+  }))
 
-  if (imageRef) {
+  if (images.length > 0) {
     isActive.value = false // 图片识别与知识库检索互斥
   }
 
@@ -265,7 +240,7 @@ const sendMessage = async () => {
       content,
       ...(fileRefs.length > 0 && { uploadFileList: fileRefs }),
       ...(fileRefs.length > 0 && { displayContent: content }),
-      ...(imageRef && { uploadImageList: imageRef })
+      ...(imageRefs.length > 0 && { uploadImageList: imageRefs })
     },
     {
       role: 'assistant',
@@ -279,15 +254,15 @@ const sendMessage = async () => {
   // 清空输入框、文件列表和图片预览
   userMessage.value = ''
   uploadFileItem.value = []
-  uploadImageItem.value = null
+  pastedImages.value = []
 
   try {
     await SendMessageApi({
       content,
       sessionId: chat.sessionIdForApi,
       uploadFileList: fileRefs.length > 0 ? fileRefs : undefined,
-      uploadImageList: imageRef,
-      isKnowledgeBased: imageRef ? false : isActive.value,
+      images: images.length > 0 ? images : undefined,
+      isKnowledgeBased: images.length > 0 ? false : isActive.value,
     }, aiMessageObj)
   } catch {
     // 错误提示已在 SendMessageApi 内处理
@@ -407,6 +382,13 @@ const deleteFile = async (id:string, index: number) => {
 }
 
 .upload-file-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+}
+
+.upload-image-list {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -533,8 +515,4 @@ const deleteFile = async (id:string, index: number) => {
   background-color: #c9c7f2;
 }
 
-.check-report-button {
-  border: 1px solid #d9d9d9;
-  background-color: #ffffff;
-}
 </style>

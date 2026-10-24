@@ -39,24 +39,32 @@ export type UploadResponse = ApiResponse<{
   files: UploadFileItem[];
 }>;
 
-// 已上传图片（服务端识别所需的最小字段）
+// 已落盘的图片（历史回显用；新消息由后端落盘后回传 imagePath/imageUrl）
 export type UploadImageRefType = {
-  imagePath: string;
+  imagePath?: string;
   mimetype: string;
-  imageUrl: string;
+  imageUrl?: string;
+  fileName?: string;
+  fileSize?: number;
 }
 
-// 前端图片预览项：在服务端字段基础上补充本地文件名与大小
-export type UploadImageItem = UploadImageRefType & {
+// 输入框里待发送的粘贴图片（纯前端内存态，不发上传请求）
+export type PastedImageItem = {
+  id: string;
   fileName: string;
   fileSize: number;
+  mimetype: string;
+  dataUrl: string;
+  base64: string;
 }
 
-// 图片上传接口返回的数据
-export type UploadImageResponse = ApiResponse<{
-  success: boolean;
-  image: UploadImageRefType;
-}>;
+// 随消息一起提交给后端的内联图片（base64 不含 data: 前缀）
+export type InlineImagePayload = {
+  mimetype: string;
+  data: string;
+  fileName?: string;
+  fileSize?: number;
+}
 
 // 获取知识库文件列表返回的数据
 export type kbFileListType = {
@@ -94,7 +102,7 @@ export interface MessageListType {
         fileType: string;
         docId: string;
     }[]; // 上传的文件列表
-    uploadImageList?: UploadImageRefType; // 携带的图片
+    uploadImageList?: UploadImageRefType | UploadImageRefType[]; // 消息携带的图片（旧数据为单对象）
     readFileData?: {
         type:'readDocument' | 'queryKB'; // 阅读文档 | 检索知识库
         statusInfo:'inProgress' | 'completed'; // 进行中 | 完成
@@ -119,7 +127,7 @@ export type SendMessageType = {
     content: string;
     sessionId: string;
     uploadFileList?:UploadFileRefType[];
-    uploadImageList?:UploadImageRefType;
+    images?: InlineImagePayload[]; // 粘贴的图片：随消息内联提交，后端落盘
     isKnowledgeBased?:boolean;
 }
 
