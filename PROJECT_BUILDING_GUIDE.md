@@ -223,10 +223,10 @@ POST /fileanagement/knowledge
 POST /fileanagement/dialog  → 会话里引用的文档，给大模型读全文用
 ```
 
-**线 C：图片存储**（为多模态提前铺路）
+**线 C：图片存储**（现为随消息内联落盘，不再有独立上传接口）
 ```
-POST /fileanagement/uploadimage → 落盘 uploads-image/，魔数校验 + UTF-8 文件名修复 + 路径防护
-GET  /open-image/<file>        → 静态访问
+POST /chat/sendmessage 携带 images(base64) → 后端落盘 uploads-image/，魔数校验 + 路径防护
+GET  /open-image/<file>                    → 静态访问（历史消息回显）
 ```
 
 辅助接口：`kbfilelist`（列表）、`knowledge/:id` 与 `dialog/:id`（删除，会连带清 Milvus 向量）。
@@ -239,8 +239,8 @@ GET  /open-image/<file>        → 静态访问
 2. knowledge 走完整链路：LangChain 解析文本 → 切片 → text-embedding-v3 向量化 → 存入 Milvus（按用户建集合）。
 3. dialog 只解析存 MongoDB，返回 docId 给前端，聊天时按 id 查全文。
 4. 上传拦截器处理中文文件名乱码（multer 按 latin1 解码，需要还原字节按 UTF-8 重新解码）。
-5. 图片上传：仅 JPEG/PNG/WebP、10MB，落盘前做文件魔数校验（防 Content-Type 伪造），
-   文件名随机生成，禁止路径遍历（../）。
+5. 图片：仅 JPEG/PNG/WebP、10MB，落盘前做文件魔数校验（防 Content-Type 伪造），
+   文件名随机生成，禁止路径遍历（../）。现改为随消息内联提交（见第 9 节）。
 ```
 
 > 这一阶段的"坑"都是真实踩过的：中文文件名乱码、Content-Type 伪造、Milvus 集合按用户隔离。
@@ -372,49 +372,58 @@ SendMessageApi 用 @microsoft/fetch-event-source POST 到 /chat/sendmessage：
 
 ---
 
-## 9. 第七阶段：多模态——图片理解
+## 9. 第七阶段：多模态——粘贴图片直接进对话
 
-基础 RAG 跑通后，最后一环是**图片理解（多模态）**。链路贯穿前后端：
+早期实现是"先上传、再单独调视觉模型"的两步链路；接入原生多模态模型（deepseek-flash）后，
+图片和文字走同一条消息，独立的图片上传接口也被去掉：
 
 ```
 前端 ChatInput.vue
-  选择图片（PNG/JPEG/WebP，≤10MB）→ POST /fileanagement/uploadimage
-  → 拿到 imagePath + imageUrl → 缩略图预览
+  Ctrl+V 粘贴图片，或点上传图标选择图片（同一入口也支持 PDF/DOCX）
+  → 本地 canvas 压缩（最长边 1600px，WebP/JPEG）
+  → 缩略图预览（最多 4 张）→ 随消息提交 base64
         ↓
-后端 fileanagement/uploadimage
-  落盘 uploads-image/ + 魔数校验 + 路径防护 → 返回安全相对路径
+POST /chat/sendmessage { content, images: [{mimetype, data, fileName}] }
         ↓
-用户发送带图片的消息 → POST /chat/sendmessage（带上 uploadImageList）
+后端 chat.service
+  save_inline_images()：base64 解码 → 魔数校验 → 落盘 uploads-image/paste-*.webp
+  → 消息里只保留 imagePath/imageUrl（base64 绝不入库）
         ↓
-后端 chat.service.ts
-  encodeImage()：按路径读文件 → base64（再次魔数校验）→ 拼成 OpenAI 多模态格式
-  modelVLRes()：检测到图片 → 走视觉模型（qwen-vl-plus）
-                纯文本 → 走文本模型（qwen3.7-plus）   ← 自动路由，前端无需感知
+后端 chat.llm.calling_model
+  把最近 3 条带图消息展开成多模态 content parts：
+  [{type:'text'}, {type:'image_url', image_url:{url:'data:image/webp;base64,...'}}]
+  → 与文字一起送进同一轮对话，system prompt 追加图片分析规则
 ```
 
-关键实现片段：
+关键实现与取舍：
 
 ```ts
-// 图片转 base64 并组装多模态消息（chat.service.ts）
-return {
-  type: 'image_url',
-  image_url: { url: `data:${mimetype};base64,${base64Image}` },
-}
+// 前端压缩（project-user/src/utils/image.ts）
+const canvas = document.createElement('canvas')
+canvas.width = width; canvas.height = height
+context.drawImage(bitmap, 0, 0, width, height)
+const dataUrl = canvas.toDataURL('image/webp', 0.85)  // 浏览器不支持时退 JPEG
 
-// 视觉模型 system prompt 追加图片理解要求：
-// "先客观描述图片中的关键信息，再结合用户问题进行分析；
-//  涉及图表时提取趋势、对比、异常点和可读出的数据；无法确认的内容要明确说明，不要臆造。"
+// 后端多模态消息（py-serve/app/chat/llm.py）
+{ type: 'image_url', image_url: { url: `data:${mimetype};base64,${encoded}` } }
 ```
+
+1. 去掉独立上传接口（`/file_management/uploadimage`、`/file_management/deleteimage`）与前端按钮，
+   避免"上传成功但消息没发出去"的孤儿状态；
+2. 图片落盘而不是把 base64 写进 Mongo：会话文档上限 16MB，历史又会整体进 Redis 缓存，
+   base64 直存会迅速膨胀；落盘后只存 `imagePath/imageUrl`，`/open-image` 负责回显；
+3. 历史图片只展开最近 3 条带图消息、最多 6 张，并按 `(路径, mtime, size)` 缓存 data URL，
+   避免长会话每轮重复读盘 + base64；
+4. `uploadImageList` 旧数据是单对象、新数据是数组，前后端都双读兼容；
+5. 删除会话时按历史里的 `imagePath` 级联清理文件，避免磁盘残留。
 
 提示词：
 
 ```text
-多模态支持：
-1. 前端 ChatInput 加图片上传：限制 PNG/JPEG/WebP、10MB，上传后缩略图预览、可删除。
-2. 后端 uploadimage 接口：文件落盘 uploads-image/，做魔数校验（读文件头字节验证真实类型），
-   文件名随机生成，返回 imagePath（安全相对路径）和 imageUrl（静态访问地址）。
-3. 聊天接口支持 uploadImageList：检测到图片时，把图片 base64 作为 image_url 消息
-   发给视觉模型 qwen-vl-plus；纯文本走文本模型。图片理解要求写进 system prompt。
+图片分析规则（仅在消息携带图片时注入）：
+1. 先客观描述图片中的关键信息，再结合用户问题分析；
+2. 涉及图表时提取趋势、对比、异常点和可读数值，不确定的内容明确说明，不要臆造；
+3. 多张图片分别说明，不要把不同图片的结论混在一起。
 ```
 
 ---

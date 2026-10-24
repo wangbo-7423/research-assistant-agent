@@ -7,7 +7,7 @@
 
 - FastAPI + uvicorn（端口 3000，前端无需改配置）
 - MongoDB（pymongo async）+ Redis（redis-py async）+ Milvus（pymilvus）
-- **DeepSeek `deepseek-flash`**：对话生成、图片理解（自带多模态）、检索关键词提取
+- **DeepSeek `deepseek-flash`**：对话生成、原生多模态（图片直接进对话）、检索关键词提取
   - 注意：thinking 模式不支持强制 `tool_choice`，意图识别强制调用工具时已显式关闭
   - 注意：DeepSeek 工具函数名只允许 ASCII（`^[a-zA-Z0-9_-]+$`），意图识别工具名为 `clarify_intent`
 - 通义千问 `text-embedding-v3`（向量化，1024 维；DeepSeek 不提供 embedding API，此项保留通义）
@@ -21,7 +21,7 @@ py-serve/
 ├── .env                    # DeepSeek key + Qwen key + 基础设施地址
 ├── run.py                  # 启动入口
 ├── scripts/                # 运维脚本（reindex_kb.py 重建索引）
-├── uploads-image/          # 对话图片上传目录（/open-image 静态服务）
+├── uploads-image/          # 对话图片落盘目录（粘贴图片内联保存，/open-image 静态服务）
 ├── eval/                   # 召回评测体系（详见 eval/README.md）
 └── app/                    # 按业务垂直切分，包内再分 router / schemas / service
     ├── main.py             # FastAPI 入口（CORS、静态目录、异常处理）
@@ -34,7 +34,7 @@ py-serve/
     │   ├── schemas.py      #   请求体校验（手机号 / 密码规则）
     │   └── service.py      #   用户表读写 + 密码校验 + 签发 JWT
     ├── file_management/    # 文件上传解析、切片向量化、混合检索、图片
-    │   ├── router.py       #   接口层
+    │   ├── router.py       #   接口层（图片无独立上传接口，随聊天消息内联提交）
     │   ├── schemas.py      #   请求体定义
     │   ├── service.py      #   上传/删除/列表/向量/关键词/混合检索（RRF）
     │   ├── splitter.py     #   递归字符切片（800/100，对齐 LangChain）
@@ -45,14 +45,14 @@ py-serve/
     │   ├── milvus_store.py #   Milvus chunk 集合操作（每用户一个）
     │   ├── qa_index.py     #   QA 问题索引（生成问题 + 向量 + 问题检索）
     │   ├── keywords.py     #   关键词提取（DeepSeek → 规则降级）
-    │   └── image_storage.py#   图片落盘 / 魔数校验 / 路径防护
+    │   └── image_storage.py#   图片内联落盘 / 魔数校验 / 路径防护 / 会话清理
     └── chat/               # 对话（流式 SSE 协议）
         ├── router.py       #   接口层：流式问答 + 会话管理
-        ├── schemas.py      #   请求体定义
-        ├── service.py      #   编排：组合消息 → 意图改写 → 检索回答 → 落库
-        ├── llm.py          #   模型调用（文本对话 / 多模态图片理解）
+        ├── schemas.py      #   请求体定义（含内联图片 images）
+        ├── service.py      #   编排：图片落盘 → 组合消息 → 意图改写 → 检索回答 → 落库
+        ├── llm.py          #   模型调用（统一多模态 messages 组装 + 图片缓存）
         ├── retrieval.py    #   知识库检索问答（queryKb）
-        ├── session.py      #   会话创建 / 历史缓存 / 落库
+        ├── session.py      #   会话创建 / 历史缓存 / 落库 / 会话图片清理
         ├── stream.py       #   SSE 流式写端
         └── prompts.py      #   系统提示词 + 意图识别工具（clarify_intent）
 ```
@@ -80,6 +80,22 @@ py-serve/
 流式协议：标准 SSE（`Content-Type: text/event-stream`，帧格式 `data: <json>`、空行分隔），
 消息类型有 `sessionId` / `readDocument` / `queryKB` / `answer` / `error`。
 协议选型与改造说明见 [design/05](../design/05-流式协议SSE改造.md)。
+
+## 图片链路（粘贴 → 原生多模态）
+
+对话模型本身支持视觉，因此图片不再走「先上传、再单独识别」的两步链路：
+
+1. 前端在输入框内 Ctrl+V 粘贴图片，或用左侧上传图标选择图片（同一入口也支持 PDF/DOCX），
+   `src/utils/image.ts` 本地压缩（最长边 1600px，WebP 优先、JPEG 兜底），一次最多 4 张、单张原图 ≤10MB；
+2. 发送时随 `POST /chat/sendmessage` 提交 `images: [{ mimetype, data(base64), fileName, fileSize }]`，
+   不再有 `/file_management/uploadimage`、`/file_management/deleteimage` 接口；
+3. 后端 `image_storage.save_inline_images` 解码校验（base64 → 大小 → 文件魔数）后落盘
+   `uploads-image/paste-<sha1>-<uuid>.<ext>`，消息里只保留 `imagePath/imageUrl`（base64 不入库）；
+4. `chat.llm.calling_model` 把最近 3 条带图消息（≤6 张）展开为
+   `[{type:text}, {type:image_url}]`，与文字同轮送进模型；system prompt 追加图片分析规则；
+5. 历史回显走 `/open-image` 静态目录；删除会话时按 `imagePath` 级联清理图片文件。
+
+兼容：旧会话的 `uploadImageList` 是单个对象，新消息是数组，前后端读取时都做双形态兼容。
 
 ## 索引版本升级
 
