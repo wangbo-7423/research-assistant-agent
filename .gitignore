@@ -68,6 +68,10 @@ __pycache__/
 *.pyc
 .venv/
 
+# 图表抽取评测的中间裁剪图（五套 bbox 方案的裁剪结果，约 93MB，
+# 可由 eval/scripts/eval_figure_extraction.py 重新生成）
+py-serve/eval/data/figure_extraction_eval/
+
 # 本地参考资料（暂不入库）
 docs/
 # 课程素材 / 参考代码（含大体积 PDF、语料，不入库）
